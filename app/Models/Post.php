@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model {
+    protected $table        = 'posts';
     protected $primaryKey   = 'slug';
     public    $incrementing = false;
-    public $timestamps = true;
+    public    $timestamps   = true;
+    protected $dateFormat   = 'Y-m-d H:i:s';
 
     use HasFactory;
 }

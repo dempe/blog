@@ -5,10 +5,9 @@
 @endsection
 @section('content')
     <ul class="content-list">
-        @foreach ($posts as $post)
+        @foreach ($posts->sortByDesc('created_at') as $post)
             <li>
-                {{ \Carbon\Carbon::createFromTimestamp($post->createdAt)->format('Y-m-d') }}:&nbsp;&nbsp;<a
-                    href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
+                {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;<a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
             </li>
         @endforeach
     </ul>
