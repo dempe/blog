@@ -12,12 +12,12 @@
 <body>
 <header>
     <nav>
-        <div class="site-title"><a href="index.html">Chris Dempewolf</a></div>
+        <div class="site-title"><a href="/">Chris Dempewolf</a></div>
         <div class="nav-flex-container">
             <menu>
-                <li><a href="about.html">about</a></li>
-                <li><a href="resume.pdf" target="_blank">resume</a></li>
-                <li><a href="tags/index.html">tags</a></li>
+                <li><a href="/about.html">about</a></li>
+                <li><a href="/resume.pdf" target="_blank">resume</a></li>
+                <li><a href="/tags/index.html">tags</a></li>
             </menu>
         </div>
     </nav>
