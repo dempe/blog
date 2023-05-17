@@ -1,5 +1,8 @@
 @extends('layout')
 
+@section('title')
+    {{ $page->getTitle() }}
+@endsection
 @section('content')
     <ul class="content-list">
         @foreach ($posts as $post)

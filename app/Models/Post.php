@@ -34,7 +34,12 @@ class Post extends Page {
 
     private static function parsePostFromPath($path): Post {
         $document = YamlFrontMatter::parseFile($path);
-        return new Post($document->title, $document->published, $document->tags, $document->slug, $document->body(), filemtime($path));
+        return new Post($document->title,
+                        $document->published,
+                        $document->slug,
+                        $document->body(),
+                        filemtime($path),
+                        $document->tags);
     }
 
     /**

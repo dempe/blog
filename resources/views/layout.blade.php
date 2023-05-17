@@ -24,7 +24,7 @@
 </header>
 <main>
     <article>
-        <h1>{{ $post->getTitle() }}</h1>
+        <h1>@yield('title')</h1>
         @yield('content')
     </article>
 </main>
@@ -39,10 +39,12 @@
                 <td class="table-key">Modified:&nbsp;&nbsp;</td>
                 <td>{{ \Carbon\Carbon::createFromTimestamp($post->getMTime())->format('Y-m-d H:i') }}</td>
             </tr>
-            <tr>
-                <td class="table-key">Tags:&nbsp;&nbsp;</td>
-                <td>{{ $post->getTags() }}</td>
-            </tr>
+            @hasSection('tags')
+                <tr>
+                    <td class="table-key">Tags:&nbsp;&nbsp;</td>
+                    <td>@yield('tags')</td>
+                </tr>
+            @endif
         </table>
     </div>
 </footer>
