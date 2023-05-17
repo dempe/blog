@@ -7,8 +7,8 @@
     <ul class="content-list">
         @foreach ($posts as $post)
             <li>
-                {{ \Carbon\Carbon::createFromTimestamp($post->getPublished())->format('Y-m-d') }}:&nbsp;&nbsp;<a
-                    href="{{ '/posts/' . $post->getSlug() }}">{{ $post->getTitle() }}</a>
+                {{ \Carbon\Carbon::createFromTimestamp($post->createdAt)->format('Y-m-d') }}:&nbsp;&nbsp;<a
+                    href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
             </li>
         @endforeach
     </ul>

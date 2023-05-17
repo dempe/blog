@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('title')
-    {{ $post->getTitle() }}
+    {{ $post->title }}
 @endsection
 @section('content')
-        {!! $post->getBody() !!}
+        {!! $post->body !!}
 @endsection
-@section('tags')
+{{--@section('tags')
     {{ $post->getTags() }}
-@endsection
+@endsection--}}

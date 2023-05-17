@@ -33,11 +33,11 @@
         <table>
             <tr>
                 <td class="table-key">Published:&nbsp;&nbsp;</td>
-                <td>{{ \Carbon\Carbon::createFromTimestamp($post->getPublished())->format('Y-m-d H:i') }}</td>
+                <td>{{ \Carbon\Carbon::createFromTimestamp($post->createdAt)->format('Y-m-d H:i') }}</td>
             </tr>
             <tr>
                 <td class="table-key">Modified:&nbsp;&nbsp;</td>
-                <td>{{ \Carbon\Carbon::createFromTimestamp($post->getMTime())->format('Y-m-d H:i') }}</td>
+                <td>{{ \Carbon\Carbon::createFromTimestamp($post->updatedAt)->format('Y-m-d H:i') }}</td>
             </tr>
             @hasSection('tags')
                 <tr>
