@@ -1,4 +1,4 @@
-{{ "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html>" }}
+{!! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html>" !!}
 
 <html lang="en">
 <head>

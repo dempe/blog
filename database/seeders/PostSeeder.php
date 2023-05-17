@@ -2,20 +2,24 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class PostSeeder extends Seeder {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void {
-        for ($i = 0; $i < 10; $i++) {
-            $slugtitle = Str::random(10);
-            DB::table('posts')->insert(['title' => $slugtitle,
-                                        'body' => 'Lorem ipsum.',
-                                        'slug' => $slugtitle]);
-        }
+        collect(File::files(resource_path("posts/")))
+            ->map(fn($file) => PostSeeder::parsePostFromPath($file))
+            ->map(fn($post_arr) => Post::updateOrCreate(['slug' => $post_arr['slug']], $post_arr));
+    }
+
+    private static function parsePostFromPath($path): array {
+        $document = YamlFrontMatter::parseFile($path);
+        return ['slug' => $document->slug,
+                'title' => $document->title,
+                'created_at' => $document->published,
+                'body' => $document->body()];
     }
 }
