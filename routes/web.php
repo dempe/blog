@@ -7,7 +7,7 @@ use App\Models\Page;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => PostOrig::all(),
+        'posts' => Post::all(),
         'page' => new Page('Posts', '1675659720', '', '', filemtime(resource_path('views/posts.blade.php')))
     ]);
 });
