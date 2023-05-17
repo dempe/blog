@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function ($slug) {
     return view('post', ['post' => Post::find($slug)]);
-})->where('post', '[0-9A-z_\-]+');
+});
 
 Route::fallback(function () {
     return view('404', [
