@@ -13,7 +13,8 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function ($slug) {
     try {
-        return view('post', ['post' => Post::findOrFail($slug)]);
+        return view('post', ['post' => Post::findOrFail($slug),
+                                  'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
     }
     catch (ModelNotFoundException $e) {
         return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
@@ -25,14 +26,16 @@ Route::get('/posts', function () {
 });
 
 Route::get('/tags', function () {
-    return view('tags', ['tags' => Tag::all(), 'postTags' => PostTag::all()]);
+    return view('tags', ['tags' => Tag::all(),
+                              'postTags' => PostTag::all(),
+                              'posts' => Post::select('created_at')->get()]);  // Passing all posts here to get Published/Updated info -- just needed to copy/paste footer code from index.
 });
 
 Route::get('/tags/{tag}', function ($tag) {
     try {
         $slugs = PostTag::where('tag', $tag)->pluck('slug');
-
-        $posts = collect($slugs)->map(fn($slug) => Post::select('slug', 'title', 'created_at')->findOrFail($slug));
+        $posts = collect($slugs)
+                    ->map(fn($slug) => Post::select('slug', 'title', 'created_at')->findOrFail($slug));
 
         return view('tag', ['tag' => Tag::findOrFail($tag),
                             'posts' => $posts]);

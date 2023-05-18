@@ -49,8 +49,23 @@
     </aside>
 
     <p>
-        I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/index.php">here</a>.
+        I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
+            href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/index.php">here</a>.
     </p>
 
     <p>Thanks for stopping by!</p>
+@endsection
+@section('footer-content')
+    <div class="footer-content">
+        <table>
+            <tr>
+                <td class="table-key">Published:&nbsp;&nbsp;</td>
+                <td>2023-02-27 00:18</td>
+            </tr>
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                <td>{{ Carbon\Carbon::createFromTimestamp(filemtime(resource_path('views/about.blade.php')))->format('Y-m-d H:i') }}</td>
+            </tr>
+        </table>
+    </div>
 @endsection
