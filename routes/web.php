@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,8 @@ Route::get('/posts', function () {
 
 Route::get('/tags', function () {
     return view('tags', [
-        'tags' => Tag::all()
+        'tags' => Tag::all(),
+        'postTags' => PostTag::all()
     ]);
 });
 
