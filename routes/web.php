@@ -31,14 +31,13 @@ Route::get('/tags', function () {
                               'posts' => Post::select('created_at')->get()]);  // Passing all posts here to get Published/Updated info -- just needed to copy/paste footer code from index.
 });
 
-Route::get('/tags/{tag}', function ($tag) {
+Route::get('/tags/{tag}', function ($query) {
     try {
-        $slugs = PostTag::where('tag', $tag)->pluck('slug');
-        $posts = collect($slugs)
-                    ->map(fn($slug) => Post::select('slug', 'title', 'created_at')->findOrFail($slug));
+        $tag = Tag::findOrFail($query);
+        $posts = $tag->posts()->get();
 
-        return view('tag', ['tag' => Tag::findOrFail($tag),
-                            'posts' => $posts]);
+        return view('tag', ['tag' => $tag,
+                                 'posts' => $posts]);
     }
     catch (ModelNotFoundException $e) {
         return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
