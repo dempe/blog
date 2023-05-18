@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    {{ $page->getTitle() }}
+    {{ $title }}
 @endsection
 @section('content')
     <ul class="content-list">

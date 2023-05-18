@@ -4,7 +4,7 @@
 <head>
     <meta>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general.">
     <title>Chris Dempewolf's Blog</title>
@@ -15,9 +15,10 @@
         <div class="site-title"><a href="/">Chris Dempewolf</a></div>
         <div class="nav-flex-container">
             <menu>
-                <li><a href="/about.html">about</a></li>
+                <li><a href="/about">about</a></li>
+{{-- TODO: use controller to load mysite.com/resume --}}
                 <li><a href="/resume.pdf" target="_blank">resume</a></li>
-                <li><a href="/tags/index.html">tags</a></li>
+                <li><a href="/tags/">tags</a></li>
             </menu>
         </div>
     </nav>
@@ -29,24 +30,9 @@
     </article>
 </main>
 <footer>
-    <div class="footer-content">
-        <table>
-            <tr>
-                <td class="table-key">Published:&nbsp;&nbsp;</td>
-                <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
-            </tr>
-            <tr>
-                <td class="table-key">Modified:&nbsp;&nbsp;</td>
-                <td>{{ $post->updated_at->format('Y-m-d H:i') }}</td>
-            </tr>
-            @hasSection('tags')
-                <tr>
-                    <td class="table-key">Tags:&nbsp;&nbsp;</td>
-                    <td>@yield('tags')</td>
-                </tr>
-            @endif
-        </table>
-    </div>
+    @hasSection('footer-content')
+        @yield('footer-content')
+    @endif
 </footer>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon="{&quot;token&quot;: &quot;1cea25a8cced4937b47752463ad53c43&quot;}"
