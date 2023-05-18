@@ -10,7 +10,7 @@
 
     <aside>
         <figure>
-            <img src="assets/img/me-selfie-cancun.jpg"
+            <img src="/assets/img/me-selfie-cancun.jpg"
                  alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."
                  width="200"
                  title="The author in Cancún"/>
@@ -40,7 +40,7 @@
 
     <aside>
         <figure>
-            <img src="assets/img/me-pacman.jpg"
+            <img src="/assets/img/me-pacman.jpg"
                  alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."
                  width="200"
                  title="The author playing Ms. PacMan"/>
@@ -50,7 +50,7 @@
 
     <p>
         I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
-            href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/index.php">here</a>.
+            href="/index.php">here</a>.
     </p>
 
     <p>Thanks for stopping by!</p>

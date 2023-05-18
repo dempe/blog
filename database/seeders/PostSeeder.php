@@ -20,9 +20,15 @@ class PostSeeder extends Seeder
     private static function parsePostFromPath($path): array
     {
         $document = YamlFrontMatter::parseFile($path);
+
+        if ($document->published) {
+            return ['slug' => $document->slug,
+                    'title' => $document->title,
+                    'created_at' => $document->published,
+                    'body' => $document->body()];
+        }
         return ['slug' => $document->slug,
                 'title' => $document->title,
-                'created_at' => $document->published,
                 'body' => $document->body()];
     }
 }
