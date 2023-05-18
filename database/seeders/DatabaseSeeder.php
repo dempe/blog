@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,5 +10,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PostSeeder::class);
         $this->call(TagSeeder::class);
+        $this->call(PostTagSeeder::class);
     }
 }
