@@ -8,14 +8,14 @@ use App\Models\Post;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 Route::get('/', function () {
-    return view('posts', [
-        'posts' => Post::all()]);
+    return view('posts', ['posts' => Post::all()]);
 });
 
 Route::get('/posts/{post}', function ($slug) {
     try {
         return view('post', ['post' => Post::findOrFail($slug)]);
-    } catch (ModelNotFoundException $e) {
+    }
+    catch (ModelNotFoundException $e) {
         return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
     }
 });
@@ -25,16 +25,19 @@ Route::get('/posts', function () {
 });
 
 Route::get('/tags', function () {
-    return view('tags', [
-        'tags' => Tag::all(),
-        'postTags' => PostTag::all()
-    ]);
+    return view('tags', ['tags' => Tag::all(), 'postTags' => PostTag::all()]);
 });
 
 Route::get('/tags/{tag}', function ($tag) {
     try {
-        return view('tag', ['tag' => Tag::findOrFail($tag)]);
-    } catch (ModelNotFoundException $e) {
+        $slugs = PostTag::where('tag', $tag)->pluck('slug');
+
+        $posts = collect($slugs)->map(fn($slug) => Post::select('slug', 'title', 'created_at')->findOrFail($slug));
+
+        return view('tag', ['tag' => Tag::findOrFail($tag),
+                            'posts' => $posts]);
+    }
+    catch (ModelNotFoundException $e) {
         return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
     }
 });
