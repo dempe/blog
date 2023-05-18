@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 
@@ -12,6 +13,13 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
     return redirect('/');
+});
+
+Route::get('/tags', function () {
+    return view('tags', [
+        'tags' => Tag::all(),
+        'title' => 'Tags'
+    ]);
 });
 
 Route::get('/about', function () {
