@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    {{ $title }}
+    About
 @endsection
 @section('content')
     <p>

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    {{ $title }}
+    Tags
 @endsection
 @section('content')
     <ul class="content-list">
