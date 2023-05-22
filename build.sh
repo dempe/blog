@@ -3,6 +3,8 @@
 find ./output -type f ! -name '.git' -delete
 wget --directory-prefix=output/ --html-extension -k -r -l 10 -p -N -F -nH http://localhost:8000
 
+rm -rf ./output/cdn-cgi/
+
 # Remove ".html" extension from files
 for f in $(find ./output -type f ! -name '.git'); do LC_CTYPE=C && LANG=C && mv "$f" $(echo $f | sed 's/\.html//'); done
 
