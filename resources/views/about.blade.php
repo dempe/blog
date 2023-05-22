@@ -50,7 +50,7 @@
 
     <p>
         I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
-            href="/index.php">here</a>.
+            href="/">here</a>.
     </p>
 
     <p>Thanks for stopping by!</p>

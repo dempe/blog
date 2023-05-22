@@ -1,12 +1,11 @@
-{!! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html>" !!}
+{!! "<!DOCTYPE html>" !!}
 
 <html lang="en">
 <head>
-    <meta>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/assets/css/style.css"/>
     <meta name="description"
-          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general.">
+          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
     <title>Chris Dempewolf's Blog</title>
 </head>
 <body>
@@ -16,7 +15,7 @@
         <div class="nav-flex-container">
             <menu>
                 <li><a href="/about">about</a></li>
-{{-- TODO: use controller to load mysite.com/resume --}}
+                {{-- TODO: use controller to load mysite.com/resume --}}
                 <li><a href="/resume.pdf" target="_blank">resume</a></li>
                 <li><a href="/tags/">tags</a></li>
             </menu>
