@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <meta name="description"
+          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <title>Chris Dempewolf's Blog</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="site-title"><a href="index">Chris Dempewolf</a></div>
+        <div class="nav-flex-container">
+            <menu>
+                <li><a href="about">about</a></li>
+                
+                <li><a href="resume.pdf" target="_blank">resume</a></li>
+                <li><a href="tags/index">tags</a></li>
+            </menu>
+        </div>
+    </nav>
+</header>
+<main>
+    <article>
+        <h1>    About
+</h1>
+            <p>
+        Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer and former ESL teacher.
+    </p>
+
+    <aside>
+        <figure>
+            <img src="assets/img/me-selfie-cancun.jpg"
+                 alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."
+                 width="200"
+                 title="The author in Cancún"/>
+            <figcaption>The author in Cancún</figcaption>
+        </figure>
+    </aside>
+
+    <p>
+        I was born in the Fort Smith, Arkansas, USA. I lived in Seattle for 2 years and
+        abroad in Mexico, Japan, and Germany. I taught English for a couple of years and have worked as a software
+        engineer
+        for 7 years.
+    </p>
+
+
+    <p>Some of my hobbies are ... </p>
+
+    <ul>
+        <li><strong>Dancing</strong> 🕺 (salsa, perreo, cumbia, bachata)</li>
+        <li><strong>Cooking</strong> 👨🏻‍🍳</li>
+        <li><strong>Eating</strong> 🍽️</li>
+        <li><strong>Computers</strong> 👨🏻‍💻</li>
+        <li><strong>Running</strong> 🏃🏻‍♀️</li>
+        <li><strong>Reading</strong> 📚</li>
+        <li><strong>Video games</strong> 🎮</li>
+    </ul>
+
+    <aside>
+        <figure>
+            <img src="assets/img/me-pacman.jpg"
+                 alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."
+                 width="200"
+                 title="The author playing Ms. PacMan"/>
+            <figcaption>The author playing Ms. PacMan</figcaption>
+        </figure>
+    </aside>
+
+    <p>
+        I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
+            href="index">here</a>.
+    </p>
+
+    <p>Thanks for stopping by!</p>
+    </article>
+</main>
+<footer>
+                <div class="footer-content">
+        <table>
+            <tr>
+                <td class="table-key">Published:&nbsp;&nbsp;</td>
+                <td>2023-02-27 00:18</td>
+            </tr>
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                <td>2023-05-22 14:24</td>
+            </tr>
+        </table>
+    </div>
+    </footer>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon="{&quot;token&quot;: &quot;1cea25a8cced4937b47752463ad53c43&quot;}"
+        type="db730e4d8fbb6ce6968396cd-text/javascript"></script>
+<script src="cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="db730e4d8fbb6ce6968396cd-|49" defer></script>
+</body>
+</html>
+

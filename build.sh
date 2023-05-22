@@ -11,6 +11,6 @@ for f in $(find ./output -type f ! -name '.git'); do LC_CTYPE=C && LANG=C && mv 
 #
 for f in $(find ./output -type f ! -name '.git'); do LC_CTYPE=C && LANG=C && sed -i '' 's/\.html//g' "$f"; done
 
-# git add -A
-# git commit -am "Build: $(git log --oneline | head -n 1)"
-# git push
+git add output/* 
+git commit -am "Build: $(git log --oneline | head -n 1)"
+git push

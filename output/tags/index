@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <meta name="description"
+          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <title>Chris Dempewolf's Blog</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="site-title"><a href="../index">Chris Dempewolf</a></div>
+        <div class="nav-flex-container">
+            <menu>
+                <li><a href="../about">about</a></li>
+                
+                <li><a href="../resume.pdf" target="_blank">resume</a></li>
+                <li><a href="index">tags</a></li>
+            </menu>
+        </div>
+    </nav>
+</header>
+<main>
+    <article>
+        <h1>    Tags
+</h1>
+            <table class="content-list">
+                    <tr>
+                <td class="table-key">#anki:&nbsp;&nbsp;</td>
+                <td>
+                    <a href="anki">
+                        1 posts
+                    </a>
+                </td>
+            </tr>
+                    <tr>
+                <td class="table-key">#foo:&nbsp;&nbsp;</td>
+                <td>
+                    <a href="foo">
+                        1 posts
+                    </a>
+                </td>
+            </tr>
+                    <tr>
+                <td class="table-key">#notes:&nbsp;&nbsp;</td>
+                <td>
+                    <a href="notes">
+                        1 posts
+                    </a>
+                </td>
+            </tr>
+                    <tr>
+                <td class="table-key">#tech:&nbsp;&nbsp;</td>
+                <td>
+                    <a href="tech">
+                        2 posts
+                    </a>
+                </td>
+            </tr>
+                    <tr>
+                <td class="table-key">#tv:&nbsp;&nbsp;</td>
+                <td>
+                    <a href="tv">
+                        1 posts
+                    </a>
+                </td>
+            </tr>
+            </table>
+    </article>
+</main>
+<footer>
+                <div class="footer-content">
+        <table>
+            <tr>
+                <td class="table-key">Published:&nbsp;&nbsp;</td>
+                <td>2023-02-27 06:00</td>
+            </tr>
+                            <tr>
+                    <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                    <td>2023-05-12 23:23</td>
+                </tr>
+                    </table>
+    </div>
+    </footer>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon="{&quot;token&quot;: &quot;1cea25a8cced4937b47752463ad53c43&quot;}"
+        type="db730e4d8fbb6ce6968396cd-text/javascript"></script>
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="db730e4d8fbb6ce6968396cd-|49" defer></script>
+</body>
+</html>
+
