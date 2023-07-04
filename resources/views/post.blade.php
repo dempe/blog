@@ -1,10 +1,14 @@
 @extends('layout')
 
+@php
+    $pd = new ParsedownExtra();
+@endphp
+
 @section('title')
     {{ $post->title }}
 @endsection
 @section('content')
-    {!! $post->body !!}
+    {!! $pd->text($post->body) !!}
 @endsection
 @section('footer-content')
     <div class="footer-content">
