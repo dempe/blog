@@ -1,0 +1,54 @@
+---
+title: How I Built This Site
+slug: how-i-built-this-site
+tags: tech php
+---
+
+<h2>Why PHP</h2>
+
+- tired of off-the-shelf SSGs
+- PHP is the ultimate HTML templating lang
+- no problem writing in HTML with modern editors + more control
+
+<h2>Site Structure</h2>
+
+- KISS
+- no JS
+- index == posts
+- drafts handled via separate branch (makes commit msgs easier, too)
+- about page
+- tags list
+- page for each tag dynamically generated
+
+<h2>Relational Database</h2>
+
+- posts, slug for key
+- tags, name for key
+- posttags table for normalization
+- insanely easier
+- eloquent + eager loading
+- how i create a new post
+- seeding, migrations
+
+<h2>Building and Deployment</h2>
+
+- wget
+- output dir
+- cloudflare
+
+<h2>Conventions, Style, etc.</h2>
+
+- primary purpose of site is to "consume info"
+- colors, minimize contrast
+- off-white on off-black to reduce eye strain
+- bold fonts
+- text on one side to reduce eye movement on large screens
+- responsive design
+- writing style
+
+<h2>To-Do</h2>
+
+- syntax highlighting
+- 404
+- artisan cleanup
+

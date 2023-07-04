@@ -21,8 +21,6 @@ Route::get('/posts/{post}', function ($slug) {
     }
 });
 
-
-
 Route::get('/posts', function () {
     return redirect('/');
 });

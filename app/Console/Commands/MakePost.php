@@ -28,7 +28,7 @@ class MakePost extends Command {
         $slug = Str::slug($title);
         $tags = $this->argument('tags');
         $filename = resource_path("/posts/$slug.html");
-        $content = '---' . "\ntitle: $title\n" . "slug: $slug\n" . "tags: $tags\n" . '---' . "\n";
+        $content = '---' . "\ntitle: \"$title\"\n" . "slug: $slug\n" . "tags: $tags\n" . '---' . "\n";
 
         $this->writeFile($filename, $content);
         echo "Wrote $filename\n\n$content";
