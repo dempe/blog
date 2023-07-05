@@ -3,7 +3,7 @@
 rm -rf ./output
 mkdir ./output
 wget --directory-prefix=output/ --html-extension -k -r -l 10 -p -N -F -nH http://localhost:8000
-cp -R ./public/assets/js ./output/assets/js
+cp -R ./public/assets/js ./output/assets/
 
 # For some reason Laravel adds this.  It is for Cloudflare, but things get wonky if I upload this.
 rm -rf ./output/cdn-cgi/
