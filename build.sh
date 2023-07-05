@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-# Following is obsolete, I think. Not sure why I was worried about a .git directory
-# find ./output -type f ! -name '.git' -delete
-
 rm -rf ./output
 mkdir ./output
 wget --directory-prefix=output/ --html-extension -k -r -l 10 -p -N -F -nH http://localhost:8000
@@ -10,6 +7,9 @@ wget --directory-prefix=output/ --html-extension -k -r -l 10 -p -N -F -nH http:/
 # For some reason Laravel adds this.  It is for Cloudflare, but things get wonky if I upload this.
 rm -rf ./output/cdn-cgi/
 
+git add output 
+git commit -am "Build: $(git log --oneline | head -n 1)"
+git push
 
 # Following is obsolete, since Cloudflare automagically makes all paths extensionless
 # Remove ".html" extension from files
@@ -20,6 +20,3 @@ rm -rf ./output/cdn-cgi/
 #
 # for f in $(find ./output -type f ! -name '.git'); do LC_CTYPE=C && LANG=C && sed -i '' 's/\.html//g' "$f"; done
 
-git add output 
-git commit -am "Build: $(git log --oneline | head -n 1)"
-git push
