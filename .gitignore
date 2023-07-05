@@ -18,3 +18,6 @@ yarn-error.log
 /.idea
 /.vscode
 /storage
+/public/assets/css/syntax-styles
+/public/assets/js
+

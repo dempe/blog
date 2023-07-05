@@ -27,8 +27,6 @@ PHP it is.
 
 I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top).
 
-There is no Javascript.
-
 I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
 
 Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.
@@ -187,7 +185,7 @@ Route::get('/posts/{post}', function ($slug) {
 
 It loads the `post` view, which is a Blade template:
 
-```blade
+```php-template
 @extends('layout')
 
 @php
@@ -210,7 +208,7 @@ And that's it!
 
 I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to pull down a static version from the local server. The command looks like this:
 
-```shell 
+```bash 
 wget \
 --directory-prefix=output/ \
 --html-extension \
@@ -245,7 +243,6 @@ Cloudflare, like Github Pages, provides free hosting for static sites. They also
 ## To-Do
 
 + **404** pages. I don't know if there is a way, but I haven't been able to find a way to have a 404 page on Cloudflare. With Github Pages, it's trivial — simply supply a `404.md` file at the top of your repo (unfortunately, GH pages comes with its own share of downsides).
-+ **Syntax highlighting** for code.
 + **Subsection IDs** for linking.
 + Custom **Artisan command to cleanup** old tags, posts, etc from the DB.
 + **RSS feed**. If I'm feeling determined, a styled RSS feed.

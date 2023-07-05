@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <link rel="stylesheet" href="/assets/css/syntax-styles/github-dark.min.css">
+    <script src="/assets/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>Chris Dempewolf's Blog</title>
 </head>
 <body>
