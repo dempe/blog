@@ -26,7 +26,7 @@ Saul also gives an exact date - a date in 1965 that no one would be too familiar
     <blockquote>
         <p>That's it? It's all just money to you?</p>
     </blockquote>
-    <figcaption>— Mike</figcaption>
+    <figcaption>Mike</figcaption>
 </figure>
 
 ## What Walter Would Do with a Time Machine
@@ -55,7 +55,7 @@ In fact, the whole flashback with Chuck was, essentially, a time machine visit. 
     <blockquote>
         <p>You know, Jimmy, if you don't like where you're headed, you can always change.</p>
     </blockquote>
-    <figcaption>— Chuck</figcaption>
+    <figcaption>Chuck</figcaption>
 </figure>
 
 ## The Meaning of Color in the Series
