@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <meta name="description"
+          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <title>Chris Dempewolf's Blog</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="site-title"><a href="../index.html">Chris Dempewolf</a></div>
+        <div class="nav-flex-container">
+            <menu>
+                <li><a href="../about.html">about</a></li>
+                
+                <li><a href="../resume.pdf" target="_blank">resume</a></li>
+                <li><a href="../tags/index.html">tags</a></li>
+            </menu>
+        </div>
+    </nav>
+</header>
+<main>
+    <article>
+        <h1>    How I Built This Site
+</h1>
+            <p>I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. An SSG can't be <em>that</em> hard.</p>
+<h2>Why PHP</h2>
+<p>First of all, what do SSGs offer?</p>
+<ul>
+<li><strong>Markdown</strong> (or similar) to HTML conversion</li>
+<li><strong>Templating</strong> to inject dynamic data into a static template</li>
+<li>A <strong>server</strong> to dynamically display local changes</li>
+<li><strong>Layouts</strong> to structure your site</li>
+<li><strong>Themes</strong></li>
+<li>A way to <strong>build</strong> the raw, static site to be deployed</li>
+</ul>
+<p>One day it occurred to me that PHP can accomplish most of this. PHP has been the de-facto HTML templating language since the 90s. It handles layouts easily — just nest your PHP files within other PHP files. It can handle Markdown conversion via <a href="https://parsedown.org/">3rd party libraries</a> and has a built-in web server (<code>php -S addr:port</code>).</p>
+<p>The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:1"><a href="how-i-built-this-site.html#fn:1" class="footnote-ref">1</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;Building and Deployment&quot;).</p>
+<p>PHP it is.</p>
+<h2>Site Structure</h2>
+<p>I want to <a href="https://en.wikipedia.org/wiki/KISS_principle">keep things as simple as possible</a>. The home page (<code>chrisdempewolf.com</code>) is just a list of my posts. Posts are accessed under <code>chrisdempewolf.com/posts/{post}</code>. Same for tags. Aside from that, I have an about page and my resume (see links at top).</p>
+<p>There is no Javascript.</p>
+<p>I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.</p>
+<p>Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.</p>
+<h2>Using a Relational Database For a Static Site</h2>
+<p>I have two entities — posts and tags. There is a many-to-many relationship between them. On my site, each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.</p>
+<p><em>This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.</em></p>
+<p>In a relational DB, many-to-many relationships are modeled with 3 tables<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> — two for the two entities and a third to store the relationships between them. For example, say <code>slug</code> is the primary key for <code>posts</code> and <code>tag</code> (the tag name) is the primary key for the table <code>tags</code>. The third table, <code>post_tags</code> has two columns — <code>slug</code> and <code>tag</code> to indicate which posts are associated with which tags and which tags are associated with which posts.</p>
+<p>Here's what that looks like.</p>
+<p>The <code>posts</code>, <code>tags</code>, and <code>post_tags</code> tables, respectively :</p>
+<pre><code class="language-sql">CREATE TABLE "posts" (
+                "slug" VARCHAR(255) PRIMARY KEY,
+                "title" VARCHAR(255),
+                "body" TEXT NOT NULL,
+                "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+CREATE TABLE tags (
+             "tag" VARCHAR(255) PRIMARY KEY);
+
+CREATE TABLE "post_tags" (
+                "slug" VARCHAR(255) NOT NULL,
+                "tag" VARCHAR(255) NOT NULL,
+                primary key ("slug", "tag"));</code></pre>
+<p>Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, Eloquent.</p>
+<p>The root directory of my site is just:</p>
+<pre><code class="language-PHP">Route::get('/', function () {
+    return view('posts', ['posts' =&gt; Post::all()]);
+});</code></pre>
+<p>A simple <code>SELECT *</code>. But what about the more complex relationships we discussed? For example, how can I get all posts for a tag? Here's the relevant portion from that route:</p>
+<pre><code class="language-PHP">$tag = Tag::findOrFail($query);
+$posts = $tag-&gt;posts()-&gt;get();
+
+return view('tag', ['tag' =&gt; $tag,
+                    'posts' =&gt; $posts]);</code></pre>
+<p>One line! <code>$posts = $tag-&gt;posts()-&gt;get();</code> is all I need! 😎</p>
+<p>To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter <a href="https://laravel.com/docs/10.x/eloquent-relationships">Eloquent relationships</a>.</p>
+<h2>Eloquent Relationships</h2>
+<p>Eloquent allows you to define relationships on your models via methods. It does this by providing various types associated with each type of relationship (one-to-one, one-to-many, many-to-many, etc.). To define a relationship, you need to implement a method on your model that returns the appropriate relationship type.</p>
+<p>In my case, I implemented a method that returns <code>BelongsToMany</code> on both the <code>Post</code> model and the <code>Tag</code> model. Here's what that method looks like on the <code>Tag</code> model:</p>
+<pre><code class="language-PHP">public function posts(): BelongsToMany
+    {
+        return $this-&gt;belongsToMany(
+            Post::class,
+            PostTag::class,
+            'tag',
+            'slug',
+            'tag',
+            'slug'
+        );
+    }</code></pre>
+<p>There's a lot of parameters here, but it's not too bad. The first parameter to <code>belongsToMany</code> tells Eloquent that a <code>Tag</code> can have many <code>Post</code> s. The second parameter (<code>PostTag::class</code>) tells Eloquent that <code>Tag</code> s are related to <code>Post</code> s via <code>PostTag</code> (the <code>post_tags</code> table) AKA a &quot;pivot table&quot;.<sup id="fnref1:3"><a href="how-i-built-this-site.html#fn:3" class="footnote-ref">3</a></sup></p>
+<p>The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that <code>tag</code> is the foreign key on the <code>post_tags</code> table. The fourth argument tells Eloquent that <code>slug</code> is the foreign key on the <code>posts_tags</code> table for <code>posts</code>. The fifth argument tells Eloquent that <code>tag</code> is the key for the <code>tags</code> table. Finally, the sixth argument tells Eloquent that <code>slug</code> is the key for the <code>posts</code> table.</p>
+<p>All this allows me to use that nice chain syntax from above. Again, because it's so beautiful: <code>$posts = $tag-&gt;posts()-&gt;get();</code>.</p>
+<p>But that's not all. It also allows for something called &quot;<strong>eager loading</strong>&quot;.</p>
+<h2>Avoiding N+1 with Eager Loading</h2>
+<p>Eager loading is Eloquent's way of averting the N+1 query problem. Here's how you use it.</p>
+<p>Say I have the following code:</p>
+<pre><code class="language-PHP">$posts = Post::all();
+
+foreach ($posts as $post) {
+    foreach ($post-&gt;tags as $tag) {
+        echo $tag-&gt;name;
+    }
+}</code></pre>
+<p>This results in N+1 queries — 1 to fetch all posts and N to fetch the tags for each post. If we we querying the DB directly, we would just do a <code>join</code>, but Eloquent has no idea that we are going to fetch the tags for each post when we call <code>Post::all();</code>. This is, in fact, a common problem with all ORMs.</p>
+<p>Now that we've defined our relationships on each model, we can <em>tell</em> Eloquent that we are going to fetch each post's tags (i.e, use eager loading).</p>
+<pre><code class="language-PHP">$posts = Post::with('tags')-&gt;get();
+
+foreach ($posts as $post) {
+    foreach ($post-&gt;tags as $tag) {
+        echo $tag-&gt;name;
+    }
+}</code></pre>
+<p>The key thing to note here is <code>::with('tags')</code>. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query!<sup id="fnref1:4"><a href="how-i-built-this-site.html#fn:4" class="footnote-ref">4</a></sup></p>
+<p>Eloquent does this by attaching an array of <code>Tag</code> s to each <code>Post</code> when you call <code>Post::with('tags')-&gt;get()</code>. You can see this by running <code>php artisan tinker</code> and comparing the two outputs — lazy and eager.</p>
+<h2>Seeding and Migrations</h2>
+<p>As mentioned, I store all of my posts in a database (Sqlite, specifically). This allows me to easily handle the many-to-many relationship between posts and tags. But I need to actually import the posts.</p>
+<p>I realize it's probably a huge anti-pattern, but so far I've been using DB seeders for this purpose. Aside from using seeders for something other than their intended purpose, another downside is that I need to run <code>php artisan db:seed</code> every time I update a post for that update to be reflected on the server.</p>
+<p>Instead, I plan to create a custom <code>artisan</code> command to import my posts. This will at least remove the anti-pattern of using seeders to import my posts.</p>
+<p>I have pretty standard migrations for each table, <code>posts</code>, <code>tags</code>, and <code>post_tags</code>. The only hiccup was that I needed to use raw SQL (via the <code>DB::statement</code> method) on the <code>posts</code> table. Sqlite doesn't have <code>ON UPDATE CURRENT_TIMESTAMP</code> like in MySQL. Instead, I had to create a trigger:</p>
+<pre><code class="language-php">DB::statement('CREATE TRIGGER update_post_updated_at UPDATE ON posts
+                BEGIN
+                    UPDATE posts SET updated_at = CURRENT_TIMESTAMP WHERE OLD.slug = NEW.slug;
+                END;');</code></pre>
+<p>Doing this allows me to track when posts were last updated, which I display in the post's footer.</p>
+<h2>The Lifecycle of a post</h2>
+<p>I made a custom Artisan command to make a new post: <code>php artisan make:post &lt;title&gt; &lt;tags&gt;</code>. For this post, I ran <code>php artisan make:post "How I Built This Site" "tech php"</code>. This slugifys the title and creates a new file, <code>resources/posts/how-i-built-this-site.md</code>.</p>
+<p>After the new post has been imported to the DB, I can go to the URL <code>&lt;host&gt;/posts/how-i-built-this-site</code>. This is what the route looks like:</p>
+<pre><code class="language-php">Route::get('/posts/{post}', function ($slug) {
+    try {
+        return view('post', ['post' =&gt; Post::findOrFail($slug),
+                             'tags' =&gt; PostTag::where('slug', $slug)-&gt;pluck('tag')]);
+    }
+    catch (ModelNotFoundException $e) {
+        return response()-&gt;view('404', [], ResponseAlias::HTTP_NOT_FOUND);
+    }
+});</code></pre>
+<p>It loads the <code>post</code> view, which is a Blade template:</p>
+<pre><code class="language-blade">@extends('layout')
+
+@php
+    $pd = new ParsedownExtra();
+@endphp
+
+@section('title')
+    {{ $post-&gt;title }}
+@endsection
+@section('content')
+    {!! $pd-&gt;text($post-&gt;body) !!}
+@endsection</code></pre>
+<p>I initialize <code>ParsedownExtra</code> to parse the Markdown here. It didn't make sense to add display logic in my routes file.</p>
+<p>And that's it!</p>
+<h2>Building and Deployment</h2>
+<p>I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use <code>wget</code> to pull down a static version from the local server. The command looks like this:</p>
+<pre><code class="language-shell">wget \
+--directory-prefix=output/ \
+--html-extension \
+--convert-links \
+--recursive \
+--level=10 \
+--page-requisites \
+--timestamping \
+--adjust-extension \
+--no-host-directories \
+http://localhost:8000</code></pre>
+<p>Here's an explanation of the options used:</p>
+<ul>
+<li><code>--directory-prefix</code>: Specifies the output directory.</li>
+<li><code>--html-extension</code>: Adds the .html extension to downloaded HTML files.</li>
+<li><code>--convert-links</code>: Converts the links to make them suitable for offline viewing.</li>
+<li><code>--recursive</code>: Enables recursive downloading.</li>
+<li><code>--level</code>: Sets the maximum recursion level to 10.</li>
+<li><code>--page-requisites</code>: Downloads all necessary files for displaying the page.</li>
+<li><code>--timestamping</code>: Only downloads files if they are newer.</li>
+<li><code>--adjust-extension</code>: Adjusts the file extension if necessary.</li>
+<li><code>--no-host-directories</code>: Disables the creation of host directories.</li>
+</ul>
+<p>Not the pretties build method, but, in my opinion, it's worth it to use Laravel to build my static site.</p>
+<p>After the <code>output</code> directory is built, I push to my repository on Github (including the <code>output</code> directory). Cloudflare watches this repo. When it changes, it servers the contents of <code>output</code> on the domain <a href="http://localhost:8000/posts/chrisdempewolf.com">chrisdempewolf.com</a>. Not the prettiest deployment either, but again worth it. I'm not sure if there is a cleaner way. I can't run <code>wget</code> on Cloudflare.</p>
+<p>Cloudflare, like Github Pages, provides free hosting for static sites. They also provide free 7-day analytics (better than nothing 🤷🏻‍♂️), and they automagically use extentionless URLs, which I find prettier than <code>.html</code> and is less work on my part. They have a redirect feature that I use to redirect traffic on <code>/posts</code> to <code>/</code>. They have lots of other features available that I haven't made much use of (caching is a big one). I'm running a tiny, static site, so I don't need much.</p>
+<h2>To-Do</h2>
+<ul>
+<li><strong>404</strong> pages. I don't know if there is a way, but I haven't been able to find a way to have a 404 page on Cloudflare. With Github Pages, it's trivial — simply supply a <code>404.md</code> file at the top of your repo (unfortunately, GH pages comes with its own share of downsides).</li>
+<li><strong>Syntax highlighting</strong> for code.</li>
+<li><strong>Subsection IDs</strong> for linking.</li>
+<li>Custom <strong>Artisan command to cleanup</strong> old tags, posts, etc from the DB.</li>
+<li><strong>RSS feed</strong>. If I'm feeling determined, a styled RSS feed.</li>
+<li><strong>Internationalization</strong>. Someday, I plan to translate a few of my posts to Spanish and/or Japanese.</li>
+<li>Better <strong>analytics</strong>. I simply want to know which of my posts were most popular for any given time frame.</li>
+<li>And, of course, mawr <strong>posts</strong>.</li>
+</ul>
+<h2>Footnotes</h2>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>There are indeed PHP SSGs, but the whole reason I switched to PHP was to avoid off-the-shelf SSGs.&#160;<a href="how-i-built-this-site.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Or they should be if your DB is properly normalized.&#160;<a href="how-i-built-this-site.html#fnref1:2" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>It's convention in Laravel for model names to be singular, and table names to be plural (<code>Post</code> and <code>posts</code>). This makes sense, because a table holds many rows, while a model represents a single row from that table.&#160;<a href="how-i-built-this-site.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>If you want to see this live on your site, install the <a href="https://github.com/barryvdh/laravel-debugbar">DebugBar</a> and click on the DB tab. It will show you all the queries made while fetching the current view!&#160;<a href="how-i-built-this-site.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </article>
+</main>
+<footer>
+                <div class="footer-content">
+        <table>
+            <tr>
+                <td class="table-key">Published:&nbsp;&nbsp;</td>
+                <td>2023-07-05 04:43</td>
+            </tr>
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                <td>2023-07-05 04:43</td>
+            </tr>
+            <tr>
+                <td class="table-key">Tags:&nbsp;&nbsp;</td>
+                <td>
+                                            <a href="../tags/php.html">php</a>&nbsp;
+                                            <a href="../tags/tech.html">tech</a>&nbsp;
+                                    </td>
+            </tr>
+        </table>
+    </div>
+    </footer>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon="{&quot;token&quot;: &quot;1cea25a8cced4937b47752463ad53c43&quot;}"
+        type="db730e4d8fbb6ce6968396cd-text/javascript"></script>
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js.html"
+        data-cf-settings="db730e4d8fbb6ce6968396cd-|49" defer></script>
+</body>
+</html>
+
