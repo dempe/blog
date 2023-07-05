@@ -1,10 +1,10 @@
 @extends('layout')
 
 @section('title')
-    404
+    Error
 @endsection
 @section('content')
     <p>
-        This page doesn't exist!
+        Something went wrong!
     </p>
 @endsection

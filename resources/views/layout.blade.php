@@ -36,11 +36,6 @@
         @yield('footer-content')
     @endif
 </footer>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon="{&quot;token&quot;: &quot;1cea25a8cced4937b47752463ad53c43&quot;}"
-        type="db730e4d8fbb6ce6968396cd-text/javascript"></script>
-<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-        data-cf-settings="db730e4d8fbb6ce6968396cd-|49" defer></script>
 </body>
 </html>
 

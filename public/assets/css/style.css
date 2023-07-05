@@ -212,27 +212,16 @@ footer nav {
     width: 100%;
 }
 
-footer nav a {
-    /* text-decoration: none; */
-    font-size: 1.5;
-    font-weight: 600;
-}
-
-.arrow {
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
 code, pre {
-    font-family: JetBrainsMono, "Roboto Mono", menlo, monospace;
     color: var(--code-color);
     background-color: var(--secondary-background-color);
     border: none;
 
 }
 
-pre * {
+code, pre, pre * {
     font-family: JetBrainsMono, "Roboto Mono", menlo, monospace;
+    font-weight: 300;
 }
 
 .hljs {
@@ -246,13 +235,13 @@ pre {
     font-size: .9rem;
 }
 
-pre::-webkit-scrollbar {
-    background-color: #3a3a3a;
-}
+/*pre::-webkit-scrollbar {*/
+/*    background-color: #3a3a3a;*/
+/*}*/
 
-pre::-webkit-scrollbar-thumb {
-    background-color: #555;
-}
+/*pre::-webkit-scrollbar-thumb {*/
+/*    background-color: #555;*/
+/*}*/
 
 sup {
     font-size: var(--small-text);
@@ -332,6 +321,63 @@ figcaption:not(img + figcaption):before {
     font-weight: 100;
     font-style: italic;
 }
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-ExtraLight.woff2");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-ExtraLightItalic.woff2");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-Light.woff2");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-LightItalic.woff2");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-Medium.woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-MediumItalic.woff2");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-SemiBold.woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("fonts/JetBrainsMono/JetBrainsMono-SemiBoldItalic.woff2");
+    font-weight: 600;
+    font-style: italic;
+}
+
 
 @font-face {
     font-family: JetBrainsMono;

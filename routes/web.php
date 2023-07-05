@@ -48,6 +48,16 @@ Route::get('/about', function () {
     return view('about');
 });
 
+// Adding the following so wget will pull down the 404 page
+Route::get('/404', function () {
+    return view('404');
+});
+
+// Adding the following so wget will pull down the error page
+Route::get('/error', function () {
+    return view('error');
+});
+
 // TODO:  Laravel can't find ResumeController
 Route::get('/resume', 'ResumeController@show');
 
