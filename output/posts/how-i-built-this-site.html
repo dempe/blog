@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="../assets/css/style.css"/>
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <link rel="stylesheet" href="../assets/css/syntax-styles/github-dark.min.css">
+    <script src="../assets/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>Chris Dempewolf's Blog</title>
 </head>
 <body>
@@ -140,7 +143,7 @@ foreach ($posts as $post) {
     }
 });</code></pre>
 <p>It loads the <code>post</code> view, which is a Blade template:</p>
-<pre><code class="language-blade">@extends('layout')
+<pre><code class="language-php-template">@extends('layout')
 
 @php
     $pd = new ParsedownExtra();
@@ -156,7 +159,7 @@ foreach ($posts as $post) {
 <p>And that's it!</p>
 <h2>Building and Deployment</h2>
 <p>I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use <code>wget</code> to pull down a static version from the local server. The command looks like this:</p>
-<pre><code class="language-shell">wget \
+<pre><code class="language-bash">wget \
 --directory-prefix=output/ \
 --html-extension \
 --convert-links \
@@ -222,7 +225,7 @@ http://localhost:8000</code></pre>
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>2023-07-05 04:43</td>
+                <td>2023-07-05 05:13</td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>

@@ -227,6 +227,16 @@ code, pre {
     font-family: JetBrainsMono, "Roboto Mono", menlo, monospace;
     color: var(--code-color);
     background-color: var(--secondary-background-color);
+    border: none;
+
+}
+
+pre * {
+    font-family: JetBrainsMono, "Roboto Mono", menlo, monospace;
+}
+
+.hljs {
+
 }
 
 pre {
