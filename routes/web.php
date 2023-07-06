@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -7,23 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-Route::get('/', function () {
-    return view('posts', ['posts' => Post::all()]);
-});
-
-Route::get('/posts/{post}', function ($slug) {
-    try {
-        return view('post', ['post' => Post::findOrFail($slug),
-                                  'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
-    }
-    catch (ModelNotFoundException $e) {
-        return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
-    }
-});
-
-Route::get('/posts', function () {
-    return redirect('/');
-});
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'redirect']);
 
 Route::get('/tags', function () {
     return view('tags', ['tags' => Tag::all(),
