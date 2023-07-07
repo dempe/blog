@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    {{ $tag->tag }}
+    #{{ $tag->tag }}
 @endsection
 @section('content')
     <ul class="content-list">
