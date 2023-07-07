@@ -22,7 +22,8 @@ class PostTagSeeder extends Seeder
         $doc = YamlFrontMatter::parseFile($path);
         $slug = $doc->slug;
 
-        return collect(explode(" ", $doc->tags))
+        return collect(explode(' ', $doc->tags))
+            ->filter(fn($tag) => $tag != '')
             ->map(fn($tag) => ['slug' => $slug, 'tag' => $tag])
             ->toArray();
     }

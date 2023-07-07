@@ -14,6 +14,7 @@ class TagSeeder extends Seeder
     {
         collect(File::files(resource_path("posts/")))
             ->flatMap(fn($file) => TagSeeder::parseTagFromPost($file))
+            ->filter(fn($tag) => $tag != '')
             ->map(fn($tag) => Tag::updateOrCreate(['tag' => $tag], ['tag' => $tag]));
     }
 

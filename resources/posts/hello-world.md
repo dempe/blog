@@ -1,6 +1,5 @@
 ---
 published: 1677477600
-tags: foo tech
 title: "Hello, World"
 slug: "hello-world"
 ---
