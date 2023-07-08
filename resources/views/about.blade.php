@@ -8,15 +8,13 @@
         Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer and former ESL teacher.
     </p>
 
-    <aside>
-        <figure>
-            <img src="/assets/img/me-selfie-cancun.jpg"
-                 alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."
-                 width="200"
-                 title="The author in Cancún"/>
-            <figcaption>The author in Cancún</figcaption>
-        </figure>
-    </aside>
+    <figure>
+        <img src="/assets/img/me-selfie-cancun.jpg"
+             alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."
+             width="200"
+             title="The author in Cancún"/>
+        <figcaption>The author in Cancún</figcaption>
+    </figure>
 
     <p>
         I was born in the Fort Smith, Arkansas, USA. I lived in Seattle for 2 years and
@@ -38,15 +36,13 @@
         <li><strong>Video games</strong> 🎮</li>
     </ul>
 
-    <aside>
-        <figure>
-            <img src="/assets/img/me-pacman.jpg"
-                 alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."
-                 width="200"
-                 title="The author playing Ms. PacMan"/>
-            <figcaption>The author playing Ms. PacMan</figcaption>
-        </figure>
-    </aside>
+    <figure>
+        <img src="/assets/img/me-pacman.jpg"
+             alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."
+             width="200"
+             title="The author playing Ms. PacMan"/>
+        <figcaption>The author playing Ms. PacMan</figcaption>
+    </figure>
 
     <p>
         I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a

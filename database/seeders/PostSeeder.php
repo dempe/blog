@@ -27,6 +27,7 @@ class PostSeeder extends Seeder
                     'created_at' => $document->published,
                     'body' => $document->body()];
         }
+
         return ['slug' => $document->slug,
                 'title' => $document->title,
                 'body' => $document->body()];

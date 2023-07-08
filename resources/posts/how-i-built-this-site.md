@@ -1,4 +1,5 @@
 ---
+published: 1688601186
 title: How I Built This Site
 slug: how-i-built-this-site
 tags: tech php
@@ -83,6 +84,8 @@ return view('tag', ['tag' => $tag,
 One line! `$posts = $tag->posts()->get();` is all I need! 😎
 
 To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter [Eloquent relationships](https://laravel.com/docs/10.x/eloquent-relationships).
+
+<aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
 
 ## Eloquent Relationships
 
@@ -236,19 +239,11 @@ Here's an explanation of the options used:
 
 Not the pretties build method, but, in my opinion, it's worth it to use Laravel to build my static site.
 
-After the `output` directory is built, I push to my repository on Github (including the `output` directory). Cloudflare watches this repo. When it changes, it servers the contents of `output` on the domain [chrisdempewolf.com](chrisdempewolf.com). Not the prettiest deployment either, but again worth it. I'm not sure if there is a cleaner way. I can't run `wget` on Cloudflare.
+After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --delete` to sync my S3 bucket.
 
-Cloudflare, like Github Pages, provides free hosting for static sites. They also provide free 7-day analytics (better than nothing 🤷🏻‍♂️), and they automagically use extentionless URLs, which I find prettier than `.html` and is less work on my part. They have a redirect feature that I use to redirect traffic on `/posts` to `/`. They have lots of other features available that I haven't made much use of (caching is a big one). I'm running a tiny, static site, so I don't need much.
+## Conclusion
 
-## To-Do
-
-+ **404** pages. I don't know if there is a way, but I haven't been able to find a way to have a 404 page on Cloudflare. With Github Pages, it's trivial — simply supply a `404.md` file at the top of your repo (unfortunately, GH pages comes with its own share of downsides).
-+ **Subsection IDs** for linking.
-+ Custom **Artisan command to cleanup** old tags, posts, etc from the DB.
-+ **RSS feed**. If I'm feeling determined, a styled RSS feed.
-+ **Internationalization**. Someday, I plan to translate a few of my posts to Spanish and/or Japanese.
-+ Better **analytics**. I simply want to know which of my posts were most popular for any given time frame.
-+ And, of course, mawr **posts**.
+This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site.  And working with Laravel is a sheer pleasure.  If you are a PHP and/or Laravel fan, give it a try!
 
 ## Footnotes
 

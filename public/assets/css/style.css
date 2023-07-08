@@ -17,6 +17,7 @@
     --h1-size: 3.5rem;
     --h2-size: 2.75rem;
     --standard-margin: 2rem;
+    --standard-border: 1px #aaa dotted;
     --border-style: 4px solid;
 }
 
@@ -78,7 +79,7 @@ aside {
     width: 100%;
 }
 
-aside figure {
+figure {
     width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -90,7 +91,7 @@ figcaption {
     font-size: 1.5rem;
 }
 
-aside figure img {
+figure img {
     max-width: 100%;
     width: 100%;
     object-fit: fill;
@@ -274,6 +275,13 @@ figcaption:not(img + figcaption):before {
     content:"\2014"
 }
 
+aside {
+    border: var(--standard-border);
+    padding: .25rem;
+    background-color: #0d3d1c;
+    font-size: .95rem;
+}
+
 @media screen and (min-device-width: 801px) {
     :root {
         --small-text: .75rem;
@@ -301,7 +309,7 @@ figcaption:not(img + figcaption):before {
         font-size: var(--small-text);
     }
 
-    aside figure img {
+    figure img {
         max-width: 100%;
     }
 }
