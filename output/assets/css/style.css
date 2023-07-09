@@ -231,8 +231,9 @@ code, pre, pre * {
 
 pre {
     width: 100%;
-    overflow: visible;
-    font-size: .9rem;
+    border: var(--standard-border);
+    /*overflow: visible;*/
+    /*font-size: .9rem;*/
 }
 
 /*pre::-webkit-scrollbar {*/
