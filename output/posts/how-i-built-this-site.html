@@ -80,6 +80,7 @@ return view('tag', ['tag' =&gt; $tag,
                     'posts' =&gt; $posts]);</code></pre>
 <p>One line! <code>$posts = $tag-&gt;posts()-&gt;get();</code> is all I need! 😎</p>
 <p>To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter <a href="https://laravel.com/docs/10.x/eloquent-relationships">Eloquent relationships</a>.</p>
+<aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
 <h2>Eloquent Relationships</h2>
 <p>Eloquent allows you to define relationships on your models via methods. It does this by providing various types associated with each type of relationship (one-to-one, one-to-many, many-to-many, etc.). To define a relationship, you need to implement a method on your model that returns the appropriate relationship type.</p>
 <p>In my case, I implemented a method that returns <code>BelongsToMany</code> on both the <code>Post</code> model and the <code>Tag</code> model. Here's what that method looks like on the <code>Tag</code> model:</p>
@@ -182,18 +183,9 @@ http://localhost:8000</code></pre>
 <li><code>--no-host-directories</code>: Disables the creation of host directories.</li>
 </ul>
 <p>Not the pretties build method, but, in my opinion, it's worth it to use Laravel to build my static site.</p>
-<p>After the <code>output</code> directory is built, I push to my repository on Github (including the <code>output</code> directory). Cloudflare watches this repo. When it changes, it servers the contents of <code>output</code> on the domain <a href="http://localhost:8000/posts/chrisdempewolf.com">chrisdempewolf.com</a>. Not the prettiest deployment either, but again worth it. I'm not sure if there is a cleaner way. I can't run <code>wget</code> on Cloudflare.</p>
-<p>Cloudflare, like Github Pages, provides free hosting for static sites. They also provide free 7-day analytics (better than nothing 🤷🏻‍♂️), and they automagically use extentionless URLs, which I find prettier than <code>.html</code> and is less work on my part. They have a redirect feature that I use to redirect traffic on <code>/posts</code> to <code>/</code>. They have lots of other features available that I haven't made much use of (caching is a big one). I'm running a tiny, static site, so I don't need much.</p>
-<h2>To-Do</h2>
-<ul>
-<li><strong>404</strong> pages. I don't know if there is a way, but I haven't been able to find a way to have a 404 page on Cloudflare. With Github Pages, it's trivial — simply supply a <code>404.md</code> file at the top of your repo (unfortunately, GH pages comes with its own share of downsides).</li>
-<li><strong>Subsection IDs</strong> for linking.</li>
-<li>Custom <strong>Artisan command to cleanup</strong> old tags, posts, etc from the DB.</li>
-<li><strong>RSS feed</strong>. If I'm feeling determined, a styled RSS feed.</li>
-<li><strong>Internationalization</strong>. Someday, I plan to translate a few of my posts to Spanish and/or Japanese.</li>
-<li>Better <strong>analytics</strong>. I simply want to know which of my posts were most popular for any given time frame.</li>
-<li>And, of course, mawr <strong>posts</strong>.</li>
-</ul>
+<p>After the <code>output</code> directory is built, I run <code>aws s3 sync ./output s3://chrisdempewolf.com --delete</code> to sync my S3 bucket.</p>
+<h2>Conclusion</h2>
+<p>This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site.  And working with Laravel is a sheer pleasure.  If you are a PHP and/or Laravel fan, give it a try!</p>
 <h2>Footnotes</h2>
 <div class="footnotes">
 <hr />
@@ -219,11 +211,11 @@ http://localhost:8000</code></pre>
         <table>
             <tr>
                 <td class="table-key">Published:&nbsp;&nbsp;</td>
-                <td>2023-07-07 01:44</td>
+                <td>2023-07-05 23:53</td>
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>2023-07-07 01:44</td>
+                <td>2023-07-08 04:13</td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>

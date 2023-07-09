@@ -27,10 +27,10 @@
     <p>Some of my hobbies are ... </p>
 
     <ul>
-        <li><strong>Dancing</strong> 🕺 (salsa, perreo, cumbia, bachata)</li>
-        <li><strong>Cooking</strong> 👨🏻‍🍳</li>
+        <li><strong>Dancing</strong> 🕺 (salsa, perreo, cumbia, bachata, merengue)</li>
+        <li><strong>Cooking</strong> 👨🏻‍🍳 (recipes <a href="/tags/recipes">here</a>)</li>
         <li><strong>Eating</strong> 🍽️</li>
-        <li><strong>Computers</strong> 👨🏻‍💻</li>
+        <li><strong>Computers</strong> 👨🏻‍💻(read my <a href="/tags/tech">posts about tech</a>)</li>
         <li><strong>Running</strong> 🏃🏻‍♀️</li>
         <li><strong>Reading</strong> 📚</li>
         <li><strong>Video games</strong> 🎮</li>
