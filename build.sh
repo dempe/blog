@@ -10,9 +10,12 @@ wget --directory-prefix=output/ --html-extension --convert-links --timestamping 
 # Grab the general error page
 wget --directory-prefix=output/ --html-extension --convert-links --timestamping --adjust-extension --no-host-directories http://localhost:8000/error
 
-# cp -R ./public/assets/js ./output/assets/
-
 # For some reason Laravel adds this.  It is for Cloudflare, but things get wonky if I upload this.
 rm -rf ./output/cdn-cgi/
 
-# aws s3 sync ./output s3://chrisdempewolf.com --delete
+prev_commit=$(git log --oneline | head -n 1)
+git add output 
+git commit -am "Build: $prev_commit"
+git push
+
+aws s3 sync ./output s3://chrisdempewolf.com --delete > "./storage/logs/s3_sync_$prev_commit.log"

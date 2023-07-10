@@ -225,24 +225,11 @@ code, pre, pre * {
     font-weight: 300;
 }
 
-.hljs {
-
-}
-
 pre {
     width: 100%;
     border: var(--standard-border);
-    /*overflow: visible;*/
-    /*font-size: .9rem;*/
+    font-size: .9rem;
 }
-
-/*pre::-webkit-scrollbar {*/
-/*    background-color: #3a3a3a;*/
-/*}*/
-
-/*pre::-webkit-scrollbar-thumb {*/
-/*    background-color: #555;*/
-/*}*/
 
 sup {
     font-size: var(--small-text);
@@ -251,16 +238,14 @@ sup {
 .blockquote p {
     font-style: italic;
     border-left: var(--border-style) var(--hover-color);
-    padding: .33rem;
-    padding-left: .5rem;
+    padding: .33rem .33rem .33rem .5rem;
     background-color: var(--secondary-background-color);
     margin-bottom: .5rem;
 }
 
 .blockquote {
     width: fit-content;
-    margin-left: var(--standard-margin);
-    margin-right: 1rem;
+    margin: 0 1rem 0 var(--standard-margin);
 }
 
 blockquote {
