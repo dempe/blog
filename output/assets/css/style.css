@@ -37,7 +37,7 @@ article a:not(.content-list a) {
 }
 
 /* We want content links to be white, but still want pink when hovered over. */
-a:not(header a):not(:hover) {
+a:not(header a):not(:hover):not(.post-tag-list *) {
     color: var(--link-color);
 }
 
@@ -189,8 +189,21 @@ strong {
     margin: 0;
 }
 
-.content-list li {
-    margin-left: 0;
+.content-list tr {
+    margin-bottom: .2rem;
+}
+
+.post-tag-list {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: row;
+    margin-left: var(--standard-margin);
+}
+
+.post-tag-list li {
+    margin-right: .5rem;
+    font-size: var(--small-text);
+    color: var(--secondary-color);
 }
 
 .footer-content {
