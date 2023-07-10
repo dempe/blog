@@ -18,4 +18,4 @@ git add output
 git commit -am "Build: $prev_commit"
 git push
 
-aws s3 sync ./output s3://chrisdempewolf.com --delete > "./storage/logs/s3_sync_$prev_commit.log"
+aws s3 sync ./output s3://chrisdempewolf.com --delete | tee "./storage/logs/s3_sync_$(echo prev_commit | awk '{print $1}').log"
