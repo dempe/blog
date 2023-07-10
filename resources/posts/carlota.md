@@ -1,7 +1,8 @@
 ---
-title: "Recipe: Carlotas"
-slug: recipe-carlotas
+title: "Carlota"
+slug: carlota
 tags: recipes
+published: 1688855689
 ---
 
 A carlota or carlota de limón is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))) common in Mexico.

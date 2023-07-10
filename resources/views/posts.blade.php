@@ -4,13 +4,21 @@
     Posts
 @endsection
 @section('content')
-    <ul class="content-list">
+    <table class="content-list">
         @foreach ($posts->sortByDesc('created_at') as $post)
-            <li>
-                {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;<a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
-            </li>
+            <tr>
+                <td>{{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;</td>
+                <td><a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a></td>
+                <td>
+                    <ul class="post-tag-list">
+                        @foreach($post->tags as $tag)
+                            <li><a href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a></li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
         @endforeach
-    </ul>
+    </table>
 @endsection
 @section('footer-content')
     <div class="footer-content">
