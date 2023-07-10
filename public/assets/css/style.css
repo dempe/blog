@@ -189,21 +189,17 @@ strong {
     margin: 0;
 }
 
-.content-list tr {
-    margin-bottom: .2rem;
-}
 
 .post-tag-list {
     list-style: none;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    margin-left: var(--standard-margin);
 }
 
 .post-tag-list li {
-    margin-right: .5rem;
     font-size: var(--small-text);
     color: var(--secondary-color);
+    margin: 0 .5rem 0 0;
 }
 
 .footer-content {
@@ -285,7 +281,6 @@ aside {
         --small-text: .75rem;
         --h1-size: 3rem;
         --h2-size: 2rem;
-
         font-size: 18px;
     }
 

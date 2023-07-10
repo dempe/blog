@@ -8,7 +8,13 @@
         @foreach ($posts->sortByDesc('created_at') as $post)
             <tr>
                 <td>{{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;</td>
-                <td><a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a></td>
+                <td>
+                    <a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td><!-- Empty <td> to align tags with title above. --></td>
                 <td>
                     <ul class="post-tag-list">
                         @foreach($post->tags as $tag)
