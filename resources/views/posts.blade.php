@@ -10,10 +10,9 @@
                 <td>{{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;</td>
                 <td>
                     <a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
-
                 </td>
             </tr>
-            <tr>
+            <tr class="tag-row">
                 <td><!-- Empty <td> to align tags with title above. --></td>
                 <td>
                     <ul class="post-tag-list">
