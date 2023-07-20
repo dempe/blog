@@ -1,6 +1,6 @@
 ---
-title: "Carlota"
-slug: carlota
+title: "Recipe: Carlota"
+slug: recipe-carlota
 tags: recipes
 published: 1688855689
 ---
