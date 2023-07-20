@@ -5,9 +5,9 @@ tags: tech perl regex
 published: 1689846378
 ---
 
-Kindle[^1] has a really cool feature that allows you to send an email to yourself containing all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.
+Kindle[^1] has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.
 
-Now, I store all of my notes in Obsidian, which uses Markdown. I thought, "Okay, I'll just use Pandoc to convert the HTML to Markdown. No problem!"
+I store all of my notes in Obsidian, which uses Markdown. I thought, "Okay, I'll just use Pandoc to convert the HTML to Markdown. No problem!"
 
 ```bash 
 pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md
@@ -15,7 +15,7 @@ pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md
 
 ## Enter: Amazon's Dumpster Fire HTML
 
-This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.[^2] So then I thought, "Well, I guess it's time to role up my sleeves and bust out some Perl. Yay."
+This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.[^2] So then I thought, "Well, I guess it's time to roll up my sleeves and bust out some Perl. Yay."
 
 For book notes, I have one `h1` heading for the title, an `h2` heading for each chapter, and each note or idea that I have, I use a list item. Here's an example from a book I recently read, *Moonwalking with Einstein*:
 
@@ -116,6 +116,6 @@ pbcopy
 
 [^3]: They even have a `<div class="bodyContainer">`, completely redundant to `body`!
 
-[^4]: Perl does not use POSIX regexes like `sed`. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, `?`, in POSIX.
+[^4]: Perl does not use POSIX regexes like `sed`. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, `?`, in POSIX. See [Comparison of regular expression engines](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features).
 
 [^5]: `|` is my favorite delimiter. It's easier to see, and you have to escape it less.
