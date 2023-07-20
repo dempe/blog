@@ -132,7 +132,7 @@ h2 {
     font-weight: 700;
 }
 
-li {
+li:not(nav menu li, .content-list li) {
     margin-left: 1em;
 }
 
@@ -182,7 +182,6 @@ strong {
 .content-list {
     list-style: none;
     line-height: 2.5rem;
-    margin: 0;
 }
 
 /* A lot of CSS is not applicable to <tr> elements */
@@ -274,6 +273,10 @@ aside {
     padding: .25rem;
     background-color: #0d3d1c;
     font-size: var(--small-text);
+}
+
+.tag-description {
+    margin: 4rem 0 4rem 0;
 }
 
 @media screen and (min-device-width: 801px) {

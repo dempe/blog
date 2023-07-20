@@ -4,6 +4,7 @@
     #{{ $tag->tag }}
 @endsection
 @section('content')
+    <p class="tag-description">{{ $tag->description }}</p>
     <ul class="content-list">
         @foreach ($posts->sortByDesc('created_at') as $post)
             <li>
