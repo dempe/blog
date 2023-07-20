@@ -121,13 +121,13 @@ main {
 }
 
 h1 {
-    margin-bottom: 4rem;
+    margin: 5rem 0 5rem 0;
     font-size: var(--h1-size);
     font-weight: 700;
 }
 
 h2 {
-    margin-bottom: .75em;
+    margin: 4rem 0 4rem 0;
     font-size: var(--h2-size);
     font-weight: 700;
 }
@@ -137,7 +137,6 @@ li {
 }
 
 li:not(nav menu li, .content-list li)::marker {
-    /* content: '- '; */
     font-size: var(--small-text);
 }
 
@@ -151,7 +150,6 @@ header nav {
     margin: 0;
     font-weight: 900;
     border-bottom: var(--border-style) var(--primary-color);
-    line-height: 3.2rem;
 }
 
 header nav menu {
@@ -201,7 +199,7 @@ strong {
 .post-tag-list li {
     font-size: var(--small-text);
     color: var(--secondary-color);
-    margin: 0 .5rem 0 0;
+    margin: 0 1rem 0 0;
 }
 
 .footer-content {
@@ -280,20 +278,14 @@ aside {
 
 @media screen and (min-device-width: 801px) {
     :root {
-        --small-text: .75rem;
-        --h1-size: 3rem;
-        --h2-size: 2rem;
-        font-size: 18px;
-    }
-
-    .content-list {
-        font-size: 1.35rem;
-        line-height: 1.5rem;
+        font-size: 12px;
+        --title-size: 7.5rem;
+        --h1-size: 6rem;
+        --h2-size: 4rem;
     }
 
     body {
         width: 90%;
-        font-size: 1.1rem;
     }
 
     article {
