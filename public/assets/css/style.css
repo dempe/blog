@@ -281,7 +281,7 @@ aside {
 
 @media screen and (min-device-width: 801px) {
     :root {
-        font-size: 12px;
+        font-size: 10px;
         --title-size: 7.5rem;
         --h1-size: 6rem;
         --h2-size: 4rem;
