@@ -1,7 +1,7 @@
 :root {
 
     /* Hard set to use for subsequent rem sizing. */
-    font-size: 22px;
+    font-size: 24px;
     min-height: 100vh;
 
 
@@ -88,7 +88,7 @@ figure {
 
 figcaption {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: var(--small-text);
 }
 
 figure img {
@@ -102,13 +102,13 @@ figure img {
 
 body {
     background-color: var(--primary-background-color);
-    width: 95%;
+    width: 92.5%;
     min-height: 90vh;
     margin-right: auto;
     margin-left: auto;
     margin-top: var(--standard-margin);
     margin-bottom: var(--standard-margin);
-    font-size: 2rem;
+    font-size: 2.25rem;
 
     /* Flex items: header, main, footer. */
     display: flex;
@@ -121,24 +121,23 @@ main {
 }
 
 h1 {
-    margin-bottom: 4rem;
+    margin: 5rem 0 5rem 0;
     font-size: var(--h1-size);
     font-weight: 700;
 }
 
 h2 {
-    margin-bottom: .75em;
+    margin: 4rem 0 4rem 0;
     font-size: var(--h2-size);
     font-weight: 700;
 }
 
-li {
+li:not(nav menu li, .content-list li) {
     margin-left: 1em;
 }
 
 li:not(nav menu li, .content-list li)::marker {
-    /* content: '- '; */
-    font-size: 1em;
+    font-size: var(--small-text);
 }
 
 header nav {
@@ -151,7 +150,6 @@ header nav {
     margin: 0;
     font-weight: 900;
     border-bottom: var(--border-style) var(--primary-color);
-    line-height: 3.2rem;
 }
 
 header nav menu {
@@ -160,7 +158,6 @@ header nav menu {
     list-style: none;
     justify-content: left;
     flex-wrap: wrap;
-    font-size: 1.8rem;
     margin-top: 1.25rem;
 }
 
@@ -184,11 +181,13 @@ strong {
 
 .content-list {
     list-style: none;
-    font-size: 1.8rem;
     line-height: 2.5rem;
-    margin: 0;
 }
 
+/* A lot of CSS is not applicable to <tr> elements */
+.tag-row td {
+    padding-bottom: 1rem;
+}
 
 .post-tag-list {
     list-style: none;
@@ -199,7 +198,7 @@ strong {
 .post-tag-list li {
     font-size: var(--small-text);
     color: var(--secondary-color);
-    margin: 0 .5rem 0 0;
+    margin: 0 1rem 0 0;
 }
 
 .footer-content {
@@ -237,7 +236,7 @@ code, pre, pre * {
 pre {
     width: 100%;
     border: var(--standard-border);
-    font-size: .9rem;
+    font-size: var(--small-text);
 }
 
 sup {
@@ -273,33 +272,27 @@ aside {
     border: var(--standard-border);
     padding: .25rem;
     background-color: #0d3d1c;
-    font-size: .95rem;
+    font-size: var(--small-text);
+}
+
+.tag-description {
+    margin: 4rem 0 4rem 0;
 }
 
 @media screen and (min-device-width: 801px) {
     :root {
-        --small-text: .75rem;
-        --h1-size: 3rem;
-        --h2-size: 2rem;
-        font-size: 18px;
-    }
-
-    .content-list {
-        font-size: 1.35rem;
-        line-height: 1.5rem;
+        font-size: 12px;
+        --title-size: 7.5rem;
+        --h1-size: 6rem;
+        --h2-size: 4rem;
     }
 
     body {
         width: 90%;
-        font-size: 1.1rem;
     }
 
     article {
         max-width: 75%;
-    }
-
-    figcaption {
-        font-size: var(--small-text);
     }
 
     figure img {
