@@ -1,7 +1,7 @@
 ---
 title: "Converting Kindle Notes to Markdown"
 slug: converting-kindle-notes-to-markdown
-tags: tech perl regex
+tags: tech perl regex python
 published: 1689846378
 ---
 
@@ -69,7 +69,11 @@ And here's the HTML corresponding to the above that Amazon sent me:
 
 Genius.[^3]
 
-## Solution + Explanation
+## The Allure of Regular Expressions
+
+I'm well aware of the fact that [regular expressions are insufficient to parse HTML](https://stackoverflow.com/a/1732454). Regular expressions are for parsing [regular languages](https://en.wikipedia.org/wiki/Regular_grammar), and HTML is not a regular language.
+
+But, alas, regexes are like sirens leading unwary sailors astray. "Just one line," they sing. I oblige. They call out again, "There you go. That wasn't so bad. Just one more." Rapt in their pithy syntax, I indulge myself further.
 
 ```bash 
 cat my_notes.html |\
@@ -106,7 +110,41 @@ pbcopy
 
 `tail -n +2` — remember that we converted everything to a single line? The preceding regexes moved relevant content to their own lines. What's left at the top is garbage that I don't care about. This line prints the resulting file starting from the second (`+2`) line.
 
-`pbcopy` to copy the text to my clipboard, and we're done! I can now paste the resulting Markdown into Obsidian and live happily ever after.
+## Should've Used BeautifulSoup From the Get-go
+
+The above solution worked fine until I got to a book that had no page numbers.  It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:
+
+```python
+def parse_chapter(text):
+    # There is NO chapter number, but there is A page number. Example ->
+    # Highlight(<span class="highlight_orange">orange</span>) - Page xxvii · Location 381
+    if '>' not in text and 'Page' in text:
+        page = text.split('Page')[1].split('·')[0].strip()
+        return None, page
+
+    # There is A chapter number, but there is NO page number. Example ->
+    # Highlight(<span class="highlight_orange">orange</span>) - I > Location 38
+    # Note: BS parses the <span>
+    if '>' in text and 'Page' not in text:
+        chapter = text.split('>')[0].strip()
+        chapter = chapter.split('Highlight(orange) -')[1].strip()
+        return chapter, None
+
+    # There is A chapter number, and there is A page number. Example ->
+    # Highlight(<span class="highlight_orange">orange</span>) - I.1 Enter the two Bishops, [the Archbishop] of Canterbury and [the Bishop of] Ely. > Page 7 · Location 778
+    if '>' in text and 'Page' in text:
+        chapter = text.split('Highlight(orange) -')[1]\
+                      .split('>')[0].strip()
+        page = text.split('Page')[1].split('·')[0].strip()
+        return chapter, page
+
+    # There is NO chapter number, and there is NO page number
+    return None, None
+```
+
+From there, we basically just find the first "section" node (`start_node = soup.find('div', {'class': 'sectionHeading'})`) and loop until there are no more siblings: `while current.next_sibling:`.
+
+[Here](https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69) is the full script.  I also have a full repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.
 
 ## Footnotes
 
