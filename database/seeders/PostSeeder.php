@@ -20,16 +20,13 @@ class PostSeeder extends Seeder
     private static function parsePostFromPath($path): array
     {
         $document = YamlFrontMatter::parseFile($path);
-
-        if ($document->published) {
-            return ['slug' => $document->slug,
-                    'title' => $document->title,
-                    'created_at' => $document->published,
-                    'body' => $document->body()];
-        }
+        $command = 'git log -1 --format="%ci" ' . $path . ' | awk \'{print $1" "$2}\' | awk -F \':\' \'{print $1":"$2}\'';
+        $updated = shell_exec($command);
 
         return ['slug' => $document->slug,
                 'title' => $document->title,
+                'created_at' => $document->published,
+                'updated_at' => $updated,
                 'body' => $document->body()];
     }
 }
