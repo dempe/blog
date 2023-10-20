@@ -8,43 +8,52 @@
         Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer and former ESL teacher.
     </p>
 
-    <figure>
-        <img src="/assets/img/me-selfie-cancun.jpg"
-             alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."
-             width="200"
-             title="The author in Cancún"/>
-        <figcaption>The author in Cancún</figcaption>
-    </figure>
+    {{--    <figure>--}}
+    {{--        <img src="/assets/img/me-selfie-cancun.jpg"--}}
+    {{--             alt="A selfie I took in Cancún.  I squint as the sun shines brightly overhead.  There is a palm tree behind me."--}}
+    {{--             width="200"--}}
+    {{--             title="The author in Cancún"/>--}}
+    {{--        <figcaption>The author in Cancún</figcaption>--}}
+    {{--    </figure>--}}
 
     <p>
         I was born in the Fort Smith, Arkansas, USA. I lived in Seattle for 2 years and
         abroad in Mexico, Japan, and Germany. I taught English for a couple of years and have worked as a software
-        engineer
-        for 7 years.
+        engineer for 7 years.
     </p>
 
 
-    <p>Some of my hobbies are ... </p>
+    {{--    <p>Some of my hobbies are ... </p>--}}
 
-    <ul>
-        <li><strong>Dancing</strong> 🕺 (salsa, perreo, cumbia, bachata, merengue)</li>
-        <li><strong>Cooking</strong> 👨🏻‍🍳 (recipes <a href="/tags/recipes">here</a>)</li>
-        <li><strong>Eating</strong> 🍽️</li>
-        <li><strong>Computers</strong> 👨🏻‍💻(read my <a href="/tags/tech">posts about tech</a>)</li>
-        <li><strong>Running</strong> 🏃🏻‍♀️</li>
-        <li><strong>Reading</strong> 📚</li>
-        <li><strong>Video games</strong> 🎮</li>
-    </ul>
+    {{--    <ul>--}}
+    {{--        <li><strong>Dancing</strong> 🕺 (salsa, perreo, cumbia, bachata, merengue)</li>--}}
+    {{--        <li><strong>Cooking</strong> 👨🏻‍🍳 (recipes <a href="/tags/recipes">here</a>)</li>--}}
+    {{--        <li><strong>Eating</strong> 🍽️</li>--}}
+    {{--        <li><strong>Computers</strong> 👨🏻‍💻(read my <a href="/tags/tech">posts about tech</a>)</li>--}}
+    {{--        <li><strong>Running</strong> 🏃🏻‍♀️</li>--}}
+    {{--        <li><strong>Reading</strong> 📚</li>--}}
+    {{--        <li><strong>Video games</strong> 🎮</li>--}}
+    {{--    </ul>--}}
 
-    <figure>
-        <img src="/assets/img/me-pacman.jpg"
-             alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."
-             width="200"
-             title="The author playing Ms. PacMan"/>
-        <figcaption>The author playing Ms. PacMan</figcaption>
-    </figure>
+    {{--    <figure>--}}
+    {{--        <img src="/assets/img/me-pacman.jpg"--}}
+    {{--             alt="Here, I'm playing Ms. PacMan on an arcade table in a dark Seattle bar. Turns out, they make arcade game tables so you can sit and do whatever.  In this case, drink a beer with a friend."--}}
+    {{--             width="200"--}}
+    {{--             title="The author playing Ms. PacMan"/>--}}
+    {{--        <figcaption>The author playing Ms. PacMan</figcaption>--}}
+    {{--    </figure>--}}
 
     <p>
+        I created this blog for two reasons:
+    </p>
+
+    <ol>
+        <li>To share what I learn</li>
+        <li>To help me learn</li>
+    </ol>
+
+    <p>
+        I don't really know what I know until I write about it, so this blog is meant to serve as my light in the dark.
         I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
             href="/">here</a>.
     </p>

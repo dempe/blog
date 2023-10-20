@@ -133,10 +133,10 @@ h2 {
 }
 
 li:not(nav menu li, .content-list li) {
-    margin-left: 1em;
+    margin-left: 1.5em;
 }
 
-li:not(nav menu li, .content-list li)::marker {
+li:not(nav menu li, .content-list li):not(ol li)::marker {
     font-size: var(--small-text);
 }
 
@@ -170,9 +170,9 @@ header nav menu li:last-of-type {
     margin-right: 0;
 }
 
-ol:not(.footnotes>ol) {
-    list-style: none;
-}
+/*ol:not(.footnotes>ol) {*/
+/*    list-style: none;*/
+/*}*/
 
 strong {
     font-weight: 700;
