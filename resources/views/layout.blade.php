@@ -32,9 +32,7 @@
     </article>
 </main>
 <footer>
-    @hasSection('footer-content')
-        @yield('footer-content')
-    @endif
+    @include('footer')
 </footer>
 </body>
 </html>
