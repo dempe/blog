@@ -12,7 +12,7 @@
                     <a href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
                 </td>
             </tr>
-            <tr class="tag-row">
+            <tr class="row-with-margin">
                 <td><!-- Empty <td> to align tags with title above. --></td>
                 <td>
                     <ul class="post-tag-list">

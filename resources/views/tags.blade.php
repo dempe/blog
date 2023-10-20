@@ -4,13 +4,13 @@
     Tags
 @endsection
 @section('content')
-    <table class="content-list">
+    <table class="content-list tag-list">
         @foreach ($tags->sortBy('tag') as $tag)
             <tr>
                 <td class="table-key">#{{ $tag->tag }}:&nbsp;&nbsp;</td>
                 <td>
                     <a href="{{ '/tags/' . $tag->tag }}">
-                        {{ collect($postTags)->filter(fn($pt) => $pt->tag == $tag->tag)->count() }} posts
+                        {{ collect($postTags)->filter(fn($pt) => $pt->tag == $tag->tag)->count() }} articles
                     </a>
                 </td>
             </tr>

@@ -54,7 +54,7 @@
 
     <p>
         I don't really know what I know until I write about it, so this blog is meant to serve as my light in the dark.
-        I write about computation, biology, cooking, and everything else that piques my interest. Post archive <a
+        I write about computation, biology, cooking, and everything else that piques my interest. View an archive of articles I've written <a
             href="/">here</a>.
     </p>
 

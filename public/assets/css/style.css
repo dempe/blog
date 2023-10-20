@@ -185,8 +185,13 @@ strong {
 }
 
 /* A lot of CSS is not applicable to <tr> elements */
-.tag-row td {
+.row-with-margin td {
     padding-bottom: 1rem;
+}
+
+/* A lot of CSS is not applicable to <tr> elements */
+.tag-list tr td {
+    padding-bottom: .5rem;
 }
 
 .post-tag-list {
