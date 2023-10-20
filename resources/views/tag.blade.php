@@ -4,15 +4,7 @@
     #{{ $tag->tag }}
 @endsection
 @section('content')
-    <p class="tag-description">{{ $tag->description }}</p>
-    <ul class="content-list">
-        @foreach ($posts->sortByDesc('created_at') as $post)
-            <li>
-                {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;<a
-                    href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
-            </li>
-        @endforeach
-    </ul>
+    @include('posts-list')
 @endsection
 @section('footer-content')
     <div class="footer-content">

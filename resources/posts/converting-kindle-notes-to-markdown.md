@@ -7,7 +7,7 @@ published: 1689846378
 
 Kindle[^1] has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.
 
-I store all of my notes in Obsidian, which uses Markdown. I thought, "Okay, I'll just use Pandoc to convert the HTML to Markdown. No problem!"
+I store all of my notes in [Obsidian](https://obsidian.md/), which uses Markdown. I thought, "Okay, I'll just use [Pandoc](https://pandoc.org/) to convert the HTML to Markdown. No problem!"
 
 ```bash 
 pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md
@@ -15,7 +15,7 @@ pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md
 
 ## Enter: Amazon's Dumpster Fire HTML
 
-This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.[^2] So then I thought, "Well, I guess it's time to roll up my sleeves and bust out some Perl. Yay."
+This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.[^2] Then I thought, "Well, I guess it's time to bust out some Perl."
 
 For book notes, I have one `h1` heading for the title, an `h2` heading for each chapter, and each note or idea that I have, I use a list item. Here's an example from a book I recently read, *Moonwalking with Einstein*:
 
