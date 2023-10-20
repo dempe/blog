@@ -26,16 +26,19 @@
                 <td class="table-key">Published:&nbsp;&nbsp;</td>
                 <td>{{ $posts->sortBy('created_at')->first()->created_at->format('Y-m-d H:i') }}</td>
             </tr>
-            @if(count($posts) > 1)
-                <tr>
-                    <td class="table-key">Updated:&nbsp;&nbsp;</td>
+
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                @if(count($posts) > 1)
                     <td>{{ $posts->sortByDesc('created_at')->first()->created_at->format('Y-m-d H:i') }}</td>
-                </tr>
-            @endif
+                @else
+                    <td>n/a</td>
+                @endif
+            </tr>
         </table>
     </div>
 @else
-{{--    So far, just used for about page footer--}}
+    {{--    So far, just used for about page footer--}}
     @hasSection('footer-content')
         @yield('footer-content')
     @endif
