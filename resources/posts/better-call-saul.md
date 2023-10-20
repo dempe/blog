@@ -1,8 +1,8 @@
 ---
 published: 1683933780
 tags: tv notes
-title: "Notes: Better Call Saul"
-slug: "notes-better-call-saul"
+title: "Better Call Saul"
+slug: "better-call-saul"
 ---
 
 
