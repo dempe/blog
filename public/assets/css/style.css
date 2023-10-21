@@ -254,7 +254,7 @@ sup {
     font-size: var(--small-text);
 }
 
-.blockquote p {
+blockquote p {
     font-style: italic;
     border-left: var(--border-style) var(--hover-color);
     padding: .33rem .33rem .33rem .5rem;
@@ -262,13 +262,17 @@ sup {
     margin-bottom: .5rem;
 }
 
-.blockquote {
+blockquote {
     width: fit-content;
     margin: 0 1rem 0 var(--standard-margin);
 }
 
 blockquote {
     width: fit-content;
+}
+
+blockquote p code {
+    font-style: normal;
 }
 
 figcaption:not(img + figcaption) {

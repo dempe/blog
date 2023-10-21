@@ -1,6 +1,6 @@
 ---
 published: 1677477600
-title: "Hello, World"
+title: "Hello World"
 slug: "hello-world"
 ---
 
