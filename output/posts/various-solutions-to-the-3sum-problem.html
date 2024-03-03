@@ -27,9 +27,9 @@
 </header>
 <main>
     <article>
-        <h1>    Three Solutions to 3-Sum
+        <h1>    Various Solutions to the 3SUM Problem
 </h1>
-            <p>I've seen three<sup id="fnref1:1"><a href="three-solutions-to-3-sum.html#fn:1" class="footnote-ref">1</a></sup> different variations of the 3-sum problem.  In order of increasing complexity:</p>
+            <p>I've seen three different variations of the 3-sum problem.  In order of increasing complexity:</p>
 <p>Given an array of integers,</p>
 <ol>
 <li>Do <strong>any</strong> three sum to zero?</li>
@@ -136,17 +136,42 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2>Conclusion</h2>
-<p>Use binary search.</p>
-<h2>Footnotes</h2>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn:1">
-<p>The number &quot;3&quot; seems to be a theme with this post -- three sum, three solutions, three variations.&#160;<a href="three-solutions-to-3-sum.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<h2>Quadratic Algorithm</h2>
+<p>The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.</p>
+<p>If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.</p>
+<ul>
+<li><strong>Time complexity</strong>: O(n^2)</li>
+<li><strong>Space complexity</strong>: O(1)</li>
+</ul>
+<pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        Arrays.sort(nums);
+        final List&lt;List&lt;Integer&gt;&gt; results = new ArrayList&lt;&gt;();
+
+        for (int i = 0; i &lt; nums.length - 2; i++) {
+            final int ival = nums[i];
+            int start = i + 1;
+            int end = nums.length - 1;
+
+            while (start &lt; end) {
+                final int jval = nums[start];
+                final int kval = nums[end];
+
+                if (ival + jval + kval == 0) {
+                    results.add(Arrays.asList(ival, jval, kval));
+                    start++;
+                    end--;
+                }
+                else if (ival + jval + kval &gt; 0) {
+                    end--;
+                }
+                else {
+                    start++;
+                }
+            }
+        }
+
+        return results;
+    }</code></pre>
     </article>
 </main>
 <footer>
@@ -158,7 +183,7 @@
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>2024-03-03 06:44</td>
+                <td>2024-03-03 00:46</td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>
