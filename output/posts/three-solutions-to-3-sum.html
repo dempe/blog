@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <meta name="description"
+          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+    <link rel="stylesheet" href="../assets/css/github-dark.min.css">
+    <script src="../assets/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <title>Chris Dempewolf's Blog</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="site-title"><a href="../index.html">Chris Dempewolf</a></div>
+        <div class="nav-flex-container">
+            <menu>
+                <li><a href="../about.html">about</a></li>
+                
+                <li><a href="../resume.pdf" target="_blank">resume</a></li>
+                <li><a href="../tags/index.html">tags</a></li>
+            </menu>
+        </div>
+    </nav>
+</header>
+<main>
+    <article>
+        <h1>    Three Solutions to 3-Sum
+</h1>
+            <p>I've seen three<sup id="fnref1:1"><a href="three-solutions-to-3-sum.html#fn:1" class="footnote-ref">1</a></sup> different variations of the 3-sum problem.  In order of increasing complexity:</p>
+<p>Given an array of integers,</p>
+<ol>
+<li>Do <strong>any</strong> three sum to zero?</li>
+<li><strong>How many</strong> triplets sum to zero?</li>
+<li><strong>Which</strong> distinct triplets sum to zero?</li>
+</ol>
+<p>Let's solve #3.</p>
+<p>First, let's be more precise.  LeetCode defines the problem thus:</p>
+<blockquote>
+<p>Given an integer array <code>nums</code>, return all triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
+</blockquote>
+<h2>Brute Force</h2>
+<p>For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start <code>j</code> at <code>i + 1</code> and <code>k</code> at <code>j + 1</code> to avoid looking at indices more than once.</p>
+<ul>
+<li><strong>Time complexity</strong>: O(n^3)</li>
+<li><strong>Space complexity</strong>: O(1)</li>
+</ul>
+<pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        // First, sort the array so that the triplets will also be sorted.
+        // This ensures that the hash set will reject any non-distinct triplets.
+        Arrays.sort(nums);
+        final Set&lt;List&lt;Integer&gt;&gt; results = new HashSet&lt;&gt;();
+
+        for (int i = 0; i &lt; nums.length; i++) {
+            for (int j = i + 1; j &lt; nums.length; j++) {
+                for (int k = j + 1; k &lt; nums.length; k++) {
+                    final int ival = nums[i];
+                    final int jval = nums[j];
+                    final int kval = nums[k];
+
+                    if (ival + jval + kval != 0) { continue; }
+
+                    results.add(Arrays.asList(ival, jval, kval));
+                }
+            }
+        }
+
+        return new ArrayList&lt;&gt;(results);
+    }</code></pre>
+<h2>Hashmap</h2>
+<p>Here, we loop through the <code>nums</code> array and make a map of values to all indices they appear in. We have the two <code>i</code> and <code>j</code> loops as before, but we can (mostly) skip the <code>k</code> loop.</p>
+<p>Since we already have two values (<code>ival</code> and <code>jval</code>), we can simply compute the difference <code>(ival + jval) * -1</code> and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.</p>
+<ul>
+<li><strong>Time complexity</strong>: O(n^3)</li>
+<li><strong>Space complexity</strong>: O(n)</li>
+</ul>
+<p>Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm <em>always</em> runs in O(n^3). For &quot;reasonable&quot; inputs, the amortized time complexity of the hashmap version is much better.</p>
+<pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        Arrays.sort(nums);
+        final Set&lt;List&lt;Integer&gt;&gt; results = new HashSet&lt;&gt;();
+        final Map&lt;Integer, List&lt;Integer&gt;&gt; valuesToIndices = new HashMap&lt;&gt;();
+
+        for (int i = 0; i &lt; nums.length; i++) {
+            valuesToIndices.putIfAbsent(nums[i], new ArrayList&lt;&gt;());
+            valuesToIndices.get(nums[i]).add(i);
+        }
+
+        for (int i = 0; i &lt; nums.length; i++) {
+            for (int j = i + 1; j &lt; nums.length; j++) {
+                final int ival = nums[i];
+                final int jval = nums[j];
+                final int kval = (ival + jval) * -1;
+                final List&lt;Integer&gt; candidates = valuesToIndices.getOrDefault(kval, null);
+
+                // candidates should never be empty, but check just in case.
+                if (candidates == null || candidates.isEmpty()) { continue; } // Not found
+
+                for (final int k : candidates) {
+                    if (k &lt;= j) { continue; }
+                    results.add(Arrays.asList(ival, jval, kval));
+                    break;
+                }
+            }
+        }
+
+        return new ArrayList&lt;&gt;(results);
+    }</code></pre>
+<h2>Binary Search</h2>
+<p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>). This is what we will binary search the array for.</p>
+<p>The outer two loops run in n^2 time.  Binary search takes log n time. Multiplying these together,</p>
+<ul>
+<li><strong>Time complexity</strong>: O(n^2 log n)</li>
+<li><strong>Space complexity</strong>: O(1)</li>
+</ul>
+<pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        Arrays.sort(nums);
+        final Set&lt;List&lt;Integer&gt;&gt; results = new HashSet&lt;&gt;();
+
+        for (int i = 0; i &lt; nums.length; i++) {
+            for (int j = i + 1; j &lt; nums.length; j++) {
+                final int ival = nums[i];
+                final int jval = nums[j];
+                final int kval = (ival + jval) * -1;
+
+                int k = Arrays.binarySearch(nums, kval);
+
+                if (k &lt; 0) { continue; }    // Not found             
+                if (k &lt;= j ) { k = j + 1; } // If k is less than or equal to j, we have already processed this index.
+                if (k &gt;= nums.length || nums[k] != kval) { continue; }
+
+                results.add(Arrays.asList(ival, jval, kval));
+            }
+        }
+
+        return new ArrayList&lt;&gt;(results);
+    }</code></pre>
+<h2>Conclusion</h2>
+<p>Use binary search.</p>
+<h2>Footnotes</h2>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The number &quot;3&quot; seems to be a theme with this post -- three sum, three solutions, three variations.&#160;<a href="three-solutions-to-3-sum.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </article>
+</main>
+<footer>
+    <div class="footer-content">
+        <table>
+            <tr>
+                <td class="table-key">Published:&nbsp;&nbsp;</td>
+                <td>2024-03-03 06:41</td>
+            </tr>
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                <td>2024-03-03 06:44</td>
+            </tr>
+            <tr>
+                <td class="table-key">Tags:&nbsp;&nbsp;</td>
+                <td>
+                                            <a href="../tags/algorithms.html">algorithms</a>&nbsp;
+                                            <a href="../tags/java.html">java</a>&nbsp;
+                                            <a href="../tags/tech.html">tech</a>&nbsp;
+                                    </td>
+            </tr>
+        </table>
+    </div>
+
+</footer>
+</body>
+</html>
+

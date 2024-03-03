@@ -133,10 +133,10 @@ h2 {
 }
 
 li:not(nav menu li, .content-list li) {
-    margin-left: 1em;
+    margin-left: 1.5em;
 }
 
-li:not(nav menu li, .content-list li)::marker {
+li:not(nav menu li, .content-list li):not(ol li)::marker {
     font-size: var(--small-text);
 }
 
@@ -170,9 +170,9 @@ header nav menu li:last-of-type {
     margin-right: 0;
 }
 
-ol:not(.footnotes>ol) {
-    list-style: none;
-}
+/*ol:not(.footnotes>ol) {*/
+/*    list-style: none;*/
+/*}*/
 
 strong {
     font-weight: 700;
@@ -185,8 +185,13 @@ strong {
 }
 
 /* A lot of CSS is not applicable to <tr> elements */
-.tag-row td {
+.row-with-margin td {
     padding-bottom: 1rem;
+}
+
+/* A lot of CSS is not applicable to <tr> elements */
+.tag-list tr td {
+    padding-bottom: .5rem;
 }
 
 .post-tag-list {
@@ -225,7 +230,13 @@ code, pre {
     color: var(--code-color);
     background-color: var(--secondary-background-color);
     border: none;
+    max-width: 100%;
+}
 
+/* Make long code elements fit inside their parent containers. */
+code:not(pre code) {
+    white-space: pre-wrap; /* CSS3 */
+    word-wrap: break-word;
 }
 
 code, pre, pre * {
@@ -243,7 +254,7 @@ sup {
     font-size: var(--small-text);
 }
 
-.blockquote p {
+blockquote p {
     font-style: italic;
     border-left: var(--border-style) var(--hover-color);
     padding: .33rem .33rem .33rem .5rem;
@@ -251,13 +262,17 @@ sup {
     margin-bottom: .5rem;
 }
 
-.blockquote {
+blockquote {
     width: fit-content;
     margin: 0 1rem 0 var(--standard-margin);
 }
 
 blockquote {
     width: fit-content;
+}
+
+blockquote p code {
+    font-style: normal;
 }
 
 figcaption:not(img + figcaption) {
@@ -281,7 +296,7 @@ aside {
 
 @media screen and (min-device-width: 801px) {
     :root {
-        font-size: 12px;
+        font-size: 10px;
         --title-size: 7.5rem;
         --h1-size: 6rem;
         --h2-size: 4rem;
