@@ -1,11 +1,11 @@
 ---
-title: "Three Solutions to 3-Sum"
-slug: three-solutions-to-3-sum
+title: "Various Solutions to the 3SUM Problem"
+slug: various-solutions-to-the-3sum-problem
 tags: tech algorithms java
 published: 1709448106
 ---
 
-I've seen three[^1] different variations of the 3-sum problem.  In order of increasing complexity:
+I've seen three different variations of the 3-sum problem.  In order of increasing complexity:
 
 Given an array of integers,
 
@@ -129,10 +129,45 @@ The outer two loops run in n^2 time.  Binary search takes log n time. Multiplyin
     }
 ```
 
-## Conclusion
+## Quadratic Algorithm
 
-Use binary search.
+The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.
 
-## Footnotes
+If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.
 
-[^1]: The number "3" seems to be a theme with this post -- three sum, three solutions, three variations.
+- **Time complexity**: O(n^2)
+- **Space complexity**: O(1)
+
+```java
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        final List<List<Integer>> results = new ArrayList<>();
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            final int ival = nums[i];
+            int start = i + 1;
+            int end = nums.length - 1;
+
+            while (start < end) {
+                final int jval = nums[start];
+                final int kval = nums[end];
+
+                if (ival + jval + kval == 0) {
+                    results.add(Arrays.asList(ival, jval, kval));
+                    start++;
+                    end--;
+                }
+                else if (ival + jval + kval > 0) {
+                    end--;
+                }
+                else {
+                    start++;
+                }
+            }
+        }
+
+        return results;
+    }
+```
+
+
