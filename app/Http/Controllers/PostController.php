@@ -24,6 +24,7 @@ class PostController extends Controller
             $tmp_body = $post->body;
             $tmp_body = $pd->text($tmp_body);
             $tmp_body = $this->add_header_ids($tmp_body);
+            $tmp_body = $this->add_toc($tmp_body);
 
             $post->body = $tmp_body;
 
@@ -38,6 +39,10 @@ class PostController extends Controller
 
     public function redirect() {
         return redirect('/');
+    }
+
+    private function add_toc($body) {
+        return $body;
     }
 
     /**

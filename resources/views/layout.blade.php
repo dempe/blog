@@ -31,9 +31,6 @@
         @yield('content')
     </article>
 </main>
-<footer>
-    @include('footer')
-</footer>
 </body>
 </html>
 
