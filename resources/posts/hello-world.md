@@ -1,7 +1,8 @@
 ---
-published: 1677477600
 title: "Hello World"
 slug: "hello-world"
+published: "2023-02-27 12:00"
+updated:
 ---
 
 Requisite and dutifully prosaic first post.

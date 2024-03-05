@@ -7,7 +7,13 @@
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>{{ $post->updated_at->format('Y-m-d H:i') }}</td>
+                <td>
+                    @if(isset($post->updated_at))
+                        {{ $post->updated_at->format('Y-m-d H:i') }}
+                    @else
+                        n/a
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>

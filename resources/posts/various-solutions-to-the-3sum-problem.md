@@ -2,7 +2,8 @@
 title: "Various Solutions to the 3SUM Problem"
 slug: various-solutions-to-the-3sum-problem
 tags: tech algorithms java
-published: 1709448106
+published: "2024-03-03 06:41"
+updated: "2024-03-03 19:23"
 ---
 
 I've seen three different variations of the 3-sum problem.  In order of increasing complexity:

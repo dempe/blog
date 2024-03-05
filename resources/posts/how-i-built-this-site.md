@@ -1,8 +1,9 @@
 ---
-published: 1688601186
 title: How I Built This Site
 slug: how-i-built-this-site
 tags: tech php
+published: "2023-07-05 23:53:06"
+updated: "2023-03-05 17:24"
 ---
 
 I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. An SSG can't be *that* hard.
@@ -12,7 +13,7 @@ I was tired of using off-the-shelf static site generators (SSGs) like Hugo and J
 First of all, what do SSGs offer?
 
 + **Markdown** (or similar) to HTML conversion
-+ **Templating** to inject dynamic data into a static template
++ **Templating** to inject data into a standard template
 + A **server** to dynamically display local changes
 + **Layouts** to structure your site
 + **Themes**
