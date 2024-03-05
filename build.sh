@@ -21,5 +21,3 @@ rm -rf ./output/cdn-cgi/
 git add output | tee -a "$log_file"
 git commit -am "Build: $prev_commit" | tee -a "$log_file"
 git push | tee -a "$log_file"
-
-aws s3 sync ./output s3://chrisdempewolf.com --delete | tee -a "$log_file"
