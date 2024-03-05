@@ -168,7 +168,7 @@ DB::statement('CREATE TRIGGER update_post_updated_at UPDATE ON posts
 
 Doing this allows me to track when posts were last updated, which I display in the post's footer.
 
-## The Lifecycle of a post
+## Creating a New Post
 
 I made a custom Artisan command to make a new post: `php artisan make:post <title> <tags>`. For this post, I ran `php artisan make:post "How I Built This Site" "tech php"`. This slugifys the title and creates a new file, `resources/posts/how-i-built-this-site.md`.
 
