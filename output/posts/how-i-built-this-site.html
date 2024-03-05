@@ -34,23 +34,30 @@
 <p>First of all, what do SSGs offer?</p>
 <ul>
 <li><strong>Markdown</strong> (or similar) to HTML conversion</li>
-<li><strong>Templating</strong> to inject dynamic data into a static template</li>
+<li><strong>Templating</strong> to inject data into a standard template</li>
 <li>A <strong>server</strong> to dynamically display local changes</li>
 <li><strong>Layouts</strong> to structure your site</li>
 <li><strong>Themes</strong></li>
 <li>A way to <strong>build</strong> the raw, static site to be deployed</li>
 </ul>
-<p>One day it occurred to me that PHP can accomplish most of this. PHP has been the de-facto HTML templating language since the 90s. It handles layouts easily — just nest your PHP files within other PHP files. It can handle Markdown conversion via <a href="https://parsedown.org/">3rd party libraries</a> and has a built-in web server (<code>php -S addr:port</code>).</p>
-<p>The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:1"><a href="how-i-built-this-site.html#fn:1" class="footnote-ref">1</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;Building and Deployment&quot;).</p>
-<p>PHP it is.</p>
+<p>It occurred to me that PHP can accomplish most of this.</p>
+<ul>
+<li>PHP has been the de-facto HTML templating language since the 90s.<sup id="fnref1:1"><a href="how-i-built-this-site.html#fn:1" class="footnote-ref">1</a></sup></li>
+<li>It handles layouts easily — just nest your PHP files within other PHP files.</li>
+<li>It can handle Markdown conversion via <a href="https://parsedown.org/">3rd party libraries</a>.</li>
+<li>It has a built-in web server (<code>php -S addr:port</code>).</li>
+</ul>
+<p>The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;Building and Deployment&quot;).</p>
+<p>PHP (via <a href="https://laravel.com/">Laravel</a>) it is.</p>
 <h2>Site Structure</h2>
 <p>I want to <a href="https://en.wikipedia.org/wiki/KISS_principle">keep things as simple as possible</a>. The home page (<code>chrisdempewolf.com</code>) is just a list of my posts. Posts are accessed under <code>chrisdempewolf.com/posts/{post}</code>. Same for tags. Aside from that, I have an about page and my resume (see links at top).</p>
 <p>I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.</p>
 <p>Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.</p>
 <h2>Using a Relational Database For a Static Site</h2>
-<p>I have two entities — posts and tags. There is a many-to-many relationship between them. On my site, each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.</p>
-<p><em>This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.</em></p>
-<p>In a relational DB, many-to-many relationships are modeled with 3 tables<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> — two for the two entities and a third to store the relationships between them. For example, say <code>slug</code> is the primary key for <code>posts</code> and <code>tag</code> (the tag name) is the primary key for the table <code>tags</code>. The third table, <code>post_tags</code> has two columns — <code>slug</code> and <code>tag</code> to indicate which posts are associated with which tags and which tags are associated with which posts.</p>
+<p>When running my local Laravel server, I use SQLite to store two entities — posts and tags.</p>
+<p>There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.</p>
+<p>This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.</p>
+<p>In a relational DB, many-to-many relationships are modeled with 3 tables<sup id="fnref1:3"><a href="how-i-built-this-site.html#fn:3" class="footnote-ref">3</a></sup> — two for the two entities and a third to store the relationships between them. For example, say <code>slug</code> is the primary key for <code>posts</code> and <code>tag</code> (the tag name) is the primary key for the table <code>tags</code>. The third table, <code>post_tags</code> has two columns — <code>slug</code> and <code>tag</code> to indicate which posts are associated with which tags and which tags are associated with which posts.</p>
 <p>Here's what that looks like.</p>
 <p>The <code>posts</code>, <code>tags</code>, and <code>post_tags</code> tables, respectively :</p>
 <pre><code class="language-sql">CREATE TABLE "posts" (
@@ -67,7 +74,7 @@ CREATE TABLE "post_tags" (
                 "slug" VARCHAR(255) NOT NULL,
                 "tag" VARCHAR(255) NOT NULL,
                 primary key ("slug", "tag"));</code></pre>
-<p>Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, Eloquent.</p>
+<p>Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, <a href="https://laravel.com/docs/10.x/eloquent">Eloquent</a>.</p>
 <p>The root directory of my site is just:</p>
 <pre><code class="language-PHP">Route::get('/', function () {
     return view('posts', ['posts' =&gt; Post::all()]);
@@ -95,7 +102,7 @@ return view('tag', ['tag' =&gt; $tag,
             'slug'
         );
     }</code></pre>
-<p>There's a lot of parameters here, but it's not too bad. The first parameter to <code>belongsToMany</code> tells Eloquent that a <code>Tag</code> can have many <code>Post</code> s. The second parameter (<code>PostTag::class</code>) tells Eloquent that <code>Tag</code> s are related to <code>Post</code> s via <code>PostTag</code> (the <code>post_tags</code> table) AKA a &quot;pivot table&quot;.<sup id="fnref1:3"><a href="how-i-built-this-site.html#fn:3" class="footnote-ref">3</a></sup></p>
+<p>There's a lot of parameters here, but it's not too bad. The first parameter to <code>belongsToMany</code> tells Eloquent that a <code>Tag</code> can have many <code>Post</code> s. The second parameter (<code>PostTag::class</code>) tells Eloquent that <code>Tag</code> s are related to <code>Post</code> s via <code>PostTag</code> (the <code>post_tags</code> table) AKA a &quot;pivot table&quot;.<sup id="fnref1:4"><a href="how-i-built-this-site.html#fn:4" class="footnote-ref">4</a></sup></p>
 <p>The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that <code>tag</code> is the foreign key on the <code>post_tags</code> table. The fourth argument tells Eloquent that <code>slug</code> is the foreign key on the <code>posts_tags</code> table for <code>posts</code>. The fifth argument tells Eloquent that <code>tag</code> is the key for the <code>tags</code> table. Finally, the sixth argument tells Eloquent that <code>slug</code> is the key for the <code>posts</code> table.</p>
 <p>All this allows me to use that nice chain syntax from above. Again, because it's so beautiful: <code>$posts = $tag-&gt;posts()-&gt;get();</code>.</p>
 <p>But that's not all. It also allows for something called &quot;<strong>eager loading</strong>&quot;.</p>
@@ -118,7 +125,7 @@ foreach ($posts as $post) {
         echo $tag-&gt;name;
     }
 }</code></pre>
-<p>The key thing to note here is <code>::with('tags')</code>. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query!<sup id="fnref1:4"><a href="how-i-built-this-site.html#fn:4" class="footnote-ref">4</a></sup></p>
+<p>The key thing to note here is <code>::with('tags')</code>. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query!<sup id="fnref1:5"><a href="how-i-built-this-site.html#fn:5" class="footnote-ref">5</a></sup></p>
 <p>Eloquent does this by attaching an array of <code>Tag</code> s to each <code>Post</code> when you call <code>Post::with('tags')-&gt;get()</code>. You can see this by running <code>php artisan tinker</code> and comparing the two outputs — lazy and eager.</p>
 <h2>Seeding and Migrations</h2>
 <p>As mentioned, I store all of my posts in a database (Sqlite, specifically). This allows me to easily handle the many-to-many relationship between posts and tags. But I need to actually import the posts.</p>
@@ -191,16 +198,19 @@ http://localhost:8000</code></pre>
 <hr />
 <ol>
 <li id="fn:1">
-<p>There are indeed PHP SSGs, but the whole reason I switched to PHP was to avoid off-the-shelf SSGs.&#160;<a href="how-i-built-this-site.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>Blade makes this even easier. And you can still use raw PHP if you need.&#160;<a href="how-i-built-this-site.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Or they should be if your DB is properly normalized.&#160;<a href="how-i-built-this-site.html#fnref1:2" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>There are indeed PHP SSGs, but the whole reason I switched to PHP was to avoid off-the-shelf SSGs.&#160;<a href="how-i-built-this-site.html#fnref1:2" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>It's convention in Laravel for model names to be singular, and table names to be plural (<code>Post</code> and <code>posts</code>). This makes sense, because a table holds many rows, while a model represents a single row from that table.&#160;<a href="how-i-built-this-site.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>Or they should be if your DB is properly normalized.&#160;<a href="how-i-built-this-site.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>If you want to see this live on your site, install the <a href="https://github.com/barryvdh/laravel-debugbar">DebugBar</a> and click on the DB tab. It will show you all the queries made while fetching the current view!&#160;<a href="how-i-built-this-site.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>It's convention in Laravel for model names to be singular, and table names to be plural (<code>Post</code> and <code>posts</code>). This makes sense, because a table holds many rows, while a model represents a single row from that table.&#160;<a href="how-i-built-this-site.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>If you want to see this live on your site, install the <a href="https://github.com/barryvdh/laravel-debugbar">DebugBar</a> and click on the DB tab. It will show you all the queries made while fetching the current view!&#160;<a href="how-i-built-this-site.html#fnref1:5" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -215,7 +225,9 @@ http://localhost:8000</code></pre>
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>2024-03-05 16:48</td>
+                <td>
+                                            2023-03-05 17:24
+                                    </td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>
