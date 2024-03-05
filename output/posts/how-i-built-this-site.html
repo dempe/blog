@@ -130,7 +130,7 @@ foreach ($posts as $post) {
                     UPDATE posts SET updated_at = CURRENT_TIMESTAMP WHERE OLD.slug = NEW.slug;
                 END;');</code></pre>
 <p>Doing this allows me to track when posts were last updated, which I display in the post's footer.</p>
-<h2>The Lifecycle of a post</h2>
+<h2>Creating a New Post</h2>
 <p>I made a custom Artisan command to make a new post: <code>php artisan make:post &lt;title&gt; &lt;tags&gt;</code>. For this post, I ran <code>php artisan make:post "How I Built This Site" "tech php"</code>. This slugifys the title and creates a new file, <code>resources/posts/how-i-built-this-site.md</code>.</p>
 <p>After the new post has been imported to the DB, I can go to the URL <code>&lt;host&gt;/posts/how-i-built-this-site</code>. This is what the route looks like:</p>
 <pre><code class="language-php">Route::get('/posts/{post}', function ($slug) {
@@ -215,7 +215,7 @@ http://localhost:8000</code></pre>
             </tr>
             <tr>
                 <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>2023-07-07 20:00</td>
+                <td>2024-03-05 16:48</td>
             </tr>
             <tr>
                 <td class="table-key">Tags:&nbsp;&nbsp;</td>
