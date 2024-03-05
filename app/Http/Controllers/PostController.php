@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\PostTag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use ParsedownExtra;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 
@@ -18,9 +18,14 @@ class PostController extends Controller
 
     public function show($slug) {
         try {
+            $pd = new ParsedownExtra();
             $post = Post::findOrFail($slug);
-            $body = $post->body;
-            $post->body = $this->add_header_ids($body);
+
+            $tmp_body = $post->body;
+            $tmp_body = $pd->text($tmp_body);
+            $tmp_body = $this->add_header_ids($tmp_body);
+
+            $post->body = $tmp_body;
 
 
             return view('post', ['post' => $post,
@@ -35,14 +40,20 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Add ids to all H2 headers.  Assume only H2 exist for now (they do).
+     * Add isomorphic function for H3 if the case ever arises.
+     * @param $body
+     * @return string html
+     */
     private function add_header_ids($body) {
         return preg_replace_callback(
-            '/^(#+)\s*(.*)/m',
+            '|^<h2>(.*)</h2>$|m',
                function ($matches) {
-                   $slug = Str::slug($matches[2]);
-                   return $matches[1] . ' ' . $matches[2] . '{#' . $slug . '}';
+                   $slug = Str::slug($matches[1]);
+                   return "<h2 id='{$slug}'>{$matches[1]}</h2>";
                },
-               $body);
+            $body);
     }
 
 }

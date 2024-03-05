@@ -27,7 +27,7 @@
 </header>
 <main>
     <article>
-        <h1>@yield('title')</h1>
+        <h1 id="title">@yield('title')</h1>
         @yield('content')
     </article>
 </main>
