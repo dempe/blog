@@ -18,11 +18,16 @@ First of all, what do SSGs offer?
 + **Themes**
 + A way to **build** the raw, static site to be deployed
 
-One day it occurred to me that PHP can accomplish most of this. PHP has been the de-facto HTML templating language since the 90s. It handles layouts easily — just nest your PHP files within other PHP files. It can handle Markdown conversion via [3rd party libraries](https://parsedown.org/) and has a built-in web server (`php -S addr:port`).
+It occurred to me that PHP can accomplish most of this.
 
-The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.[^1] Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "Building and Deployment").
++ PHP has been the de-facto HTML templating language since the 90s.[^1]
++ It handles layouts easily — just nest your PHP files within other PHP files.
++ It can handle Markdown conversion via [3rd party libraries](https://parsedown.org/).
++ It has a built-in web server (`php -S addr:port`).
 
-PHP it is.
+The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.[^2] Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "Building and Deployment").
+
+PHP (via [Laravel](https://laravel.com/)) it is.
 
 ## Site Structure
 
@@ -34,11 +39,13 @@ Most popular SSGs support some kind of draft feature. This is totally unnecessar
 
 ## Using a Relational Database For a Static Site
 
-I have two entities — posts and tags. There is a many-to-many relationship between them. On my site, each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
+When running my local Laravel server, I use SQLite to store two entities — posts and tags.
 
-*This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.*
+There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
 
-In a relational DB, many-to-many relationships are modeled with 3 tables[^2] — two for the two entities and a third to store the relationships between them. For example, say `slug` is the primary key for `posts` and `tag` (the tag name) is the primary key for the table `tags`. The third table, `post_tags` has two columns — `slug` and `tag` to indicate which posts are associated with which tags and which tags are associated with which posts.
+This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.
+
+In a relational DB, many-to-many relationships are modeled with 3 tables[^3] — two for the two entities and a third to store the relationships between them. For example, say `slug` is the primary key for `posts` and `tag` (the tag name) is the primary key for the table `tags`. The third table, `post_tags` has two columns — `slug` and `tag` to indicate which posts are associated with which tags and which tags are associated with which posts.
 
 Here's what that looks like.
 
@@ -61,7 +68,7 @@ CREATE TABLE "post_tags" (
 				primary key ("slug", "tag"));
 ```
 
-Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, Eloquent.
+Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, [Eloquent](https://laravel.com/docs/10.x/eloquent).
 
 The root directory of my site is just:
 
@@ -107,7 +114,7 @@ public function posts(): BelongsToMany
     }
 ```
 
-There's a lot of parameters here, but it's not too bad. The first parameter to `belongsToMany` tells Eloquent that a `Tag` can have many `Post` s. The second parameter (`PostTag::class`) tells Eloquent that `Tag` s are related to `Post` s via `PostTag` (the `post_tags` table) AKA a "pivot table".[^3]
+There's a lot of parameters here, but it's not too bad. The first parameter to `belongsToMany` tells Eloquent that a `Tag` can have many `Post` s. The second parameter (`PostTag::class`) tells Eloquent that `Tag` s are related to `Post` s via `PostTag` (the `post_tags` table) AKA a "pivot table".[^4]
 
 The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that `tag` is the foreign key on the `post_tags` table. The fourth argument tells Eloquent that `slug` is the foreign key on the `posts_tags` table for `posts`. The fifth argument tells Eloquent that `tag` is the key for the `tags` table. Finally, the sixth argument tells Eloquent that `slug` is the key for the `posts` table.
 
@@ -145,7 +152,7 @@ foreach ($posts as $post) {
 }
 ```
 
-The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query![^4]
+The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query![^5]
 
 Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs — lazy and eager.
 
@@ -247,10 +254,12 @@ This certainly is not the most popular method for building static sites, but I l
 
 ## Footnotes
 
-[^1]: There are indeed PHP SSGs, but the whole reason I switched to PHP was to avoid off-the-shelf SSGs.
+[^1]: Blade makes this even easier. And you can still use raw PHP if you need.
 
-[^2]: Or they should be if your DB is properly normalized.
+[^2]: There are indeed PHP SSGs, but the whole reason I switched to PHP was to avoid off-the-shelf SSGs.
 
-[^3]: It's convention in Laravel for model names to be singular, and table names to be plural (`Post` and `posts`). This makes sense, because a table holds many rows, while a model represents a single row from that table.
+[^3]: Or they should be if your DB is properly normalized.
 
-[^4]: If you want to see this live on your site, install the [DebugBar](https://github.com/barryvdh/laravel-debugbar) and click on the DB tab. It will show you all the queries made while fetching the current view!
+[^4]: It's convention in Laravel for model names to be singular, and table names to be plural (`Post` and `posts`). This makes sense, because a table holds many rows, while a model represents a single row from that table.
+
+[^5]: If you want to see this live on your site, install the [DebugBar](https://github.com/barryvdh/laravel-debugbar) and click on the DB tab. It will show you all the queries made while fetching the current view!
