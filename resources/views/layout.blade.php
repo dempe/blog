@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <meta name="description"
-          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+          content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="http://localhost:8000/assets/css/github-dark.min.css">
     <script src="http://localhost:8000/assets/js/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
@@ -17,10 +17,10 @@
         <div class="site-title"><a href="/">Chris Dempewolf</a></div>
         <div class="nav-flex-container">
             <menu>
-                <li><a href="/about">about</a></li>
+                <li><a href="/about">About</a></li>
                 {{-- TODO: use controller to load mysite.com/resume --}}
-                <li><a href="/resume.pdf" target="_blank">resume</a></li>
-                <li><a href="/tags/">tags</a></li>
+                <li><a href="/resume.pdf" target="_blank">Resume</a></li>
+                <li><a href="/tags/">Tags</a></li>
             </menu>
         </div>
     </nav>
