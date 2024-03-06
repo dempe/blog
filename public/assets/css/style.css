@@ -168,9 +168,27 @@ header nav menu li:last-of-type {
     margin-right: 0;
 }
 
-/*ol:not(.footnotes>ol) {*/
-/*    list-style: none;*/
-/*}*/
+footer {
+    border-bottom: var(--border-style) var(--primary-color);
+    margin-bottom: 5rem;
+}
+
+#footer-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 0rem 2rem 0rem;
+}
+
+#next-post-link {
+    margin: 0;
+    margin-left: .25rem;
+}
+
+#prev-post-link {
+    margin: 0;
+    margin-right: .25rem;
+}
 
 strong {
     font-weight: 700;
@@ -180,6 +198,7 @@ strong {
 .content-list {
     list-style: none;
     line-height: 2.5rem;
+    margin-top: 2rem;
 }
 
 /* A lot of CSS is not applicable to <tr> elements */
@@ -298,6 +317,10 @@ figcaption:not(img + figcaption):before {
 
     figure img {
         max-width: 40%;
+    }
+
+    #footer-nav {
+        margin: 2rem 5rem 2rem 5rem;
     }
 }
 

@@ -1,6 +1,6 @@
 ---
-title: "Various Solutions to the 3SUM Problem"
-slug: various-solutions-to-the-3sum-problem
+title: "Various Solutions to 3SUM"
+slug: various-solutions-to-3sum
 tags: tech algorithms java
 published: "2024-03-03 06:41"
 updated: "2024-03-03 19:23"

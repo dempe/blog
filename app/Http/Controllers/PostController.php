@@ -23,12 +23,14 @@ class PostController extends Controller
             $pd = new ParsedownExtra();
             $post = Post::findOrFail($slug);
 
-            $tmp_body = $post->body;
-            $tmp_body = $pd->text($tmp_body);
-            $tmp_body = $this->add_header_ids($tmp_body);
+            $new_body = $post->body;
+            $new_body = $pd->text($new_body);
+            $new_body = $this->add_header_ids($new_body);
 
-//            $post->toc = $this->build_toc($tmp_body, $slug);
-            $post->body = $tmp_body;
+//            $post->toc = $this->build_toc($new_body, $slug);
+            $post->body = $new_body;
+            $post->next = Post::findNext($slug);
+            $post->prev = Post::findPrev($slug);
 
 
             return view('post', ['post' => $post,

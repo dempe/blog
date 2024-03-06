@@ -33,6 +33,9 @@
         @yield('content')
     </article>
 </main>
+<footer>
+    @yield('nav')
+</footer>
 @yield('scripts')
 </body>
 </html>
