@@ -20,6 +20,8 @@ First, let's be more precise.  LeetCode defines the problem thus:
 
 > Given an integer array `nums`, return all triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
 
+The following is a list of algorithms to solve this problem in order of increasing efficiency. I like the 3SUM problem because it demonstrates a wide variety of techniques for solving algorithmic problems.
+
 ## Brute Force
 
 For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start `j` at `i + 1` and `k` at `j + 1` to avoid looking at indices more than once.
@@ -132,9 +134,9 @@ The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multi
 
 ## Quadratic Algorithm
 
-The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.
+The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements[^0] of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.
 
-If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.
+If the sum is less than zero, we know we need[^0] to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.
 
 - **Time complexity**: $O(n^2)$
 - **Space complexity**: $O(1)$
@@ -170,5 +172,21 @@ If the sum is less than zero, we know we need to increment the start pointer. Th
         return results;
     }
 ```
+
+## Can We Beat Quadratic?
+
+Is there an algorithm[^0] to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science [0].
+
+## References
+
+0. https://en.wikipedia.org/wiki/3SUM
+
+## Footnotes
+
+[^0]: My footnote
+
+[^0]: Another fn
+
+[^0]: 3rd
 
 
