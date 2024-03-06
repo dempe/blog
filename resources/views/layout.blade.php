@@ -8,6 +8,18 @@
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="http://localhost:8000/assets/css/github-dark.min.css">
     <script src="http://localhost:8000/assets/js/highlight.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
     <script>hljs.highlightAll();</script>
     <title>Chris Dempewolf's Blog</title>
 </head>

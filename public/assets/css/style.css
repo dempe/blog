@@ -1,7 +1,7 @@
 :root {
 
     /* Hard set to use for subsequent rem sizing. */
-    font-size: 24px;
+    /*font-size: 24px;*/
     min-height: 100vh;
 
 
@@ -22,14 +22,17 @@
 }
 
 * {
-    font-weight: 400;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: var(--primary-color);
+}
 
+/* Set in body to prevent from overriding MathJax */
+body {
     /* I prefer Helvetica, but it is proprietary and has limited font weights available OOB. */
     font-family: Arial, "Noto Sans JP", sans-serif, "Fira-Sans", Roboto, Helvetica, sans-serif;
+    font-weight: 400;
 }
 
 article a:not(.content-list a) {

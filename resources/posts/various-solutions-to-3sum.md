@@ -6,7 +6,7 @@ published: "2024-03-03 06:41"
 updated: "2024-03-03 19:23"
 ---
 
-I've seen three different variations of the 3-sum problem.  In order of increasing complexity:
+I've seen three different variations of the 3SUM problem.  In order of increasing complexity:
 
 Given an array of integers,
 
@@ -24,8 +24,8 @@ First, let's be more precise.  LeetCode defines the problem thus:
 
 For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start `j` at `i + 1` and `k` at `j + 1` to avoid looking at indices more than once.
 
-- **Time complexity**: O(n^3)
-- **Space complexity**: O(1)
+- **Time complexity**: $O(n^3)$
+- **Space complexity**: $O(1)$
 
 ```java 
     public List<List<Integer>> threeSum(int[] nums) {
@@ -58,10 +58,10 @@ Here, we loop through the `nums` array and make a map of values to all indices t
 
 Since we already have two values (`ival` and `jval`), we can simply compute the difference `(ival + jval) * -1` and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.
 
-- **Time complexity**: O(n^3)
-- **Space complexity**: O(n)
+- **Time complexity**: $O(n^3)$
+- **Space complexity**: $O(n)$
 
-Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm *always* runs in O(n^3). For "reasonable" inputs, the amortized time complexity of the hashmap version is much better.
+Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm *always* runs in $O(n^3)$. For "reasonable" inputs, the amortized time complexity of the hashmap version is much better.
 
 ```java 
     public List<List<Integer>> threeSum(int[] nums) {
@@ -100,10 +100,10 @@ Note that the worst case time complexity is no better than brute force.  And wit
 
 This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between `i + j` and 0 (`(nums[i] + nums[j]) * -1`). This is what we will binary search the array for.
 
-The outer two loops run in n^2 time.  Binary search takes log n time. Multiplying these together,
+The outer two loops run in $n^2$ time.  Binary search takes log n time. Multiplying these together,
 
-- **Time complexity**: O(n^2 log n)
-- **Space complexity**: O(1)
+- **Time complexity**: $O(n^2{\log n})$
+- **Space complexity**: $O(1)$
 
 ```java
     public List<List<Integer>> threeSum(int[] nums) {
@@ -136,8 +136,8 @@ The quadratic algorithm takes a completely different approach.  For each element
 
 If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.
 
-- **Time complexity**: O(n^2)
-- **Space complexity**: O(1)
+- **Time complexity**: $O(n^2)$
+- **Space complexity**: $O(1)$
 
 ```java
     public List<List<Integer>> threeSum(int[] nums) {
