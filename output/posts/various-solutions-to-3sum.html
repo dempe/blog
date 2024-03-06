@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="../assets/css/style.css"/>
     <meta name="description"
-          content="A personal blog by Chris Dempewolf about science, technology, computers, and computation in general."/>
+          content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="../assets/css/github-dark.min.css">
     <script src="../assets/js/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
@@ -17,19 +17,39 @@
         <div class="site-title"><a href="../index.html">Chris Dempewolf</a></div>
         <div class="nav-flex-container">
             <menu>
-                <li><a href="../about.html">about</a></li>
+                <li><a href="../about.html">About</a></li>
                 
-                <li><a href="../resume.pdf" target="_blank">resume</a></li>
-                <li><a href="../tags/index.html">tags</a></li>
+                <li><a href="../resume.pdf" target="_blank">Resume</a></li>
+                <li><a href="../tags/index.html">Tags</a></li>
             </menu>
         </div>
     </nav>
 </header>
 <main>
     <article>
-        <h1>    Various Solutions to the 3SUM Problem
+        <h1 id="title">    Various Solutions to 3SUM
 </h1>
-            <p>I've seen three different variations of the 3-sum problem.  In order of increasing complexity:</p>
+            <table class="post-metadata">
+        <tr>
+            <td class="table-key">Published:&nbsp;&nbsp;</td>
+            <td>2024-03-03 06:41</td>
+        </tr>
+        <tr>
+            <td class="table-key">Updated:&nbsp;&nbsp;</td>
+            <td>
+                                    2024-03-03 19:23
+                            </td>
+        </tr>
+        <tr>
+            <td class="table-key">Tags:&nbsp;&nbsp;</td>
+            <td>
+                                    <a href="../tags/algorithms.html">algorithms</a>&nbsp;
+                                    <a href="../tags/java.html">java</a>&nbsp;
+                                    <a href="../tags/tech.html">tech</a>&nbsp;
+                            </td>
+        </tr>
+    </table>
+                        <p>I've seen three different variations of the 3-sum problem.  In order of increasing complexity:</p>
 <p>Given an array of integers,</p>
 <ol>
 <li>Do <strong>any</strong> three sum to zero?</li>
@@ -41,7 +61,7 @@
 <blockquote>
 <p>Given an integer array <code>nums</code>, return all triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
 </blockquote>
-<h2>Brute Force</h2>
+<h2 id='brute-force'>Brute Force</h2>
 <p>For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start <code>j</code> at <code>i + 1</code> and <code>k</code> at <code>j + 1</code> to avoid looking at indices more than once.</p>
 <ul>
 <li><strong>Time complexity</strong>: O(n^3)</li>
@@ -69,7 +89,7 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2>Hashmap</h2>
+<h2 id='hashmap'>Hashmap</h2>
 <p>Here, we loop through the <code>nums</code> array and make a map of values to all indices they appear in. We have the two <code>i</code> and <code>j</code> loops as before, but we can (mostly) skip the <code>k</code> loop.</p>
 <p>Since we already have two values (<code>ival</code> and <code>jval</code>), we can simply compute the difference <code>(ival + jval) * -1</code> and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.</p>
 <ul>
@@ -107,7 +127,7 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2>Binary Search</h2>
+<h2 id='binary-search'>Binary Search</h2>
 <p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>). This is what we will binary search the array for.</p>
 <p>The outer two loops run in n^2 time.  Binary search takes log n time. Multiplying these together,</p>
 <ul>
@@ -136,7 +156,7 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2>Quadratic Algorithm</h2>
+<h2 id='quadratic-algorithm'>Quadratic Algorithm</h2>
 <p>The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.</p>
 <p>If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.</p>
 <ul>
@@ -175,30 +195,29 @@
     </article>
 </main>
 <footer>
-    <div class="footer-content">
-        <table>
-            <tr>
-                <td class="table-key">Published:&nbsp;&nbsp;</td>
-                <td>2024-03-03 06:41</td>
-            </tr>
-            <tr>
-                <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>
-                                            2024-03-03 19:23
-                                    </td>
-            </tr>
-            <tr>
-                <td class="table-key">Tags:&nbsp;&nbsp;</td>
-                <td>
-                                            <a href="../tags/algorithms.html">algorithms</a>&nbsp;
-                                            <a href="../tags/java.html">java</a>&nbsp;
-                                            <a href="../tags/tech.html">tech</a>&nbsp;
-                                    </td>
-            </tr>
-        </table>
-    </div>
-
+        <nav id="footer-nav">
+        <div id="prev-post-link">
+                            <span>⬅️ <a href="converting-kindle-notes-to-markdown.html">Converting Kindle Notes to Markdown</a></span>
+                    </div>
+        <div id="next-post-link">
+                    </div>
+    </nav>
 </footer>
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>
 

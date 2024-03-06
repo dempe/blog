@@ -6,15 +6,15 @@
 
 
     --primary-color: #cacaca;
-    /*--secondary-color: #ddd;*/
-    --primary-background-color: #0a0a0a;
-    --secondary-background-color: #2a2a2a;
+    --secondary-color: #aaa;
+    --primary-background-color: #1a1a1a;
+    /*--secondary-background-color: #2a2a2a;*/
+    --secondary-background-color: #000;
     --link-color: #fff;
     --accent-color: #7fff00;
-    --code-color: #7fff00;
     --small-text: 1.75rem;
-    --title-size: 4.5rem;
-    --h1-size: 3.5rem;
+    --title-size: 5rem;
+    --h1-size: 4.5rem;
     --h2-size: 2.75rem;
     --standard-margin: 2rem;
     --standard-border: 1px var(--accent-color) dotted;
@@ -42,7 +42,8 @@ a:not(header a):not(:hover):not(.post-tag-list *) {
 }
 
 a:hover,
-article a:hover {
+article a:hover,
+#toc a:hover {
     color: var(--accent-color);
 }
 
@@ -79,7 +80,7 @@ figure {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80%;
+    max-width: 100%;
 }
 
 figcaption {
@@ -89,9 +90,10 @@ figcaption {
 
 figure img {
     max-width: 100%;
-    width: 100%;
+    width: 75%;
     object-fit: fill;
     image-rendering: optimizeSpeed;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
@@ -100,10 +102,7 @@ body {
     background-color: var(--primary-background-color);
     width: 92.5%;
     min-height: 90vh;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: var(--standard-margin);
-    margin-bottom: var(--standard-margin);
+    margin: var(--standard-margin) auto;
     font-size: 2.25rem;
 
     /* Flex items: header, main, footer. */
@@ -117,15 +116,15 @@ main {
 }
 
 h1 {
-    margin: 5rem 0 5rem 0;
+    margin: 5rem 0 .5rem 0;
     font-size: var(--h1-size);
     font-weight: 700;
 }
 
 h2 {
-    margin: 4rem 0 4rem 0;
     font-size: var(--h2-size);
     font-weight: 700;
+    margin: 4rem 0 4rem 0;
 }
 
 li:not(nav menu li, .content-list li) {
@@ -166,9 +165,28 @@ header nav menu li:last-of-type {
     margin-right: 0;
 }
 
-/*ol:not(.footnotes>ol) {*/
-/*    list-style: none;*/
-/*}*/
+footer {
+    border-bottom: var(--border-style) var(--primary-color);
+    margin-bottom: 5rem;
+}
+
+#footer-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem 0rem 2rem 0rem;
+}
+
+#next-post-link {
+    margin: 0;
+    margin-left: .25rem;
+}
+
+#prev-post-link {
+    margin: 0;
+    margin-right: .25rem;
+    margin-bottom: 1rem;
+}
 
 strong {
     font-weight: 700;
@@ -178,6 +196,7 @@ strong {
 .content-list {
     list-style: none;
     line-height: 2.5rem;
+    margin-top: 2rem;
 }
 
 /* A lot of CSS is not applicable to <tr> elements */
@@ -201,32 +220,22 @@ strong {
     margin: 0 1rem 0 0;
 }
 
-.footer-content {
+.post-metadata {
     font-size: var(--small-text);
+    margin-bottom: 10rem;
+    /*border: var(--standard-border);*/
+}
+
+.post-metadata * {
+    color: var(--secondary-color);
 }
 
 .table-key {
     text-align: right;
 }
 
-footer nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: var(--standard-margin);
-}
-
-.footer-content {
-    border-top: var(--border-style);
-    width: 100%;
-}
-
-.footer-content table {
-    margin-top: 1rem;
-}
-
 code {
-    color: var(--code-color);
+    color: var(--accent-color);
 }
 
 code, pre {
@@ -255,27 +264,25 @@ sup {
     font-size: var(--small-text);
 }
 
-blockquote {
-    width: fit-content;
-    margin: 0 1rem 0 var(--standard-margin);
-}
-
 blockquote p code {
     font-style: normal;
 }
 
+.blockquote {
+    width: 100%;
+}
+
 aside, blockquote {
+    width: 100%;
     font-style: italic;
     border-left: var(--border-style) var(--accent-color);
-    padding: .33rem .33rem .33rem .5rem;
+    padding: 1rem .5rem 1rem 1.5rem;
     background-color: var(--secondary-background-color);
-    margin-bottom: .5rem;
 }
 
 aside {
-    /*background-color: #0d3d1c;*/
-    font-size: var(--small-text);
-    line-height: 2.5rem;
+    line-height: 3rem;
+    margin-bottom: 3rem;
 }
 
 figcaption:not(img + figcaption) {
@@ -286,8 +293,6 @@ figcaption:not(img + figcaption):before {
     content:"\2014"
 }
 
-
-
 .tag-description {
     margin: 4rem 0 4rem 0;
 }
@@ -295,8 +300,8 @@ figcaption:not(img + figcaption):before {
 @media screen and (min-device-width: 801px) {
     :root {
         font-size: 10px;
-        --title-size: 7.5rem;
-        --h1-size: 6rem;
+        --title-size: 8rem;
+        /*--h1-size: 7rem;*/
         --h2-size: 4rem;
     }
 
@@ -305,17 +310,47 @@ figcaption:not(img + figcaption):before {
     }
 
     article {
-        max-width: 75%;
+        max-width: 60%;
     }
 
     figure img {
-        max-width: 100%;
+        max-width: 40%;
     }
 
-    figure {
-        max-width: 33%;
+    #footer-nav {
+        margin: 2rem 5rem 2rem 5rem;
+        flex-direction: row;
     }
 }
+
+/*#toc {*/
+/*    margin-bottom: 10rem;*/
+/*}*/
+
+/*#toc p {*/
+/*    margin-bottom: 2rem;*/
+/*}*/
+
+/*#toc a {*/
+/*    color: var(--primary-color);*/
+/*}*/
+
+/*#toc-toggle {*/
+/*    cursor: pointer;*/
+/*    background-color: var(--primary-background-color);*/
+/*    border: none;*/
+/*    font-size: 24px;*/
+/*    display: inline-block;*/
+/*    margin-bottom: .75rem;*/
+/*}*/
+
+/*#toc-toggle span {*/
+/*    color: var(--accent-color);*/
+/*}*/
+
+/*#toc-list li {*/
+/*    margin-bottom: .25rem;*/
+/*}*/
 
 /* JetBrains font face */
 
