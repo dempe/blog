@@ -98,9 +98,9 @@ Note that the worst case time complexity is no better than brute force.  And wit
 
 ## Binary Search
 
-This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between `i + j` and 0 (`(nums[i] + nums[j]) * -1`). This is what we will binary search the array for.
+This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between `i + j` and 0 (`(nums[i] + nums[j]) * -1`).
 
-The outer two loops run in $n^2$ time.  Binary search takes log n time. Multiplying these together,
+The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multiplying these together,
 
 - **Time complexity**: $O(n^2{\log n})$
 - **Space complexity**: $O(1)$

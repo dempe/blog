@@ -6,7 +6,7 @@ published: "2023-07-08 22:34"
 updated:
 ---
 
-A carlota or carlota de limón is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))) common in Mexico.
+A *carlota* or *carlota de limón* is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))) common in Mexico.
 
 It takes about 10 - 20 minutes to make, a couple of hours to chill.
 

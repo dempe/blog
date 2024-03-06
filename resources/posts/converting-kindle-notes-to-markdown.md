@@ -113,7 +113,7 @@ pbcopy
 
 ## Should've Used BeautifulSoup From the Get-go
 
-The above solution worked fine until I got to a book that had no page numbers.  It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:
+The above solution worked fine until I got to a book that had no page numbers. It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:
 
 ```python
 def parse_chapter(text):
@@ -149,11 +149,11 @@ From there, we basically just find the first "section" node (`start_node = soup.
 
 ## Footnotes
 
-[^1]: Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1 — using multiple libraries with Kobo is a nightmare, 2 — I can read my Kindle books on my phone, and 3 — what this post is about — the ability to email myself the notes I've taken is really convenient.
+[^1]: Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1. Using multiple libraries (via [Overdrive](https://www.overdrive.com/)) with Kobo is a nightmare, 2. I can read my Kindle books on my phone, and 3. What this post is about — the ability to email myself the notes I've taken is really convenient.
 
 [^2]: Not sure if `body` counts as semantic HTML, but *they don't even use it*! (See next footnote). 😒
 
-[^3]: They even have a `<div class="bodyContainer">`, completely redundant to `body`!
+[^3]: They even have a `<div class="bodyContainer">`, completely redundant to `body`! I'm convinced that whoever wrote this intentionally made it bad.
 
 [^4]: Perl does not use POSIX regexes like `sed`. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, `?`, in POSIX. See [Comparison of regular expression engines](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features).
 
