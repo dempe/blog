@@ -4,12 +4,13 @@
     /*font-size: 24px;*/
     min-height: 100vh;
 
+    /*i'm using this command, `aws s3 sync ./output s3://chrisdempewolf.com --delete | tee -a "$log_file"` to sync a directory, `output` to s3.  the problem is that it syncs files unnecessarily. i'm looking for a method to only sync the files that have changed.*/
+
 
     --primary-color: #ccc;
     --secondary-color: #aaa;
-    --primary-background-color: #0a0a0a;
-    /*--secondary-background-color: #2a2a2a;*/
-    --secondary-background-color: #000;
+    --primary-background-color: #080808;
+    --secondary-background-color: #1f1f1f;
     --link-color: #fff;
     --accent-color: #7fff00;
     --small-text: 1.75rem;
@@ -178,17 +179,16 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 2rem 0rem 2rem 0rem;
+    margin: 0;
 }
 
 #next-post-link {
     margin: 0;
-    margin-left: .25rem;
+    margin-bottom: 1rem;
 }
 
 #prev-post-link {
     margin: 0;
-    margin-right: .25rem;
     margin-bottom: 1rem;
 }
 
@@ -322,7 +322,7 @@ figcaption:not(img + figcaption):before {
     }
 
     #footer-nav {
-        margin: 2rem 5rem 2rem 5rem;
+        margin: 2rem 0 2rem 0;
         flex-direction: row;
     }
 }

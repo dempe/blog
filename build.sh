@@ -10,8 +10,8 @@ echo "Logging to $log_file"
 php artisan migrate:fresh
 php artisan db:seed
 
-rm -rf ./output
-mkdir ./output
+# rm -rf ./output
+# mkdir ./output
 wget --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://localhost:8000 |& tee -a "$log_file"
 
 # # Grab the 404 and error page
