@@ -89,6 +89,7 @@ figure {
 figcaption {
     text-align: center;
     font-size: var(--small-text);
+    margin-top: .5rem;
 }
 
 figure img {
