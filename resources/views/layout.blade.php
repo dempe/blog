@@ -28,9 +28,12 @@
 <main>
     <article>
         <h1 id="title">@yield('title')</h1>
+        @yield('post-metadata')
+        @yield('toc')
         @yield('content')
     </article>
 </main>
+@yield('scripts')
 </body>
 </html>
 

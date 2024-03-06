@@ -7,7 +7,7 @@ updated:
 ---
 
 
-I've been watching this over the past 6 months and finally finished it last night. I'll focus mostly on the last
+I've been watching _Better Call Saul_ over the past 6 months and finally finished it last night. I'll focus mostly on the last
 episode, because it's the really important part of the whole series, and it was the best episode of television I've ever
 seen.
 

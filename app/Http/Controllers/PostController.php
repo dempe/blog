@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\PostTag;
+use DOMDocument;
+use DOMXPath;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use ParsedownExtra;
@@ -24,8 +26,8 @@ class PostController extends Controller
             $tmp_body = $post->body;
             $tmp_body = $pd->text($tmp_body);
             $tmp_body = $this->add_header_ids($tmp_body);
-            $tmp_body = $this->add_toc($tmp_body);
 
+//            $post->toc = $this->build_toc($tmp_body, $slug);
             $post->body = $tmp_body;
 
 
@@ -41,8 +43,21 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    private function add_toc($body) {
-        return $body;
+    private function build_toc($body, $post_slug) {
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
+        $dom->loadHTML($body);
+        libxml_clear_errors();
+        $xpath = new DOMXPath($dom);
+        $h2s = $xpath->query("//h2");
+
+        $toc = '<div id="toc"><button id="toc-toggle"><span>+</span> Table of Contents</button><ul style="display: none;">';
+        foreach ($h2s as $h2) {
+            $toc = $toc . '<li><a href="http://localhost:8000/posts/' . $post_slug . '#' . $h2->getAttribute('id') . '">' . $h2->nodeValue .'</a></li>';
+        }
+        $toc = $toc . '</ul></div>';
+
+        return $toc;
     }
 
     /**
