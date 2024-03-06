@@ -16,7 +16,7 @@ Given an array of integers,
 
 Let's solve #3.
 
-First, let's be more precise.  LeetCode defines the problem thus:
+First, let's be more precise r0.  LeetCode defines the problem thus:
 
 > Given an integer array `nums`, return all triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
 
@@ -175,10 +175,10 @@ If the sum is less than zero, we know we need to increment the start pointer. Th
 
 ## Can We Beat Quadratic?
 
-Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science [0].
+Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science.
 
 ## References
 
-[0]. https://en.wikipedia.org/wiki/3SUM
+r0: https://en.wikipedia.org/wiki/3SUM
 
 

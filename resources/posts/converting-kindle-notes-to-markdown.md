@@ -141,7 +141,7 @@ def parse_chapter(text):
 
     # There is NO chapter number, and there is NO page number
     return None, None
-```
+``` 
 
 From there, we basically just find the first "section" node (`start_node = soup.find('div', {'class': 'sectionHeading'})`) and loop until there are no more siblings: `while current.next_sibling:`.
 

@@ -17,10 +17,14 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PostController extends Controller
 {
+
     public function index() {
         return view('posts', ['posts' => Post::all()]);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function show($slug) {
         try {
             $pd = new ParsedownExtra();
@@ -29,7 +33,10 @@ class PostController extends Controller
             $new_body = $post->body;
             $new_body = PostController::order_footnotes($new_body);
             $new_body = $pd->text($new_body);
+            $new_body = PostController::order_references($new_body, $slug);
+            $new_body = PostController::post_process_references($new_body, $slug);
             $new_body = PostController::add_header_ids($new_body);
+
 
 //            $post->toc = $this->build_toc($new_body, $slug);
             $post->body = $new_body;
@@ -49,13 +56,15 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    public static function post_process_references(string $new_body, $slug) {}
+
     /**
      * Add ids to all H2 headers.  Assume only H2 exist for now (they do).
      * Add isomorphic function for H3 if the case ever arises.
      * @param $body
      * @return string html
      */
-    private static function add_header_ids($body): string {
+    public static function add_header_ids($body): string {
         return preg_replace_callback(
             '|^<h2>(.*)</h2>$|m',
                function ($matches) {
@@ -102,6 +111,54 @@ class PostController extends Controller
             function ($matches) use (&$counter) {
                 // Sequentially replace each footnote number and increment the counter
                 return '[^' . ($counter++) . ']:';
+            },
+            $body
+        );
+
+        return $body;
+    }
+
+    /**
+     * Isomorphic function to order references like footnotes.
+     * @throws \Exception
+     */
+    public static function order_references($body, $post_slug): string {
+        $referencedStatementPattern = '/r\d+\./';
+        $referencePattern = '/r\d+:/';
+
+        /* First, ensure that the number of referenced statements == number of references.
+
+           Ideally, this would be in a separate method, but putting it here makes it possible
+           to unit test.  Otherwise, we'd have to copy the regexes around, which is worse than
+           having a long method.
+        */
+        preg_match_all($referencePattern, $body, $referencePatternMatches);
+        preg_match_all($referencedStatementPattern, $body, $referencedStatementPatternMatches);
+        //dd($body);
+        if (sizeof($referencePatternMatches[0]) != sizeof($referencedStatementPatternMatches[0])) {
+            throw new Exception("Number of statement references does not match number of references.");
+        }
+
+        // Number referenced statements correctly
+        $counter = 1;
+        $body = preg_replace_callback(
+            $referencedStatementPattern,
+            function ($matches) use ($post_slug, &$counter) {
+                $newText = '<a class="referenced-statement" id="refstate' . $counter . '"href="http://localhost:8000/posts/' . $post_slug . '#ref' . $counter . '">[' . $counter . ']</a>.';
+                $counter++;
+                return $newText;
+            },
+            $body
+        );
+
+        // Number references correctly
+        $counter = 1;
+        $body = preg_replace_callback(
+            $referencePattern,
+            function ($matches) use ($post_slug, &$counter) {
+                $newText = $counter . '. <a class="reference-backref" id="ref' . $counter . '" href="http://localhost:8000/posts/' . $post_slug . '#refstate' . $counter . '">↩</a>';
+                $counter++;
+                return $newText;
             },
             $body
         );
