@@ -102,10 +102,7 @@ body {
     background-color: var(--primary-background-color);
     width: 92.5%;
     min-height: 90vh;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: var(--standard-margin);
-    margin-bottom: var(--standard-margin);
+    margin: var(--standard-margin) auto;
     font-size: 2.25rem;
 
     /* Flex items: header, main, footer. */
@@ -175,7 +172,7 @@ footer {
 
 #footer-nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     margin: 2rem 0rem 2rem 0rem;
 }
@@ -188,6 +185,7 @@ footer {
 #prev-post-link {
     margin: 0;
     margin-right: .25rem;
+    margin-bottom: 1rem;
 }
 
 strong {
@@ -321,6 +319,7 @@ figcaption:not(img + figcaption):before {
 
     #footer-nav {
         margin: 2rem 5rem 2rem 5rem;
+        flex-direction: row;
     }
 }
 

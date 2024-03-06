@@ -44,13 +44,13 @@
 @section('nav')
     <nav id="footer-nav">
         <div id="prev-post-link">
-            @if(isset($post->prev) && !$post->prev->isEmpty())
-                <span>⬅️ <a href="http://localhost:8000/posts/{{$post->prev->values()->first()}}">{{$post->prev->keys()->first()}}</a></span>
+            @if(isset($post->prev))
+                <span>⬅️ <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></span>
             @endif
         </div>
         <div id="next-post-link">
-            @if(isset($post->next) && !$post->next->isEmpty())
-                <span><a href="http://localhost:8000/posts/{{$post->next->values()->first()}}">{{$post->next->keys()->first()}}</a> ➡️</span>
+            @if(isset($post->next))
+                <span><a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a> ➡️</span>
             @endif
         </div>
     </nav>
