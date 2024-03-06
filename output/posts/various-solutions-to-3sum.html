@@ -8,6 +8,18 @@
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="../assets/css/github-dark.min.css">
     <script src="../assets/js/highlight.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
     <script>hljs.highlightAll();</script>
     <title>Chris Dempewolf's Blog</title>
 </head>
@@ -49,7 +61,7 @@
                             </td>
         </tr>
     </table>
-                        <p>I've seen three different variations of the 3-sum problem.  In order of increasing complexity:</p>
+                        <p>I've seen three different variations of the 3SUM problem.  In order of increasing complexity:</p>
 <p>Given an array of integers,</p>
 <ol>
 <li>Do <strong>any</strong> three sum to zero?</li>
@@ -64,8 +76,8 @@
 <h2 id='brute-force'>Brute Force</h2>
 <p>For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start <code>j</code> at <code>i + 1</code> and <code>k</code> at <code>j + 1</code> to avoid looking at indices more than once.</p>
 <ul>
-<li><strong>Time complexity</strong>: O(n^3)</li>
-<li><strong>Space complexity</strong>: O(1)</li>
+<li><strong>Time complexity</strong>: $O(n^3)$</li>
+<li><strong>Space complexity</strong>: $O(1)$</li>
 </ul>
 <pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
         // First, sort the array so that the triplets will also be sorted.
@@ -93,10 +105,10 @@
 <p>Here, we loop through the <code>nums</code> array and make a map of values to all indices they appear in. We have the two <code>i</code> and <code>j</code> loops as before, but we can (mostly) skip the <code>k</code> loop.</p>
 <p>Since we already have two values (<code>ival</code> and <code>jval</code>), we can simply compute the difference <code>(ival + jval) * -1</code> and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.</p>
 <ul>
-<li><strong>Time complexity</strong>: O(n^3)</li>
-<li><strong>Space complexity</strong>: O(n)</li>
+<li><strong>Time complexity</strong>: $O(n^3)$</li>
+<li><strong>Space complexity</strong>: $O(n)$</li>
 </ul>
-<p>Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm <em>always</em> runs in O(n^3). For &quot;reasonable&quot; inputs, the amortized time complexity of the hashmap version is much better.</p>
+<p>Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm <em>always</em> runs in $O(n^3)$. For &quot;reasonable&quot; inputs, the amortized time complexity of the hashmap version is much better.</p>
 <pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
         Arrays.sort(nums);
         final Set&lt;List&lt;Integer&gt;&gt; results = new HashSet&lt;&gt;();
@@ -128,11 +140,11 @@
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
 <h2 id='binary-search'>Binary Search</h2>
-<p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>). This is what we will binary search the array for.</p>
-<p>The outer two loops run in n^2 time.  Binary search takes log n time. Multiplying these together,</p>
+<p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>).</p>
+<p>The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multiplying these together,</p>
 <ul>
-<li><strong>Time complexity</strong>: O(n^2 log n)</li>
-<li><strong>Space complexity</strong>: O(1)</li>
+<li><strong>Time complexity</strong>: $O(n^2{\log n})$</li>
+<li><strong>Space complexity</strong>: $O(1)$</li>
 </ul>
 <pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
         Arrays.sort(nums);
@@ -160,8 +172,8 @@
 <p>The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.</p>
 <p>If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.</p>
 <ul>
-<li><strong>Time complexity</strong>: O(n^2)</li>
-<li><strong>Space complexity</strong>: O(1)</li>
+<li><strong>Time complexity</strong>: $O(n^2)$</li>
+<li><strong>Space complexity</strong>: $O(1)$</li>
 </ul>
 <pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
         Arrays.sort(nums);
@@ -200,6 +212,7 @@
                             <span>⬅️ <a href="converting-kindle-notes-to-markdown.html">Converting Kindle Notes to Markdown</a></span>
                     </div>
         <div id="next-post-link">
+                            <span><a href="a-wizards-existential-crisis.html">A Wizard&#039;s Existential Crisis</a> ➡️</span>
                     </div>
     </nav>
 </footer>

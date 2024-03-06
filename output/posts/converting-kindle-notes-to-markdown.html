@@ -8,6 +8,18 @@
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="../assets/css/github-dark.min.css">
     <script src="../assets/js/highlight.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
     <script>hljs.highlightAll();</script>
     <title>Chris Dempewolf's Blog</title>
 </head>
@@ -124,7 +136,7 @@ pbcopy</code></pre>
 <p><code>perl -pe 's|(Page \d+):|*\1*:|g'</code> — Italicize page numbers.</p>
 <p><code>tail -n +2</code> — remember that we converted everything to a single line? The preceding regexes moved relevant content to their own lines. What's left at the top is garbage that I don't care about. This line prints the resulting file starting from the second (<code>+2</code>) line.</p>
 <h2 id='shouldve-used-beautifulsoup-from-the-get-go'>Should've Used BeautifulSoup From the Get-go</h2>
-<p>The above solution worked fine until I got to a book that had no page numbers.  It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:</p>
+<p>The above solution worked fine until I got to a book that had no page numbers. It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:</p>
 <pre><code class="language-python">def parse_chapter(text):
     # There is NO chapter number, but there is A page number. Example -&gt;
     # Highlight(&lt;span class="highlight_orange"&gt;orange&lt;/span&gt;) - Page xxvii · Location 381
@@ -157,13 +169,13 @@ pbcopy</code></pre>
 <hr />
 <ol>
 <li id="fn:1">
-<p>Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1 — using multiple libraries with Kobo is a nightmare, 2 — I can read my Kindle books on my phone, and 3 — what this post is about — the ability to email myself the notes I've taken is really convenient.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1. Using multiple libraries (via <a href="https://www.overdrive.com/">Overdrive</a>) with Kobo is a nightmare, 2. I can read my Kindle books on my phone, and 3. What this post is about — the ability to email myself the notes I've taken is really convenient.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>Not sure if <code>body</code> counts as semantic HTML, but <em>they don't even use it</em>! (See next footnote). 😒&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:2" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>They even have a <code>&lt;div class="bodyContainer"&gt;</code>, completely redundant to <code>body</code>!&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>They even have a <code>&lt;div class="bodyContainer"&gt;</code>, completely redundant to <code>body</code>! I'm convinced that whoever wrote this intentionally made it bad.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:4">
 <p>Perl does not use POSIX regexes like <code>sed</code>. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, <code>?</code>, in POSIX. See <a href="https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features">Comparison of regular expression engines</a>.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
