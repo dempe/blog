@@ -62,8 +62,8 @@ article a:hover,
 
 .footnote-backref,
 .footnote-ref,
-.reference-backref,
-.reference-ref {
+.reference-ref,
+.reference-backref {
     text-decoration: none;
 }
 
@@ -72,7 +72,8 @@ article a:hover,
     display: none;
 }
 
-.footnotes ol li {
+.footnotes ol li,
+.references ol li {
     margin-top: var(--standard-margin);
 }
 

@@ -5,15 +5,15 @@ published: "2023-02-27 12:00"
 updated: "2024-03-05 20:27"
 ---
 
-Requisite and dutifully prosaic first post.
+Requisite and dutifully prosaic first post REF.
 
-## Heading 2
+## Heading
 
-Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa.
+Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque eum blanditiis[^1] ipsa.
 
 > Lorem Ipsum
 
-## Heading 3 
+## Heading 
 
 Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat rerum sunt aspernatur. Aperiam earum alias ut quod voluptas quaerat. Quis eligendi consequatur dolor omnis accusamus consectetur harum. Praesentium voluptatem voluptas saepe at. Et ea quod assumenda odit voluptatibus quaerat hic in.
 
@@ -25,7 +25,7 @@ Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat re
 </figure>
 
 
-## Heading 4 
+## Heading
 
 Maiores quaerat enim sint eos alias. Dolorem consequatur nisi rerum vitae quasi. Cumque velit mollitia sed placeat ab ex.
 
@@ -35,7 +35,7 @@ Maiores quaerat enim sint eos alias. Dolorem consequatur nisi rerum vitae quasi.
     Iusto fuga praesentium delectus incidunt a. Fugiat numquam sed occaecati nesciunt. Quasi aut consectetur saepe aut harum reiciendis blanditiis. Rerum non enim facere omnis id. Alias accusamus quia magni dolores voluptates qui eum repellat.
 </aside>
 
-Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa.
+Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa REF.
 
 <p style="font-size: 2rem;">
     <span style="font-weight: 100;">Lorem ipsum 100.</span>
@@ -48,3 +48,16 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
     <span style="font-weight: 800;">Lorem ipsum 800.</span>
     <span style="font-weight: 900;">Lorem ipsum 900.</span>
 </p>
+
+## References
+
+REF: https://en.wikipedia.org/wiki/3SUM
+
+REF: S. Author, "Title of the article," Journal Name, vol. XX, no. XX, pp. XX-XX, Month Year.
+
+## Footnotes
+
+[^1]: FN1
+
+[^1]: FN2
+
