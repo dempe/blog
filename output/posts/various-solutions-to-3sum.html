@@ -61,7 +61,9 @@
                             </td>
         </tr>
     </table>
-                        <p>I've seen three different variations of the 3SUM problem.  In order of increasing complexity:</p>
+                        <?xml version="1.0" standalone="yes"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><p>I've seen three different variations of the 3SUM problem.  In order of increasing complexity:</p>
 <p>Given an array of integers,</p>
 <ol>
 <li>Do <strong>any</strong> three sum to zero?</li>
@@ -73,7 +75,8 @@
 <blockquote>
 <p>Given an integer array <code>nums</code>, return all triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
 </blockquote>
-<h2 id='brute-force'>Brute Force</h2>
+<p>The following is a list of algorithms to solve this problem in order of increasing efficiency. I like the 3SUM problem because it demonstrates a wide variety of techniques for solving algorithmic problems.</p>
+<h2 id="h2-brute-force">Brute Force</h2>
 <p>For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start <code>j</code> at <code>i + 1</code> and <code>k</code> at <code>j + 1</code> to avoid looking at indices more than once.</p>
 <ul>
 <li><strong>Time complexity</strong>: $O(n^3)$</li>
@@ -101,14 +104,14 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2 id='hashmap'>Hashmap</h2>
+<h2 id="h2-hashmap">Hashmap</h2>
 <p>Here, we loop through the <code>nums</code> array and make a map of values to all indices they appear in. We have the two <code>i</code> and <code>j</code> loops as before, but we can (mostly) skip the <code>k</code> loop.</p>
 <p>Since we already have two values (<code>ival</code> and <code>jval</code>), we can simply compute the difference <code>(ival + jval) * -1</code> and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.</p>
 <ul>
 <li><strong>Time complexity</strong>: $O(n^3)$</li>
 <li><strong>Space complexity</strong>: $O(n)$</li>
 </ul>
-<p>Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm <em>always</em> runs in $O(n^3)$. For &quot;reasonable&quot; inputs, the amortized time complexity of the hashmap version is much better.</p>
+<p>Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm <em>always</em> runs in $O(n^3)$. For "reasonable" inputs, the amortized time complexity of the hashmap version is much better.</p>
 <pre><code class="language-java">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
         Arrays.sort(nums);
         final Set&lt;List&lt;Integer&gt;&gt; results = new HashSet&lt;&gt;();
@@ -139,7 +142,7 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2 id='binary-search'>Binary Search</h2>
+<h2 id="h2-binary-search">Binary Search</h2>
 <p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>).</p>
 <p>The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multiplying these together,</p>
 <ul>
@@ -168,7 +171,7 @@
 
         return new ArrayList&lt;&gt;(results);
     }</code></pre>
-<h2 id='quadratic-algorithm'>Quadratic Algorithm</h2>
+<h2 id="h2-quadratic-algorithm">Quadratic Algorithm</h2>
 <p>The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.</p>
 <p>If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.</p>
 <ul>
@@ -204,6 +207,11 @@
 
         return results;
     }</code></pre>
+<h2 id="h2-can-we-beat-quadratic">Can We Beat Quadratic?</h2>
+<p>Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science <a href="various-solutions-to-3sum.html#ref:1" class="reference-ref" id="refstate1">[1]</a>.</p>
+<h2 id="h2-references">References</h2><div class="references"><ol><li class="reference-backref" id="ref:1"><a href="https://en.wikipedia.org/wiki/3SUM">https://en.wikipedia.org/wiki/3SUM</a><a id="ref:1" class="reference-backref" href="various-solutions-to-3sum.html#refstate1"> &#x21A9;</a></li></ol></div>
+</body></html>
+
     </article>
 </main>
 <footer>

@@ -65,7 +65,7 @@
                         <p>Kindle<sup id="fnref1:1"><a href="converting-kindle-notes-to-markdown.html#fn:1" class="footnote-ref">1</a></sup> has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.</p>
 <p>I store all of my notes in <a href="https://obsidian.md/">Obsidian</a>, which uses Markdown. I thought, &quot;Okay, I'll just use <a href="https://pandoc.org/">Pandoc</a> to convert the HTML to Markdown. No problem!&quot;</p>
 <pre><code class="language-bash">pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md</code></pre>
-<h2 id='enter-amazons-dumpster-fire-html'>Enter: Amazon's Dumpster Fire HTML</h2>
+<h2 id='h2-enter-amazons-dumpster-fire-html'>Enter: Amazon's Dumpster Fire HTML</h2>
 <p>This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.<sup id="fnref1:2"><a href="converting-kindle-notes-to-markdown.html#fn:2" class="footnote-ref">2</a></sup> Then I thought, &quot;Well, I guess it's time to bust out some Perl.&quot;</p>
 <p>For book notes, I have one <code>h1</code> heading for the title, an <code>h2</code> heading for each chapter, and each note or idea that I have, I use a list item. Here's an example from a book I recently read, <em>Moonwalking with Einstein</em>:</p>
 <pre><code class="language-text">## ONE: THE SMARTEST MAN IS HARD TO FIND
@@ -110,7 +110,7 @@
     “Baker/ baker paradox.”
 &lt;/div&gt;</code></pre>
 <p>Genius.<sup id="fnref1:3"><a href="converting-kindle-notes-to-markdown.html#fn:3" class="footnote-ref">3</a></sup></p>
-<h2 id='the-allure-of-regular-expressions'>The Allure of Regular Expressions</h2>
+<h2 id='h2-the-allure-of-regular-expressions'>The Allure of Regular Expressions</h2>
 <p>I'm well aware of the fact that <a href="https://stackoverflow.com/a/1732454">regular expressions are insufficient to parse HTML</a>. Regular expressions are for parsing <a href="https://en.wikipedia.org/wiki/Regular_grammar">regular languages</a>, and HTML is not a regular language.</p>
 <p>But, alas, regexes are like sirens leading unwary sailors astray. &quot;Just one line,&quot; they sing. I oblige. They call out again, &quot;There you go. That wasn't so bad. Just one more.&quot; Rapt in their pithy syntax, I indulge myself further.</p>
 <pre><code class="language-bash">cat my_notes.html |\
@@ -135,7 +135,7 @@ pbcopy</code></pre>
 <p><code>perl -pe 's|\+\s+- Page (\d+):|\n+ Page \1:|g'</code> — this line basically does the same as the above, but for non- <code>Note</code> lines.</p>
 <p><code>perl -pe 's|(Page \d+):|*\1*:|g'</code> — Italicize page numbers.</p>
 <p><code>tail -n +2</code> — remember that we converted everything to a single line? The preceding regexes moved relevant content to their own lines. What's left at the top is garbage that I don't care about. This line prints the resulting file starting from the second (<code>+2</code>) line.</p>
-<h2 id='shouldve-used-beautifulsoup-from-the-get-go'>Should've Used BeautifulSoup From the Get-go</h2>
+<h2 id='h2-shouldve-used-beautifulsoup-from-the-get-go'>Should've Used BeautifulSoup From the Get-go</h2>
 <p>The above solution worked fine until I got to a book that had no page numbers. It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:</p>
 <pre><code class="language-python">def parse_chapter(text):
     # There is NO chapter number, but there is A page number. Example -&gt;
@@ -164,7 +164,7 @@ pbcopy</code></pre>
     return None, None</code></pre>
 <p>From there, we basically just find the first &quot;section&quot; node (<code>start_node = soup.find('div', {'class': 'sectionHeading'})</code>) and loop until there are no more siblings: <code>while current.next_sibling:</code>.</p>
 <p><a href="https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69">Here</a> is the full script.  I also have a full repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.</p>
-<h2 id='footnotes'>Footnotes</h2>
+<h2 id='h2-footnotes'>Footnotes</h2>
 <div class="footnotes">
 <hr />
 <ol>

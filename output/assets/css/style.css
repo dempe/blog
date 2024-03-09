@@ -1,10 +1,7 @@
 :root {
-
     /* Hard set to use for subsequent rem sizing. */
     /*font-size: 24px;*/
     min-height: 100vh;
-
-    /*i'm using this command, `aws s3 sync ./output s3://chrisdempewolf.com --delete | tee -a "$log_file"` to sync a directory, `output` to s3.  the problem is that it syncs files unnecessarily. i'm looking for a method to only sync the files that have changed.*/
 
 
     --primary-color: #ccc;
@@ -63,7 +60,10 @@ article a:hover,
     margin-left: -.2rem;
 }
 
-.footnote-backref {
+.footnote-backref,
+.footnote-ref,
+.reference-ref,
+.reference-backref {
     text-decoration: none;
 }
 
@@ -72,7 +72,8 @@ article a:hover,
     display: none;
 }
 
-.footnotes ol li {
+.footnotes ol li,
+.references ol li {
     margin-top: var(--standard-margin);
 }
 
