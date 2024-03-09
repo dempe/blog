@@ -10,16 +10,14 @@
             <td class="table-key">Published:&nbsp;&nbsp;</td>
             <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
         </tr>
-        <tr>
-            <td class="table-key">Updated:&nbsp;&nbsp;</td>
-            <td>
-                @if(isset($post->updated_at))
+        @if(isset($post->updated_at))
+            <tr>
+                <td class="table-key">Updated:&nbsp;&nbsp;</td>
+                <td>
                     {{ $post->updated_at->format('Y-m-d H:i') }}
-                @else
-                    n/a
-                @endif
-            </td>
-        </tr>
+                </td>
+            </tr>
+        @endif
         <tr>
             <td class="table-key">Tags:&nbsp;&nbsp;</td>
             <td>
