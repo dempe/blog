@@ -22,6 +22,7 @@
                 {{-- TODO: use controller to load mysite.com/resume --}}
                 <li><a href="/resume.pdf" target="_blank">Resume</a></li>
                 <li><a href="/tags/">Tags</a></li>
+                <li><a href="/stats.html">Stats</a></li>
             </menu>
         </div>
     </nav>
