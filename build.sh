@@ -29,8 +29,8 @@ sed -i '' 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.
 rm -rf ./output/cdn-cgi/
 
 # Build stats page
-# aws s3 sync s3://logs-cloudfront-chrisdempewolf.com cloudfront-logs/ |& tee -a "$log_file"
-# gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT |& tee -a "$log_file"
+aws s3 sync s3://logs-cloudfront-chrisdempewolf.com cloudfront-logs/ |& tee -a "$log_file"
+gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT |& tee -a "$log_file"
 # rg --no-filename --no-line-number 'WEBSITE.GET.OBJECT' | goaccess -o ./output/stats.html --date-format=%d/%b/%Y --time-format=%T --log-format='%^ %^ [%d:%t %^] %h %^ %^ %^ %^ "%m %U %H" %s %^ %b %^ %T %^ %R %u %^ %^ %^ %^ %^ %v %K %^ %^' |& tee -a "$log_file"
 
 
