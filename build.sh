@@ -10,9 +10,11 @@ echo "Logging to $log_file"
 php artisan migrate:fresh |& tee -a "$log_file"
 php artisan db:seed |& tee -a "$log_file"
 
-# rm -rf ./output
-# mkdir ./output
 wget --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://localhost:8000 http://localhost:8000/404 |& tee -a "$log_file"
+
+# Open external links in new tab.
+# rel="noopener noreferrer" is added to avoid tabnapping
+rg 'href="http' output/ | rg -v 'href="https://chrisdempewolf.com' | sed -i '' 's|href="http|target="_blank" rel="noopener noreferrer" href="http|g'
 
 # Convert 404.html links to absolute links as the 404 page won't work with relative links.
 # Empty string argument to -i indicates that I don't want to create a backup file.
@@ -27,8 +29,8 @@ sed -i '' 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.
 rm -rf ./output/cdn-cgi/
 
 # Build stats page
-aws s3 sync s3://logs-cloudfront-chrisdempewolf.com cloudfront-logs/ |& tee -a "$log_file"
-gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT |& tee -a "$log_file"
+# aws s3 sync s3://logs-cloudfront-chrisdempewolf.com cloudfront-logs/ |& tee -a "$log_file"
+# gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT |& tee -a "$log_file"
 # rg --no-filename --no-line-number 'WEBSITE.GET.OBJECT' | goaccess -o ./output/stats.html --date-format=%d/%b/%Y --time-format=%T --log-format='%^ %^ [%d:%t %^] %h %^ %^ %^ %^ "%m %U %H" %s %^ %b %^ %T %^ %R %u %^ %^ %^ %^ %^ %v %K %^ %^' |& tee -a "$log_file"
 
 
