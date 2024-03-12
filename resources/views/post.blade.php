@@ -55,6 +55,17 @@
 @endsection
 
 @section('scripts')
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script>hljs.highlightAll();</script>
     {{--    <script>--}}
     {{--        document.getElementById('toc-toggle').addEventListener('click', function() {--}}
     {{--            var toc = document.getElementById('toc').getElementsByTagName('ul')[0];--}}
