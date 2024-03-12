@@ -14,7 +14,7 @@ wget --directory-prefix=output/ --html-extension --convert-links --recursive --l
 
 # Open external links in new tab.
 # rel="noopener noreferrer" is added to avoid tabnapping
-rg 'href="http' output/ | rg -v 'href="https://chrisdempewolf.com' | sed -i '' 's|href="http|target="_blank" rel="noopener noreferrer" href="http|g'
+for f in $(rg 'href="http' ./output/ | rg -v 'href="https://chrisdempewolf.com' | awk -F ':' '{print $1}' | uniq); do sed 's|href="http|target="_blank" rel="noopener noreferrer" href="http|g' $f; done
 
 # Convert 404.html links to absolute links as the 404 page won't work with relative links.
 # Empty string argument to -i indicates that I don't want to create a backup file.
