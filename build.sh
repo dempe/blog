@@ -15,12 +15,13 @@ php artisan db:seed |& tee -a "$log_file"
 wget --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://localhost:8000 http://localhost:8000/404 |& tee -a "$log_file"
 
 # Convert 404.html links to absolute links as the 404 page won't work with relative links.
-sed -i 's|href="assets/css/style.css"|href="https://chrisdempewolf.com/asfsets/css/style.css"|g' output/404.html
-sed -i 's|href="assets/css/github-dark.min.css"|href="https://chrisdempewolf.com/assets/css/github-dark.min.css"|g' output/404.html
-sed -i 's|src="assets/js/highlight.min.js"|src="https://chrisdempewolf.com/assets/js/highlight.min.js"|g' output/404.html
-sed -i 's|href="about.html"|href="https://chrisdempewolf.com/about.html"|g' output/404.html
-sed -i 's|href="resume.pdf"|href="https://chrisdempewolf.com/resume.pdf"|g' output/404.html
-sed -i 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.html"|g' output/404.html
+# Empty string argument to -i indicates that I don't want to create a backup file.
+sed -i '' 's|href="assets/css/style.css"|href="https://chrisdempewolf.com/asfsets/css/style.css"|g' ./output/404.html
+sed -i '' 's|href="assets/css/github-dark.min.css"|href="https://chrisdempewolf.com/assets/css/github-dark.min.css"|g' ./output/404.html
+sed -i '' 's|src="assets/js/highlight.min.js"|src="https://chrisdempewolf.com/assets/js/highlight.min.js"|g' ./output/404.html
+sed -i '' 's|href="about.html"|href="https://chrisdempewolf.com/about.html"|g' ./output/404.html
+sed -i '' 's|href="resume.pdf"|href="https://chrisdempewolf.com/resume.pdf"|g' ./output/404.html
+sed -i '' 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.html"|g' ./output/404.html
 
 # For some reason Laravel adds this.  It is for Cloudflare, but things get wonky if I upload this.
 rm -rf ./output/cdn-cgi/
