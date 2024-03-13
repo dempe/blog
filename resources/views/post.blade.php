@@ -52,6 +52,14 @@
             @endif
         </div>
     </nav>
+    <h2 id="comments">Comments</h2>
+    <script src="https://utteranc.es/client.js"
+            repo="dempe/blog-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
 @endsection
 
 @section('scripts')
@@ -66,6 +74,7 @@
         };
     </script>
     <script>hljs.highlightAll();</script>
+
     {{--    <script>--}}
     {{--        document.getElementById('toc-toggle').addEventListener('click', function() {--}}
     {{--            var toc = document.getElementById('toc').getElementsByTagName('ul')[0];--}}

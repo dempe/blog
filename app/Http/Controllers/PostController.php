@@ -159,7 +159,10 @@ class PostController extends Controller
             '|^<h2>(.*)</h2>$|m',
                function ($matches) {
                    $slug = Str::slug($matches[1]);
-                   return "<h2 id='h2-{$slug}'>{$matches[1]}</h2>";
+                   $id = "h2-{$slug}";
+
+//                   return "<h2 id='{$id}'>{$matches[1]} <a class='header-link' href='#{$id}'>#</a></h2>";
+                   return "<h2 id='{$id}'>{$matches[1]}</h2>";
                },
             $body);
     }
