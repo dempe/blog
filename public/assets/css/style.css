@@ -1,6 +1,6 @@
 :root {
     /* Hard set to use for subsequent rem sizing. */
-    font-size: 24px;
+    font-size: 12px;
     min-height: 100vh;
 
 
@@ -315,17 +315,10 @@ figcaption:not(img + figcaption):before {
     margin: 4rem 0 4rem 0;
 }
 
-.utterances {
-    /*width: 100%;*/
-    /*max-width: 100%; !* Ensure it's responsive and takes the full width *!*/
+.giscus {
+    width: 100%;
+    margin-bottom: var(--standard-margin);
 }
-
-.utterances iframe {
-    /*width: 100% !important; !* Override any fixed width to be responsive *!*/
-    /*min-height: 500px; !* Adjust based on your preference to ensure it's not too small *!*/
-    font-size: 32px;
-}
-
 
 @media screen and (min-device-width: 801px) {
     :root {
@@ -350,6 +343,11 @@ figcaption:not(img + figcaption):before {
     #footer-nav {
         margin: 2rem 0 2rem 0;
         flex-direction: row;
+    }
+
+    .giscus {
+        float: left;
+        width: 60%;
     }
 }
 

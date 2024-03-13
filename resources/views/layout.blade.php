@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
-{{--    <link rel="stylesheet" href="/assets/css/github-dark.min.css">--}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    <link rel="stylesheet" href="/assets/css/github-dark.min.css">--}}
     <script src="/assets/js/highlight.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -37,6 +38,7 @@
 </main>
 <footer>
     @yield('nav')
+    @yield('comments')
 </footer>
 @yield('scripts')
 </body>

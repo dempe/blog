@@ -39,6 +39,32 @@
     {!! $post->body !!}
 @endsection
 
+@section('comments')
+    <h2 id="comments">Comments</h2>
+    <script src="https://giscus.app/client.js"
+            data-repo="dempe/blog-comments"
+            data-repo-id="R_kgDOLfkyrQ"
+            data-category-id="DIC_kwDOLfkyrc4Cd7x2"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="0"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="dark"
+            data-lang="en"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script>
+{{--        <script src="https://utteranc.es/client.js"--}}
+{{--                repo="dempe/blog-comments"--}}
+{{--                issue-term="pathname"--}}
+{{--                theme="github-dark"--}}
+{{--                crossorigin="anonymous"--}}
+{{--                async>--}}
+{{--        </script>--}}
+@endsection
+
 @section('nav')
     <nav id="footer-nav">
         <div id="prev-post-link">
@@ -52,15 +78,9 @@
             @endif
         </div>
     </nav>
-    <h2 id="comments">Comments</h2>
-    <script src="https://utteranc.es/client.js"
-            repo="dempe/blog-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-    </script>
 @endsection
+
+
 
 @section('scripts')
     <script>
