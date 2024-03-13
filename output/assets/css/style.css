@@ -17,6 +17,7 @@
     --standard-margin: 2rem;
     --standard-border: 1px var(--accent-color) dotted;
     --border-style: 4px solid;
+    --border-radius: .5rem;
 }
 
 * {
@@ -38,7 +39,7 @@ article a:not(.content-list a) {
 }
 
 /* We want content links to be white, but still want pink when hovered over. */
-a:not(header a):not(:hover):not(.post-tag-list *) {
+a:not(.site-title a):not(:hover):not(.post-tag-list *) {
     color: var(--link-color);
 }
 
@@ -46,10 +47,6 @@ a:hover,
 article a:hover,
 #toc a:hover {
     color: var(--accent-color);
-}
-
-.site-title:hover {
-    border-bottom: var(--border-style) var(--accent-color);
 }
 
 .site-title a {
@@ -244,7 +241,6 @@ code {
 }
 
 code, pre {
-    border: none;
     max-width: 100%;
 }
 
@@ -259,10 +255,14 @@ code, pre, pre * {
     font-weight: 300;
 }
 
+pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}
+.hljs{color:#c9d1d9;background:var(--secondary-background-color)}.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-variable.language_{color:#ff7b72}.hljs-title,.hljs-title.class_,.hljs-title.class_.inherited__,.hljs-title.function_{color:#d2a8ff}.hljs-attr,.hljs-attribute,.hljs-literal,.hljs-meta,.hljs-number,.hljs-operator,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-variable{color:#79c0ff}.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#a5d6ff}.hljs-built_in,.hljs-symbol{color:#ffa657}.hljs-code,.hljs-comment,.hljs-formula{color:#8b949e}.hljs-name,.hljs-quote,.hljs-selector-pseudo,.hljs-selector-tag{color:#7ee787}.hljs-subst{color:#c9d1d9}.hljs-section{color:#1f6feb;font-weight:700}.hljs-bullet{color:#f2cc60}.hljs-emphasis{color:#c9d1d9;font-style:italic}.hljs-strong{color:#c9d1d9;font-weight:700}.hljs-addition{color:#aff5b4;background-color:#033a16}.hljs-deletion{color:#ffdcd7;background-color:#67060c}
+
 pre {
     width: 100%;
-    border: var(--standard-border);
+    /*border: var(--standard-border);*/
     font-size: var(--small-text);
+    background-color: var(--secondary-background-color);
 }
 
 sup {
@@ -281,8 +281,21 @@ aside, blockquote {
     width: 100%;
     font-style: italic;
     border-left: var(--border-style) var(--accent-color);
-    padding: 1rem .5rem 1rem 1.5rem;
+    padding: 1.5rem;
     background-color: var(--secondary-background-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+pre,
+.hljs,
+aside,
+blockquote {
+    border-radius: var(--border-radius);
+}
+
+img {
+    border-radius: .25rem;
 }
 
 aside {
@@ -301,6 +314,18 @@ figcaption:not(img + figcaption):before {
 .tag-description {
     margin: 4rem 0 4rem 0;
 }
+
+.utterances {
+    /*width: 100%;*/
+    /*max-width: 100%; !* Ensure it's responsive and takes the full width *!*/
+}
+
+.utterances iframe {
+    /*width: 100% !important; !* Override any fixed width to be responsive *!*/
+    /*min-height: 500px; !* Adjust based on your preference to ensure it's not too small *!*/
+    font-size: 32px;
+}
+
 
 @media screen and (min-device-width: 801px) {
     :root {
