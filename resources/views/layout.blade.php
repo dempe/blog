@@ -3,10 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/assets/css/normalize.css"/>
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    Load directly in style.css to modify properties. --}}
     {{--    <link rel="stylesheet" href="/assets/css/github-dark.min.css">--}}
     <script src="/assets/js/highlight.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
