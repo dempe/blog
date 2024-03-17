@@ -26,7 +26,7 @@ It occurred to me that PHP can accomplish most of this.
 + It can handle Markdown conversion via [3rd party libraries](https://parsedown.org/).
 + It has a built-in web server (`php -S addr:port`).
 
-The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.[^2] Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "Building and Deployment").
+The only things PHP doesn't have are themes (I want to use my own CSS (via [Tailwind](https://tailwindcss.com/)) anyway 🤷🏻‍♂️) and a build command.[^2] Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "[Building and Deployment](#building-and-deployment)").
 
 PHP (via [Laravel](https://laravel.com/)) it is.
 

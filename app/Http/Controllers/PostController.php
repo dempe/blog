@@ -77,7 +77,7 @@ class PostController extends Controller
         $dom->loadHTML($body);
         libxml_clear_errors();
         $xpath = new DOMXPath($dom);
-        $referenceHeadings = $xpath->query("//h2[@id='h2-references']");
+        $referenceHeadings = $xpath->query("//h2[@id='references']");
         $references = $xpath->query("//p[starts-with(., 'REF:')]");
 
 
@@ -86,6 +86,10 @@ class PostController extends Controller
         }
         if ($referenceHeadings->length > 1) {
             throw new Exception("Multiple Reference sections found.");
+        }
+        // This one actually happened when I changed my h2 IDs format
+        if ($referenceHeadings->length == 0 && $references->length > 0) {
+            throw new Exception("References found, but no Reference section found.");
         }
         if ($referenceHeadings->length != 0 && $references->length === 0) {
             throw new Exception("Found Reference header but no references.");
@@ -159,10 +163,9 @@ class PostController extends Controller
             '|^<h2>(.*)</h2>$|m',
                function ($matches) {
                    $slug = Str::slug($matches[1]);
-                   $id = "h2-{$slug}";
+                   $id = "{$slug}";
 
-//                   return "<h2 id='{$id}'>{$matches[1]} <a class='header-link' href='#{$id}'>#</a></h2>";
-                   return "<h2 id='{$id}'>{$matches[1]}</h2>";
+                   return "<h2 id='{$id}'><a class='no-underline text-stone-200 hover:text-white' href='#{$id}'>{$matches[1]}</a></h2>";
                },
             $body);
     }
