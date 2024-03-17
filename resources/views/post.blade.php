@@ -80,8 +80,6 @@
     </ul>
 @endsection
 
-
-
 @section('scripts')
     <script>
         MathJax = {
