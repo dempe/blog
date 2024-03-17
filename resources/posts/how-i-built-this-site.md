@@ -8,7 +8,7 @@ updated: "2023-03-05 17:24"
 
 I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. An SSG can't be *that* hard.
 
-## Why PHP
+## How about PHP?
 
 First of all, what do SSGs offer?
 

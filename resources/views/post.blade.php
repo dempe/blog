@@ -4,29 +4,27 @@
     {{ $post->title }}
 @endsection
 
-@section('post-metadata')
-    <table class="post-metadata">
+@section('metadata')
+    <tr>
+        <td>Published:&nbsp;&nbsp;</td>
+        <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
+    </tr>
+    @if(isset($post->updated_at))
         <tr>
-            <td class="table-key">Published:&nbsp;&nbsp;</td>
-            <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
-        </tr>
-        @if(isset($post->updated_at))
-            <tr>
-                <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>
-                    {{ $post->updated_at->format('Y-m-d H:i') }}
-                </td>
-            </tr>
-        @endif
-        <tr>
-            <td class="table-key">Tags:&nbsp;&nbsp;</td>
+            <td>Updated:&nbsp;&nbsp;</td>
             <td>
-                @foreach($tags as $tag)
-                    <a href="/tags/{{ $tag }}">{{ $tag }}</a>&nbsp;
-                @endforeach
+                {{ $post->updated_at->format('Y-m-d H:i') }}
             </td>
         </tr>
-    </table>
+    @endif
+    <tr>
+        <td>Tags:&nbsp;&nbsp;</td>
+        <td>
+            @foreach($tags as $tag)
+                <a href="/tags/{{ $tag }}">{{ $tag }}</a>&nbsp;
+            @endforeach
+        </td>
+    </tr>
 @endsection
 
 @section('toc')
@@ -56,28 +54,30 @@
             crossorigin="anonymous"
             async>
     </script>
-{{--        <script src="https://utteranc.es/client.js"--}}
-{{--                repo="dempe/blog-comments"--}}
-{{--                issue-term="pathname"--}}
-{{--                theme="github-dark"--}}
-{{--                crossorigin="anonymous"--}}
-{{--                async>--}}
-{{--        </script>--}}
 @endsection
 
 @section('nav')
-    <nav id="footer-nav">
-        <div id="prev-post-link">
+    <nav class="hidden md:flex md:flex-row justify-between border-t-4 pt-8">
+        <div>
             @if(isset($post->prev))
                 <span>⬅️ <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></span>
             @endif
         </div>
-        <div id="next-post-link">
+        <div>
             @if(isset($post->next))
                 <span><a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a> ➡️</span>
             @endif
         </div>
     </nav>
+
+    <ul class="md:hidden">
+        @if(isset($post->prev))
+            <li class="mb-2">Previous post: <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></li>
+        @endif
+        @if(isset($post->next))
+            <li>Next post: <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a></li>
+        @endif
+    </ul>
 @endsection
 
 

@@ -30,28 +30,28 @@ For the brute force solution, just loop over the array checking each triplet. If
 - **Space complexity**: $O(1)$
 
 ```java 
-    public List<List<Integer>> threeSum(int[] nums) {
-        // First, sort the array so that the triplets will also be sorted.
-        // This ensures that the hash set will reject any non-distinct triplets.
-        Arrays.sort(nums);
-        final Set<List<Integer>> results = new HashSet<>();
+public List<List<Integer>> threeSum(int[] nums) {
+    // First, sort the array so that the triplets will also be sorted.
+    // This ensures that the hash set will reject any non-distinct triplets.
+    Arrays.sort(nums);
+    final Set<List<Integer>> results = new HashSet<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                for (int k = j + 1; k < nums.length; k++) {
-                    final int ival = nums[i];
-                    final int jval = nums[j];
-                    final int kval = nums[k];
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+            for (int k = j + 1; k < nums.length; k++) {
+                final int ival = nums[i];
+                final int jval = nums[j];
+                final int kval = nums[k];
 
-                    if (ival + jval + kval != 0) { continue; }
+                if (ival + jval + kval != 0) { continue; }
 
-                    results.add(Arrays.asList(ival, jval, kval));
-                }
+                results.add(Arrays.asList(ival, jval, kval));
             }
         }
-
-        return new ArrayList<>(results);
     }
+
+    return new ArrayList<>(results);
+}
 ```
 
 ## Hashmap
@@ -66,36 +66,36 @@ Since we already have two values (`ival` and `jval`), we can simply compute the 
 Note that the worst case time complexity is no better than brute force.  And with worse space complexity! The difference is that the brute force algorithm *always* runs in $O(n^3)$. For "reasonable" inputs, the amortized time complexity of the hashmap version is much better.
 
 ```java 
-    public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        final Set<List<Integer>> results = new HashSet<>();
-        final Map<Integer, List<Integer>> valuesToIndices = new HashMap<>();
+public List<List<Integer>> threeSum(int[] nums) {
+    Arrays.sort(nums);
+    final Set<List<Integer>> results = new HashSet<>();
+    final Map<Integer, List<Integer>> valuesToIndices = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            valuesToIndices.putIfAbsent(nums[i], new ArrayList<>());
-            valuesToIndices.get(nums[i]).add(i);
-        }
+    for (int i = 0; i < nums.length; i++) {
+        valuesToIndices.putIfAbsent(nums[i], new ArrayList<>());
+        valuesToIndices.get(nums[i]).add(i);
+    }
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                final int ival = nums[i];
-                final int jval = nums[j];
-                final int kval = (ival + jval) * -1;
-                final List<Integer> candidates = valuesToIndices.getOrDefault(kval, null);
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+            final int ival = nums[i];
+            final int jval = nums[j];
+            final int kval = (ival + jval) * -1;
+            final List<Integer> candidates = valuesToIndices.getOrDefault(kval, null);
 
-                // candidates should never be empty, but check just in case.
-                if (candidates == null || candidates.isEmpty()) { continue; } // Not found
+            // candidates should never be empty, but check just in case.
+            if (candidates == null || candidates.isEmpty()) { continue; } // Not found
 
-                for (final int k : candidates) {
-                    if (k <= j) { continue; }
-                    results.add(Arrays.asList(ival, jval, kval));
-                    break;
-                }
+            for (final int k : candidates) {
+                if (k <= j) { continue; }
+                results.add(Arrays.asList(ival, jval, kval));
+                break;
             }
         }
-
-        return new ArrayList<>(results);
     }
+
+    return new ArrayList<>(results);
+}
 ```
 
 ## Binary Search
@@ -108,28 +108,28 @@ The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multi
 - **Space complexity**: $O(1)$
 
 ```java
-    public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        final Set<List<Integer>> results = new HashSet<>();
+public List<List<Integer>> threeSum(int[] nums) {
+    Arrays.sort(nums);
+    final Set<List<Integer>> results = new HashSet<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                final int ival = nums[i];
-                final int jval = nums[j];
-                final int kval = (ival + jval) * -1;
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+            final int ival = nums[i];
+            final int jval = nums[j];
+            final int kval = (ival + jval) * -1;
 
-                int k = Arrays.binarySearch(nums, kval);
+            int k = Arrays.binarySearch(nums, kval);
 
-                if (k < 0) { continue; }    // Not found             
-                if (k <= j ) { k = j + 1; } // If k is less than or equal to j, we have already processed this index.
-                if (k >= nums.length || nums[k] != kval) { continue; }
+            if (k < 0) { continue; }    // Not found             
+            if (k <= j ) { k = j + 1; } // If k is less than or equal to j, we have already processed this index.
+            if (k >= nums.length || nums[k] != kval) { continue; }
 
-                results.add(Arrays.asList(ival, jval, kval));
-            }
+            results.add(Arrays.asList(ival, jval, kval));
         }
-
-        return new ArrayList<>(results);
     }
+
+    return new ArrayList<>(results);
+}
 ```
 
 ## Quadratic Algorithm
@@ -142,35 +142,35 @@ If the sum is less than zero, we know we need to increment the start pointer. Th
 - **Space complexity**: $O(1)$
 
 ```java
-    public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        final List<List<Integer>> results = new ArrayList<>();
+public List<List<Integer>> threeSum(int[] nums) {
+    Arrays.sort(nums);
+    final List<List<Integer>> results = new ArrayList<>();
 
-        for (int i = 0; i < nums.length - 2; i++) {
-            final int ival = nums[i];
-            int start = i + 1;
-            int end = nums.length - 1;
+    for (int i = 0; i < nums.length - 2; i++) {
+        final int ival = nums[i];
+        int start = i + 1;
+        int end = nums.length - 1;
 
-            while (start < end) {
-                final int jval = nums[start];
-                final int kval = nums[end];
+        while (start < end) {
+            final int jval = nums[start];
+            final int kval = nums[end];
 
-                if (ival + jval + kval == 0) {
-                    results.add(Arrays.asList(ival, jval, kval));
-                    start++;
-                    end--;
-                }
-                else if (ival + jval + kval > 0) {
-                    end--;
-                }
-                else {
-                    start++;
-                }
+            if (ival + jval + kval == 0) {
+                results.add(Arrays.asList(ival, jval, kval));
+                start++;
+                end--;
+            }
+            else if (ival + jval + kval > 0) {
+                end--;
+            }
+            else {
+                start++;
             }
         }
-
-        return results;
     }
+
+    return results;
+}
 ```
 
 ## Can We Beat Quadratic?
