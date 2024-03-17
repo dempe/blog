@@ -3,57 +3,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/output.css"/>
     <meta name="description"
           content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     
     <script src="../assets/js/highlight.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body>
-<header>
-    <nav>
-        <div class="site-title"><a href="../index.html">Chris Dempewolf</a></div>
-        <div class="nav-flex-container">
-            <menu>
-                <li><a href="../about.html">About</a></li>
-                
-                <li><a href="../resume.pdf" target="_blank">Resume</a></li>
-                <li><a href="../tags/index.html">Tags</a></li>
-                <li><a href="../stats.html" target="_blank">Stats</a></li>
-            </menu>
-        </div>
-    </nav>
+<body class="bg-stone-950 text-stone-400 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-32">
+<header class="flex flex-col mb-6">
+        <a class="lg:text-7xl text-3xl font-bold no-underline" href="../index.html">Chris Dempewolf</a>
+        <nav class="flex space-x-4 mt-2 mb-8">
+            <a href="../about.html">About</a>
+            
+            <a href="../resume.pdf" target="_blank">Resume</a>
+            <a href="../tags/index.html">Tags</a>
+            <a href="../stats.html" target="_blank">Stats</a>
+        </nav>
 </header>
 <main>
-    <article>
-        <h1 id="title">    Converting Kindle Notes to Markdown
+    <article class="my-9 pb-9">
+        <h1 class="text-3xl font-bold my-2">    Converting Kindle Notes to Markdown
 </h1>
-            <table class="post-metadata">
-        <tr>
-            <td class="table-key">Published:&nbsp;&nbsp;</td>
-            <td>2023-07-20 09:46</td>
-        </tr>
+                    <table class="text-sm mb-9">
                     <tr>
-                <td class="table-key">Updated:&nbsp;&nbsp;</td>
-                <td>
-                    2023-08-03 12:17
-                </td>
-            </tr>
-                <tr>
-            <td class="table-key">Tags:&nbsp;&nbsp;</td>
+        <td>Published:&nbsp;&nbsp;</td>
+        <td>2023-07-20 09:46</td>
+    </tr>
+            <tr>
+            <td>Updated:&nbsp;&nbsp;</td>
             <td>
-                                    <a href="../tags/perl.html">perl</a>&nbsp;
-                                    <a href="../tags/python.html">python</a>&nbsp;
-                                    <a href="../tags/regex.html">regex</a>&nbsp;
-                                    <a href="../tags/tech.html">tech</a>&nbsp;
-                            </td>
+                2023-08-03 12:17
+            </td>
         </tr>
-    </table>
-                        <p>Kindle<sup id="fnref1:1"><a href="converting-kindle-notes-to-markdown.html#fn:1" class="footnote-ref">1</a></sup> has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.</p>
+        <tr>
+        <td>Tags:&nbsp;&nbsp;</td>
+        <td>
+                            <a href="../tags/perl.html">perl</a>&nbsp;
+                            <a href="../tags/python.html">python</a>&nbsp;
+                            <a href="../tags/regex.html">regex</a>&nbsp;
+                            <a href="../tags/tech.html">tech</a>&nbsp;
+                    </td>
+    </tr>
+            </table>
+                                <p>Kindle<sup id="fnref1:1"><a href="converting-kindle-notes-to-markdown.html#fn:1" class="footnote-ref">1</a></sup> has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.</p>
 <p>I store all of my notes in <a target="_blank" rel="noopener noreferrer" href="https://obsidian.md/">Obsidian</a>, which uses Markdown. I thought, &quot;Okay, I'll just use <a target="_blank" rel="noopener noreferrer" href="https://pandoc.org/">Pandoc</a> to convert the HTML to Markdown. No problem!&quot;</p>
 <pre><code class="language-bash">pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md</code></pre>
 <h2 id='h2-enter-amazons-dumpster-fire-html'>Enter: Amazon's Dumpster Fire HTML</h2>
@@ -116,16 +113,19 @@ perl -pe 's|\+\s+- Page (\d+):|\n+ Page \1:|g' | \
 perl -pe 's|(Page \d+):|*\1*:|g' | \
 tail -n +2 | \
 pbcopy</code></pre>
-<p><code>perl -pe</code> is basically a drop-in replacement for <code>sed</code>, but with more powerful regexes.<sup id="fnref1:4"><a href="converting-kindle-notes-to-markdown.html#fn:4" class="footnote-ref">4</a></sup> The <code>-p</code> stands for &quot;print&quot;. It's what makes Perl act like a stream editor (i.e., like <code>sed</code>). <code>-e</code> stands for execute and basically just tells Perl to execute the following script for each line in the file. You can also edit files in place using <code>-i</code> just like in <code>sed</code>. Maybe it's the lessons I've learned from functional programming, but I prefer not to edit files in place.</p>
-<p><code>perl -pe 's|\n||g'</code> removes all newlines.<sup id="fnref1:5"><a href="converting-kindle-notes-to-markdown.html#fn:5" class="footnote-ref">5</a></sup> The <code>.</code> in Perl regexes doesn't match newlines, so this just makes all further processing easier.</p>
-<p><code>perl -pe 's|&lt;div class="sectionHeading"&gt;(.*?)&lt;/div&gt;|\n\n##\1\n\n|g'</code> — convert those ridiculous <code>&lt;div&gt;</code> headings to actual headings. Note that the <code>?</code> after the <code>*</code> makes <code>*</code> lazy instead of greedy. This option is not available in the POSIX regexes that <code>sed</code> uses.</p>
-<p><code>perl -pe 's|&lt;div class="noteHeading"&gt;|+|g'</code> — this converts each note to a Markdown list item, <code>+</code>.</p>
-<p><code>perl -pe 's&amp;Highlight\(&lt;span class="highlight_(yellow|blue|orange)"&gt;(yellow|blue|orange)&lt;/span&gt;\)&amp;&amp;g'</code> — remove the stupid HTML for highlights. I delimit with <code>&amp;</code> to avoid conflicts with <code>|</code> (used for logical OR) and <code>/</code>.</p>
-<p><code>perl -pe 's| · Location \d+&lt;/div&gt;&lt;div class="noteText"&gt;|:|g'</code> — Kindle books come with &quot;location&quot; information in addition to pages. I have no idea what it means, and I don't care. I just use page numbers. So I delete the location info, the following <code>div</code>, and append a <code>:</code> (page number precedes this and the actual note text will follow).</p>
-<p><code>perl -pe 's|\+\s+Note -|\n+ **Note** — |g'</code> — there are two types of lines in <code>my_notes.html</code> — one is just a plain quote from the book; the other is a quote with a note that I typed. Lines that start with <code>Note</code> indicate the latter. Obviously, I would like to preserve this information. This line puts <code>Note</code> s on a new line and make the <code>Note</code> word bold.</p>
-<p><code>perl -pe 's|\+\s+- Page (\d+):|\n+ Page \1:|g'</code> — this line basically does the same as the above, but for non- <code>Note</code> lines.</p>
-<p><code>perl -pe 's|(Page \d+):|*\1*:|g'</code> — Italicize page numbers.</p>
-<p><code>tail -n +2</code> — remember that we converted everything to a single line? The preceding regexes moved relevant content to their own lines. What's left at the top is garbage that I don't care about. This line prints the resulting file starting from the second (<code>+2</code>) line.</p>
+<p>Here's an explanation of what each of these commands does:</p>
+<ul>
+<li><code>perl -pe</code> is basically a drop-in replacement for <code>sed</code>, but with more powerful regexes.<sup id="fnref1:4"><a href="converting-kindle-notes-to-markdown.html#fn:4" class="footnote-ref">4</a></sup> The <code>-p</code> stands for &quot;print&quot;. It's what makes Perl act like a stream editor (i.e., like <code>sed</code>). <code>-e</code> stands for execute and basically just tells Perl to execute the following script for each line in the file. You can also edit files in place using <code>-i</code> just like in <code>sed</code>. Maybe it's the lessons I've learned from functional programming, but I prefer not to edit files in place.</li>
+<li><code>perl -pe 's|\n||g'</code> removes all newlines.<sup id="fnref1:5"><a href="converting-kindle-notes-to-markdown.html#fn:5" class="footnote-ref">5</a></sup> The <code>.</code> in Perl regexes doesn't match newlines, so this just makes all further processing easier.</li>
+<li><code>perl -pe 's|&lt;div class="sectionHeading"&gt;(.*?)&lt;/div&gt;|\n\n##\1\n\n|g'</code> — convert those ridiculous <code>&lt;div&gt;</code> headings to actual headings. Note that the <code>?</code> after the <code>*</code> makes <code>*</code> lazy instead of greedy. This option is not available in the POSIX regexes that <code>sed</code> uses.</li>
+<li><code>perl -pe 's|&lt;div class="noteHeading"&gt;|+|g'</code> — this converts each note to a Markdown list item, <code>+</code>.</li>
+<li><code>perl -pe 's&amp;Highlight\(&lt;span class="highlight_(yellow|blue|orange)"&gt;(yellow|blue|orange)&lt;/span&gt;\)&amp;&amp;g'</code> — remove the stupid HTML for highlights. I delimit with <code>&amp;</code> to avoid conflicts with <code>|</code> (used for logical OR) and <code>/</code>.</li>
+<li><code>perl -pe 's| · Location \d+&lt;/div&gt;&lt;div class="noteText"&gt;|:|g'</code> — Kindle books come with &quot;location&quot; information in addition to pages. I have no idea what it means, and I don't care. I just use page numbers. So I delete the location info, the following <code>div</code>, and append a <code>:</code> (page number precedes this and the actual note text will follow).</li>
+<li><code>perl -pe 's|\+\s+Note -|\n+ **Note** — |g'</code> — there are two types of lines in <code>my_notes.html</code> — one is just a plain quote from the book; the other is a quote with a note that I typed. Lines that start with <code>Note</code> indicate the latter. Obviously, I would like to preserve this information. This line puts <code>Note</code> s on a new line and make the <code>Note</code> word bold.</li>
+<li><code>perl -pe 's|\+\s+- Page (\d+):|\n+ Page \1:|g'</code> — this line basically does the same as the above, but for non- <code>Note</code> lines.</li>
+<li><code>perl -pe 's|(Page \d+):|*\1*:|g'</code> — Italicize page numbers.</li>
+<li><code>tail -n +2</code> — remember that we converted everything to a single line? The preceding regexes moved relevant content to their own lines. What's left at the top is garbage that I don't care about. This line prints the resulting file starting from the second (<code>+2</code>) line.</li>
+</ul>
 <h2 id='h2-shouldve-used-beautifulsoup-from-the-get-go'>Should've Used BeautifulSoup From the Get-go</h2>
 <p>The above solution worked fine until I got to a book that had no page numbers. It turns out you can have any variation of page and/or chapter number.  Here's the function I use to parse that:</p>
 <pre><code class="language-python">def parse_chapter(text):
@@ -179,14 +179,19 @@ pbcopy</code></pre>
     </article>
 </main>
 <footer>
-        <nav id="footer-nav">
-        <div id="prev-post-link">
+        <nav class="hidden md:flex md:flex-row justify-between border-t-4 pt-8">
+        <div>
                             <span>⬅️ <a href="carlota.html">Carlota</a></span>
                     </div>
-        <div id="next-post-link">
+        <div>
                             <span><a href="various-solutions-to-3sum.html">Various Solutions to 3SUM</a> ➡️</span>
                     </div>
     </nav>
+
+    <ul class="md:hidden">
+                    <li class="mb-2">Previous post: <a href="carlota.html">Carlota</a></li>
+                            <li>Next post: <a href="various-solutions-to-3sum.html">Various Solutions to 3SUM</a></li>
+            </ul>
         <h2 id="comments">Comments</h2>
     <script src="https://giscus.app/client.js"
             data-repo="dempe/blog-comments"
@@ -203,13 +208,6 @@ pbcopy</code></pre>
             crossorigin="anonymous"
             async>
     </script>
-
-
-
-
-
-
-
 </footer>
     <script>
         MathJax = {
