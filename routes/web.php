@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\TagController;
@@ -10,7 +11,9 @@ Route::get('/posts/{post}', [PostController::class, 'show']);
 Route::get('/posts', [PostController::class, 'redirect']);
 Route::get('/tags', [TagController::class, 'index']);
 Route::get('/tags/{tag}', [TagController::class, 'show']);
-Route::get('/resume', [ResumeController::class, 'show']);
+//Route::get('/resume', [ResumeController::class, 'show']);
+Route::get('/feed.rss', [FeedController::class, 'index']);
+
 
 Route::get('/about', function () {
     return view('about');

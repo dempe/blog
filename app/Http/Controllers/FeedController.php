@@ -2,9 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Support\Facades\View;
+use ParsedownExtra;
+
 
 class FeedController extends Controller
 {
-    //
+    public function index()
+    {
+        // Convert Markdown to HTML
+        $posts = Post::all()->map(function ($post) {
+            $pd = new ParsedownExtra();
+            $post->body = $pd->text($post->body);
+
+            return $post;
+        });
+
+        $content = View::make('feed', compact('posts'))->render();
+
+        return response($content, 200, ['Content-Type' => 'application/rss+xml']);
+    }
 }

@@ -19,6 +19,7 @@
         {{-- TODO: use controller to load mysite.com/resume --}}
         <a href="/resume.pdf" target="_blank">Resume</a>
         <a href="/tags/">Tags</a>
+        <a href="/feed.rss" target="_blank">RSS</a>
         <a href="/stats.html" target="_blank">Stats</a>
     </nav>
 </header>
