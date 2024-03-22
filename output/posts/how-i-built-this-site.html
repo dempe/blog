@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="../assets/css/output.css"/>
-    <meta name="description"
-          content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
-    
-    
     <script src="../assets/js/highlight.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="bg-stone-950 text-stone-400 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-32">
+<body class="bg-stone-950 text-stone-350 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-64">
 <header class="flex flex-col mb-6">
-        <a class="lg:text-7xl text-3xl font-bold no-underline" href="../index.html">Chris Dempewolf</a>
-        <nav class="flex space-x-4 mt-2 mb-8">
-            <a href="../about.html">About</a>
-            
-            <a href="../resume.pdf" target="_blank">Resume</a>
-            <a href="../tags/index.html">Tags</a>
-            <a href="../stats.html" target="_blank">Stats</a>
-        </nav>
+    <a class="text-3xl font-bold no-underline text-stone-200 hover:text-white lg:text-7xl" href="../index.html">Chris Dempewolf</a>
+    <nav class="flex space-x-4 mt-2 mb-8">
+        <a class="" href="../about.html">About</a>
+        
+        <a href="../resume.pdf" target="_blank">Resume</a>
+        <a href="../tags/index.html">Tags</a>
+        <a href="../feed.rss" target="_blank">RSS</a>
+        <a href="../stats.html" target="_blank">Stats</a>
+    </nav>
 </header>
 <main>
     <article class="my-9 pb-9">
@@ -49,7 +47,7 @@
     </tr>
             </table>
                                 <p>I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. An SSG can't be <em>that</em> hard.</p>
-<h2 id='h2-how-about-php'>How about PHP?</h2>
+<h2 id='how-about-php'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#how-about-php'>How about PHP?</a></h2>
 <p>First of all, what do SSGs offer?</p>
 <ul>
 <li><strong>Markdown</strong> (or similar) to HTML conversion</li>
@@ -66,13 +64,13 @@
 <li>It can handle Markdown conversion via <a target="_blank" rel="noopener noreferrer" href="https://parsedown.org/">3rd party libraries</a>.</li>
 <li>It has a built-in web server (<code>php -S addr:port</code>).</li>
 </ul>
-<p>The only things PHP doesn't have are themes (I want to use my own CSS anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;Building and Deployment&quot;).</p>
+<p>The only things PHP doesn't have are themes (I want to use my own CSS (via <a target="_blank" rel="noopener noreferrer" href="https://tailwindcss.com/">Tailwind</a>) anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;<a href="how-i-built-this-site.html#building-and-deployment">Building and Deployment</a>&quot;).</p>
 <p>PHP (via <a target="_blank" rel="noopener noreferrer" href="https://laravel.com/">Laravel</a>) it is.</p>
-<h2 id='h2-site-structure'>Site Structure</h2>
+<h2 id='site-structure'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#site-structure'>Site Structure</a></h2>
 <p>I want to <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/KISS_principle">keep things as simple as possible</a>. The home page (<code>chrisdempewolf.com</code>) is just a list of my posts. Posts are accessed under <code>chrisdempewolf.com/posts/{post}</code>. Same for tags. Aside from that, I have an about page and my resume (see links at top).</p>
 <p>I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.</p>
 <p>Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.</p>
-<h2 id='h2-using-a-relational-database-for-a-static-site'>Using a Relational Database For a Static Site</h2>
+<h2 id='using-a-relational-database-for-a-static-site'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#using-a-relational-database-for-a-static-site'>Using a Relational Database For a Static Site</a></h2>
 <p>When running my local Laravel server, I use SQLite to store two entities — posts and tags.</p>
 <p>There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.</p>
 <p>This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.</p>
@@ -107,7 +105,7 @@ return view('tag', ['tag' =&gt; $tag,
 <p>One line! <code>$posts = $tag-&gt;posts()-&gt;get();</code> is all I need! 😎</p>
 <p>To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter <a target="_blank" rel="noopener noreferrer" href="https://laravel.com/docs/10.x/eloquent-relationships">Eloquent relationships</a>.</p>
 <aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
-<h2 id='h2-eloquent-relationships'>Eloquent Relationships</h2>
+<h2 id='eloquent-relationships'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#eloquent-relationships'>Eloquent Relationships</a></h2>
 <p>Eloquent allows you to define relationships on your models via methods. It does this by providing various types associated with each type of relationship (one-to-one, one-to-many, many-to-many, etc.). To define a relationship, you need to implement a method on your model that returns the appropriate relationship type.</p>
 <p>In my case, I implemented a method that returns <code>BelongsToMany</code> on both the <code>Post</code> model and the <code>Tag</code> model. Here's what that method looks like on the <code>Tag</code> model:</p>
 <pre><code class="language-PHP">public function posts(): BelongsToMany
@@ -125,7 +123,7 @@ return view('tag', ['tag' =&gt; $tag,
 <p>The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that <code>tag</code> is the foreign key on the <code>post_tags</code> table. The fourth argument tells Eloquent that <code>slug</code> is the foreign key on the <code>posts_tags</code> table for <code>posts</code>. The fifth argument tells Eloquent that <code>tag</code> is the key for the <code>tags</code> table. Finally, the sixth argument tells Eloquent that <code>slug</code> is the key for the <code>posts</code> table.</p>
 <p>All this allows me to use that nice chain syntax from above. Again, because it's so beautiful: <code>$posts = $tag-&gt;posts()-&gt;get();</code>.</p>
 <p>But that's not all. It also allows for something called &quot;<strong>eager loading</strong>&quot;.</p>
-<h2 id='h2-avoiding-n1-with-eager-loading'>Avoiding N+1 with Eager Loading</h2>
+<h2 id='avoiding-n1-with-eager-loading'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#avoiding-n1-with-eager-loading'>Avoiding N+1 with Eager Loading</a></h2>
 <p>Eager loading is Eloquent's way of averting the N+1 query problem. Here's how you use it.</p>
 <p>Say I have the following code:</p>
 <pre><code class="language-PHP">$posts = Post::all();
@@ -146,7 +144,7 @@ foreach ($posts as $post) {
 }</code></pre>
 <p>The key thing to note here is <code>::with('tags')</code>. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query!<sup id="fnref1:5"><a href="how-i-built-this-site.html#fn:5" class="footnote-ref">5</a></sup></p>
 <p>Eloquent does this by attaching an array of <code>Tag</code> s to each <code>Post</code> when you call <code>Post::with('tags')-&gt;get()</code>. You can see this by running <code>php artisan tinker</code> and comparing the two outputs — lazy and eager.</p>
-<h2 id='h2-seeding-and-migrations'>Seeding and Migrations</h2>
+<h2 id='seeding-and-migrations'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#seeding-and-migrations'>Seeding and Migrations</a></h2>
 <p>As mentioned, I store all of my posts in a database (Sqlite, specifically). This allows me to easily handle the many-to-many relationship between posts and tags. But I need to actually import the posts.</p>
 <p>I realize it's probably a huge anti-pattern, but so far I've been using DB seeders for this purpose. Aside from using seeders for something other than their intended purpose, another downside is that I need to run <code>php artisan db:seed</code> every time I update a post for that update to be reflected on the server.</p>
 <p>Instead, I plan to create a custom <code>artisan</code> command to import my posts. This will at least remove the anti-pattern of using seeders to import my posts.</p>
@@ -156,7 +154,7 @@ foreach ($posts as $post) {
                     UPDATE posts SET updated_at = CURRENT_TIMESTAMP WHERE OLD.slug = NEW.slug;
                 END;');</code></pre>
 <p>Doing this allows me to track when posts were last updated, which I display in the post's footer.</p>
-<h2 id='h2-creating-a-new-post'>Creating a New Post</h2>
+<h2 id='creating-a-new-post'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#creating-a-new-post'>Creating a New Post</a></h2>
 <p>I made a custom Artisan command to make a new post: <code>php artisan make:post &lt;title&gt; &lt;tags&gt;</code>. For this post, I ran <code>php artisan make:post "How I Built This Site" "tech php"</code>. This slugifys the title and creates a new file, <code>resources/posts/how-i-built-this-site.md</code>.</p>
 <p>After the new post has been imported to the DB, I can go to the URL <code>&lt;host&gt;/posts/how-i-built-this-site</code>. This is what the route looks like:</p>
 <pre><code class="language-php">Route::get('/posts/{post}', function ($slug) {
@@ -183,7 +181,7 @@ foreach ($posts as $post) {
 @endsection</code></pre>
 <p>I initialize <code>ParsedownExtra</code> to parse the Markdown here. It didn't make sense to add display logic in my routes file.</p>
 <p>And that's it!</p>
-<h2 id='h2-building-and-deployment'>Building and Deployment</h2>
+<h2 id='building-and-deployment'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#building-and-deployment'>Building and Deployment</a></h2>
 <p>I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use <code>wget</code> to pull down a static version from the local server. The command looks like this:</p>
 <pre><code class="language-bash">wget \
 --directory-prefix=output/ \
@@ -210,9 +208,9 @@ http://localhost:8000</code></pre>
 </ul>
 <p>Not the pretties build method, but, in my opinion, it's worth it to use Laravel to build my static site.</p>
 <p>After the <code>output</code> directory is built, I run <code>aws s3 sync ./output s3://chrisdempewolf.com --delete</code> to sync my S3 bucket.</p>
-<h2 id='h2-conclusion'>Conclusion</h2>
+<h2 id='conclusion'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#conclusion'>Conclusion</a></h2>
 <p>This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site.  And working with Laravel is a sheer pleasure.  If you are a PHP and/or Laravel fan, give it a try!</p>
-<h2 id='h2-footnotes'>Footnotes</h2>
+<h2 id='footnotes'><a class='no-underline text-stone-200 hover:text-white' href='how-i-built-this-site.html#footnotes'>Footnotes</a></h2>
 <div class="footnotes">
 <hr />
 <ol>
@@ -249,7 +247,7 @@ http://localhost:8000</code></pre>
                     <li class="mb-2">Previous post: <a href="better-call-saul.html">Better Call Saul</a></li>
                             <li>Next post: <a href="carlota.html">Carlota</a></li>
             </ul>
-        <h2 id="comments">Comments</h2>
+        <h2 id="comments"><a class='no-underline text-stone-200 hover:text-white' href="how-i-built-this-site.html#comments">Comments</a></h2>
     <script src="https://giscus.app/client.js"
             data-repo="dempe/blog-comments"
             data-repo-id="R_kgDOLfkyrQ"
@@ -295,4 +293,3 @@ http://localhost:8000</code></pre>
     
 </body>
 </html>
-

@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="../assets/css/output.css"/>
-    <meta name="description"
-          content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
-    
-    
     <script src="../assets/js/highlight.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="bg-stone-950 text-stone-400 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-32">
+<body class="bg-stone-950 text-stone-350 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-64">
 <header class="flex flex-col mb-6">
-        <a class="lg:text-7xl text-3xl font-bold no-underline" href="../index.html">Chris Dempewolf</a>
-        <nav class="flex space-x-4 mt-2 mb-8">
-            <a href="../about.html">About</a>
-            
-            <a href="../resume.pdf" target="_blank">Resume</a>
-            <a href="../tags/index.html">Tags</a>
-            <a href="../stats.html" target="_blank">Stats</a>
-        </nav>
+    <a class="text-3xl font-bold no-underline text-stone-200 hover:text-white lg:text-7xl" href="../index.html">Chris Dempewolf</a>
+    <nav class="flex space-x-4 mt-2 mb-8">
+        <a class="" href="../about.html">About</a>
+        
+        <a href="../resume.pdf" target="_blank">Resume</a>
+        <a href="../tags/index.html">Tags</a>
+        <a href="../feed.rss" target="_blank">RSS</a>
+        <a href="../stats.html" target="_blank">Stats</a>
+    </nav>
 </header>
 <main>
     <article class="my-9 pb-9">
@@ -64,7 +62,7 @@
 <p>Given an integer array <code>nums</code>, return all triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
 </blockquote>
 <p>The following is a list of algorithms to solve this problem in order of increasing efficiency. I like the 3SUM problem because it demonstrates a wide variety of techniques for solving algorithmic problems.</p>
-<h2 id="h2-brute-force">Brute Force</h2>
+<h2 id="brute-force"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#brute-force">Brute Force</a></h2>
 <p>For the brute force solution, just loop over the array checking each triplet. If a triplet sums to 0, add it to our set (we're using a set to prevent adding duplicate triplets).  Start <code>j</code> at <code>i + 1</code> and <code>k</code> at <code>j + 1</code> to avoid looking at indices more than once.</p>
 <ul>
 <li><strong>Time complexity</strong>: $O(n^3)$</li>
@@ -92,7 +90,7 @@
 
     return new ArrayList&lt;&gt;(results);
 }</code></pre>
-<h2 id="h2-hashmap">Hashmap</h2>
+<h2 id="hashmap"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#hashmap">Hashmap</a></h2>
 <p>Here, we loop through the <code>nums</code> array and make a map of values to all indices they appear in. We have the two <code>i</code> and <code>j</code> loops as before, but we can (mostly) skip the <code>k</code> loop.</p>
 <p>Since we already have two values (<code>ival</code> and <code>jval</code>), we can simply compute the difference <code>(ival + jval) * -1</code> and check if it's in the hashmap. Since the hashmap will return a list of values, we will need to have a third loop.</p>
 <ul>
@@ -130,7 +128,7 @@
 
     return new ArrayList&lt;&gt;(results);
 }</code></pre>
-<h2 id="h2-binary-search">Binary Search</h2>
+<h2 id="binary-search"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#binary-search">Binary Search</a></h2>
 <p>This is similar to the hashmap version, but instead of looking up the values in a hashmap, we binary search the input array (that we should have already sorted). Again, we calculate the difference between <code>i + j</code> and 0 (<code>(nums[i] + nums[j]) * -1</code>).</p>
 <p>The outer two loops run in $n^2$ time.  Binary search takes $\log n$ time. Multiplying these together,</p>
 <ul>
@@ -159,7 +157,7 @@
 
     return new ArrayList&lt;&gt;(results);
 }</code></pre>
-<h2 id="h2-quadratic-algorithm">Quadratic Algorithm</h2>
+<h2 id="quadratic-algorithm"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#quadratic-algorithm">Quadratic Algorithm</a></h2>
 <p>The quadratic algorithm takes a completely different approach.  For each element of the array, we create two pointers that point the first and last elements of the remaining elements.  In the inner loop, we increment the start pointer and decrement the end pointer if a triplet sums to zero.</p>
 <p>If the sum is less than zero, we know we need to increment the start pointer. The array is sorted, so the only way to get a larger sum is to increment the lower pointer. Likewise, if the sum is greater than zero, we need to decrement the end pointer to try to find a lower value.</p>
 <ul>
@@ -195,9 +193,9 @@
 
     return results;
 }</code></pre>
-<h2 id="h2-can-we-beat-quadratic">Can We Beat Quadratic?</h2>
+<h2 id="can-we-beat-quadratic"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#can-we-beat-quadratic">Can We Beat Quadratic?</a></h2>
 <p>Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science <a href="various-solutions-to-3sum.html#ref:1" class="reference-ref" id="refstate1">[1]</a>.</p>
-<h2 id="h2-references">References</h2><div class="references"><ol><li class="reference-backref" id="ref:1"><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/3SUM">https://en.wikipedia.org/wiki/3SUM</a><a id="ref:1" class="reference-backref" href="various-solutions-to-3sum.html#refstate1"> &#x21A9;</a></li></ol></div>
+<h2 id="references"><a class="no-underline text-stone-200 hover:text-white" href="various-solutions-to-3sum.html#references">References</a></h2><div class="references"><ol><li class="reference-backref" id="ref:1"><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/3SUM">https://en.wikipedia.org/wiki/3SUM</a><a id="ref:1" class="reference-backref" href="various-solutions-to-3sum.html#refstate1"> &#x21A9;</a></li></ol></div>
 </body></html>
 
     </article>
@@ -216,7 +214,7 @@
                     <li class="mb-2">Previous post: <a href="converting-kindle-notes-to-markdown.html">Converting Kindle Notes to Markdown</a></li>
                             <li>Next post: <a href="a-wizards-existential-crisis.html">A Wizard&#039;s Existential Crisis</a></li>
             </ul>
-        <h2 id="comments">Comments</h2>
+        <h2 id="comments"><a class='no-underline text-stone-200 hover:text-white' href="various-solutions-to-3sum.html#comments">Comments</a></h2>
     <script src="https://giscus.app/client.js"
             data-repo="dempe/blog-comments"
             data-repo-id="R_kgDOLfkyrQ"
@@ -262,4 +260,3 @@
     
 </body>
 </html>
-

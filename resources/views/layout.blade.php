@@ -11,11 +11,11 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="bg-stone-950 text-stone-400 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-64">
+<body class="bg-stone-950 text-stone-350 font-sans mx-4 my-2 max-w-fit md:mx-16 lg:mx-24 xl:mx-64">
 <header class="flex flex-col mb-6">
     <a class="text-3xl font-bold no-underline text-stone-200 hover:text-white lg:text-7xl" href="/">Chris Dempewolf</a>
     <nav class="flex space-x-4 mt-2 mb-8">
-        <a href="/about">About</a>
+        <a class="" href="/about">About</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
         <a href="/resume.pdf" target="_blank">Resume</a>
         <a href="/tags/">Tags</a>

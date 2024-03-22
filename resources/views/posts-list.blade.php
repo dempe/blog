@@ -10,7 +10,7 @@
             <td><!-- Empty <td> to align tags with title above. --></td>
             <td class="flex space-x-4">
                 @foreach($post->tags as $tag)
-                    <a class="text-sm text-stone-400 font-normal no-underline hover:text-white" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
+                    <a class="text-sm text-stone-400 font-normal no-underline hover:text-chartreuse" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
                 @endforeach
             </td>
         </tr>
