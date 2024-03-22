@@ -3,6 +3,10 @@ export default {
   content: ["./resources/views/*.php"],
   theme: {
     extend: {
+      colors: {
+        'chartreuse': '#7fff00',
+        'stone-350': '#d0c5ba'
+      },
 			 fontFamily: {
         monospace: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
         sans: ['Arial', 'Noto Sans JP', 'Fira-Sans', 'Roboto', 'Helvetica', 'sans-serif']

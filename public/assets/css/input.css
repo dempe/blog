@@ -4,7 +4,7 @@
 
 @layer base {
     a {
-        @apply text-[#7fff00] hover:text-[#ccff00] underline;
+        @apply text-chartreuse hover:text-[#ccff00] underline;
     }
 
     h2 {
@@ -34,7 +34,7 @@
 
     blockquote,
     aside {
-        @apply border-l-4 border-solid border-[#7fff00] text-center p-1 text-stone-200;
+        @apply border-l-4 border-solid border-chartreuse text-center p-1 text-stone-200;
     }
 
     ul {
