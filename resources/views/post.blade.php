@@ -72,10 +72,10 @@
 
     <ul class="md:hidden">
         @if(isset($post->prev))
-            <li class="mb-2">Previous post: <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></li>
+            <li class="font-bold text-stone-200 mb-2">Previous post: <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></li>
         @endif
         @if(isset($post->next))
-            <li>Next post: <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a></li>
+            <li class="font-bold text-stone-200">Next post: <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a></li>
         @endif
     </ul>
 @endsection

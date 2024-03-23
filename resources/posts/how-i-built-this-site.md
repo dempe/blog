@@ -199,21 +199,13 @@ It loads the `post` view, which is a Blade template:
 ```php-template
 @extends('layout')
 
-@php
-    $pd = new ParsedownExtra();
-@endphp
-
 @section('title')
     {{ $post->title }}
 @endsection
 @section('content')
-    {!! $pd->text($post->body) !!}
+    {!! $post->body !!}
 @endsection
 ```
-
-I initialize `ParsedownExtra` to parse the Markdown here. It didn't make sense to add display logic in my routes file.
-
-And that's it!
 
 ## Building and Deployment
 
