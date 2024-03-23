@@ -8,7 +8,7 @@
     }
 
     h2 {
-        @apply text-xl font-bold my-6 lg:text-2xl;
+        @apply text-lg font-bold my-6 lg:text-2xl;
     }
 
     p {

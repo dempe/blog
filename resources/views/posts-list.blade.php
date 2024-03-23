@@ -1,18 +1,19 @@
-<table class="my-9 w-full">
+<div class="flex flex-col my-9">
     @foreach ($posts->sortByDesc('created_at') as $post)
-        <tr class="w-full">
-            <td>{{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;</td>
-            <td>
-                <a class="text-xl font-normal text-stone-200 no-underline hover:text-white" href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
-            </td>
-        </tr>
-        <tr class="w-full">
-            <td><!-- Empty <td> to align tags with title above. --></td>
-            <td class="flex space-x-4">
-                @foreach($post->tags as $tag)
-                    <a class="text-sm text-stone-400 font-normal no-underline hover:text-chartreuse" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
-                @endforeach
-            </td>
-        </tr>
+        <div class="flex flex-row space-x-4">
+            <span>
+                {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;
+            </span>
+            <div class="flex flex-col">
+                <div>
+                    <a class="text-lg font-normal text-stone-200 no-underline hover:text-white" href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
+                </div>
+                <div class="flex space-x-4">
+                    @foreach($post->tags as $tag)
+                        <a class="text-sm text-stone-400 font-normal no-underline hover:text-chartreuse" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     @endforeach
-</table>
+</div>
