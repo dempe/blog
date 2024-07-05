@@ -6,7 +6,7 @@
             </span>
             <div class="flex flex-col">
                 <div>
-                    <a class="text-lg font-normal text-stone-200 no-underline hover:text-white" href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
+                    <a class="text-lg font-normal text-neutral-200 no-underline hover:text-chartreuese" href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
                 </div>
                 <div class="flex space-x-4">
                     @foreach($post->tags as $tag)
