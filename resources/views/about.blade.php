@@ -9,7 +9,7 @@
         Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently, father.
     </p>
     <p>
-        I'm from <a href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, a. I taught English for a couple of years and have worked as a software engineer for 7 years.
+        I'm from <a href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
     </p>
     <h2 id="the-title"><a class="no-underline text-stone-200 hover:text-chartreuse" href="#the-title">The Title</a></h2>
 		<figure class="blockquote">
