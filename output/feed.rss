@@ -31,9 +31,7 @@
                 <title>Better Call Saul</title>
                 <link>http://localhost:8000/posts/better-call-saul</link>
                 <description>&lt;p&gt;I&#039;ve been watching &lt;em&gt;Better Call Saul&lt;/em&gt; over the past 6 months and finally finished it last...</description>
-                <content:encoded><![CDATA[<p>I've been watching <em>Better Call Saul</em> over the past 6 months and finally finished it last night. I'll focus mostly on the last
-episode, because it's the really important part of the whole series, and it was the best episode of television I've ever
-seen.</p>
+                <content:encoded><![CDATA[<p>I've been watching <em>Better Call Saul</em> over the past 6 months and finally finished it last night. I wanted to analyze the series finale.  It was really good.</p>
 <p>It's about time - the past, present, and future - and, as Walter makes clear, regrets. We finally learn why the Saul of
 the present is in black-and-white, and the two timelines - the colored past and the black-and-white present - finally
 meet.</p>
@@ -142,7 +140,7 @@ but to fix the present.</p>
 <p>It takes about 10 - 20 minutes to make, a couple of hours to chill.</p>
 <h2>Ingredients</h2>
 <ul>
-<li>1.5 cans condensed milk</li>
+<li>2 cans condensed milk</li>
 <li>Between 3 - 6 limes depending on size</li>
 <li>Canned peaches</li>
 <li>Vanilla wafers</li>
@@ -482,18 +480,12 @@ foreach ($posts as $post) {
 <p>It loads the <code>post</code> view, which is a Blade template:</p>
 <pre><code class="language-php-template">@extends('layout')
 
-@php
-    $pd = new ParsedownExtra();
-@endphp
-
 @section('title')
     {{ $post-&gt;title }}
 @endsection
 @section('content')
-    {!! $pd-&gt;text($post-&gt;body) !!}
+    {!! $post-&gt;body !!}
 @endsection</code></pre>
-<p>I initialize <code>ParsedownExtra</code> to parse the Markdown here. It didn't make sense to add display logic in my routes file.</p>
-<p>And that's it!</p>
 <h2>Building and Deployment</h2>
 <p>I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use <code>wget</code> to pull down a static version from the local server. The command looks like this:</p>
 <pre><code class="language-bash">wget \
@@ -695,10 +687,9 @@ http://localhost:8000</code></pre>
 
     return results;
 }</code></pre>
-<h2>Can We Beat Quadratic?</h2>
-<p>Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science REF.</p>
-<h2>References</h2>
-<p>REF: <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/3SUM">https://en.wikipedia.org/wiki/3SUM</a></p>]]></content:encoded>
+<h2>Conclusion</h2>
+<p>3SUM demonstrates a variety of algorithmic techniques (binary search, hash tables, two pointers) and how those techniques contribute to more efficient solutions.</p>
+<p>The next step: is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? At the time of writing, this is <a target="_blank" target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/3SUM">an open problem in computer science</a>.</p>]]></content:encoded>
                 <pubDate>Sun, 03 Mar 2024 06:41:00 +0000</pubDate>
                 <guid>http://localhost:8000/posts/various-solutions-to-3sum</guid>
             </item>
