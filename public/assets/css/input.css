@@ -4,7 +4,7 @@
 
 @layer base {
     a {
-        @apply text-chartreuse hover:text-[#ccff00] underline;
+        @apply text-chartreuse hover:text-[#ccff00];
     }
 
     h2 {
@@ -19,7 +19,7 @@
     h1,
     h2,
     li::marker {
-        @apply text-stone-200;
+        @apply text-neutral-200;
     }
 
     pre,
@@ -29,12 +29,12 @@
     }
 
     code {
-        @apply bg-zinc-800 text-stone-200;
+        @apply bg-zinc-800 text-neutral-200;
     }
 
     blockquote,
     aside {
-        @apply border-l-4 border-solid border-chartreuse text-center p-1 text-stone-200;
+        @apply border-l-4 border-solid border-chartreuse p-4 text-stone-200;
     }
 
     ul {
@@ -63,7 +63,7 @@
     }
 
     figcaption {
-        @apply text-center text-sm;
+        @apply text-stone-400 text-center text-sm;
     }
 }
 
