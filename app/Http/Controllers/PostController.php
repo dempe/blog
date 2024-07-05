@@ -165,7 +165,7 @@ class PostController extends Controller
                    $slug = Str::slug($matches[1]);
                    $id = "{$slug}";
 
-                   return "<h2 id='{$id}'><a class='no-underline text-stone-200 hover:text-white' href='#{$id}'>{$matches[1]}</a></h2>";
+                   return "<h2 id='{$id}'><a class='no-underline text-stone-200 hover:text-chartreuse' href='#{$id}'>{$matches[1]}</a></h2>";
                },
             $body);
     }
