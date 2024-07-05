@@ -21,5 +21,5 @@
 				</blockquote>
 				<figcaption>Shunryu Suzuki, <em>Zen Mind, Beginner's Mind</em></figcaption>
 		</figure>
-    <p>This blog's title, <em>Shosin</em>, is a Zen concept roughly translated as "beginner's mind", a concept first popularized in the West by Zen teacher <a target="_blank" href="https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki">Shunryu Suzuki</a> in his book, <em><a target="_blank" href="https://en.wikipedia.org/wiki/Zen_Mind,_Beginner's_Mind">Zen Mind, Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.  It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.</p>
+    <p>This blog's title, <em>Shoshin</em>, is a Zen concept roughly translated as "beginner's mind", a concept first popularized in the West by Zen teacher <a target="_blank" href="https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki">Shunryu Suzuki</a> in his book, <em><a target="_blank" href="https://en.wikipedia.org/wiki/Zen_Mind,_Beginner's_Mind">Zen Mind, Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.  It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.</p>
 @endsection
