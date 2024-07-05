@@ -7,9 +7,7 @@ updated:
 ---
 
 
-I've been watching _Better Call Saul_ over the past 6 months and finally finished it last night. I'll focus mostly on the last
-episode, because it's the really important part of the whole series, and it was the best episode of television I've ever
-seen.
+I've been watching _Better Call Saul_ over the past 6 months and finally finished it last night. I wanted to analyze the series finale.  It was really good.
 
 It's about time - the past, present, and future - and, as Walter makes clear, regrets. We finally learn why the Saul of
 the present is in black-and-white, and the two timelines - the colored past and the black-and-white present - finally

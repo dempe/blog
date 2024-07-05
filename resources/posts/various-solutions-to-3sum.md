@@ -3,7 +3,7 @@ title: "Various Solutions to 3SUM"
 slug: various-solutions-to-3sum
 tags: tech algorithms java
 published: "2024-03-03 06:41"
-updated: "2024-03-03 19:23"
+updated: "2024-07-05 08:23"
 ---
 
 I've seen three different variations of the 3SUM problem.  In order of increasing complexity:
@@ -173,11 +173,8 @@ public List<List<Integer>> threeSum(int[] nums) {
 }
 ```
 
-## Can We Beat Quadratic?
+## Conclusion
 
-Is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? This is an open problem in computer science REF.
+3SUM demonstrates a variety of algorithmic techniques (binary search, hash tables, two pointers) and how those techniques contribute to more efficient solutions.
 
-## References
-
-REF: https://en.wikipedia.org/wiki/3SUM
-
+The next step: is there an algorithm to solve 3SUM in $O(n^{2 - \epsilon})$ for some $\epsilon \gt 0$? At the time of writing, this is <a target="_blank" href="https://en.wikipedia.org/wiki/3SUM">an open problem in computer science</a>.

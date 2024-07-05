@@ -3,7 +3,7 @@ title: "Carlota"
 slug: carlota
 tags: recipes
 published: "2023-07-08 22:34"
-updated:
+updated: "2024-07-05 08:25"
 ---
 
 A *carlota* or *carlota de limón* is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))) common in Mexico.
@@ -12,7 +12,7 @@ It takes about 10 - 20 minutes to make, a couple of hours to chill.
 
 ## Ingredients
 
-- 1.5 cans condensed milk
+- 2 cans condensed milk
 - Between 3 - 6 limes depending on size
 - Canned peaches
 - Vanilla wafers
