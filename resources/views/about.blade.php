@@ -9,7 +9,10 @@
         Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently, father.
     </p>
     <p>
-        I'm from <a href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
+        I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
+    </p>
+    <p>
+      I made this blog to explore my thoughts. I don't really know what I know until I write it, so this is meant to serve as my light in the dark.
     </p>
     <h2 id="the-title"><a class="no-underline text-stone-200 hover:text-chartreuse" href="#the-title">The Title</a></h2>
 		<figure class="blockquote">
@@ -18,5 +21,5 @@
 				</blockquote>
 				<figcaption>Shunryu Suzuki, <em>Zen Mind, Beginner's Mind</em></figcaption>
 		</figure>
-    <p>This blog's title, <em>Shosin</em>, is a Zen concept roughly translated as "beginner's mind", a concept first popularized in the West by Zen teacher <a href="https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki">Shunryu Suzuki</a> in his book, <em><a href="">Zen Mind, Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.  It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.</p>
+    <p>This blog's title, <em>Shosin</em>, is a Zen concept roughly translated as "beginner's mind", a concept first popularized in the West by Zen teacher <a target="_blank" href="https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki">Shunryu Suzuki</a> in his book, <em><a target="_blank" href="https://en.wikipedia.org/wiki/Zen_Mind,_Beginner's_Mind">Zen Mind, Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.  It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.</p>
 @endsection
