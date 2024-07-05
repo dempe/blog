@@ -5,15 +5,28 @@
 @endsection
 @section('content')
     <h2 id="me"><a class="no-underline text-stone-200 hover:text-chartreuse" href="#me">Me</a></h2>
-    <p>
-        Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently, father.
-    </p>
-    <p>
-        I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
-    </p>
-    <p>
-      I made this blog to explore my thoughts. I don't really know what I know until I write it, so this is meant to serve as my light in the dark.
-    </p>
+    <div class="flex flex-col md:flex-row md:items-start">
+      <div class="mx-auto w-1/2 md:mx-1 md:order-first">
+				<figure class="mx-0">
+						<img src="../assets/img/me-selfie-cancun.jpg"
+												alt="The author, hair dyed blue, standing in front of a palm tree, squinting due to the tropical sun."
+												width="200"
+												title="The author in Playa del Carmen"/>
+						<figcaption>In Playa del Carmen</figcaption>
+				</figure>
+      </div>
+      <div class="w-full order-first">
+				<p>
+						Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently, father.
+				</p>
+				<p>
+						I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
+				</p>
+				<p>
+					I made this blog to explore my thoughts. I don't really know what I know until I write it, so this is meant to serve as my light in the dark.
+				</p>
+      </div>
+    </div>
     <h2 id="the-title"><a class="no-underline text-stone-200 hover:text-chartreuse" href="#the-title">The Title</a></h2>
 		<figure class="blockquote">
 				<blockquote>
