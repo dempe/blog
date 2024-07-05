@@ -27,7 +27,7 @@
     <article class="my-9 pb-9">
         <h1 class="text-3xl font-bold my-2">@yield('title')</h1>
         @hasSection('metadata')
-            <table class="text-sm mb-9">
+            <table class="mb-16 text-sm text-stone-400 font-normal no-underline">
                 @yield('metadata')
             </table>
         @endif
