@@ -35,7 +35,6 @@ class PostController extends Controller
             $new_body = PostController::order_footnotes($new_body);
             $new_body = $pd->text($new_body);
             $new_body = PostController::add_header_ids($new_body);
-            $new_body = PostController::process_references($new_body);
 
 //            $post->toc = $this->build_toc($new_body, $slug);
             $post->body = $new_body;
