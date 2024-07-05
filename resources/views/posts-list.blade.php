@@ -1,7 +1,7 @@
 <div class="flex flex-col my-9">
     @foreach ($posts->sortByDesc('created_at') as $post)
         <div class="flex flex-row space-x-4">
-            <span>
+            <span class="whitespace-nowrap">
                 {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;
             </span>
             <div class="flex flex-col">
