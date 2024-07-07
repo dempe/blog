@@ -37,6 +37,10 @@
         @apply border-l-4 border-solid border-chartreuse p-4 text-stone-200;
     }
 
+    blockquote {
+        @apply italic;
+    }
+
     ul {
         @apply list-disc;
     }
