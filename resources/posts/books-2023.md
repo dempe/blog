@@ -7,7 +7,7 @@ tags: books
 
 This post is 7 months late, but that's actually not bad. The time lapse has allowed me to reflect on what I read. I can now clearly see what books have left a lasting impact on me. I read 31 books in 2023. Here are my thoughts on each.
 
-## *Permutation City* By Greg Egan
+## *Permutation City* by Greg Egan
 
 > What am I? The data? The process that generates it? The relationships between the numbers?
 
@@ -123,7 +123,7 @@ But, be warned, it is <em>NOT</em> easy. You first have to really understand wha
 
 Probably my favorite book that I read in 2023. It combines so many of my interests - running, barefoot running, Mexico, physiology, and anthropology. This book has had a real impact on my life. I now exclusively run in my barefoot huaraches (sandals) ([I use Luna Sandals FWIW](https://lunasandals.com/)). I run more than ever and have had zero injuries this year!  
 
-## *Phaedrus* By Plato
+## *Phaedrus* by Plato
 
 I read this because it was mentioned in *Moonwalking With Einstein*. Socrates talks about writing and mnemonics, though it was mostly about love. I'm an ardent practitioner of the Socratic Method, so it was cool to see its origens.
 
@@ -163,7 +163,7 @@ The conclusion of this book was awful. They titled it "Computational Kindness", 
 
 Algorithms are abstractions. They are patterns. They are patterns that we have discovered for their utility, and it's remarkable when nature, when evolution has discovered the utility of the very same patterns. It reminds us of the interconnectedness of the universe and the power of abstraction. It's beautiful. I believe that elaborating this line of thought would have made both a more fitting and interesting conclusion than the one provided.
 
-## *1984* By George Orwell
+## *1984* by George Orwell
 
 I read this book in high school. I didn't remember a lot of it, but I did remember the dreary and depressing setting that in which it takes place. I found that a lot of the same imagery from my high school reading popped into my head this time as well.
 
@@ -175,7 +175,7 @@ This book is the only book that ever really scared me. A lot of what takes place
 
 I had never read *Henry V*, but I thoroughly enjoyed it. Being one of Shakespeare's "histories", it dramatically recounts the Battle of Agincourt and Saint Crispin's Day Speech where Henry V rallied his troops against the much greater French army. The French believed there was no way they would be defeated due to their superior numbers, but their complacency got the better of them. The English won resulting in the Treaty of Trois where Henry V was to be wed to Catherine de Valois.
 
-## *The Road* By Cormack McCarthy
+## *The Road* by Cormack McCarthy
 
 McCarthy is a master of prose. His writing is simple yet evocative. The scenes in this book illicited some of the most vivid mental imagery I have ever encountered in a book. You get used to the lack of punctuation pretty quick and probably even come to like it.
 
@@ -207,7 +207,7 @@ I read this in preparation for a trip to the Museum of Anthropology in Mexico Ci
 
 I listened to the audio book narrated by Heaney, himself.
 
-## *Sandworm* By Andy Greenburg
+## *Sandworm* by Andy Greenburg
 
 Andy Greenburg is my favorite tech journalist. He somehow manages to weave technical details into a gripping narrative, something like a real life cyberpunk novel.
 
@@ -217,11 +217,11 @@ Greenburg goes into all of this and more as he tracks down the culprits who crea
 
 Security is only going to become an ever more relevant field as time goes on, as computers proliferate, and technology grows. *Sandworm* gives the non-expert a glimpse into the scary developments taking place in the field of computer security.  
 
-## *Gray Day* By Eric O'Neil
+## *Gray Day* by Eric O'Neil
 
 Eric O'Neil is a former FBI agent who, as a new, junior spy, was tasked with taking down a mole that had been in operation with Russians for decades. The FBI had a good idea who it was and put O'Neil under his command. Was a really fun read!  
 
-## *Outlive* By Peter Attia
+## *Outlive* by Peter Attia
 
 I listen to Peter Attia's podcast, *The Drive*, regularly. I enjoy the depth that he goes into on various medical topics. The last episode I listened to was an episode where he interviews a podiatrist, basically a 3 hour lecture on foot health. He also has episodes on eye health, dental health, mitochondria and zone 2 training, etc.
 
@@ -233,7 +233,7 @@ Attia talks about the "Four Horseman of Death" - heart disease, diabetes, dement
 
 Like a lot of other popular science books these days, *Outlive* is filled with stories meant to draw the reader in, but [I already gripped about these above](http://127.0.0.1:8000/posts/2023-in-books#emalgorithms-to-live-byem). Overall, this health book was better than most, and the overall thesis is important - if you wanna be healthy when you're 80, you gotta start ASAP.
 
-## *Donnie Brasco* By Joe Pistone
+## *Donnie Brasco* by Joe Pistone
 
 I listened to this 3 hour audio book (narrated by Joe Pistone, himself) while cracking pecans. He goes into more detail than is portrayed in the movie, but as far as I could tell, the movie was pretty accurate.
 
@@ -241,7 +241,7 @@ A memorable scene (regrettably not included in the movie) was when Mr. Pistone r
 
 Joe Pistone spent 5 years undercover, infiltrating the mafia, almost getting killed numerous times, almost getting found out numerous times, almost loosing his family, and finally, almost becoming a made man. At the end of the day, the FBI gave Mr. Pistone a $500 bonus for his 5 years of effort. It's great listen. Especially at 3 hours long and narrated by the man, himself.
 
-## *4000 Weeks* By Oliver Burkeman
+## *4000 Weeks* by Oliver Burkeman
 
 You're never gonna finish your to-do list. Just accept that fact. On average, you have about 4000 weeks to live. This was actually a really, really good book. I hate to call it "self-help" because that term is normally met with derision that *4000 Weeks* is not deserving of. *4000 Weeks* is really a long analysis of opportunity cost and the mindset one should take in dealing with unfinished tasks and unmet goals.
 
@@ -307,7 +307,7 @@ I first read Chomsky in 2016. I didn't realize how brainwashed I was. It's devas
 
 *What Uncle Sam Really Wants* examines those incidents and many more that have occurred mostly post-WWII, because that was when the US became a superpower. In fact, Chomsky shows that the US was *explicitly* planning as early as the mid to late 40s how to maintain control post-WWII (see [National Security Council Report 68" (NSC-68)](https://en.wikipedia.org/wiki/NSC_68)).  
 
-## *Foundation* By Isaac Asimov
+## *Foundation* by Isaac Asimov
 
 Whenever I read *The Lord of the Rings*, I get this feeling kinda like some mix of nostalgia and awe. In the LOTR, everything has a history a depth. Often these histories are thousands of years old. It gives the world a literary vibrancy. [^1]
 
