@@ -27,9 +27,6 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          prev_commit=$(git log --oneline | head -n 1)
-          prev_commit_hash="$(echo $prev_commit | awk '{print $1}')"
-          
           aws s3 sync ./output s3://chrisdempewolf.com --color on --exclude "*.woff2" --exclude "*.otf" --delete
           aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths /*
         shell: bash
