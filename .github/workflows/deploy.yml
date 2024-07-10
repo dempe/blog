@@ -37,6 +37,7 @@ jobs:
           run: |
             git config --global user.email "github@green-world.uk"
             git config --global user.name "Github Actions"
+            git checkout main
             git add cloudfront-logs/ public/stats.html
             git commit -m "Update CloudFront logs and stats"
             git push --set-upstream github main
