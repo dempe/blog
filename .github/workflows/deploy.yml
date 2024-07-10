@@ -30,7 +30,22 @@ jobs:
   
         - name: Sync CloudFront logs and generate stats
           run: |
-            aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only --debug
+            aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only
+
+        - name: Debug - List CloudFront log files
+          run: |
+            ls -l cloudfront-logs/
+  
+        - name: Debug - Show a sample CloudFront log file
+          run: |
+            zcat cloudfront-logs/*.gz | head -n 20
+  
+        - name: Debug - Check gunzip output
+          run: |
+            gunzip -c cloudfront-logs/*.gz | head -n 20
+
+        - name: Generate stats using GoAccess
+          run: |
             gunzip -c ./cloudfront-logs/* | goaccess -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
