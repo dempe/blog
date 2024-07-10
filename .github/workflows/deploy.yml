@@ -46,6 +46,31 @@ jobs:
       - name: Start Laravel server
         run: php artisan serve --host=0.0.0.0 --port=8000 &
 
+      - name: Download site using wget
+        run: |
+          wget --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404
+
+      - name: Post-process downloaded files
+        run: |
+          for f in $(rg 'href="http' ./output/ | rg -v 'href="https://chrisdempewolf.com' | awk -F ':' '{print $1}' | uniq); do 
+            sed -i 's|href="http|target="_blank" rel="noopener noreferrer" href="http|g' $f
+          done
+
+          sed -i 's|href="assets/css/style.css"|href="https://chrisdempewolf.com/assets/css/style.css"|g' ./output/404.html
+          sed -i 's|href="assets/css/github-dark.min.css"|href="https://chrisdempewolf.com/assets/css/github-dark.min.css"|g' ./output/404.html
+          sed -i 's|src="assets/js/highlight.min.js"|src="https://chrisdempewolf.com/assets/js/highlight.min.js"|g' ./output/404.html
+          sed -i 's|href="about.html"|href="https://chrisdempewolf.com/about.html"|g' ./output/404.html
+          sed -i 's|href="resume.pdf"|href="https://chrisdempewolf.com/resume.pdf"|g' ./output/404.html
+          sed -i 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.html"|g' ./output/404.html
+
+      - name: Remove unnecessary files
+        run: rm -rf ./output/cdn-cgi/
+
+      - name: Sync CloudFront logs and generate stats
+        run: |
+          aws s3 sync s3://logs-cloudfront-chrisdempewolf.com cloudfront-logs/
+          gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
+
       - name: Install AWS CLI
         run: |
           sudo apt-get update
