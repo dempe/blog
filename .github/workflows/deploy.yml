@@ -30,7 +30,7 @@ jobs:
   
         - name: Sync CloudFront logs and generate stats
           run: |
-            aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only --debug --skip-existing
+            aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only --debug
             gunzip -c ./cloudfront-logs/* | goaccess -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
