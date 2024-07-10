@@ -41,17 +41,18 @@ jobs:
           run: |
             ls -l cloudfront-logs/
   
-        - name: Debug - Show a sample CloudFront log file
+        - name: Process logs with GoAccess
           run: |
-            zcat cloudfront-logs/*.gz | head -n 20
+            echo "Running goaccess on each log file:"
+            for file in cloudfront-logs/*.gz; do
+              echo "Processing $file"
+              gunzip -c "$file" | goaccess --log-format CLOUDFRONT --time-format '%H:%M:%S' --date-format '%d/%b/%Y' - >> goaccess.log
+            done
+            goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format '%H:%M:%S' --date-format '%d/%b/%Y'
   
-        - name: Debug - Check gunzip output
-          run: |
-            gunzip -c cloudfront-logs/*.gz | head -n 20
-
-        - name: Generate stats using GoAccess
-          run: |
-            gunzip -c ./cloudfront-logs/* | goaccess -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
+        # - name: Generate stats using GoAccess
+        #   run: |
+        #     gunzip -c ./cloudfront-logs/* | goaccess -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
           run: |
