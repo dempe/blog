@@ -36,4 +36,5 @@ gunzip -c cloudfront-logs/* | goaccess -o ./output/stats.html --log-format CLOUD
 
 git add output | tee -a "$log_file"
 git commit -am "Build: $prev_commit" | tee -a "$log_file"
+git pull --set-upstream github wip | tee -a "$log_file"
 git push --set-upstream github wip | tee -a "$log_file"

@@ -50,7 +50,7 @@
     </tr>
             </table>
                                 <p>Kindle<sup id="fnref1:1"><a href="converting-kindle-notes-to-markdown.html#fn:1" class="footnote-ref">1</a></sup> has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.</p>
-<p>I store all of my notes in <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://obsidian.md/">Obsidian</a>, which uses Markdown. I thought, &quot;Okay, I'll just use <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://pandoc.org/">Pandoc</a> to convert the HTML to Markdown. No problem!&quot;</p>
+<p>I store all of my notes in <a target="_blank" rel="noopener noreferrer" href="https://obsidian.md/">Obsidian</a>, which uses Markdown. I thought, &quot;Okay, I'll just use <a target="_blank" rel="noopener noreferrer" href="https://pandoc.org/">Pandoc</a> to convert the HTML to Markdown. No problem!&quot;</p>
 <pre><code class="language-bash">pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md</code></pre>
 <h2 id='enter-amazons-dumpster-fire-html'><a class='no-underline text-stone-200 hover:text-chartreuse' href='converting-kindle-notes-to-markdown.html#enter-amazons-dumpster-fire-html'>Enter: Amazon's Dumpster Fire HTML</a></h2>
 <p>This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.<sup id="fnref1:2"><a href="converting-kindle-notes-to-markdown.html#fn:2" class="footnote-ref">2</a></sup> Then I thought, &quot;Well, I guess it's time to bust out some Perl.&quot;</p>
@@ -98,7 +98,7 @@
 &lt;/div&gt;</code></pre>
 <p>Genius.<sup id="fnref1:3"><a href="converting-kindle-notes-to-markdown.html#fn:3" class="footnote-ref">3</a></sup></p>
 <h2 id='the-allure-of-regular-expressions'><a class='no-underline text-stone-200 hover:text-chartreuse' href='converting-kindle-notes-to-markdown.html#the-allure-of-regular-expressions'>The Allure of Regular Expressions</a></h2>
-<p>I'm well aware of the fact that <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/a/1732454">regular expressions are insufficient to parse HTML</a>. Regular expressions are for parsing <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Regular_grammar">regular languages</a>, and HTML is not a regular language.</p>
+<p>I'm well aware of the fact that <a target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/a/1732454">regular expressions are insufficient to parse HTML</a>. Regular expressions are for parsing <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Regular_grammar">regular languages</a>, and HTML is not a regular language.</p>
 <p>But, alas, regexes are like sirens leading unwary sailors astray. &quot;Just one line,&quot; they sing. I oblige. They call out again, &quot;There you go. That wasn't so bad. Just one more.&quot; Rapt in their pithy syntax, I indulge myself further.</p>
 <pre><code class="language-bash">cat my_notes.html |\
 perl -pe 's|\n||g' | \
@@ -153,13 +153,13 @@ pbcopy</code></pre>
     # There is NO chapter number, and there is NO page number
     return None, None</code></pre>
 <p>From there, we basically just find the first &quot;section&quot; node (<code>start_node = soup.find('div', {'class': 'sectionHeading'})</code>) and loop until there are no more siblings: <code>while current.next_sibling:</code>.</p>
-<p><a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69">Here</a> is the full script.  I also have a full repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69">Here</a> is the full script.  I also have a full repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.</p>
 <h2 id='footnotes'><a class='no-underline text-stone-200 hover:text-chartreuse' href='converting-kindle-notes-to-markdown.html#footnotes'>Footnotes</a></h2>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1. Using multiple libraries (via <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://www.overdrive.com/">Overdrive</a>) with Kobo is a nightmare, 2. I can read my Kindle books on my phone, and 3. What this post is about — the ability to email myself the notes I've taken is really convenient.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>Overall, I'm much more of a fan of Kobo; however, I use Kindle for 3 reasons: 1. Using multiple libraries (via <a target="_blank" rel="noopener noreferrer" href="https://www.overdrive.com/">Overdrive</a>) with Kobo is a nightmare, 2. I can read my Kindle books on my phone, and 3. What this post is about — the ability to email myself the notes I've taken is really convenient.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:1" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>Not sure if <code>body</code> counts as semantic HTML, but <em>they don't even use it</em>! (See next footnote). 😒&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:2" rev="footnote" class="footnote-backref">&#8617;</a></p>
@@ -168,7 +168,7 @@ pbcopy</code></pre>
 <p>They even have a <code>&lt;div class="bodyContainer"&gt;</code>, completely redundant to <code>body</code>! I'm convinced that whoever wrote this intentionally made it bad.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:3" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Perl does not use POSIX regexes like <code>sed</code>. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, <code>?</code>, in POSIX. See <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features">Comparison of regular expression engines</a>.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>Perl does not use POSIX regexes like <code>sed</code>. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, <code>?</code>, in POSIX. See <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features">Comparison of regular expression engines</a>.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:5">
 <p><code>|</code> is my favorite delimiter. It's easier to see, and you have to escape it less.&#160;<a href="converting-kindle-notes-to-markdown.html#fnref1:5" rev="footnote" class="footnote-backref">&#8617;</a></p>

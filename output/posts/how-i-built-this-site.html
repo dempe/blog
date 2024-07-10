@@ -62,13 +62,13 @@
 <ul>
 <li>PHP has been the de-facto HTML templating language since the 90s.<sup id="fnref1:1"><a href="how-i-built-this-site.html#fn:1" class="footnote-ref">1</a></sup></li>
 <li>It handles layouts easily — just nest your PHP files within other PHP files.</li>
-<li>It can handle Markdown conversion via <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://parsedown.org/">3rd party libraries</a>.</li>
+<li>It can handle Markdown conversion via <a target="_blank" rel="noopener noreferrer" href="https://parsedown.org/">3rd party libraries</a>.</li>
 <li>It has a built-in web server (<code>php -S addr:port</code>).</li>
 </ul>
-<p>The only things PHP doesn't have are themes (I want to use my own CSS (via <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://tailwindcss.com/">Tailwind</a>) anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;<a href="how-i-built-this-site.html#building-and-deployment">Building and Deployment</a>&quot;).</p>
-<p>PHP (via <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://laravel.com/">Laravel</a>) it is.</p>
+<p>The only things PHP doesn't have are themes (I want to use my own CSS (via <a target="_blank" rel="noopener noreferrer" href="https://tailwindcss.com/">Tailwind</a>) anyway 🤷🏻‍♂️) and a build command.<sup id="fnref1:2"><a href="how-i-built-this-site.html#fn:2" class="footnote-ref">2</a></sup> Building's not a problem, either. I can use a simple <code>wget</code> incantation to pull down a static version of my site from the local server (see the section, &quot;<a href="how-i-built-this-site.html#building-and-deployment">Building and Deployment</a>&quot;).</p>
+<p>PHP (via <a target="_blank" rel="noopener noreferrer" href="https://laravel.com/">Laravel</a>) it is.</p>
 <h2 id='site-structure'><a class='no-underline text-stone-200 hover:text-chartreuse' href='how-i-built-this-site.html#site-structure'>Site Structure</a></h2>
-<p>I want to <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/KISS_principle">keep things as simple as possible</a>. The home page (<code>chrisdempewolf.com</code>) is just a list of my posts. Posts are accessed under <code>chrisdempewolf.com/posts/{post}</code>. Same for tags. Aside from that, I have an about page and my resume (see links at top).</p>
+<p>I want to <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/KISS_principle">keep things as simple as possible</a>. The home page (<code>chrisdempewolf.com</code>) is just a list of my posts. Posts are accessed under <code>chrisdempewolf.com/posts/{post}</code>. Same for tags. Aside from that, I have an about page and my resume (see links at top).</p>
 <p>I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.</p>
 <p>Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.</p>
 <h2 id='using-a-relational-database-for-a-static-site'><a class='no-underline text-stone-200 hover:text-chartreuse' href='how-i-built-this-site.html#using-a-relational-database-for-a-static-site'>Using a Relational Database For a Static Site</a></h2>
@@ -92,7 +92,7 @@ CREATE TABLE "post_tags" (
                 "slug" VARCHAR(255) NOT NULL,
                 "tag" VARCHAR(255) NOT NULL,
                 primary key ("slug", "tag"));</code></pre>
-<p>Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://laravel.com/docs/10.x/eloquent">Eloquent</a>.</p>
+<p>Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, <a target="_blank" rel="noopener noreferrer" href="https://laravel.com/docs/10.x/eloquent">Eloquent</a>.</p>
 <p>The root directory of my site is just:</p>
 <pre><code class="language-PHP">Route::get('/', function () {
     return view('posts', ['posts' =&gt; Post::all()]);
@@ -104,7 +104,7 @@ $posts = $tag-&gt;posts()-&gt;get();
 return view('tag', ['tag' =&gt; $tag,
                     'posts' =&gt; $posts]);</code></pre>
 <p>One line! <code>$posts = $tag-&gt;posts()-&gt;get();</code> is all I need! 😎</p>
-<p>To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://laravel.com/docs/10.x/eloquent-relationships">Eloquent relationships</a>.</p>
+<p>To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter <a target="_blank" rel="noopener noreferrer" href="https://laravel.com/docs/10.x/eloquent-relationships">Eloquent relationships</a>.</p>
 <aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
 <h2 id='eloquent-relationships'><a class='no-underline text-stone-200 hover:text-chartreuse' href='how-i-built-this-site.html#eloquent-relationships'>Eloquent Relationships</a></h2>
 <p>Eloquent allows you to define relationships on your models via methods. It does this by providing various types associated with each type of relationship (one-to-one, one-to-many, many-to-many, etc.). To define a relationship, you need to implement a method on your model that returns the appropriate relationship type.</p>
@@ -222,7 +222,7 @@ http://localhost:8000</code></pre>
 <p>It's convention in Laravel for model names to be singular, and table names to be plural (<code>Post</code> and <code>posts</code>). This makes sense, because a table holds many rows, while a model represents a single row from that table.&#160;<a href="how-i-built-this-site.html#fnref1:4" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>If you want to see this live on your site, install the <a target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" href="https://github.com/barryvdh/laravel-debugbar">DebugBar</a> and click on the DB tab. It will show you all the queries made while fetching the current view!&#160;<a href="how-i-built-this-site.html#fnref1:5" rev="footnote" class="footnote-backref">&#8617;</a></p>
+<p>If you want to see this live on your site, install the <a target="_blank" rel="noopener noreferrer" href="https://github.com/barryvdh/laravel-debugbar">DebugBar</a> and click on the DB tab. It will show you all the queries made while fetching the current view!&#160;<a href="how-i-built-this-site.html#fnref1:5" rev="footnote" class="footnote-backref">&#8617;</a></p>
 </li>
 </ol>
 </div>
