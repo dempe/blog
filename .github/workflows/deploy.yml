@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,6 +23,20 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
+
+      - name: Ensure SQLite is installed
+        run: sudo apt-get install -y sqlite3
+
+      - name: Set up SQLite database
+        run: |
+          touch db.sqlite
+          cp .env.example .env  # Ensures that all necessary environment variables are set for Laravel to run properly.
+          php artisan key:generate  # The application key (APP_KEY) is used by Laravel to encrypt session data and other sensitive information. It is an essential part of the application configuration, and Laravel will not function properly without it. The php artisan key:generate command generates a new application key and sets it in the .env file.
+          php artisan config:cache  # Cache the configuration to speed up subsequent steps.
+        # Set these explicitly to make sure they are correct
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: db.sqlite
 
       - name: Run Laravel migrations and seeders
         run: |
