@@ -36,7 +36,7 @@ jobs:
         # Set these explicitly to make sure they are correct
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: db.sqlite
+          DB_DATABASE: /home/runner/work/blog/blog/db.sqlite  # Ensure this is an absolute path
 
       - name: Run Laravel migrations and seeders
         run: |
