@@ -13,6 +13,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.8'
+          extensions: mbstring, intl, bcmath
+          ini-values: |
+            post_max_size=256M
+            upload_max_filesize=256M
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run Laravel migrations and seeders
+        run: |
+          php artisan migrate:fresh
+          php artisan db:seed
+
+      - name: Start Laravel server
+        run: php artisan serve --host=0.0.0.0 --port=8000 &
+
       - name: Install AWS CLI
         run: |
           sudo apt-get update
@@ -27,9 +47,6 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          prev_commit=$(git log --oneline | head -n 1)
-          prev_commit_hash="$(echo $prev_commit | awk '{print $1}')"
-          
           aws s3 sync ./output s3://chrisdempewolf.com --color on --exclude "*.woff2" --exclude "*.otf" --delete
           aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths /*
         shell: bash
