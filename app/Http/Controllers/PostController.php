@@ -163,8 +163,17 @@ class PostController extends Controller
                function ($matches) {
                    $slug = Str::slug($matches[1]);
                    $id = "{$slug}";
+                   $link_path = public_path('assets/img/icons/link.svg');
+
+                   if (!file_exists($link_path)) {
+                       Log::error('Link SVG file not found: ' . $link_path);
+                       return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
+                   }
+
+                   $svg = file_get_contents($link_path);
 
                    return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
+//                   return "<h2 class='flex items-center' id='{$id}'><a href='#{$id}' class='inline-flex items-center'>{$matches[1]}{$svg}</a></h2>";
                },
             $body);
     }
