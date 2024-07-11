@@ -39,12 +39,9 @@ jobs:
 
         - name: Process logs with GoAccess
           run: |
-            echo "Running goaccess on each log file:"
             for file in cloudfront-logs/*.gz; do
-              echo "Processing $file"
-              zcat "$file"
               file_size=$(stat -c%s "$file")
-              echo "File size: $file_size"
+              echo "Processing $file. Size: $file_size"
               if [ $file_size -eq 0 ]; then
                 echo "Skipping empty file: $file"
                 continue
@@ -52,10 +49,6 @@ jobs:
               zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log
             done
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
-  
-        # - name: Generate stats using GoAccess
-        #   run: |
-        #     gunzip -c ./cloudfront-logs/* | goaccess -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
           run: |
