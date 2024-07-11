@@ -1,94 +1,83 @@
 name: Build and Deploy to S3
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build-stats-page:
     runs-on: ubuntu-latest
     steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3
-  
-        - name: Install Dependencies
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y awscli build-essential libgeoip-dev libncursesw5-dev \
-              libtokyocabinet-dev libssl-dev zlib1g-dev wget
-
-        - name: Install GoAccess 1.9.1
-          run: |
-            wget https://tar.goaccess.io/goaccess-1.9.1.tar.gz
-            tar -xzvf goaccess-1.9.1.tar.gz
-            cd goaccess-1.9.1/
-            ./configure --enable-utf8 --enable-geoip=legacy
-            make
-            sudo make install
-  
-        - name: Configure AWS credentials
-          uses: aws-actions/configure-aws-credentials@v2
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: us-east-1
-  
-        - name: Sync CloudFront logs
-          run: |
-            aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only
-
-        - name: Build aggregate log file
-          run: |
-            batch_size=4096
-            files=()
-            for file in cloudfront-logs/*.gz; do
-              # echo "Processing $file"
-              file_size=$(stat -c%s "$file")
-              echo "File size: $file_size"
-              if [ $file_size -eq 0 ]; then
-                echo "Skipping empty file: $file"
-                continue
-              fi
-              files+=("$file")
-              if [ ${#files[@]} -eq $batch_size ]; then
-                echo "Processing batch of ${#files[@]} files"
-                for f in "${files[@]}"; do
-                  zcat "$f" >> goaccess.log
-                done
-                files=()
-              fi
-            done
-            # Process remaining files in the last batch
-            if [ ${#files[@]} -ne 0 ]; then
-              echo "Processing final batch of ${#files[@]} files"
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli build-essential libgeoip-dev libncursesw5-dev \
+            libtokyocabinet-dev libssl-dev zlib1g-dev wget
+      - name: Install GoAccess 1.9.1
+        run: |
+          wget https://tar.goaccess.io/goaccess-1.9.1.tar.gz
+          tar -xzvf goaccess-1.9.1.tar.gz
+          cd goaccess-1.9.1/
+          ./configure --enable-utf8 --enable-geoip=legacy
+          make
+          sudo make install
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Sync CloudFront logs
+        run: |
+          aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only
+      - name: Build aggregate log file
+        run: |
+          batch_size=4096
+          files=()
+          for file in cloudfront-logs/*.gz; do
+            # echo "Processing $file"
+            file_size=$(stat -c%s "$file")
+            echo "File size: $file_size"
+            if [ $file_size -eq 0 ]; then
+              echo "Skipping empty file: $file"
+              continue
+            fi
+            files+=("$file")
+            if [ ${#files[@]} -eq $batch_size ]; then
+              echo "Processing batch of ${#files[@]} files"
               for f in "${files[@]}"; do
                 zcat "$f" >> goaccess.log
               done
+              files=()
             fi
-
-        -name: Process aggregate log file
-         run: |
-            goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
-  
-        - name: Commit and push changes
-          run: |
-            git config --global user.email "github@green-world.uk"
-            git config --global user.name "Github Actions"
-            git checkout main
-            git add cloudfront-logs/ public/stats.html
-            git commit -m "Update CloudFront logs and stats"
-            git push
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          done
+          # Process remaining files in the last batch
+          if [ ${#files[@]} -ne 0 ]; then
+            echo "Processing final batch of ${#files[@]} files"
+            for f in "${files[@]}"; do
+              zcat "$f" >> goaccess.log
+            done
+          fi
+      - name: Process aggregate log file
+        run: |
+          goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "github@green-world.uk"
+          git config --global user.name "Github Actions"
+          git checkout main
+          git add cloudfront-logs/ public/stats.html
+          git commit -m "Update CloudFront logs and stats"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-latest
     needs: build-stats-page
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -97,13 +86,10 @@ jobs:
           ini-values: |
             post_max_size=256M
             upload_max_filesize=256M
-
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
-
       - name: Ensure SQLite is installed
         run: sudo apt-get install -y sqlite3
-
       - name: Set up SQLite database
         run: |
           touch db.sqlite
@@ -113,63 +99,41 @@ jobs:
         # Set these explicitly to make sure they are correct
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: /home/runner/work/blog/blog/db.sqlite  # Ensure this is an absolute path
-
+          DB_DATABASE: /home/runner/work/blog/blog/db.sqlite # Ensure this is an absolute path
       - name: Run Laravel migrations and seeders
         run: |
           php artisan migrate:fresh
           php artisan db:seed
-
       - name: Start Laravel server
         run: php artisan serve --host=0.0.0.0 --port=8000 &
-
       - name: Wait for Laravel server to start
         run: sleep 5
-
       - name: Check server status
         run: curl -I http://127.0.0.1:8000
-
       - name: Check Laravel logs for errors
         run: |
           if [ -f storage/logs/laravel.log ]; then
             cat storage/logs/laravel.log
           fi
-
       - name: Download site using wget
         run: |
           wget --debug --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
-
       - name: Post-process downloaded files
-        run: |
-          for f in $(rg 'href="http' ./output/ | rg -v 'href="https://chrisdempewolf.com' | awk -F ':' '{print $1}' | uniq); do 
-            sed -i 's|href="http|target="_blank" rel="noopener noreferrer" href="http|g' $f
-          done
-
-          sed -i 's|href="assets/css/style.css"|href="https://chrisdempewolf.com/assets/css/style.css"|g' ./output/404.html
-          sed -i 's|href="assets/css/github-dark.min.css"|href="https://chrisdempewolf.com/assets/css/github-dark.min.css"|g' ./output/404.html
-          sed -i 's|src="assets/js/highlight.min.js"|src="https://chrisdempewolf.com/assets/js/highlight.min.js"|g' ./output/404.html
-          sed -i 's|href="about.html"|href="https://chrisdempewolf.com/about.html"|g' ./output/404.html
-          sed -i 's|href="resume.pdf"|href="https://chrisdempewolf.com/resume.pdf"|g' ./output/404.html
-          sed -i 's|href="tags/index.html"|href="https://chrisdempewolf.com/tags/index.html"|g' ./output/404.html
-
+        run: "for f in $(rg 'href=\"http' ./output/ | rg -v 'href=\"https://chrisdempewolf.com' | awk -F ':' '{print $1}' | uniq); do \n  sed -i 's|href=\"http|target=\"_blank\" rel=\"noopener noreferrer\" href=\"http|g' $f\ndone\n\nsed -i 's|href=\"assets/css/style.css\"|href=\"https://chrisdempewolf.com/assets/css/style.css\"|g' ./output/404.html\nsed -i 's|href=\"assets/css/github-dark.min.css\"|href=\"https://chrisdempewolf.com/assets/css/github-dark.min.css\"|g' ./output/404.html\nsed -i 's|src=\"assets/js/highlight.min.js\"|src=\"https://chrisdempewolf.com/assets/js/highlight.min.js\"|g' ./output/404.html\nsed -i 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html\nsed -i 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html\nsed -i 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html\n"
       - name: Remove unnecessary files
         run: rm -rf ./output/cdn-cgi/
-
       - name: Install AWS CLI
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
       - name: Deploy to S3
         run: |
           aws s3 sync ./output s3://chrisdempewolf.com --color on --exclude "*.woff2" --exclude "*.otf" --delete
           aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths /*
         shell: bash
-
