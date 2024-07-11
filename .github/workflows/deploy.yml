@@ -33,17 +33,16 @@ jobs:
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: us-east-1
   
-        - name: Sync CloudFront logs and generate stats
+        - name: Sync CloudFront logs
           run: |
             aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only
 
-        - name: Process logs with GoAccess
+        - name: Build aggregate log file
           run: |
-            echo "Running goaccess on log files in batches:"
             batch_size=4096
             files=()
             for file in cloudfront-logs/*.gz; do
-              echo "Processing $file"
+              # echo "Processing $file"
               file_size=$(stat -c%s "$file")
               echo "File size: $file_size"
               if [ $file_size -eq 0 ]; then
@@ -63,10 +62,12 @@ jobs:
             if [ ${#files[@]} -ne 0 ]; then
               echo "Processing final batch of ${#files[@]} files"
               for f in "${files[@]}"; do
-                zcat "$f"
+                zcat "$f" >> goaccess.log
               done
             fi
-            echo "Process aggragated log file"
+
+        -name: Process aggregate log file
+         run: |
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
@@ -76,7 +77,7 @@ jobs:
             git checkout main
             git add cloudfront-logs/ public/stats.html
             git commit -m "Update CloudFront logs and stats"
-            git push --set-upstream github main
+            git push
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
