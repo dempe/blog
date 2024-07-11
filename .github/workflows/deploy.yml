@@ -46,7 +46,8 @@ jobs:
             echo "Running goaccess on each log file:"
             for file in cloudfront-logs/*.gz; do
               echo "Processing $file"
-              gunzip -c "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT- >> goaccess.log
+              zcat $file
+              gunzip -c "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT >> goaccess.log
             done
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
