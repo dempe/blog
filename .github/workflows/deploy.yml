@@ -39,18 +39,34 @@ jobs:
 
         - name: Process logs with GoAccess
           run: |
+            echo "Running goaccess on log files in batches:"
+            batch_size=4096
+            files=()
             for file in cloudfront-logs/*.gz; do
+              echo "Processing $file"
               file_size=$(stat -c%s "$file")
-              echo "Processing $file. Size: $file_size"
+              echo "File size: $file_size"
               if [ $file_size -eq 0 ]; then
                 echo "Skipping empty file: $file"
                 continue
               fi
-              if ! zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log; then
-                echo "Error parsing file: $file"
-                continue
+              files+=("$file")
+              if [ ${#files[@]} -eq $batch_size ]; then
+                echo "Processing batch of ${#files[@]} files"
+                for f in "${files[@]}"; do
+                  zcat "$f"
+                done | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log
+                files=()
               fi
             done
+            # Process remaining files in the last batch
+            if [ ${#files[@]} -ne 0 ]; then
+              echo "Processing final batch of ${#files[@]} files"
+              for f in "${files[@]}"; do
+                zcat "$f"
+              done | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log
+            fi
+            echo "Process aggragated log file"
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
         - name: Commit and push changes
