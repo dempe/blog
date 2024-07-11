@@ -46,7 +46,10 @@ jobs:
                 echo "Skipping empty file: $file"
                 continue
               fi
-              zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log
+              if ! zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log; then
+                echo "Error parsing file: $file"
+                continue
+              fi
             done
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
