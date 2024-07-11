@@ -38,7 +38,7 @@
 @endsection
 
 @section('comments')
-    <h2 id="comments"><a class='no-underline text-stone-200 hover:text-white' href="#comments">Comments</a></h2>
+    <h2 id="comments"><a href="#comments">Comments</a></h2>
     <script src="https://giscus.app/client.js"
             data-repo="dempe/blog-comments"
             data-repo-id="R_kgDOLfkyrQ"

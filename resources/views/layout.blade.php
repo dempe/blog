@@ -12,23 +12,23 @@
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="bg-[#0a0a0a] text-neutral-300 font-sans my-2 mx-auto sm:w-[90%] md:w-[80%] lg:w-[700px] xl:w-[1024px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+<body class="bg-[#000000] text-[#cccccc] font-sans my-2 mx-auto sm:w-[90%] md:w-[80%] lg:w-[700px] xl:w-[1024px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
 <header class="flex flex-col mb-6">
-    <a class="text-3xl font-bold no-underline text-stone-200 hover:text-chartreuse text-7xl" href="/"><span style="font-family: 'HanSerif';">初心 </span><br>Shoshin</a>
-    <nav class="flex space-x-4 mt-2 mb-8">
-        <a class="" href="/about">About</a>
+    <a class="text-3xl font-bold no-underline text-[#ffffff] hover:text-[#3366FF]" href="/"><span style="font-family: 'HanSerif';">初心 </span><br>Shoshin</a>
+    <nav class="flex space-x-4 mt-2 mb-8 font-monospace">
+        <a class="" href="/about">/about</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
-        <a href="/resume.pdf" target="_blank">Resume</a>
-        <a href="/tags/">Tags</a>
-        <a href="/feed.rss" target="_blank">RSS</a>
-        <a href="/stats.html" target="_blank">Stats</a>
+        <a href="/resume.pdf" target="_blank">/resume</a>
+        <a href="/tags/">/tags</a>
+        <a href="/feed.rss" target="_blank">/rss</a>
+        <a href="/stats.html" target="_blank">/stats</a>
     </nav>
 </header>
 <main>
     <article class="my-9 pb-9">
         <h1 class="text-3xl font-bold my-2">@yield('title')</h1>
         @hasSection('metadata')
-            <table class="mb-16 text-sm text-stone-400 font-normal no-underline">
+            <table class="mb-16 text-sm text-[#999999] font-normal no-underline font-monospace">
                 @yield('metadata')
             </table>
         @endif

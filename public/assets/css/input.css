@@ -4,11 +4,25 @@
 
 @layer base {
     a {
-        @apply text-chartreuse hover:text-[#ccff00];
+        @apply text-[#3366FF] hover:text-[#3399FF] underline;
+    }
+
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a {
+        @apply text-[#ffffff] hover:text-[#3366FF] no-underline text-lg font-bold my-6 lg:text-2xl;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply text-[#ffffff];
     }
 
     h2 {
-        @apply text-lg font-bold my-6 lg:text-2xl;
+        @apply my-8;
     }
 
     p {
@@ -16,25 +30,24 @@
     }
 
     strong,
-    h1,
-    h2,
+    em:not(h2 em):not(figcaption em),
     li::marker {
-        @apply text-neutral-200;
+        @apply text-[#3399FF];
     }
 
     pre,
     blockquote,
     aside {
-        @apply bg-zinc-800 my-3 rounded;
+        @apply bg-[#000033] my-3 rounded;
     }
 
-    code {
-        @apply bg-zinc-800 text-neutral-200;
+    code:not(pre > code) {
+        @apply bg-[#333333] text-white font-monospace;
     }
 
     blockquote,
     aside {
-        @apply border-l-4 border-solid border-chartreuse p-4 text-stone-200;
+        @apply border-l-4 border-solid border-[#3366FF] p-4 text-[#ffffff];
     }
 
     blockquote {
@@ -67,7 +80,7 @@
     }
 
     figcaption {
-        @apply text-stone-400 text-center text-sm;
+        @apply text-[#999999] text-center text-sm;
     }
 }
 

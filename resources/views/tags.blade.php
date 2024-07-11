@@ -24,7 +24,7 @@
     <table>
         @foreach ($tags->sortBy('tag') as $tag)
             <tr>
-                <td>#{{ $tag->tag }}:&nbsp;&nbsp;</td>
+                <td class="font-monospace">#{{ $tag->tag }}:&nbsp;&nbsp;</td>
                 <td>
                     <a href="{{ '/tags/' . $tag->tag }}">
                         {{ collect($postTags)->filter(fn($pt) => $pt->tag == $tag->tag)->count() }} articles

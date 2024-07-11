@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    #{{ $tag->tag }}
+    <span class="font-monospace">#{{ $tag->tag }}</span>
 @endsection
 @section('metadata')
     <tr>
