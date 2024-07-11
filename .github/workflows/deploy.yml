@@ -43,7 +43,13 @@ jobs:
             for file in cloudfront-logs/*.gz; do
               echo "Processing $file"
               zcat "$file"
-              zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT >> goaccess.log
+              file_size=$(stat -c%s "$file")
+              echo "File size: $file_size"
+              if [ $file_size -eq 0 ]; then
+                echo "Skipping empty file: $file"
+                continue
+              fi
+              zcat "$file" | goaccess --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT - >> goaccess.log
             done
             goaccess goaccess.log -o ./public/stats.html --log-format CLOUDFRONT --time-format CLOUDFRONT --date-format CLOUDFRONT
   
