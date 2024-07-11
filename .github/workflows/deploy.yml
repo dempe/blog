@@ -37,10 +37,6 @@ jobs:
           run: |
             aws s3 sync s3://logs-cloudfront-chrisdempewolf.com ./cloudfront-logs/ --size-only
 
-        - name: Debug - List CloudFront log files
-          run: |
-            ls -l cloudfront-logs/
-  
         - name: Process logs with GoAccess
           run: |
             echo "Running goaccess on each log file:"
