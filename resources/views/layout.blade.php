@@ -14,7 +14,7 @@
 </head>
 <body class="bg-[#000000] text-[#cccccc] font-sans my-2 mx-auto sm:w-[90%] md:w-[80%] lg:w-[700px] xl:w-[1024px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
 <header class="flex flex-col mb-6">
-    <a class="text-3xl font-bold no-underline text-[#ffffff] hover:text-[#3366FF]" href="/"><span style="font-family: 'HanSerif';">初心 </span><br>Shoshin</a>
+    <a class="text-3xl font-bold no-underline text-[#ffffff]" href="/"><span style="font-family: 'HanSerif';">初心 </span><br>Shoshin</a>
     <nav class="flex space-x-4 mt-2 mb-8 font-monospace">
         <a class="" href="/about">/about</a>
         {{-- TODO: use controller to load mysite.com/resume --}}

@@ -135,9 +135,7 @@ jobs:
         run: |
           aws s3 sync ./output s3://chrisdempewolf.com --color on --exclude "*.woff2" --exclude "*.otf" --delete
         shell: bash
-      - name: Wait for S3 bucket to be available
-        run: sleep 10
       - name: Invalidate cache
         run: |
-          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths /*
+          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "/*"
         shell: bash

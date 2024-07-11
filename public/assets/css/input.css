@@ -11,7 +11,7 @@
     h2 > a,
     h3 > a,
     h4 > a {
-        @apply text-[#ffffff] hover:text-[#3366FF] no-underline text-lg font-bold my-6 lg:text-2xl;
+        @apply text-[#ffffff] no-underline text-lg font-bold my-6 lg:text-2xl;
     }
 
     h1,
@@ -38,11 +38,20 @@
     pre,
     blockquote,
     aside {
-        @apply bg-[#000033] my-3 rounded;
+        @apply my-3 rounded;
+    }
+
+    pre {
+        @apply bg-[#222222];
+    }
+
+    blockquote,
+    aside {
+        @apply bg-[#000033];
     }
 
     code:not(pre > code) {
-        @apply bg-[#333333] text-white font-monospace;
+        @apply bg-[#222222] font-monospace;
     }
 
     blockquote,
