@@ -14,7 +14,6 @@
 </head>
 <body class="bg-[#0a0a0a] text-[#cccccc] font-sans my-2 mx-auto sm:w-[90%] md:w-[80%] lg:w-[700px] xl:w-[1024px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
 <header class="flex flex-col mb-6">
-{{--    <a class="text-5xl font-bold no-underline text-[#ffffff]" href="/"><ruby style="font-family: 'HanSerif';">初<rt class="text-lg font-monospace">sho</rt>心<rt class="text-lg font-monospace">shin</rt></ruby></a>--}}
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/"><ruby style="font-family: 'HanSerif';">初心<rt class="text-lg font-monospace">shoshin</rt></ruby></a>
     <nav class="flex space-x-4 mt-2 mb-8 font-monospace">
         <a class="" href="/about">/about</a>

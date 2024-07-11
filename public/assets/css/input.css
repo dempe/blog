@@ -3,26 +3,34 @@
 @tailwind utilities;
 
 @layer base {
+    a:not(header > a):not(h2 > a):not(h3 > a):not(h4 > a) {
+        @apply text-[#3366FF];
+    }
+
     a {
-        @apply text-[#3366FF] hover:text-[#3399FF] underline;
+        @apply underline;
+    }
+
+    a:hover {
+        @apply transition duration-300 ease-in-out text-[#3399FF];
     }
 
     h1 > a,
     h2 > a,
     h3 > a,
     h4 > a {
-        @apply text-[#ffffff] no-underline text-lg font-bold my-6 lg:text-2xl;
+        @apply text-[#ffffff] no-underline font-bold;
     }
 
     h1,
     h2,
     h3,
     h4 {
-        @apply text-[#ffffff];
+        @apply text-[#ffffff] no-underline;
     }
 
     h2 {
-        @apply my-8;
+        @apply my-8 text-lg lg:text-2xl;
     }
 
     p {
@@ -93,6 +101,10 @@
     }
 }
 
+/*a:hover {*/
+/*    text-shadow: 0 0 24px;*/
+/*}*/
+
 .blockquote figcaption {
     text-align: right;
 }
@@ -123,7 +135,7 @@
 
 @font-face {
     font-family: 'HanSerif';
-    src:  url('/assets/fonts/HanSerif-Regular.otf') format('opentype'); /* Optional */
+    src:  url('/assets/fonts/HanSerif-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
