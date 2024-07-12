@@ -8,9 +8,9 @@
                 <div>
                     <a class="text-lg font-normal text-[#cccccc] no-underline" href="{{ '/posts/' . $post->slug }}">{{ $post->title }}</a>
                 </div>
-                <div class="flex flex-wrap space-x-3">
+                <div class="flex flex-wrap">
                     @foreach($post->tags as $tag)
-                        <a class="text-sm text-[#999999] font-monospace font-normal no-underline" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
+                        <a class="text-sm mr-3 text-[#999999] font-monospace font-normal no-underline" href="{{ '/tags/' . $tag->tag }}">#{{ $tag->tag }}</a>
                     @endforeach
                 </div>
             </div>

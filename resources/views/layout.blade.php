@@ -12,20 +12,20 @@
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="antialiased box-border bg-[#0a0a0a] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] my-8">
+<body class="antialiased box-border bg-[#0a0a0a] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/">
         <ruby style="font-family: 'HanSerif';">初心
             <rt class="text-lg font-monospace">shoshin</rt>
         </ruby>
     </a>
-    <nav class="flex flex-wrap space-x-4 mt-2 mb-8 font-monospace">
-        <a class="no-underline" href="/about">/about</a>
+    <nav class="flex flex-wrap mt-2 mb-8 font-monospace">
+        <a class="mr-4 no-underline" href="/about">/about</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
-        <a class="no-underline" href="/resume.pdf" target="_blank">/resume</a>
-        <a class="no-underline" href="/tags/">/tags</a>
-        <a class="no-underline" href="/feed.rss" target="_blank">/rss</a>
-        <a class="no-underline" href="/stats.html" target="_blank">/stats</a>
+        <a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a>
+        <a class="mr-4 no-underline" href="/tags/">/tags</a>
+        <a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a>
+        <a class="mr-4 no-underline" href="/stats.html" target="_blank">/stats</a>
     </nav>
 </header>
 <main>

@@ -59,7 +59,7 @@
     }
 
     code:not(pre > code) {
-        @apply bg-[#222222] font-monospace;
+        @apply bg-[#333333];
     }
 
     code {
