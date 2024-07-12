@@ -133,7 +133,7 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to S3
         run: |
-          aws s3 sync ./output s3://chrisdempewolf.com --color on --exclude "*.woff2" --exclude "*.otf" --delete
+          aws s3 sync ./output s3://chrisdempewolf.com --color on --size-only --delete
         shell: bash
       - name: Invalidate cache
         run: |
