@@ -5,7 +5,7 @@ published: "2024-07-06 17:56"
 tags: books
 ---
 
-This post is 7 months late, but that's actually not bad. The time lapse has allowed me to reflect on what I read. I can now clearly see what books have left a lasting impact on me. I read 31 books in 2023. Here are my thoughts on each.
+This post is 7 months late, but that's actually not bad. The time-lapse has allowed me to reflect on what I read. I can now clearly see what books have left a lasting impact on me. I read 31 books in 2023. Here are my thoughts on each.
 
 ## *Permutation City* by Greg Egan
 
@@ -13,7 +13,7 @@ This post is 7 months late, but that's actually not bad. The time lapse has allo
 
 This was the first book I've read by the anonymous Australian genius, Greg Egan (check out [dude's website](https://www.gregegan.net/) - it's a treasure trove of math and physics). I was looking for some hard sci-fi, and I got it.
 
-A bit of a personal tangent… I'm an atheist. I do not believe in the Christian afterlife. I do however believe in the possibility of an afterlife strictly in terms of information. When you die, your brain is in a certain state. This state is represented by the various positions and (sub)states of electrons, protons, atoms, molecules, etc. [^2] I believe this state could just as well be represented by other means (possibly in another universe). That is, the state of your consciousness at death could *theoretically* be mapped to another living entity and continued.
+A bit of a personal tangent… I'm an atheist. I do not believe in the Christian afterlife. I do however believe in the possibility of an afterlife strictly in terms of information. When you die, your brain is in a certain state. This state is represented by the various positions and (sub)states of electrons, protons, atoms, molecules, etc. [^1] I believe this state could just as well be represented by other means (possibly in another universe). That is, the state of your consciousness at death could *theoretically* be mapped to another living entity and continued.
 
 In *Permutation City*, Egan seems to share this view that a state is fundamentally just data. And data can be copied, deleted, manipulated…
 
@@ -35,7 +35,7 @@ TSAR is notable for lacking a hero. Jake is supposedly the "hero by elimination"
 
 I picked this up randomly to distract myself, because I wanted to read something. I was just expecting to read it for a half an hour or so to help me fall asleep. But it turned out that it was really good. I ended up finishing the whole thing a couple of days later.
 
-*Heir to the Empire* was the first novel in the extended universe. The stories of Luke, Leia, Han Solo, et al are continued. Five years after the events of *The Return of the Jedi*, the New Republic is trying to establish themselves as leaders of the galaxy and keep what remains of the Empire at bay.
+*Heir to the Empire* was the first novel in the extended universe. The stories of Luke, Leia, Han Solo, et al. are continued. Five years after the events of *The Return of the Jedi*, the New Republic is trying to establish themselves as leaders of the galaxy and keep what remains of the Empire at bay.
 
 Zahn creates a compelling new nemesis with Grand Admiral Thrawn. Thrawn is nothing like his predecessor, Darth Vader. Thrawn is cunning, learned, observant, and always looking towards the future. Unlike Darth Vader, Thrawn is able to control his greed and not let it get in the way. Numerous times, Thrawn is willing to surrender a battle in hopes of winning the war.
 
@@ -54,7 +54,7 @@ After reading *Heir*, I had to continue the trilogy.
 
 ## *The Cuckoo's Egg* by Clifford Stoll
 
-Along with *Born to Run*, this was one of the most memorable books I read in 2023. A young astronomer notices a slight accounting descrepancy while working at Lawrence Livermore National Laboratory, and starts a year-and-a-half long quest to find the culprit. *The Cuckoo's Egg* is the true and rivetting story of one of the first Internet hackers. I really had trouble putting this book down.
+Along with *Born to Run*, this was one of the most memorable books I read in 2023. A young astronomer notices a slight accounting discrepancy while working at Lawrence Livermore National Laboratory, and starts a year-and-a-half long quest to find the culprit. *The Cuckoo's Egg* is the true and riveting story of one of the first Internet hackers. I really had trouble putting this book down.
 
 As a techie, it was interesting to learn about the world of tech in the 80s. I got a real kick out of the fact that apparently Cobol was considered ancient in the 80s, too, "Cobol, the most ancient of computer languages." Programmers had different constraints to worry about (e.g., baud rate).
 
@@ -78,9 +78,9 @@ The book contains a recipe I use for chocolate chip cookies almost to the T!
 
 ## *The Brain Fog Fix*
 
-This was an audio book I listened to at 3x speed while riding my recumbent bike. I didn't have high expectations, so I wasn't disappointed. Lots of books like these are littered with studies blown out of proportion, cherry picking certain studies to make a case, or outright pseudoscience.
+This was an audiobook I listened to at 3x speed while riding my recumbent bike. I didn't have high expectations, so I wasn't disappointed. Lots of books like these are littered with studies blown out of proportion, cherry-picking certain studies to make a case, or outright pseudoscience.
 
-I was listening for facts that I could verify later. In that regard, the book was worthwhile. Here are somethings that I learned (and verified):
+I was listening for facts that I could verify later. In that regard, the book was worthwhile. Here are some things that I learned (and verified):
 
 + Cortisol lowers dopamine effectiveness over the long term
 + Cortisol prohibits serotonin binding
@@ -99,7 +99,7 @@ I was listening for facts that I could verify later. In that regard, the book wa
 + Having a growth mindset about problems in your life increases confidence because you are no longer blaming yourself
 + The best time to do something healthy is usually when you least feel like it (hard to prove, but makes sense)
 
-Actually, come to think of it, if that's all I got out of a ~250 page book, that's pretty light. Thank God for 3x audio.
+Actually, come to think of it, if that's all I got out of a ~250-page book, that's pretty light. Thank God for 3x audio.
 
 ## *Moonwalking With Einstein* by Joushua Foer
 
@@ -177,17 +177,17 @@ I had never read *Henry V*, but I thoroughly enjoyed it. Being one of Shakespear
 
 ## *The Road* by Cormack McCarthy
 
-McCarthy is a master of prose. His writing is simple yet evocative. The scenes in this book illicited some of the most vivid mental imagery I have ever encountered in a book. You get used to the lack of punctuation pretty quick and probably even come to like it.
+McCarthy is a master of prose. His writing is simple yet evocative. The scenes in this book elicited some of the most vivid mental imagery I have ever encountered in a book. You get used to the lack of punctuation pretty quick and probably even come to like it.
 
-*The Road* reminded me a lot of *The Last of Us* - a man taking care of a child in a post-apocolyptic world.
+*The Road* reminded me a lot of *The Last of Us* - a man taking care of a child in a post-apocalyptic world.
 
-I'll never forget the part of the story where they enter a house and the dad goes down into the locked basement. In the darkness through the flame of his lighter, he sees corpses. But they start moving. They're alive. There's a man on a sordid mattress with his leg cut off and cuaterized. The people in the basement (who can) run to him and reach out to him like zombies, pleading for help. The man escapes and slams the door shut just as the owners of the house arrive home. They humans in the basement were being kept alive as cattle for food for the people living in the house.
+I'll never forget the part of the story where they enter a house and the dad goes down into the locked basement. In the darkness through the flame of his lighter, he sees corpses. But they start moving. They're alive. There's a man on a sordid mattress with his leg cut off and cauterized. The people in the basement (who can) run to him and reach out to him like zombies, pleading for help. The man escapes and slams the door shut just as the owners of the house arrive home. They humans in the basement were being kept alive as cattle for food for the people living in the house.
 
 > The land was gullied and eroded and barren. The bones of dead creatures sprawled in the washes. Middens of anonymous trash.  
 
 ## *The Quiet American* by Graham Greene
 
-TQA revolves around 3 characters - Pyle (the American), Fowler (the Brit), and Phuong (the Viet). The symbolism is obvious. Phoung lacks any personality. She does whatever Pyle, Fowler, or sometimes her big sister tell her to do.
+TQA revolves around 3 characters - Pyle (the American), Fowler (the Brit), and Phương (the Viet). The symbolism is obvious. Phương lacks any personality. She does whatever Pyle, Fowler, or sometimes her big sister tell her to do.
 
 Pyle is portrayed as a socially awkward, stubborn idealist convinced that America needs to provide a "Third Force" to Vietnam so named because it existed outside of Communism and colonialism. Pyle is younger and stronger than Fowler, and he blatantly tells Fowler that he has fallen in love with Phuong (Fowler's then girlfriend). Pyle got his idea of a "Third Force" from his extensive readings of a single, obscure author ironically named York.
 
@@ -211,9 +211,9 @@ I listened to the audio book narrated by Heaney, himself.
 
 Andy Greenburg is my favorite tech journalist. He somehow manages to weave technical details into a gripping narrative, something like a real life cyberpunk novel.
 
-The topics in *Sandworm* are scary. The United States, in creating Stuxnet, created the first (known) computer virus that physical manifestations. Since then, Russia has repeatedly used computer viruses to knock out power grids in Georgia and Ukraine. The books also details experiments done against the US powergrid, demonstrating that it is not immune to such attacks. In fact, the US powergrid is more advanced (i.e., has more computers) than those in Ukraine and Georgia, making it even more of a target for hacking.
+The topics in *Sandworm* are scary. The United States, in creating Stuxnet, created the first (known) computer virus that physical manifestations. Since then, Russia has repeatedly used computer viruses to knock out power grids in Georgia and Ukraine. The books also details experiments done against the US power grid, demonstrating that it is not immune to such attacks. In fact, the US power grid is more advanced (i.e., has more computers) than those in Ukraine and Georgia, making it even more of a target for hacking.
 
-Greenburg goes into all of this and more as he tracks down the culprits who created a notorious virus called Sandworm. Kremlinology plays a large part in the story. Since the Cold War, the Russians have employed various tactics and strategies in order to cover their tracks. Interestingly, many of these same tactics have analogues in the modern world, and the Russians, prolific hackers that they are, readily employ modern analogues of these in their viruses. For example, they hacked into the Winter Olympics in Seoul. Upon analysis, everyone immediately suspected the North Korea (for obvious reasons). However, the authors of the worm increased suspicions even further by including particular exploits that the North Koreans were known to be fond of using. For whatever reason, they also included Chinese signatures. This confused analyists, but also placed suspicion on China. It was only months later that diligent analyst discovered the unmistakable signs of Russia. Ironically enough, this security analyist was, himself, Russian.
+Greenburg goes into all of this and more as he tracks down the culprits who created a notorious virus called Sandworm. Kremlinology plays a large part in the story. Since the Cold War, the Russians have employed various tactics and strategies in order to cover their tracks. Interestingly, many of these same tactics have analogues in the modern world, and the Russians, prolific hackers that they are, readily employ modern analogues of these in their viruses. For example, they hacked into the Winter Olympics in Seoul. Upon analysis, everyone immediately suspected the North Korea (for obvious reasons). However, the authors of the worm increased suspicions even further by including particular exploits that the North Koreans were known to be fond of using. For whatever reason, they also included Chinese signatures. This confused analysts, but also placed suspicion on China. It was only months later that diligent analyst discovered the unmistakable signs of Russia. Ironically enough, this security analyst was, himself, Russian.
 
 Security is only going to become an ever more relevant field as time goes on, as computers proliferate, and technology grows. *Sandworm* gives the non-expert a glimpse into the scary developments taking place in the field of computer security.
 
@@ -223,7 +223,7 @@ Eric O'Neil is a former FBI agent who, as a new, junior spy, was tasked with tak
 
 ## *Outlive* by Peter Attia
 
-I listen to Peter Attia's podcast, *The Drive*, regularly. I enjoy the depth that he goes into on various medical topics. The last episode I listened to was an episode where he interviews a podiatrist, basically a 3 hour lecture on foot health. He also has episodes on eye health, dental health, mitochondria and zone 2 training, etc.
+I listen to Peter Attia's podcast, *The Drive*, regularly. I enjoy the depth that he goes into on various medical topics. The last episode I listened to was an episode where he interviews a podiatrist, basically a 3-hour lecture on foot health. He also has episodes on eye health, dental health, mitochondria and zone 2 training, etc.
 
 The overall theme of his show is longevity and healthspan, and how these can be maintained starting no matter how old you are. Moreover, that they *should* be maintained no matter how old you are.
 
@@ -235,7 +235,7 @@ Like a lot of other popular science books these days, *Outlive* is filled with s
 
 ## *Donnie Brasco* by Joe Pistone
 
-I listened to this 3 hour audio book (narrated by Joe Pistone, himself) while cracking pecans. He goes into more detail than is portrayed in the movie, but as far as I could tell, the movie was pretty accurate.
+I listened to this 3 hour audiobook (narrated by Joe Pistone, himself) while cracking pecans. He goes into more detail than is portrayed in the movie, but as far as I could tell, the movie was pretty accurate.
 
 A memorable scene (regrettably not included in the movie) was when Mr. Pistone recounts when he and other mafiosos went to a theme park. He tells how they locked arms while sliding down a giant water slide. How could you pass up a scene of dangerous mafiosos sliding down a water slide, giggling like school girls?
 
@@ -273,7 +273,7 @@ I'm already an atheist. But I don't really know anything about Atheism, rather i
 
 If I already reject religion and have my reasons for rejecting religion, why should I read a book on Atheism? What would I get out of it? That's exactly why I read this book.
 
-*God is not Great* is mostly what I thought it would be - a long treatise on how religion harms the world and warps minds. What did surprise me was the level of detail, Mr. Hitchens' sarcastic and unmistakably British humour, and the lucid, logical, penetrating prose. Even if you already consider yourself Atheist, *God is not Great* can help you to see things much more clearly. All of this is even more remarkable given Hitchens infamous penchant for the bottle. Other writers mentioned they couldn't keep up with him on a night out. Yet despite binge drinking and chain smoking into his sixties, his writing never diminished in either quantity or quality.
+*God is not Great* is mostly what I thought it would be - a long treatise on how religion harms the world and warps minds. What did surprise me was the level of detail, Mr. Hitchens' sarcastic and unmistakably British humour, and the lucid, logical, penetrating prose. Even if you already consider yourself Atheist, *God is not Great* can help you to see things much more clearly. All of this is even more remarkable given Hitchens infamous penchant for the bottle. Other writers mentioned they couldn't keep up with him on a night out. Yet despite binge-drinking and chain-smoking into his sixties, his writing never diminished in either quantity or quality.
 
 I found Hitchens to be endlessly quotable, so I'll limit myself to 5 quotes:
 
@@ -299,7 +299,7 @@ Personal tangent:
 
 I do believe that faith in a god can help you in certain circumstances (but in *no* way do I believe this help for the individual outweighs the damage it does overall). It gives you hope, for example, when you're severely depressed. You can pray and through the placebo affect or otherwise, it might help you a bit.
 
-In college I found Buddhism, particularly Zen Buddhism. Zen offers a more effective way for dealing with unfortunate circumstances than say, Christianity. Zen trains you to focus your mind. When you can focus your mind, you can learn to quiet the thoughts that give you pain. That is, Zen is productive. It provides you with a measurable ([measurable, in fact, at the neurological level](https://news.harvard.edu/gazette/story/2018/04/harvard-researchers-study-how-mindfulness-may-change-the-brain-in-depressed-patients/)) way to improve yourself to overcome hardships. This is far better than what Christianity provides (prayer and hope/faith). The Christian method of prayer might temporarily alleviate the symptoms, but Zen attacks the cause.
+In college, I found Buddhism, particularly Zen Buddhism. Zen offers a more effective way for dealing with unfortunate circumstances than say, Christianity. Zen trains you to focus your mind. When you can focus your mind, you can learn to quiet the thoughts that give you pain. That is, Zen is productive. It provides you with a measurable ([measurable, in fact, at the neurological level](https://news.harvard.edu/gazette/story/2018/04/harvard-researchers-study-how-mindfulness-may-change-the-brain-in-depressed-patients/)) way to improve yourself to overcome hardships. This is far better than what Christianity provides (prayer and hope/faith). The Christian method of prayer might temporarily alleviate the symptoms, but Zen attacks the cause.
 
 ## *What Uncle Sam Really Wants* by Noam Chomsky
 
@@ -309,7 +309,7 @@ I first read Chomsky in 2016. I didn't realize how brainwashed I was. It's devas
 
 ## *Foundation* by Isaac Asimov
 
-Whenever I read *The Lord of the Rings*, I get this feeling kinda like some mix of nostalgia and awe. In the LOTR, everything has a history a depth. Often these histories are thousands of years old. It gives the world a literary vibrancy. [^1]
+Whenever I read *The Lord of the Rings*, I get this feeling kinda like some mix of nostalgia and awe. In the LOTR, everything has a history a depth. Often these histories are thousands of years old. It gives the world a literary vibrancy[^2].
 
 *Foundation* by Isaac Asimov is not nearly the masterpiece that the LOTR is; however, interestingly, I get some of the same feelings reading *Foundation* that I do reading LOTR. But where the literary depth of the LOTR is in the past, the literary depth in *Foundation* is in the future, or, rather, we see it being built as the novel takes place over 1000 some odd years. We first encounter Hari Seldon as a living mortal. Through the ages, we watch him become a legend throughout the galaxy.
 

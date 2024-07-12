@@ -1,12 +1,12 @@
 ---
-title: How I Built This Site
-slug: how-i-built-this-site
+title: Building a Static Site from Scratch
+slug: building-a-static-site-from-scratch
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2023-03-05 17:24"
+updated: "2024-07-11 22:51:30"
 ---
 
-I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. An SSG can't be *that* hard.
+I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. Plus, I'd rather spend my time learning more reusable technologies. An SSG can't be *that* hard.
 
 ## How about PHP?
 
@@ -19,16 +19,16 @@ First of all, what do SSGs offer?
 + **Themes**
 + A way to **build** the raw, static site to be deployed
 
-It occurred to me that PHP can accomplish most of this.
+PHP can accomplish most of this. Sure, other languages can, too, but none of them work as well with HTML as PHP. Here's why.
 
-+ PHP has been the de-facto HTML templating language since the 90s.[^1]
++ PHP has been the de-facto HTML templating language since the 90s[^1].
 + It handles layouts easily — just nest your PHP files within other PHP files.
 + It can handle Markdown conversion via [3rd party libraries](https://parsedown.org/).
-+ It has a built-in web server (`php -S addr:port`).
++ It has a built-in web server (`php -S addr:port`) (though, I'm now using Laravel (`php artisan serve`)).
 
-The only things PHP doesn't have are themes (I want to use my own CSS (via [Tailwind](https://tailwindcss.com/)) anyway 🤷🏻‍♂️) and a build command.[^2] Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "[Building and Deployment](#building-and-deployment)").
+The only things PHP doesn't have are themes (I want to use my own CSS (via [Tailwind](https://tailwindcss.com/)) anyway 🤷🏻‍♂️) and a build command[^2]. Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "[Building and Deployment](#building-and-deployment)").
 
-PHP (via [Laravel](https://laravel.com/)) it is.
+PHP/[Laravel](https://laravel.com/) it is.
 
 ## Site Structure
 
@@ -115,7 +115,7 @@ public function posts(): BelongsToMany
     }
 ```
 
-There's a lot of parameters here, but it's not too bad. The first parameter to `belongsToMany` tells Eloquent that a `Tag` can have many `Post` s. The second parameter (`PostTag::class`) tells Eloquent that `Tag` s are related to `Post` s via `PostTag` (the `post_tags` table) AKA a "pivot table".[^4]
+There's a lot of parameters here, but it's not too bad. The first parameter to `belongsToMany` tells Eloquent that a `Tag` can have many `Post` s. The second parameter (`PostTag::class`) tells Eloquent that `Tag` s are related to `Post` s via `PostTag` (the `post_tags` table) AKA a "pivot table"[^4].
 
 The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that `tag` is the foreign key on the `post_tags` table. The fourth argument tells Eloquent that `slug` is the foreign key on the `posts_tags` table for `posts`. The fifth argument tells Eloquent that `tag` is the key for the `tags` table. Finally, the sixth argument tells Eloquent that `slug` is the key for the `posts` table.
 
@@ -153,7 +153,7 @@ foreach ($posts as $post) {
 }
 ```
 
-The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query![^5]
+The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query[^5]!
 
 Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs — lazy and eager.
 
@@ -178,9 +178,9 @@ Doing this allows me to track when posts were last updated, which I display in t
 
 ## Creating a New Post
 
-I made a custom Artisan command to make a new post: `php artisan make:post <title> <tags>`. For this post, I ran `php artisan make:post "How I Built This Site" "tech php"`. This slugifys the title and creates a new file, `resources/posts/how-i-built-this-site.md`.
+I made a custom Artisan command to make a new post: `php artisan make:post <title> <tags>`. For this post, I ran `php artisan make:post "Building a Static Site from Scratch" "tech php"`. This slugifys the title and creates a new file, `resources/posts/building-a-static-site-from-scratch.md`.
 
-After the new post has been imported to the DB, I can go to the URL `<host>/posts/how-i-built-this-site`. This is what the route looks like:
+After the new post has been imported to the DB, I can go to the URL `<host>/posts/building-a-static-site-from-scratch`. This is what the route looks like:
 
 ```php
 Route::get('/posts/{post}', function ($slug) {
