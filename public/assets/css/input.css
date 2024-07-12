@@ -38,7 +38,6 @@
     }
 
     strong,
-    em:not(h2 em):not(figcaption em),
     li::marker,
     code:not(pre > code){
         @apply text-[#ffffff];
