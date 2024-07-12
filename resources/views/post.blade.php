@@ -64,22 +64,22 @@
     <nav class="hidden md:flex md:flex-row justify-between border-t-4 pt-8">
         <div>
             @if(isset($post->prev))
-                <a class="no-underline" href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
+                <a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
             @endif
         </div>
         <div>
             @if(isset($post->next))
-                <a class="no-underline" href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
+                <a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
             @endif
         </div>
     </nav>
 
     <ul class="list-none space-y-4 md:hidden">
         @if(isset($post->prev))
-            <li><a class="no-underline" href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></li>
+            <li><a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></li>
         @endif
         @if(isset($post->next))
-            <li><a class="no-underline" href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></li>
+            <li><a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></li>
         @endif
     </ul>
 @endsection

@@ -15,7 +15,7 @@
 <body class="antialiased box-border bg-[#0a0a0a] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/">
-        <ruby style="font-family: 'HanSerif';">初心
+        <ruby style="font-family: 'HanSerif',serif;">初心
             <rt class="text-lg font-monospace">shoshin</rt>
         </ruby>
     </a>
