@@ -18,6 +18,10 @@
         </tr>
     @endif
     <tr>
+        <td>Words: </td>
+        <td>{{ $post->wc }}</td>
+    </tr>
+    <tr>
         <td>Tags:&nbsp;&nbsp;</td>
         <td>
             @foreach($tags as $tag)

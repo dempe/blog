@@ -31,6 +31,7 @@ class PostController extends Controller
             $pd = new ParsedownExtra();
             $post = Post::findOrFail($slug);
 
+            $post->wc = str_word_count($post->body);
             $new_body = $post->body;
             $new_body = PostController::order_footnotes($new_body);
             $new_body = $pd->text($new_body);
@@ -52,103 +53,6 @@ class PostController extends Controller
 
     public function redirect() {
         return redirect('/');
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public static function process_references(string $body): string {
-        // First, we must convert all 'REF.'s to links so that they will be loaded properly as nodes in the DOM.
-        $refPattern = '/\sREF\./';
-        preg_match_all($refPattern, $body, $referencedStatements);
-
-        for ($i = 0; $i < sizeof($referencedStatements[0]); $i++) {
-            $refNum = $i + 1;
-            $refLink = ' <a href="#ref:' . $refNum . '" class="reference-ref" id="refstate' . $refNum . '">[' . $refNum . ']</a>.';
-
-            // Replace the first occurrence of "REF." in body with the new link
-            $body = preg_replace($refPattern, $refLink, $body, 1);
-        }
-
-
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
-        $dom->loadHTML($body);
-        libxml_clear_errors();
-        $xpath = new DOMXPath($dom);
-        $referenceHeadings = $xpath->query("//h2[@id='references']");
-        $references = $xpath->query("//p[starts-with(., 'REF:')]");
-
-
-        if ($referenceHeadings->length === 0 && $references->length === 0 && sizeof($referencedStatements[0]) === 0) {
-            return $body;
-        }
-        if ($referenceHeadings->length > 1) {
-            throw new Exception("Multiple Reference sections found.");
-        }
-        // This one actually happened when I changed my h2 IDs format
-        if ($referenceHeadings->length == 0 && $references->length > 0) {
-            throw new Exception("References found, but no Reference section found.");
-        }
-        if ($referenceHeadings->length != 0 && $references->length === 0) {
-            throw new Exception("Found Reference header but no references.");
-        }
-        if (sizeof($referencedStatements[0]) != $references->length) {
-            $i = sizeof($referencedStatements[0]);
-            throw new Exception("Number of backref links {$references->length} does not match number of referenced statements {$i} in the document.");
-        }
-
-        // Create the reference div and ol below the "References" heading
-        $referenceHeading = $referenceHeadings->item(0);
-        $ownerDocument = $referenceHeading->ownerDocument;
-        $referenceDiv = $ownerDocument->createElement('div');
-        $referenceList = $ownerDocument->createElement('ol');
-        $referenceDiv->setAttribute('class', 'references');
-
-        // Append the reference ol to the reference div
-        $referenceDiv->appendChild($referenceList);
-
-        // Insert the `references` div after the `h2-references` heading
-        if ($referenceHeading->nextSibling) {
-            $referenceHeading->parentNode->insertBefore($referenceDiv, $referenceHeading->nextSibling);
-        } else {
-            $referenceHeading->parentNode->appendChild($referenceDiv);
-        }
-
-        // Add the <li>s to the references ol
-        for ($i = 0; $i < $references->length; $i++) {
-            $refNum = $i + 1;
-            $ithReference = $references->item($i);
-            $referenceListItem = $ownerDocument->createElement('li');
-            $referenceListItem->setAttribute('class', 'reference-backref');
-            $referenceListItem->setAttribute('id', "ref:{$refNum}");
-            $referenceList->appendChild($referenceListItem);
-
-            $aChildren = $xpath->query('.//a', $ithReference);
-
-            // If it has child nodes, it has a link, which we need to process.
-            if ($aChildren->length > 0) {
-                $referenceListItem->appendChild($aChildren[0]);
-            }
-            else {
-                $referenceListItem->textContent = str_replace("REF: ",'', $ithReference->textContent);
-            }
-
-
-            // Build back ref link and attach as child to list item
-            $backRefLink = $ownerDocument->createElement('a');
-            $backRefLink->setAttribute('id', "ref:{$refNum}");
-            $backRefLink->setAttribute('class', 'reference-backref');
-            $backRefLink->setAttribute('href', "#refstate{$refNum}");
-
-            $backRefLink->textContent = ' ↩';
-            $referenceListItem->appendChild($backRefLink);
-
-            // Finally remove the unprocessed reference
-            $ithReference->parentNode->removeChild($ithReference);
-        }
-
-        return $dom->saveXML();
     }
 
     /**
