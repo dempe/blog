@@ -60,22 +60,22 @@
     <nav class="hidden md:flex md:flex-row justify-between border-t-4 pt-8">
         <div>
             @if(isset($post->prev))
-                <span>⬅️ <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></span>
+                <a href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
             @endif
         </div>
         <div>
             @if(isset($post->next))
-                <span><a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a> ➡️</span>
+                <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
             @endif
         </div>
     </nav>
 
-    <ul class="md:hidden">
+    <ul class="list-none space-y-4 md:hidden">
         @if(isset($post->prev))
-            <li class="font-bold text-stone-200 mb-2">Previous post: <a href="http://localhost:8000/posts/{{$post->prev->slug}}">{{$post->prev->title}}</a></li>
+            <li><a class="no-underline" href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></li>
         @endif
         @if(isset($post->next))
-            <li class="font-bold text-stone-200">Next post: <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}}</a></li>
+            <li><a class="no-underline" href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></li>
         @endif
     </ul>
 @endsection
