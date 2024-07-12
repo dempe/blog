@@ -12,14 +12,14 @@
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="bg-[#0a0a0a] text-[#cccccc] font-sans my-2 mx-auto sm:w-[90%] md:w-[80%] lg:w-[700px] xl:w-[1024px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+<body class="antialiased box-border bg-[#0a0a0a] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] my-8">
 <header class="flex flex-col mb-6">
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/">
         <ruby style="font-family: 'HanSerif';">初心
             <rt class="text-lg font-monospace">shoshin</rt>
         </ruby>
     </a>
-    <nav class="flex space-x-4 mt-2 mb-8 font-monospace">
+    <nav class="flex flex-wrap space-x-4 mt-2 mb-8 font-monospace">
         <a class="no-underline" href="/about">/about</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
         <a class="no-underline" href="/resume.pdf" target="_blank">/resume</a>
