@@ -21,7 +21,7 @@
         <td>Tags:&nbsp;&nbsp;</td>
         <td>
             @foreach($tags as $tag)
-                <a href="/tags/{{ $tag }}">{{ $tag }}</a>&nbsp;
+                <a class="no-underline" href="/tags/{{ $tag }}">{{ $tag }}</a>&nbsp;
             @endforeach
         </td>
     </tr>
@@ -60,12 +60,12 @@
     <nav class="hidden md:flex md:flex-row justify-between border-t-4 pt-8">
         <div>
             @if(isset($post->prev))
-                <a href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
+                <a class="no-underline" href="http://localhost:8000/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
             @endif
         </div>
         <div>
             @if(isset($post->next))
-                <a href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
+                <a class="no-underline" href="http://localhost:8000/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
             @endif
         </div>
     </nav>
