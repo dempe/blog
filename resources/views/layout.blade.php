@@ -12,7 +12,7 @@
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <title>Chris Dempewolf's Blog</title>
 </head>
-<body class="antialiased box-border bg-[#0a0a0a] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
+<body class="antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/">
         <ruby style="font-family: 'HanSerif',serif;">初心
