@@ -114,11 +114,7 @@ jobs:
           if [ -f storage/logs/laravel.log ]; then
             cat storage/logs/laravel.log
           fi
-          pwd
-          ls -la public/assets
-          ls -la /home/runner/work/_temp
-          for f in $(public/assets/js/*); do echo $f; done
-          for f in $(public/assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
+          curl -I http://127.0.0.1:8000/assets/js/highlight.min.js
       - name: Download site using wget
         run: |
           wget --debug --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
@@ -128,21 +124,21 @@ jobs:
         run: "for f in $(rg 'href=\"http' ./output/ | rg -v 'href=\"https://chrisdempewolf.com' | awk -F ':' '{print $1}' | uniq); do \n  sed -i 's|href=\"http|target=\"_blank\" rel=\"noopener noreferrer\" href=\"http|g' $f\ndone\n\nsed -i 's|href=\"assets/css/style.css\"|href=\"https://chrisdempewolf.com/assets/css/style.css\"|g' ./output/404.html\nsed -i 's|href=\"assets/css/github-dark.min.css\"|href=\"https://chrisdempewolf.com/assets/css/github-dark.min.css\"|g' ./output/404.html\nsed -i 's|src=\"assets/js/highlight.min.js\"|src=\"https://chrisdempewolf.com/assets/js/highlight.min.js\"|g' ./output/404.html\nsed -i 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html\nsed -i 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html\nsed -i 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html\n"
       - name: Remove unnecessary files
         run: rm -rf ./output/cdn-cgi/
-#      - name: Install AWS CLI
-#        run: |
-#          sudo apt-get update
-#          sudo apt-get install -y awscli
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v2
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-east-1
-#      - name: Deploy to S3
-#        run: |
-#          aws s3 sync ./output s3://chrisdempewolf.com --color on --size-only --delete
-#        shell: bash
-#      - name: Invalidate cache
-#        run: |
-#          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "/*"
-#        shell: bash
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./output s3://chrisdempewolf.com --color on --size-only --delete
+        shell: bash
+      - name: Invalidate cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "/*"
+        shell: bash
