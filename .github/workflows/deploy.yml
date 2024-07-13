@@ -115,9 +115,9 @@ jobs:
             cat storage/logs/laravel.log
           fi
           pwd
-          ls -la
-          ls -la public
+          ls -la public/assets
           ls -la /home/runner/work/_temp
+          for f in $(public/assets/js/*); do echo $f; done
           for f in $(public/assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
       - name: Download site using wget
         run: |
