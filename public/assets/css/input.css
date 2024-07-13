@@ -173,7 +173,8 @@
 
 @font-face {
     font-family: 'HanSerif';
-    src:  url('/assets/fonts/HanSerif-Regular.otf') format('opentype');
+    src:  url('/assets/fonts/HanSerif-Regular-subset.woff') format('woff'),
+          url('/assets/fonts/HanSerif-Regular-subset.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
