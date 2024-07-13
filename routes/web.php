@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ResumeController;
@@ -13,6 +14,8 @@ Route::get('/tags', [TagController::class, 'index']);
 Route::get('/tags/{tag}', [TagController::class, 'show']);
 //Route::get('/resume', [ResumeController::class, 'show']);
 Route::get('/feed.rss', [FeedController::class, 'index']);
+Route::get('/assets/js/highlight.min.js', [AssetController::class, 'getJavaScript']);
+
 
 
 Route::get('/about', function () {
