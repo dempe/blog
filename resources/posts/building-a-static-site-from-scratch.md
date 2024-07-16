@@ -3,14 +3,20 @@ title: Building a Static Site from Scratch
 slug: building-a-static-site-from-scratch
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2024-07-11 22:51:30"
+updated: "2024-07-15 21:58:30"
 ---
 
-I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes. Plus, I'd rather spend my time learning more reusable technologies. An SSG can't be *that* hard.
+## First of All, Why?
 
-## How about PHP?
+One, I wanted the [Ikea effect](https://en.wikipedia.org/wiki/IKEA_effect) of building my own blog from scratch.
 
-First of all, what do SSGs offer?
+Two, I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes.
+
+Three, for the learning experience. I'd rather spend my time learning technologies more reusable than a pre-built SSG framework. In building this site, I've learned about utility-first CSS ([Tailwind](https://tailwindcss.com/)), database structure, MVC, the N+1 problem and eager loading, PHP, and many more specific technologies. More importantly, it was good practice designing a system from scratch.
+
+## Where do I Start?
+
+What do SSGs offer?
 
 + **Markdown** (or similar) to HTML conversion
 + **Templating** to inject data into a standard template
@@ -18,29 +24,27 @@ First of all, what do SSGs offer?
 + **Layouts** to structure your site
 + **Themes**
 + A way to **build** the raw, static site to be deployed
++ **Drafts**. Drafts are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft.
 
-PHP can accomplish most of this. Sure, other languages can, too, but none of them work as well with HTML as PHP. Here's why.
+The biggest problems I've had with SSGs is with templates, layouts, and themes.  Handling themes is no problem. I can easily style the site the way I want with CSS. Then what about templates and layouts?
 
-+ PHP has been the de-facto HTML templating language since the 90s[^1].
-+ It handles layouts easily — just nest your PHP files within other PHP files.
-+ It can handle Markdown conversion via [3rd party libraries](https://parsedown.org/).
-+ It has a built-in web server (`php -S addr:port`) (though, I'm now using Laravel (`php artisan serve`)).
+It occurred to me that PHP has been the de facto HTML templating language since the 90s [^1].  Layouts are also a cinch — just nest your PHP files within other PHP files.
 
-The only things PHP doesn't have are themes (I want to use my own CSS (via [Tailwind](https://tailwindcss.com/)) anyway 🤷🏻‍♂️) and a build command[^2]. Building's not a problem, either. I can use a simple `wget` incantation to pull down a static version of my site from the local server (see the section, "[Building and Deployment](#building-and-deployment)").
+For the other problems, PHP can handle Markdown conversion via 3rd party libraries, and it has a built-in web server via `php -S addr:port` (`php artisan serve` if you're using Laravel). [^2]
+
+That leaves building.  For that, I use `wget` to save a static version of my site from the local server. Then I just need to push that to my S3 bucket. I have added all of my build and deploy scripts to Github Actions, so that my site builds and deploys upon pushing to `main`.
 
 PHP/[Laravel](https://laravel.com/) it is.
 
 ## Site Structure
 
-I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top).
+I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built using [GoAccess](https://goaccess.io/) and an [RSS feed](/feed.rss).
 
-I had intended to have separate sections for notes (for shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
+I had intended to have separate sections for notes (notes about shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
 
-Most popular SSGs support some kind of draft feature. This is totally unnecessary in my opinion. I can just delegate to Git by checking out a new branch for each draft.
+## Using a Database to Build My Site
 
-## Using a Relational Database For a Static Site
-
-When running my local Laravel server, I use SQLite to store two entities — posts and tags.
+When running my local Laravel server, I use [SQLite](https://www.sqlite.org/) to store two entities — posts and tags.
 
 There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
 
@@ -79,7 +83,9 @@ Route::get('/', function () {
 });
 ```
 
-A simple `SELECT *`. But what about the more complex relationships we discussed? For example, how can I get all posts for a tag? Here's the relevant portion from that route:
+A simple `SELECT *`.
+
+But what about the more complex relationships we discussed? For example, how can I get all posts for a tag? Here's the relevant portion from that route:
 
 ```PHP
 $tag = Tag::findOrFail($query);
@@ -125,7 +131,7 @@ But that's not all. It also allows for something called "**eager loading**".
 
 ## Avoiding N+1 with Eager Loading
 
-Eager loading is Eloquent's way of averting the N+1 query problem. Here's how you use it.
+Eager loading is Eloquent's way of averting the [N+1 query problem](https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping). Here's how you use it.
 
 Say I have the following code:
 
@@ -139,7 +145,7 @@ foreach ($posts as $post) {
 }
 ```
 
-This results in N+1 queries — 1 to fetch all posts and N to fetch the tags for each post. If we we querying the DB directly, we would just do a `join`, but Eloquent has no idea that we are going to fetch the tags for each post when we call `Post::all();`. This is, in fact, a common problem with all ORMs.
+This results in N+1 queries — 1 to fetch all posts and N to fetch the tags for each post. If you query the DB directly, you would just do a `join`, but Eloquent has no idea that we are going to fetch the tags for each post when we call `Post::all();`. This is, in fact, a common problem with all ORMs.
 
 Now that we've defined our relationships on each model, we can *tell* Eloquent that we are going to fetch each post's tags (i.e, use eager loading).
 
@@ -159,11 +165,15 @@ Eloquent does this by attaching an array of `Tag` s to each `Post` when you call
 
 ## Seeding and Migrations
 
-As mentioned, I store all of my posts in a database (Sqlite, specifically). This allows me to easily handle the many-to-many relationship between posts and tags. But I need to actually import the posts.
+### Seeding
 
-I realize it's probably a huge anti-pattern, but so far I've been using DB seeders for this purpose. Aside from using seeders for something other than their intended purpose, another downside is that I need to run `php artisan db:seed` every time I update a post for that update to be reflected on the server.
+As mentioned, I store all of my posts in a database. This allows me to easily handle the many-to-many relationship between posts and tags. But I need to actually import the posts.
 
-Instead, I plan to create a custom `artisan` command to import my posts. This will at least remove the anti-pattern of using seeders to import my posts.
+I realize it's a huge anti-pattern, but so far I've been using DB seeders for this purpose. It allows me to programmatically load my posts without leaving `artisan` while taking advantage of Laravel's built-in seeding functionality.
+
+However, I would like to migrate away from this, since this is not the intended purpose of seeders.  Instead, I plan to create a custom `artisan` command to update my `posts` table to reflect my `resources/posts` directory. This will remove the anti-pattern while allowing me to continue using `artisan`.
+
+### Migrations 
 
 I have pretty standard migrations for each table, `posts`, `tags`, and `post_tags`. The only hiccup was that I needed to use raw SQL (via the `DB::statement` method) on the `posts` table. Sqlite doesn't have `ON UPDATE CURRENT_TIMESTAMP` like in MySQL. Instead, I had to create a trigger:
 
@@ -180,19 +190,7 @@ Doing this allows me to track when posts were last updated, which I display in t
 
 I made a custom Artisan command to make a new post: `php artisan make:post <title> <tags>`. For this post, I ran `php artisan make:post "Building a Static Site from Scratch" "tech php"`. This slugifys the title and creates a new file, `resources/posts/building-a-static-site-from-scratch.md`.
 
-After the new post has been imported to the DB, I can go to the URL `<host>/posts/building-a-static-site-from-scratch`. This is what the route looks like:
-
-```php
-Route::get('/posts/{post}', function ($slug) {
-    try {
-        return view('post', ['post' => Post::findOrFail($slug),
-                             'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
-    }
-    catch (ModelNotFoundException $e) {
-        return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
-    }
-});
-```
+After the new post has been imported to the DB, I can go to the URL `<host>/posts/building-a-static-site-from-scratch`.
 
 It loads the `post` view, which is a Blade template:
 
@@ -209,7 +207,7 @@ It loads the `post` view, which is a Blade template:
 
 ## Building and Deployment
 
-I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to pull down a static version from the local server. The command looks like this:
+I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to save a static version from the local server. The command looks like this:
 
 ```bash 
 wget \
@@ -237,13 +235,15 @@ Here's an explanation of the options used:
 + `--adjust-extension`: Adjusts the file extension if necessary.
 + `--no-host-directories`: Disables the creation of host directories.
 
-Not the pretties build method, but, in my opinion, it's worth it to use Laravel to build my static site.
+Not the prettiest build method, but, in my opinion, it's worth it to have complete control over my site.
 
 After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --delete` to sync my S3 bucket.
 
 ## Conclusion
 
-This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site.  And working with Laravel is a sheer pleasure.  If you are a PHP and/or Laravel fan, give it a try!
+This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site. I can easily add new features and change my site's layout or theme. Plus, I learned (and am learning) a lot.
+
+And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my blogs built on Hugo and Jekyll.
 
 ## Footnotes
 
