@@ -107,7 +107,7 @@ Another one of my favorites from 2023. This book details the lives of memory cha
 
 He does delve into the techniques, but the book is much more narrative than exposition. That being said, I *did* learn a lot of practical information about memory. Moreover, I can confidently say that using these techniques I can remember nearly any semantic information you give me. Except for cards and binary digits. I see no utility in being able to remember a deck of cards or a string of binary digits, though it is certainly possible.
 
-I focused more on the memory palace technique (the method of loci) and developing imagery. According to the Romans places (loci) and images were the two components of what they called "artificial memory", or memory of things using mnemonic devices as opposed to "natural memory" (unaided memory). During the Roman Empire, paper was not easy to come by, yet rhetoric was a highly praised skill. How do you go about delivering a speech if you can't take notes, let alone have a script? You memorize it! Thus, developing a sound memory was a key part of Roman curriculum.
+I focused more on the memory palace technique (the method of *loci*) and developing imagery. According to the Romans places (*loci*) and images were the two components of what they called "artificial memory", or memory of things using mnemonic devices as opposed to "natural memory" (unaided memory). During the Roman Empire, paper was not easy to come by, yet rhetoric was a highly praised skill. How do you go about delivering a speech if you can't take notes, let alone have a script? You memorize it! Thus, developing a sound memory was a key part of Roman curriculum.
 
 <aside>
 ASIDE:
@@ -231,7 +231,7 @@ That was the topic of *Outlive*, namely investigating what contributes most to l
 
 Attia talks about the "Four Horseman of Death" - heart disease, diabetes, dementia, and obesity. I particularly enjoyed his discussion of how cardiovascular disease works, how plaques build up over time. He talks about the benefits of aerobic (particularly zone 2 training) and anaerobic exercise and how they relate to healthspan.
 
-Like a lot of other popular science books these days, *Outlive* is filled with stories meant to draw the reader in, but [I already gripped about these above](http://127.0.0.1:8000/posts/2023-in-books#emalgorithms-to-live-byem). Overall, this health book was better than most, and the overall thesis is important - if you wanna be healthy when you're 80, you gotta start ASAP.
+Like a lot of other popular science books these days, *Outlive* is filled with stories meant to draw the reader in, but [I already griped about these above](http://127.0.0.1:8000/posts/2023-in-books#algorithms-to-live-by). Overall, this health book was better than most, and the overall thesis is important - if you wanna be healthy when you're 80, you gotta start ASAP.
 
 ## *Donnie Brasco* by Joe Pistone
 

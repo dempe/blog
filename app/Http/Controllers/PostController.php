@@ -8,7 +8,6 @@ use DOMDocument;
 use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use ParsedownExtra;
 use stdClass;
@@ -55,9 +54,9 @@ class PostController extends Controller
     }
 
     private static function build_dom_and_query(string $body, string $query) {
-        $dom = new DOMDocument();
+        $dom = new DOMDocument('1.0', 'UTF-8');
         libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
-        $dom->loadHTML($body);
+        $dom->loadHTML('<?xml encoding="UTF-8">' . $body);
         libxml_clear_errors();
         $xpath = new DOMXPath($dom);
 
