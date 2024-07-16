@@ -309,7 +309,7 @@ I first read Chomsky in 2016. I didn't realize how brainwashed I was. It's devas
 
 ## *Foundation* by Isaac Asimov
 
-Whenever I read *The Lord of the Rings*, I get this feeling kinda like some mix of nostalgia and awe. In the LOTR, everything has a history a depth. Often these histories are thousands of years old. It gives the world a literary vibrancy[^2].
+Whenever I read *The Lord of the Rings*, I get this feeling kinda like some mix of nostalgia and awe. In the LOTR, everything has a history, a depth. Often, these histories are thousands of years old. It gives the world a literary vibrancy[^2].
 
 *Foundation* by Isaac Asimov is not nearly the masterpiece that the LOTR is; however, interestingly, I get some of the same feelings reading *Foundation* that I do reading LOTR. But where the literary depth of the LOTR is in the past, the literary depth in *Foundation* is in the future, or, rather, we see it being built as the novel takes place over 1000 some odd years. We first encounter Hari Seldon as a living mortal. Through the ages, we watch him become a legend throughout the galaxy.
 
@@ -321,5 +321,5 @@ In any case, the movie (starring Tom Hanks) is great, but the book might be a bi
 
 ## Footnotes
 
-[^1]: In fact, this is precisely why Tolkien never published *The Silmarillion*. *The Silmarillion* takes place at the creation of the world. It details how things came to be. Tolkien right recognized that it was not at all suited for a general audience. It lacked "literary depth".
-[^2]: To be fair, this state would map to a number far beyond human comprehension, which is why neuroscience is a field.
+[^1]: To be fair, this state would map to a number far beyond human comprehension, which is why neuroscience is a field.
+[^2]: In fact, this is precisely why Tolkien never published *The Silmarillion*. *The Silmarillion* takes place at the creation of the world. It details how things came to be. Tolkien recognized that it was not at all suited for a general audience. It lacked "literary depth".
