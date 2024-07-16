@@ -3,7 +3,7 @@ title: Building a Static Site from Scratch
 slug: building-a-static-site-from-scratch
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2024-07-15 21:58:30"
+updated: "2024-07-16 10:03:44"
 ---
 
 ## First of All, Why?
@@ -24,15 +24,15 @@ What do SSGs offer?
 + **Layouts** to structure your site
 + **Themes**
 + A way to **build** the raw, static site to be deployed
-+ **Drafts**. Drafts are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft.
++ **Drafts** are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft.
 
-The biggest problems I've had with SSGs is with templates, layouts, and themes.  Handling themes is no problem. I can easily style the site the way I want with CSS. Then what about templates and layouts?
+The biggest problems I've had with SSGs is with templates, layouts, and themes.  Handling themes on my own is no problem. I can easily style the site the way I want with Tailwind. Then what about templates and layouts?
 
-It occurred to me that PHP has been the de facto HTML templating language since the 90s [^1].  Layouts are also a cinch — just nest your PHP files within other PHP files.
+PHP has been the *de facto* HTML templating language since the 90s [^1].  Layouts are also a cinch — just nest your PHP files within other PHP files.
 
 For the other problems, PHP can handle Markdown conversion via 3rd party libraries, and it has a built-in web server via `php -S addr:port` (`php artisan serve` if you're using Laravel). [^2]
 
-That leaves building.  For that, I use `wget` to save a static version of my site from the local server. Then I just need to push that to my S3 bucket. I have added all of my build and deploy scripts to Github Actions, so that my site builds and deploys upon pushing to `main`.
+That leaves building.  For that, I use `wget` to save a static version of my site from the local server. Then I just need to push that to my S3 bucket. I have added all of my build and deploy scripts to Github Actions, so that my site builds and deploys upon pushing to `github/main`.
 
 PHP/[Laravel](https://laravel.com/) it is.
 
@@ -42,13 +42,13 @@ I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS
 
 I had intended to have separate sections for notes (notes about shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
 
-## Using a Database to Build My Site
+## Keeping Track of Posts and Tags with a Database
 
-When running my local Laravel server, I use [SQLite](https://www.sqlite.org/) to store two entities — posts and tags.
+When running my local Laravel server, I use [SQLite](https://www.sqlite.org/) to store two entities — `posts` and `tags`.
 
 There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
 
-This is actually pretty tricky to set up without a relational DB. With a relational DB, it's a piece of cake, and another reason I love my switch to PHP/Laravel.
+This can be somewhat tricky to set up without a relational DB. With a relational DB, it's a piece of cake.
 
 In a relational DB, many-to-many relationships are modeled with 3 tables[^3] — two for the two entities and a third to store the relationships between them. For example, say `slug` is the primary key for `posts` and `tag` (the tag name) is the primary key for the table `tags`. The third table, `post_tags` has two columns — `slug` and `tag` to indicate which posts are associated with which tags and which tags are associated with which posts.
 
@@ -75,29 +75,26 @@ CREATE TABLE "post_tags" (
 
 Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, [Eloquent](https://laravel.com/docs/10.x/eloquent).
 
-The root directory of my site is just:
+The root directory of my site is just a method on my `PostController`:
 
-```PHP
-Route::get('/', function () {
+```php
+public function index() {
     return view('posts', ['posts' => Post::all()]);
-});
+}
 ```
 
 A simple `SELECT *`.
 
-But what about the more complex relationships we discussed? For example, how can I get all posts for a tag? Here's the relevant portion from that route:
+How can I get all posts for a tag? Here's the relevant portion from the `PostController`:
 
-```PHP
-$tag = Tag::findOrFail($query);
-$posts = $tag->posts()->get();
-
-return view('tag', ['tag' => $tag,
-                    'posts' => $posts]);
+```php
+return view('post', ['post' => $post,
+                     'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
 ```
 
-One line! `$posts = $tag->posts()->get();` is all I need! 😎
+One line!
 
-To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between posts, tags, and post_tags. Enter [Eloquent relationships](https://laravel.com/docs/10.x/eloquent-relationships).
+To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between `posts`, `tags`, and `post_tags`. Enter [Eloquent relationships](https://laravel.com/docs/10.x/eloquent-relationships).
 
 <aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
 
@@ -107,7 +104,7 @@ Eloquent allows you to define relationships on your models via methods. It does 
 
 In my case, I implemented a method that returns `BelongsToMany` on both the `Post` model and the `Tag` model. Here's what that method looks like on the `Tag` model:
 
-```PHP
+```php
 public function posts(): BelongsToMany
     {
         return $this->belongsToMany(
