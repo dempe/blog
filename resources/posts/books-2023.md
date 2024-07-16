@@ -305,7 +305,7 @@ In college, I found Buddhism, particularly Zen Buddhism. Zen offers a more effec
 
 I first read Chomsky in 2016. I didn't realize how brainwashed I was. It's devastating to think how terribly my own country has treated less powerful nations (and people). Most people nowadays know about Henry Kissenger, his bombing of Laos, Cambodia, his role in the incitement of the overthrow of the Chilean government in the 1970s.
 
-*What Uncle Sam Really Wants* examines those incidents and many more that have occurred mostly post-WWII, because that was when the US became a superpower. In fact, Chomsky shows that the US was *explicitly* planning as early as the mid to late 40s how to maintain control post-WWII (see [National Security Council Report 68" (NSC-68)](https://en.wikipedia.org/wiki/NSC_68)).  
+*What Uncle Sam Really Wants* examines those incidents and many more that have occurred mostly post-WWII, because that was when the US became a superpower. In fact, Chomsky shows that the US was *explicitly* planning as early as the mid to late 40s how to maintain control post-WWII (see [National Security Council Report 68 (NSC-68)](https://en.wikipedia.org/wiki/NSC_68)).  
 
 ## *Foundation* by Isaac Asimov
 
