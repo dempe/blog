@@ -62,23 +62,48 @@ class PostController extends Controller
      * @return string html
      */
     public static function add_header_ids($body): string {
+        $body = self::add_header_ids_h2($body);
+        return self::add_header_ids_h3($body);
+    }
+
+    public static function add_header_ids_h2($body): string {
         return preg_replace_callback(
             '|^<h2>(.*)</h2>$|m',
-               function ($matches) {
-                   $slug = Str::slug($matches[1]);
-                   $id = "{$slug}";
-                   $link_path = public_path('assets/img/icons/link.svg');
+            function ($matches) {
+                $slug = Str::slug($matches[1]);
+                $id = "{$slug}";
+                $link_path = public_path('assets/img/icons/link.svg');
 
-                   if (!file_exists($link_path)) {
-                       Log::error('Link SVG file not found: ' . $link_path);
-                       return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
-                   }
+                if (!file_exists($link_path)) {
+                    Log::error('Link SVG file not found: ' . $link_path);
+                    return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
+                }
 
-                   $svg = file_get_contents($link_path);
+                $svg = file_get_contents($link_path);
 
-                   return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
+                return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
 //                   return "<h2 class='flex items-center' id='{$id}'><a href='#{$id}' class='inline-flex items-center'>{$matches[1]}{$svg}</a></h2>";
-               },
+            },
+            $body);
+    }
+
+    public static function add_header_ids_h3($body): string {
+        return preg_replace_callback(
+            '|^<h3>(.*)</h3>$|m',
+            function ($matches) {
+                $slug = Str::slug($matches[1]);
+                $id = "{$slug}";
+                $link_path = public_path('assets/img/icons/link.svg');
+
+                if (!file_exists($link_path)) {
+                    Log::error('Link SVG file not found: ' . $link_path);
+                    return "<h3 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h3>";
+                }
+
+                $svg = file_get_contents($link_path);
+
+                return "<h3 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h3>";
+            },
             $body);
     }
 

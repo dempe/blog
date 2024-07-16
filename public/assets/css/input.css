@@ -17,20 +17,22 @@
 
     h1 > a,
     h2 > a,
-    h3 > a,
-    h4 > a {
+    h3 > a {
         @apply text-[#ffffff] no-underline hover:underline font-bold;
     }
 
     h1,
     h2,
-    h3,
-    h4 {
-        @apply text-[#ffffff] no-underline;
+    h3 {
+        @apply my-8 text-[#ffffff] no-underline;
     }
 
     h2 {
-        @apply my-8 text-lg lg:text-2xl;
+        @apply text-lg md:text-2xl;
+    }
+
+    h3 {
+        @apply text-base font-bold md:text-xl;
     }
 
     p {
