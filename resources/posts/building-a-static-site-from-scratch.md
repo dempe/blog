@@ -37,7 +37,7 @@ PHP/[Laravel](https://laravel.com/) it is.
 
 ## Site Structure
 
-I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built every Wednesday at midnight using [GoAccess](https://goaccess.io/) and Github Actions and an [RSS feed](/feed.rss).
+I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Individual posts are accessed under `chrisdempewolf.com/posts/{post}`. Analogously for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built every Wednesday at midnight using [GoAccess](https://goaccess.io/) and Github Actions and an [RSS feed](/feed.rss).
 
 I had intended to have separate sections for notes (notes about shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
 
@@ -59,6 +59,7 @@ The `posts`, `tags`, and `post_tags` tables, respectively :
 CREATE TABLE "posts" (
                 "slug" VARCHAR(255) PRIMARY KEY,
                 "title" VARCHAR(255),
+                "subhead" VARCHAR(255),
                 "body" TEXT NOT NULL,
                 "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
