@@ -26,7 +26,7 @@ What do SSGs offer?
 + A way to **build** the raw, static site to be deployed
 + **Drafts** are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft.
 
-The biggest problems I've had with SSGs is with templates, layouts, and themes.  Handling themes on my own is no problem. I can easily style the site the way I want with Tailwind. Then what about templates and layouts?
+The biggest problems I've had with SSGs are with templates, layouts, and themes.  Handling themes on my own is no problem. I can easily style the site the way I want with Tailwind. Then what about templates and layouts?
 
 PHP has been the *de facto* HTML templating language since the 90s [^1].  Layouts are also a cinch — just nest your PHP files within other PHP files.
 
