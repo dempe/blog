@@ -6,6 +6,7 @@ class Page {
     protected $title;
     protected $published;
     protected $slug;
+    protected $subHead;
     protected $body;
     protected $mTime;
 
@@ -16,10 +17,11 @@ class Page {
      * @param $body
      * @param $mTime
      */
-    public function __construct($title, $published, $slug, $body, $mTime) {
+    public function __construct($title, $published, $slug, $subHead, $body, $mTime) {
         $this->title = $title;
         $this->published = $published;
         $this->slug = $slug;
+        $this->subHead = $subHead;
         $this->body = $body;
         $this->mTime = $mTime;
     }
@@ -43,6 +45,13 @@ class Page {
      */
     public function getSlug() {
         return $this->slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubHead() {
+        return $this->subHead;
     }
 
     /**

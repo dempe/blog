@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
 
         return ['slug' => $document->slug,
                 'title' => $document->title,
+                'subhead' => $document->subhead,
                 'created_at' => $document->published,
 
                 /* Can't use filesystem timestamp for updated as this includes style changes */

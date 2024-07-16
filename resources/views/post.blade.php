@@ -4,6 +4,10 @@
     {{ $post->title }}
 @endsection
 
+@section('subhead')
+    {!! $post->subhead  !!}
+@endsection
+
 @section('metadata')
     <tr>
         <td>Published:&nbsp;&nbsp;</td>

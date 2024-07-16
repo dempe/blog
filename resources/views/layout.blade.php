@@ -35,7 +35,10 @@
 </header>
 <main>
     <article class="my-9 pb-9">
-        <h1 class="text-3xl font-bold my-2">@yield('title')</h1>
+        <h1 class="text-3xl font-bold my-4">@yield('title')</h1>
+        @hasSection('subhead')
+            <p class="text-lg text-[#999999] my-4">@yield('subhead')</p>
+        @endif
         @hasSection('metadata')
             <table class="mb-16 text-sm text-[#999999] font-normal no-underline font-monospace">
                 @yield('metadata')

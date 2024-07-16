@@ -3,6 +3,9 @@
 @section('title')
     <span class="font-monospace">#{{ $tag->tag }}</span>
 @endsection
+@section('subhead')
+    {!! $tag->description !!}
+@endsection
 @section('metadata')
     <tr>
         <td>Published:&nbsp;&nbsp;</td>
@@ -20,6 +23,6 @@
     </tr>
 @endsection
 @section('content')
-    <p>{{ $tag->description }}</p>
+
     @include('posts-list')
 @endsection

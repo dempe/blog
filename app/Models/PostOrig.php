@@ -10,8 +10,8 @@ class PostOrig extends Page {
 
     private $tags;
 
-    public function __construct($title, $published, $slug, $body, $mTime, $tags) {
-        parent::__construct($title, $published, $slug, $body, $mTime);
+    public function __construct($title, $published, $slug, $subHead, $body, $mTime, $tags) {
+        parent::__construct($title, $published, $slug, $subHead, $body, $mTime);
 
         $this->tags = $tags;
     }
@@ -37,6 +37,7 @@ class PostOrig extends Page {
         return new PostOrig($document->title,
                             $document->published,
                             $document->slug,
+                            $document->subhead,
                             $document->body(),
                             filemtime($path),
                             $document->tags);
