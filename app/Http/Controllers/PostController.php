@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use ParsedownExtra;
+use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 
@@ -53,13 +54,23 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    private static function open_links_in_external_tab(string $body) {
+    private static function build_dom_and_query(string $body, string $query) {
         $dom = new DOMDocument();
         libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
         $dom->loadHTML($body);
         libxml_clear_errors();
         $xpath = new DOMXPath($dom);
-        $anchors = $xpath->query("//a");
+
+
+        $data = new stdClass();
+        $data->dom = $dom;
+        $data->query_results = $xpath->query($query);;
+        return $data;
+    }
+
+    private static function open_links_in_external_tab(string $body) {
+        $result = self::build_dom_and_query($body, "//a");
+        $anchors = $result->query_results;
 
         foreach ($anchors as $anchor) {
             $href = $anchor->getAttribute('href');
@@ -69,7 +80,7 @@ class PostController extends Controller
             }
         }
 
-        return $dom->saveHTML();
+        return $result->dom->saveHTML();
     }
 
     private static function is_external_link($url) {
@@ -87,48 +98,24 @@ class PostController extends Controller
      * @return string html
      */
     public static function add_header_ids($body): string {
-        return self::add_header_ids_h2(self::add_header_ids_h3($body));
+        return self::add_header_ids_helper(self::add_header_ids_helper($body, "//h2"), "//h3");
     }
 
-    public static function add_header_ids_h2($body): string {
-        return preg_replace_callback(
-            '|^<h2>(.*)</h2>$|m',
-            function ($matches) {
-                $slug = Str::slug($matches[1]);
-                $id = "{$slug}";
-                $link_path = public_path('assets/img/icons/link.svg');
+    public static function add_header_ids_helper($body, $query): string {
+        $results = self::build_dom_and_query($body, $query);
+        $headers = $results->query_results;
 
-                if (!file_exists($link_path)) {
-                    Log::error('Link SVG file not found: ' . $link_path);
-                    return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
-                }
+        foreach ($headers as $header) {
+            $slug = Str::slug($header->nodeValue);
+            $header->setAttribute('id', $slug);
 
-                $svg = file_get_contents($link_path);
+            $a = $results->dom->createElement('a', $header->nodeValue);
+            $a->setAttribute('href', "#{$slug}");
+            $header->nodeValue = '';
+            $header->appendChild($a);
+        }
 
-                return "<h2 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h2>";
-//                   return "<h2 class='flex items-center' id='{$id}'><a href='#{$id}' class='inline-flex items-center'>{$matches[1]}{$svg}</a></h2>";
-            },
-            $body);
-    }
-
-    public static function add_header_ids_h3($body): string {
-        return preg_replace_callback(
-            '|^<h3>(.*)</h3>$|m',
-            function ($matches) {
-                $slug = Str::slug($matches[1]);
-                $id = "{$slug}";
-                $link_path = public_path('assets/img/icons/link.svg');
-
-                if (!file_exists($link_path)) {
-                    Log::error('Link SVG file not found: ' . $link_path);
-                    return "<h3 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h3>";
-                }
-
-                $svg = file_get_contents($link_path);
-
-                return "<h3 id='{$id}'><a href='#{$id}'>{$matches[1]}</a></h3>";
-            },
-            $body);
+        return $results->dom->saveHTML();
     }
 
     /**
