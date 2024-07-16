@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\PostTag;
+use DOMDocument;
+use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
@@ -14,7 +16,6 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PostController extends Controller
 {
-
     public function index() {
         return view('posts', ['posts' => Post::all()]);
     }
@@ -32,6 +33,7 @@ class PostController extends Controller
             $new_body = PostController::order_footnotes($new_body);
             $new_body = $pd->text($new_body);
             $new_body = PostController::add_header_ids($new_body);
+            $new_body = PostController::open_links_in_external_tab($new_body);
 
 //            $post->toc = $this->build_toc($new_body, $slug);
             $post->body = $new_body;
@@ -51,6 +53,33 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    private static function open_links_in_external_tab(string $body) {
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
+        $dom->loadHTML($body);
+        libxml_clear_errors();
+        $xpath = new DOMXPath($dom);
+        $anchors = $xpath->query("//a");
+
+        foreach ($anchors as $anchor) {
+            $href = $anchor->getAttribute('href');
+            if ($href && self::is_external_link($href)) {
+                $anchor->setAttribute('target', '_blank');
+                $anchor->setAttribute('rel', 'noopener noreferrer');  // Security best practice
+            }
+        }
+
+        return $dom->saveHTML();
+    }
+
+    private static function is_external_link($url) {
+        $host = parse_url($url, PHP_URL_HOST);
+        if ($host && $host !== $_SERVER['HTTP_HOST']) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Add ids to all H2 headers.  Assume only H2 exist for now (they do).
      * Add isomorphic function for H3 if the case ever arises.
@@ -58,8 +87,7 @@ class PostController extends Controller
      * @return string html
      */
     public static function add_header_ids($body): string {
-        $body = self::add_header_ids_h2($body);
-        return self::add_header_ids_h3($body);
+        return self::add_header_ids_h2(self::add_header_ids_h3($body));
     }
 
     public static function add_header_ids_h2($body): string {
