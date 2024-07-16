@@ -23,7 +23,7 @@
 						I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>, Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught English for a couple of years and have worked as a software engineer for 7 years.
 				</p>
 				<p>
-					I made this blog to explore my thoughts and practice my writing. I don't really know what I know until I write it, so this is meant to serve as my light in the dark.
+					I made this blog to explore my thoughts and practice my writing. I don't really know what I know until I write it, so this blog is meant to serve as my light in the dark.
 				</p>
       </div>
     </div>

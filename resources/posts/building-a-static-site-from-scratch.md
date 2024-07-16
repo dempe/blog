@@ -1,6 +1,7 @@
 ---
 title: Building a Static Site from Scratch
 slug: building-a-static-site-from-scratch
+subhead: The technologies used, problems faced, and lessons learned in building my own static site generator
 tags: tech php
 published: "2023-07-05 23:53:06"
 updated: "2024-07-16 10:03:44"
@@ -8,15 +9,15 @@ updated: "2024-07-16 10:03:44"
 
 ## First of All, Why?
 
-One, I wanted the [Ikea effect](https://en.wikipedia.org/wiki/IKEA_effect) of building my own blog from scratch.
+**One**, I wanted the [Ikea effect](https://en.wikipedia.org/wiki/IKEA_effect) of building my own blog from scratch.
 
-Two, I was tired of using off-the-shelf static site generators (SSGs) like Hugo and Jekyll. I felt that I had too little control, especially when it came to their templating languages and themes.
+**Two**, I feel that off-the-shelf static site generators (SSGs) like Hugo and Jekyll don't provide me with the control I want, especially when it comes to templating languages and themes.
 
-Three, for the learning experience. I'd rather spend my time learning technologies more reusable than a pre-built SSG framework. In building this site, I've learned about utility-first CSS ([Tailwind](https://tailwindcss.com/)), database structure, MVC, the N+1 problem and eager loading, PHP, and many more specific technologies. More importantly, it was good practice designing a system from scratch.
+**Three**, I did it for the learning experience. I'd rather spend my time learning technologies more reusable than a pre-built SSG framework. In building this site, I've learned and/or reinforced my knowledge in several topics: utility-first CSS ([Tailwind](https://tailwindcss.com/)), database normalization, MVC, the N+1 problem and eager loading, PHP, and many more specific technologies. More importantly, it was good practice designing a system from scratch.
 
-## Where do I Start?
+## Where To Start?
 
-What do SSGs offer?
+First, what do SSGs offer?
 
 + **Markdown** (or similar) to HTML conversion
 + **Templating** to inject data into a standard template
@@ -24,13 +25,11 @@ What do SSGs offer?
 + **Layouts** to structure your site
 + **Themes**
 + A way to **build** the raw, static site to be deployed
-+ **Drafts** are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft.
++ **Drafts** are unnecessary in my opinion. I delegate to Git by checking out a new branch for each draft (`draft/my-post-title`).
 
-The biggest problems I've had with SSGs are with templates, layouts, and themes.  Handling themes on my own is no problem. I can easily style the site the way I want with Tailwind. Then what about templates and layouts?
+The biggest problems I have with SSGs are with templates, layouts, and themes.  Handling themes on my own is no problem. I can easily style the site the way I want with Tailwind. Then what about templates and layouts?  What about the other problems?
 
-PHP has been the *de facto* HTML templating language since the 90s [^1].  Layouts are also a cinch — just nest your PHP files within other PHP files.
-
-For the other problems, PHP can handle Markdown conversion via 3rd party libraries, and it has a built-in web server via `php -S addr:port` (`php artisan serve` if you're using Laravel). [^2]
+PHP has been the *de facto* HTML templating language since the 90s [^1], and layouts are also a cinch — just nest your PHP files within other PHP files. PHP can handle Markdown conversion via 3rd party libraries, and it has a built-in web server via `php -S addr:port` (`php artisan serve` if you're using Laravel) [^2].
 
 That leaves building.  For that, I use `wget` to save a static version of my site from the local server. Then I just need to push that to my S3 bucket. I have added all of my build and deploy scripts to Github Actions, so that my site builds and deploys upon pushing to `github/main`.
 
@@ -38,7 +37,7 @@ PHP/[Laravel](https://laravel.com/) it is.
 
 ## Site Structure
 
-I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built using [GoAccess](https://goaccess.io/) and an [RSS feed](/feed.rss).
+I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Posts are accessed under `chrisdempewolf.com/posts/{post}`. Same for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built every Wednesday at midnight using [GoAccess](https://goaccess.io/) and Github Actions and an [RSS feed](/feed.rss).
 
 I had intended to have separate sections for notes (notes about shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
 
@@ -132,7 +131,7 @@ Eager loading is Eloquent's way of averting the [N+1 query problem](https://stac
 
 Say I have the following code:
 
-```PHP
+```php
 $posts = Post::all();
 
 foreach ($posts as $post) {
@@ -146,7 +145,7 @@ This results in N+1 queries — 1 to fetch all posts and N to fetch the tags for
 
 Now that we've defined our relationships on each model, we can *tell* Eloquent that we are going to fetch each post's tags (i.e, use eager loading).
 
-```PHP
+```php
 $posts = Post::with('tags')->get();
 
 foreach ($posts as $post) {
