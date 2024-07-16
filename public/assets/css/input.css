@@ -7,10 +7,6 @@
         @apply text-[#4477FF];
     }
 
-    a {
-        @apply underline;
-    }
-
     a:hover {
         @apply transition duration-500 ease-in-out text-[#33CCFF];
     }
@@ -18,7 +14,7 @@
     h1 > a,
     h2 > a,
     h3 > a {
-        @apply text-[#ffffff] no-underline hover:underline font-bold;
+        @apply text-[#ffffff] no-underline font-bold;
     }
 
     h1,
