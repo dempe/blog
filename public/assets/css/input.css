@@ -77,6 +77,10 @@
         @apply list-disc;
     }
 
+    ul ul {
+        list-style-type: circle;
+    }
+
     ol {
         @apply list-decimal;
     }

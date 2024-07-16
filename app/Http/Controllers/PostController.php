@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\PostTag;
 use DOMDocument;
+use DOMNodeList;
 use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -30,12 +31,12 @@ class PostController extends Controller
 
             $post->wc = str_word_count($post->body);
             $new_body = $post->body;
-            $new_body = PostController::order_footnotes($new_body);
+            $new_body = self::order_footnotes($new_body);
             $new_body = $pd->text($new_body);
-            $new_body = PostController::add_header_ids($new_body);
-            $new_body = PostController::open_links_in_external_tab($new_body);
+            $new_body = self::add_header_ids($new_body);
+            $new_body = self::open_links_in_external_tab($new_body);
 
-//            $post->toc = $this->build_toc($new_body, $slug);
+            $post->toc = self::build_toc($new_body, $slug);
             $post->body = $new_body;
             $post->next = Post::findNext($slug);
             $post->prev = Post::findPrev($slug);
@@ -53,7 +54,7 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    private static function build_dom_and_query(string $body, string $query) {
+    private static function build_dom_and_query(string $body, string $query): stdClass {
         $dom = new DOMDocument('1.0', 'UTF-8');
         libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
         $dom->loadHTML('<?xml encoding="UTF-8">' . $body);
@@ -82,12 +83,9 @@ class PostController extends Controller
         return $result->dom->saveHTML();
     }
 
-    private static function is_external_link($url) {
+    private static function is_external_link($url): bool {
         $host = parse_url($url, PHP_URL_HOST);
-        if ($host && $host !== $_SERVER['HTTP_HOST']) {
-            return true;
-        }
-        return false;
+        return $host && $host !== $_SERVER['HTTP_HOST'];
     }
 
     /**
@@ -132,7 +130,7 @@ class PostController extends Controller
         */
         preg_match_all($footnoteRefPattern, $body, $footnotes_ref_matches);
         preg_match_all($footnotePattern, $body, $footnote_matches);
-        if (sizeof($footnote_matches[0]) != sizeof($footnotes_ref_matches[0])) {
+        if (count($footnote_matches[0]) !== count($footnotes_ref_matches[0])) {
             throw new Exception("Number of footnote references does not match footnotes.");
         }
 
@@ -161,21 +159,60 @@ class PostController extends Controller
         return $body;
     }
 
+    private static function build_toc($body, $post_slug): string {
+        $data = self::build_dom_and_query($body, "//h2");
+        $h2s = $data->query_results;
 
-//    private function build_toc($body, $post_slug) {
-//        $dom = new DOMDocument();
-//        libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
-//        $dom->loadHTML($body);
-//        libxml_clear_errors();
-//        $xpath = new DOMXPath($dom);
-//        $h2s = $xpath->query("//h2");
-//
-//        $toc = '<div id="toc"><button id="toc-toggle"><span>+</span> Table of Contents</button><ul style="display: none;">';
-//        foreach ($h2s as $h2) {
-//            $toc = $toc . '<li><a href="http://localhost:8000/posts/' . $post_slug . '#' . $h2->getAttribute('id') . '">' . $h2->nodeValue .'</a></li>';
-//        }
-//        $toc = $toc . '</ul></div>';
-//
-//        return $toc;
-//    }
+        $toc = '<aside id="toc" class="mb-8"><p class="font-bold"><button id="toc-toggle" class="font-monospace" onclick="toggleTOC()">+</button> Table of Contents</p><ul id="toc-list" class="hidden">';
+        foreach ($h2s as $h2) {
+            $toc .= '<li><a href="http://localhost:8000/posts/' . $post_slug . '#' . $h2->getAttribute('id') . '">' . $h2->nodeValue . '</a></li>';
+
+            $h3s = self::find_sibling_elements($h2, 'h3');
+
+            if (count($h3s) === 0) {
+                continue;
+            }
+
+            $toc .= '<ul>';
+            foreach ($h3s as $h3) {
+                $toc .= '<li><a href="http://localhost:8000/posts/' . $post_slug . '#' . $h3->getAttribute('id') . '">' . $h3->nodeValue . '</a></li>';
+            }
+            $toc .= '</ul>';
+        }
+        $toc .= '<li><a href="http://localhost:8000/posts/' . $post_slug . '#comments">Comments</a></li>';
+        $toc .= '</ul></aside>';
+
+        $toc .= '<script>
+        function toggleTOC() {
+            var tocList = document.getElementById("toc-list");
+            var tocButton = document.getElementById("toc-toggle");
+            if (tocList.classList.contains("hidden")) {
+                tocList.classList.remove("hidden");
+                tocButton.innerText = "-";
+            } else {
+                tocList.classList.add("hidden");
+                tocButton.innerText = "+";
+            }
+        }
+    </script>';
+
+        return $toc;
+    }
+
+
+    private static function find_sibling_elements($node, $tag): array {
+        $siblings = [];
+        $current = $node->nextSibling;
+        while ($current) {
+            if ($current->nodeName === $tag) {
+                $siblings[] = $current;
+            }
+            if ($current->nodeName === 'h2') {
+                break; // Stop if we reach the next h2
+            }
+            $current = $current->nextSibling;
+        }
+        return $siblings;
+    }
+
 }
