@@ -43,21 +43,29 @@
 
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
-    <script src="https://giscus.app/client.js"
-            data-repo="dempe/blog-comments"
-            data-repo-id="R_kgDOLfkyrQ"
-            data-category-id="DIC_kwDOLfkyrc4Cd7x2"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="0"
-            data-emit-metadata="0"
-            data-input-position="top"
-            data-theme="dark"
-            data-lang="en"
-            data-loading="lazy"
-            crossorigin="anonymous"
-            async>
-    </script>
+
+    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, which allows me to delegate to <a href="https://github.com/">Github</a> for my comments. If you don't have a Github account and don't want to sign up for one, feel free to reverse my email and email me at <a href="mailto:sirch@flowepmedsirch.moc">sirch@flowepmedsirch.moc</a>.
+    </p>
+
+    <p>The spirit of this blog is the beginner's mind. As such, I would love to hear your thoughts!</p>
+
+    <div class="my-8">
+        <script src="https://giscus.app/client.js"
+                data-repo="dempe/blog-comments"
+                data-repo-id="R_kgDOLfkyrQ"
+                data-category-id="DIC_kwDOLfkyrc4Cd7x2"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="0"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="en"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
 @endsection
 
 @section('nav')
