@@ -57,10 +57,10 @@ jobs:
         run: |
           sed -i'' -e 's|href=\"assets/css/output.css\"|href=\"https://chrisdempewolf.com/assets/css/output.css\"|g' ./output/404.html
           sed -i'' -e 's|href=\"assets/img/favicon.png\"|href=\"https://chrisdempewolf.com/assets/img/favicon.png\"|g' ./output/404.html
-          cat ./output/404.html
           sed -i'' -e 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"feed.rss\"|href=\"https://chrisdempewolf.com/feed.rss\"|g' ./output/404.html
           sed -i'' -e 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html
-          sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html\n"
+          sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html
       - name: Remove unnecessary files
         run: rm -rf ./output/cdn-cgi/
       - name: Install AWS CLI
