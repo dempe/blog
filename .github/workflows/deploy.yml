@@ -48,7 +48,7 @@ jobs:
           fi
       - name: Download site using wget
         run: |
-          wget --debug --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
+          wget --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
       - name: Ensure .html is not appended to highlight.min.js
         run: for f in $(./assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
       - name: check for stats page
@@ -58,6 +58,7 @@ jobs:
           sed -i'' -e 's|href=\"assets/css/output.css\"|href=\"https://chrisdempewolf.com/assets/css/output.css\"|g' ./output/404.html
           sed -i'' -e 's|href=\"assets/img/favicon.png\"|href=\"https://chrisdempewolf.com/assets/img/favicon.png\"|g' ./output/404.html
           sed -i'' -e 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"index.html\"|href=\"https://chrisdempewolf.com/index.html\"|g' ./output/404.html
           sed -i'' -e 's|href=\"feed.rss\"|href=\"https://chrisdempewolf.com/feed.rss\"|g' ./output/404.html
           sed -i'' -e 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html
           sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html
