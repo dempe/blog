@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('title')
-    <span class="font-monospace">#{{ $tag->tag }}</span>
+    #{{ $tag->tag }}
 @endsection
+
 @section('subhead')
     {!! $tag->description !!}
 @endsection

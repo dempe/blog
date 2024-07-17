@@ -55,13 +55,12 @@ jobs:
         run: curl -I http://127.0.0.1:8000/stats
       - name: Fix links on 404 page
         run: |
-          sed -i'' -e 's|href=\"assets/css/style.css\"|href=\"https://chrisdempewolf.com/assets/css/style.css\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"assets/css/output.css\"|href=\"https://chrisdempewolf.com/assets/css/output.css\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"assets/css/github-dark.min.css\"|href=\"https://chrisdempewolf.com/assets/css/github-dark.min.css\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html
+          sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html\n"
           cat ./output/404.html
-#          sed -i 's|href=\"assets/css/github-dark.min.css\"|href=\"https://chrisdempewolf.com/assets/css/github-dark.min.css\"|g' ./output/404.html
-#          sed -i 's|src=\"assets/js/highlight.min.js\"|src=\"https://chrisdempewolf.com/assets/js/highlight.min.js\"|g' ./output/404.html
-#          sed -i 's|href=\"about.html\"|href=\"https://chrisdempewolf.com/about.html\"|g' ./output/404.html
-#          sed -i 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html
-#          sed -i 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html\n"
       - name: Remove unnecessary files
         run: rm -rf ./output/cdn-cgi/
       - name: Install AWS CLI
