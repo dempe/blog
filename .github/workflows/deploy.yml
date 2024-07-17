@@ -67,6 +67,8 @@ jobs:
           sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html
       - name: Remove unnecessary files
         run: rm -rf ./output/cdn-cgi/
+      - name: Copy stats page
+        run: cp ./public/stats.html ./output/stats.html
       - name: Install AWS CLI
         run: |
           sudo apt-get update
@@ -80,7 +82,6 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete
-          aws s3 cp ./output/stats.html s3://chrisdempewolf.com/stats.html
         shell: bash
       - name: Invalidate cache
         run: |
