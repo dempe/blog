@@ -52,7 +52,10 @@ jobs:
       - name: Ensure .html is not appended to highlight.min.js
         run: for f in $(./assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
       - name: check for stats page
-        run: curl -I http://127.0.0.1:8000/stats
+        run: |
+          curl -I http://127.0.0.1:8000/stats
+          ls -l ./output/
+          stat ./output/stats.html
       - name: Fix links on 404 page
         run: |
           sed -i'' -e 's|href=\"assets/css/output.css\"|href=\"https://chrisdempewolf.com/assets/css/output.css\"|g' ./output/404.html
@@ -76,7 +79,8 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to S3
         run: |
-          aws s3 sync ./output s3://chrisdempewolf.com --color on --size-only --delete
+          aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete
+          aws s3 cp ./output/stats.html s3://chrisdempewolf.com/stats.html
         shell: bash
       - name: Invalidate cache
         run: |
