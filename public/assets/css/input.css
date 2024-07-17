@@ -11,7 +11,11 @@
         @apply transition duration-500 ease-in-out text-[#00ffff];
     }
 
-    a:active {
+    a:active,
+    a:focus,
+    a:focus-visible,
+    a:focus-within,
+    a:target {
         @apply text-[#00ffff];
     }
 
