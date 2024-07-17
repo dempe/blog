@@ -1,7 +1,7 @@
 ---
 title: Building a Static Site from Scratch
 slug: building-a-static-site-from-scratch
-subhead: The technologies used, problems faced, and lessons learned in building my own static site generator
+subhead: The technologies used, problems faced, and lessons learned building a static site
 tags: tech php
 published: "2023-07-05 23:53:06"
 updated: "2024-07-16 10:03:44"
@@ -39,7 +39,7 @@ PHP/[Laravel](https://laravel.com/) it is.
 
 I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS_principle). The home page (`chrisdempewolf.com`) is just a list of my posts. Individual posts are accessed under `chrisdempewolf.com/posts/{post}`. Analogously for tags. Aside from that, I have an about page and my resume (see links at top). EDIT: I have since added a [stats](/stats) page built every Wednesday at midnight using [GoAccess](https://goaccess.io/) and Github Actions and an [RSS feed](/feed.rss).
 
-I had intended to have separate sections for notes (notes about shows, games, books, etc.) and recipes — two things I plan to blog a lot about. Then I realized that it would be simpler to just have a tag for each of these categories.
+For individual categories like recipes, notes, or projects, I plan to simply use tags. This way, I can add new categories without changing the site structure.
 
 ## Keeping Track of Posts and Tags with a Database
 
