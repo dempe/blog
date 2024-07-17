@@ -51,11 +51,6 @@ jobs:
           wget --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
       - name: Ensure .html is not appended to highlight.min.js
         run: for f in $(./assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
-      - name: check for stats page
-        run: |
-          curl -I http://127.0.0.1:8000/stats
-          ls -l ./output/
-          stat ./output/stats.html
       - name: Fix links on 404 page
         run: |
           sed -i'' -e 's|href=\"assets/css/output.css\"|href=\"https://chrisdempewolf.com/assets/css/output.css\"|g' ./output/404.html
@@ -66,9 +61,9 @@ jobs:
           sed -i'' -e 's|href=\"resume.pdf\"|href=\"https://chrisdempewolf.com/resume.pdf\"|g' ./output/404.html
           sed -i'' -e 's|href=\"tags/index.html\"|href=\"https://chrisdempewolf.com/tags/index.html\"|g' ./output/404.html
       - name: Remove unnecessary files
-        run: rm -rf ./output/cdn-cgi/
+        run: rm -rf ./output/cdn-cgi/  # This is a Cloudflare directory that is not needed, a part of the Cloudflare Web Performance Optimization feature
       - name: Copy stats page
-        run: cp ./public/stats.html ./output/stats.html
+        run: cp ./public/stats.html ./output/stats.html  # Not sure why this isn't being copied by wget
       - name: Install AWS CLI
         run: |
           sudo apt-get update
