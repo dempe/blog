@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\PostTag;
 use DOMDocument;
-use DOMNodeList;
 use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
