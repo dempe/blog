@@ -7,18 +7,23 @@
         @apply text-[#4477FF];
     }
 
-    a:hover {
-        @apply transition duration-500 ease-in-out text-[#00ffff];
-    }
-
+    /* For mobile devices */
     a:active,
     a:focus,
     a:focus-visible,
     a:focus-within,
+    a:hover,
     a:target {
         @apply text-[#00ffff];
     }
 
+    /* Transition for larger screens */
+    @media (min-width: 640px) {
+        a:hover {
+            @apply transition duration-500 ease-in-out text-[#00ffff];
+        }
+    }
+    
     h1 > a,
     h2 > a,
     h3 > a {
