@@ -50,6 +50,18 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
     <span style="font-weight: 900;">Lorem ipsum 900.</span>
 </p>
 
+<p style="font-size: 2rem;">
+    <span style="font-weight: 100;font-style: italic">Lorem ipsum 100.</span>
+    <span style="font-weight: 200;font-style: italic">Lorem ipsum 200.</span>
+    <span style="font-weight: 300;font-style: italic">Lorem ipsum 300.</span>
+    <span style="font-weight: 400;font-style: italic">Lorem ipsum 400.</span>
+    <span style="font-weight: 500;font-style: italic">Lorem ipsum 500.</span>
+    <span style="font-weight: 600;font-style: italic">Lorem ipsum 600.</span>
+    <span style="font-weight: 700;font-style: italic">Lorem ipsum 700.</span>
+    <span style="font-weight: 800;font-style: italic">Lorem ipsum 800.</span>
+    <span style="font-weight: 900;font-style: italic">Lorem ipsum 900.</span>
+</p>
+
 ## References
 
 REF: https://en.wikipedia.org/wiki/3SUM

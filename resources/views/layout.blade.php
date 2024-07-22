@@ -7,15 +7,10 @@
     <meta name="description" content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
     <link rel="stylesheet" href="/assets/css/output.css"/>
     <script src="/assets/js/highlight.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+{{--    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>--}}
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <title>{{ strip_tags($__env->yieldContent('title')) }}</title>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
 </head>
 <body class="antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
