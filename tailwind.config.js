@@ -9,7 +9,7 @@ export default {
       },
 			 fontFamily: {
         monospace: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
-        sans: ['Arial', 'Noto Sans JP', 'Fira-Sans', 'Roboto', 'Helvetica', 'sans-serif']
+        sans: ['Inter', 'Roboto', 'Fira-Sans', 'Noto Sans JP', 'Helvetica', 'Arial',  'sans-serif']
       }, 
     },
   },
