@@ -1,5 +1,17 @@
 <div class="flex flex-col my-9">
+    @php
+        $lastYear = null;
+    @endphp
     @foreach ($posts->sortByDesc('created_at') as $post)
+        @php
+            $currentYear = $post->created_at->format('Y');
+        @endphp
+        @if ($currentYear !== $lastYear)
+            <h2>{{ $currentYear }}</h2>
+            @php
+                $lastYear = $currentYear;
+            @endphp
+        @endif
         <div class="flex flex-row space-x-2">
             <span class="sm:text-xs md:text-base whitespace-nowrap font-monospace">
                 {{ $post->created_at->format('Y-m-d') }}:&nbsp;&nbsp;
