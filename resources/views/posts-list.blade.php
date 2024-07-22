@@ -7,7 +7,7 @@
             $currentYear = $post->created_at->format('Y');
         @endphp
         @if ($currentYear !== $lastYear)
-            <h2>{{ $currentYear }}</h2>
+            <h2 id="{{ $currentYear }}"><a href="#{{ $currentYear }}">{{ $currentYear }}</a></h2>
             @php
                 $lastYear = $currentYear;
             @endphp
