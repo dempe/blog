@@ -1,5 +1,5 @@
 ---
-tags: tv notes
+tags: tv
 title: "Better Call Saul"
 slug: "better-call-saul"
 subhead: "The series finale of <em>Better Call Saul</em> is about time and regrets"
