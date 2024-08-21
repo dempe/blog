@@ -24,6 +24,12 @@
         }
     }
 
+    /*h1 > span,*/
+    /*h2 > span,*/
+    /*h3 > span {*/
+    /*    @apply font-light text-[#999999] pl-2 font-monospace;*/
+    /*}*/
+
     h1 > a,
     h2 > a,
     h3 > a {

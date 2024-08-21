@@ -1,10 +1,12 @@
 ---
 title: "Converting Kindle Notes to Markdown"
 slug: converting-kindle-notes-to-markdown
+subhead: "A hacky Python script to parse Amazon's janky HTML"
 tags: tech perl regex python
 published: "2023-07-20 09:46"
 updated: "2023-08-03 12:17"
 ---
+
 
 Kindle[^1] has a really cool feature that allows you to email yourself all the notes you've taken for a book. They do this by attaching an HTML file with your notes to the email.
 

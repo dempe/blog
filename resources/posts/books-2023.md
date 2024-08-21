@@ -1,6 +1,7 @@
 ---
 title: "2023 in Books"
 slug: 2023-in-books
+subhead: "My thoughts on all the books I read in 2023 in the order I read them"
 published: "2024-07-06 17:56"
 tags: books
 ---

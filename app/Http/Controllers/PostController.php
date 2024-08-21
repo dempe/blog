@@ -106,9 +106,13 @@ class PostController extends Controller
             $header->setAttribute('id', $slug);
 
             $a = $results->dom->createElement('a', $header->nodeValue);
-            $a->setAttribute('href', "#{$slug}");
             $header->nodeValue = '';
+            $a->setAttribute('href', "#{$slug}");
             $header->appendChild($a);
+
+//            $span = $results->dom->createElement('span', '#');
+//            $span->setAttribute('class', 'headerHashtag');
+//            $header->appendChild($span);
         }
 
         return $results->dom->saveHTML();
