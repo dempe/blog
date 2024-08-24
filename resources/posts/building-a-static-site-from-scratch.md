@@ -7,7 +7,7 @@ published: "2023-07-05 23:53:06"
 updated: "2024-07-16 10:03:44"
 ---
 
-## First of All, Why?
+## Why?
 
 **One**, I wanted the [Ikea effect](https://en.wikipedia.org/wiki/IKEA_effect) of building my own blog from scratch.
 
