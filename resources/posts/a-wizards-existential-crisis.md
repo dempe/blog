@@ -2,7 +2,7 @@
 title: "A Wizard's Existential Crisis"
 slug: a-wizards-existential-crisis
 subhead: When role-playing gets real
-tags: fiction existentialism
+tags: existentialism
 published: "2024-03-06 14:31"
 ---
 
