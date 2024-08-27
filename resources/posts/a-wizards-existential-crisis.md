@@ -38,6 +38,6 @@ You awake from your existential daydream in a daze. Hours have past.  It's dark 
 
 The Crystal of Akarhand lies ahead. What will you do?
 
-## Me
+## My Response
 
 Whatever the fuck I want.  "The world's mine oyster, Which I with sword will open."
