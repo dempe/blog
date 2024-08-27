@@ -4,7 +4,9 @@
 
 @layer base {
     a:not(header > a):not(h2 > a):not(h3 > a):not(h4 > a) {
-        @apply text-[#4477FF];
+        @apply text-[#4477FF] underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
     }
 
     /* For mobile devices */
@@ -23,12 +25,6 @@
             @apply transition duration-500 ease-in-out text-[#00ffff];
         }
     }
-
-    /*h1 > span,*/
-    /*h2 > span,*/
-    /*h3 > span {*/
-    /*    @apply font-light text-[#999999] pl-2 font-monospace;*/
-    /*}*/
 
     h1 > a,
     h2 > a,
@@ -169,12 +165,6 @@
 
 .blockquote figcaption:before {
     content:"\2014"
-}
-
-.footnote-backref,
-.reference-backref,
-.reference-ref {
-    text-decoration: none;
 }
 
 /* Stupid Parsedown inserts a <p> in each <li> the footnotes section. */

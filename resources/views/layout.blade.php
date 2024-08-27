@@ -2,15 +2,28 @@
 
 <html lang="en">
 <head>
+    <title>{{ trim(strip_tags($__env->yieldContent('title', 'shosin'))) }}</title>
+
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A personal blog by Chris Dempewolf about science, technology, and computation."/>
-    <link rel="stylesheet" href="/assets/css/output.css"/>
-    <script src="/assets/js/highlight.min.js"></script>
-{{--    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>--}}
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description"
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+
+    <meta property="og:site_name" content="shoshin"/>
+    <meta property="og:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shosin'))) }}"/>
+    <meta property="og:description"
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+
+    <meta name="twitter:card" content="summary"/>
+    {{--    <meta name="twitter:site" content="@username" />--}}
+    <meta name="twitter:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'shosin'))) }}"/>
+    <meta name="twitter:description"
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+    <meta name="twitter:image" content="/assets/img/favicon.png"/>
+
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
-    <title>{{ strip_tags($__env->yieldContent('title')) }}</title>
+    <link rel="stylesheet" href="/assets/css/output.css"/>
 </head>
 <body class="antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
@@ -47,6 +60,5 @@
     @yield('nav')
     @yield('comments')
 </footer>
-@yield('scripts')
 </body>
 </html>

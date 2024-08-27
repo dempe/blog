@@ -3,14 +3,16 @@ title: "Hello World"
 slug: "hello-world"
 subhead: "I use this page for testing. Don't read it."
 published: "2023-02-27 12:00"
-updated: "2024-03-05 20:27"
+updated: "2024-08-27 14:36"
 ---
 
-Requisite and dutifully prosaic first post REF.
+Requisite and dutifully prosaic first post.
 
 ## Heading
 
 Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque eum blanditiis[^1] ipsa.
+
+$e^{i\pi} + 1 = 0$
 
 > Lorem Ipsum
 
@@ -31,12 +33,11 @@ Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat re
 Maiores quaerat enim sint eos alias. Dolorem consequatur nisi rerum vitae quasi. Cumque velit mollitia sed placeat ab ex.
 
 
-
 <aside>
     Iusto fuga praesentium delectus incidunt a. Fugiat numquam sed occaecati nesciunt. Quasi aut consectetur saepe aut harum reiciendis blanditiis. Rerum non enim facere omnis id. Alias accusamus quia magni dolores voluptates qui eum repellat.
 </aside>
 
-Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa REF.
+Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa.
 
 <p style="font-size: 2rem;">
     <span style="font-weight: 100;">Lorem ipsum 100.</span>
@@ -61,12 +62,6 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
     <span style="font-weight: 800;font-style: italic">Lorem ipsum 800.</span>
     <span style="font-weight: 900;font-style: italic">Lorem ipsum 900.</span>
 </p>
-
-## References
-
-REF: https://en.wikipedia.org/wiki/3SUM
-
-REF: S. Author, "Title of the article," Journal Name, vol. XX, no. XX, pp. XX-XX, Month Year.
 
 ## Footnotes
 
