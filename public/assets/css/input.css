@@ -184,6 +184,7 @@
 :root {
     font-family: "InterVariable", Helvetica, Arial, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;  /* fix for Chrome */
+    font-weight: 400;
 }
 
 /* Settings for if user's browser supports variable fonts */
@@ -191,7 +192,6 @@
   :root {
       font-family: "InterVariable", sans-serif;
       font-optical-sizing: auto;
-      font-variation-settings: 'wght' 400;
   }
 }
 
