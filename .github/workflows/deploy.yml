@@ -74,7 +74,7 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to S3
         run: |
-          stdbuf -oL -eL aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | tee s3-log.txt
+          aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | tee s3-log.txt
         shell: bash
       - name: Invalidate cache
         run: |
@@ -82,9 +82,11 @@ jobs:
           awk -F' ' '$1 ~ /upload/ {print $4}' s3-log.txt
           awk --version
           awk -F' ' '{print $1 $2 $3 $4}' s3-log.txt
+          awk -F' ' '{print $0}' s3-log.txt
           awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))'
           paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo $paths
+          cat s3-log.txt | sed 's|\r|\n|g' | awk -F' ' '$1 ~ /upload/ {print $4}'
           if [ "$paths" != "[]" ]; then
             aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
           fi
