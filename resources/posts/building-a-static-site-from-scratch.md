@@ -4,7 +4,7 @@ slug: building-a-static-site-from-scratch
 subhead: The technologies used, problems faced, and lessons learned building a static site
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2024-08-28 00:01:08"
+updated: "2024-08-28 00:02:08"
 ---
 
 ## Why?
