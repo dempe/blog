@@ -245,15 +245,15 @@ Here's the relevant portion from my Github Actions config:
 ```yaml
 - name: Deploy to S3
   run: |
-        aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete | tee s3-log.txt
-        shell: bash
+    aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | tee s3-log.txt
+    shell: bash
 - name: Invalidate cache
   run: |
-        paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-        echo $paths
-        if [ "$paths" != "[]" ]; then
-          aws cloudfront create-invalidation --distribution-id FOOBAR --paths "$paths"
-        fi
+    paths=$(cat s3-log.txt | sed 's|\r|\n|g' | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+    echo $paths
+    if [ "$paths" != "[]" ]; then
+      aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
+    fi
   shell: bash
 ```
 
