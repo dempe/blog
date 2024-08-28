@@ -10,11 +10,11 @@ Requisite and dutifully prosaic first post.
 
 ## Heading
 
+$e^{i\pi} + 1 = 0$
+
 Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id
 eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque
 eum blanditiis[^1] ipsa.
-
-$e^{i\pi} + 1 = 0$
 
 > Lorem Ipsum
 
@@ -45,29 +45,29 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
 eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt
 neque eum blanditiis ipsa.
 
-<p style="font-size: 2rem;">
-    <span style="font-weight: 100;">Lorem ipsum 100.</span>
-    <span style="font-weight: 200;">Lorem ipsum 200.</span>
-    <span style="font-weight: 300;">Lorem ipsum 300.</span>
-    <span style="font-weight: 400;">Lorem ipsum 400.</span>
-    <span style="font-weight: 500;">Lorem ipsum 500.</span>
-    <span style="font-weight: 600;">Lorem ipsum 600.</span>
-    <span style="font-weight: 700;">Lorem ipsum 700.</span>
-    <span style="font-weight: 800;">Lorem ipsum 800.</span>
-    <span style="font-weight: 900;">Lorem ipsum 900.</span>
-</p>
+<div style="font-size: 2rem;">
+    <p style="font-weight: 100;">Lorem ipsum 100.</p>
+    <p style="font-weight: 200;">Lorem ipsum 200.</p>
+    <p style="font-weight: 300;">Lorem ipsum 300.</p>
+    <p style="font-weight: 400;">Lorem ipsum 400.</p>
+    <p style="font-weight: 500;">Lorem ipsum 500.</p>
+    <p style="font-weight: 600;">Lorem ipsum 600.</p>
+    <p style="font-weight: 700;">Lorem ipsum 700.</p>
+    <p style="font-weight: 800;">Lorem ipsum 800.</p>
+    <p style="font-weight: 900;">Lorem ipsum 900.</p>
+</div>
 
-<p style="font-size: 2rem;">
-    <span style="font-weight: 100;font-style: italic">Lorem ipsum 100.</span>
-    <span style="font-weight: 200;font-style: italic">Lorem ipsum 200.</span>
-    <span style="font-weight: 300;font-style: italic">Lorem ipsum 300.</span>
-    <span style="font-weight: 400;font-style: italic">Lorem ipsum 400.</span>
-    <span style="font-weight: 500;font-style: italic">Lorem ipsum 500.</span>
-    <span style="font-weight: 600;font-style: italic">Lorem ipsum 600.</span>
-    <span style="font-weight: 700;font-style: italic">Lorem ipsum 700.</span>
-    <span style="font-weight: 800;font-style: italic">Lorem ipsum 800.</span>
-    <span style="font-weight: 900;font-style: italic">Lorem ipsum 900.</span>
-</p>
+<div style="font-size: 2rem;">
+    <p style="font-weight: 100;font-style: italic">Lorem ipsum 100.</p>
+    <p style="font-weight: 200;font-style: italic">Lorem ipsum 200.</p>
+    <p style="font-weight: 300;font-style: italic">Lorem ipsum 300.</p>
+    <p style="font-weight: 400;font-style: italic">Lorem ipsum 400.</p>
+    <p style="font-weight: 500;font-style: italic">Lorem ipsum 500.</p>
+    <p style="font-weight: 600;font-style: italic">Lorem ipsum 600.</p>
+    <p style="font-weight: 700;font-style: italic">Lorem ipsum 700.</p>
+    <p style="font-weight: 800;font-style: italic">Lorem ipsum 800.</p>
+    <p style="font-weight: 900;font-style: italic">Lorem ipsum 900.</p>
+</div>
 
 ## Footnotes
 
