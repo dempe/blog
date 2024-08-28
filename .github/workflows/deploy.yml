@@ -79,7 +79,9 @@ jobs:
       - name: Invalidate cache
         run: |
           cat s3-log.txt
-          if [ grep -q '^uploaded' s3-log.txt ]; then
+          grep --version
+          grep --help
+          if [ grep '^uploaded' s3-log.txt > /dev/null ]; then
             aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths $(cat s3-log.txt | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | tr '\n' ' ')
           fi
         shell: bash

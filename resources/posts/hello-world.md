@@ -22,7 +22,7 @@ eum blanditiis[^1] ipsa.
 
 Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat rerum sunt aspernatur. Aperiam earum alias
 ut quod voluptas quaerat. Quis eligendi consequatur dolor omnis accusamus consectetur harum. Praesentium voluptatem
-voluptas saepe at. Et ea quod assumenda voluptatibus quaerat hic in.
+voluptas saepe at. Et ea quod assumenda odit voluptatibus quaerat hic in.
 
 <figure class="blockquote">
     <blockquote>
