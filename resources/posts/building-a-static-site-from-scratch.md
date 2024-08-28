@@ -244,7 +244,7 @@ After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdem
 
 This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site. I can easily add new features and change my site's layout or theme. Plus, I learned (and am learning) a lot.
 
-And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my blogs built on Hugo and Jekyll.
+And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my Hugo and Jekyll blogs.
 
 ## Footnotes
 
