@@ -80,5 +80,7 @@ jobs:
         run: |
           paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo $paths
-          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
+          if [ "$paths" != "[]" ]; then
+            aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
+          fi
         shell: bash
