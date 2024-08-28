@@ -140,7 +140,7 @@ def parse_chapter(text):
 
 From there, we basically just find the first "section" node (`start_node = soup.find('div', {'class': 'sectionHeading'})`) and loop until there are no more siblings: `while current.next_sibling:`.
 
-[Here](https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69) is the full script.  I also have a full repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.
+[Github Gist](https://gist.github.com/dempe/f26536e2d04c2e8e815e0abf7d8d2d69) of the entire script.  I also have a repository with unit tests, but my unit tests run on my actual notes, which I'd like to keep private.
 
 ## Footnotes
 
@@ -154,5 +154,6 @@ From there, we basically just find the first "section" node (`start_node = soup.
 
 [^5]: `|` is my favorite delimiter. It's easier to see, and you have to escape it less.
 
+<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>
 
 

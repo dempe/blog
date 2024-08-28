@@ -17,7 +17,7 @@
 
     <meta name="twitter:card" content="summary"/>
     {{--    <meta name="twitter:site" content="@username" />--}}
-    <meta name="twitter:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'shosin'))) }}"/>
+    <meta name="twitter:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shosin'))) }}"/>
     <meta name="twitter:description"
           content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
     <meta name="twitter:image" content="/assets/img/favicon.png"/>
@@ -34,9 +34,9 @@
     </a>
     <nav class="flex flex-wrap mt-2 mb-8 font-monospace">
         <a class="mr-4 no-underline" href="/about">/about</a>
+        <a class="mr-4 no-underline" href="/tags/">/tags</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
         <a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a>
-        <a class="mr-4 no-underline" href="/tags/">/tags</a>
         <a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a>
         <a class="mr-4 no-underline" href="https://chrisdempewolf.com/stats.html" target="_blank">/stats</a>
     </nav>

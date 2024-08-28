@@ -26,6 +26,7 @@ class PostController extends Controller
     public function show($slug) {
         try {
             $pd = new ParsedownExtra();
+            $pd->setSafeMode(false);
             $post = Post::findOrFail($slug);
 
             $post->wc = str_word_count($post->body);

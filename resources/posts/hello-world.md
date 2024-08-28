@@ -10,15 +10,19 @@ Requisite and dutifully prosaic first post.
 
 ## Heading
 
-Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque eum blanditiis[^1] ipsa.
+Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id
+eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque
+eum blanditiis[^1] ipsa.
 
 $e^{i\pi} + 1 = 0$
 
 > Lorem Ipsum
 
-## Heading 
+## Heading
 
-Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat rerum sunt aspernatur. Aperiam earum alias ut quod voluptas quaerat. Quis eligendi consequatur dolor omnis accusamus consectetur harum. Praesentium voluptatem voluptas saepe at. Et ea quod assumenda odit voluptatibus quaerat hic in.
+Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat rerum sunt aspernatur. Aperiam earum alias
+ut quod voluptas quaerat. Quis eligendi consequatur dolor omnis accusamus consectetur harum. Praesentium voluptatem
+voluptas saepe at. Et ea quod assumenda odit voluptatibus quaerat hic in.
 
 <figure class="blockquote">
     <blockquote>
@@ -27,17 +31,19 @@ Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat re
     <figcaption>Aliquam</figcaption>
 </figure>
 
-
 ## Heading
 
-Maiores quaerat enim sint eos alias. Dolorem consequatur nisi rerum vitae quasi. Cumque velit mollitia sed placeat ab ex.
+Maiores quaerat enim sint eos alias. Dolorem consequatur nisi rerum vitae quasi. Cumque velit mollitia sed placeat ab
+ex.
 
 
 <aside>
     Iusto fuga praesentium delectus incidunt a. Fugiat numquam sed occaecati nesciunt. Quasi aut consectetur saepe aut harum reiciendis blanditiis. Rerum non enim facere omnis id. Alias accusamus quia magni dolores voluptates qui eum repellat.
 </aside>
 
-Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt neque eum blanditiis ipsa.
+Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id
+eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt
+neque eum blanditiis ipsa.
 
 <p style="font-size: 2rem;">
     <span style="font-weight: 100;">Lorem ipsum 100.</span>
@@ -68,4 +74,16 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
 [^1]: FN1
 
 [^1]: FN2
+
+<script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 

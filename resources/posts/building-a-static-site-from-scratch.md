@@ -253,3 +253,5 @@ And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my
 [^4]: It's convention in Laravel for model names to be singular, and table names to be plural (`Post` and `posts`). This makes sense, because a table holds many rows, while a model represents a single row from that table.
 
 [^5]: If you want to see this live on your site, install the [DebugBar](https://github.com/barryvdh/laravel-debugbar) and click on the DB tab. It will show you all the queries made while fetching the current view!
+
+<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>

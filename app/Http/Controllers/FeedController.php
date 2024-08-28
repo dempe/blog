@@ -14,6 +14,7 @@ class FeedController extends Controller
         // Convert Markdown to HTML
         $posts = Post::all()->map(function ($post) {
             $pd = new ParsedownExtra();
+            $pd->setSafeMode(true);
             $post->body = $pd->text($post->body);
 
             return $post;

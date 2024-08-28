@@ -96,17 +96,7 @@
     </div>
 @endsection
 
-<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>
+{{--<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>--}}
 @if(true)
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 @endif
