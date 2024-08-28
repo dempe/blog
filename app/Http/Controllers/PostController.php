@@ -169,11 +169,12 @@ class PostController extends Controller
 
         $toc = '<aside id="toc" class="mb-8"><p class="font-bold"><button id="toc-toggle" class="font-monospace" onclick="toggleTOC()">+</button> Table of Contents</p><ul id="toc-list" class="hidden">';
         foreach ($h2s as $h2) {
-            $toc .= '<li><a href="https://chrisdempewolf.com/posts/' . $post_slug . '.html#' . $h2->getAttribute('id') . '">' . $h2->nodeValue . '</a></li>';
+            $toc .= '<li><a href="https://chrisdempewolf.com/posts/' . $post_slug . '.html#' . $h2->getAttribute('id') . '">' . $h2->nodeValue . '</a>';
 
             $h3s = self::find_sibling_elements($h2, 'h3');
 
             if (count($h3s) === 0) {
+                $toc .= '</li>';
                 continue;
             }
 
@@ -181,7 +182,7 @@ class PostController extends Controller
             foreach ($h3s as $h3) {
                 $toc .= '<li><a href="https://chrisdempewolf.com/posts/' . $post_slug . '.html#' . $h3->getAttribute('id') . '">' . $h3->nodeValue . '</a></li>';
             }
-            $toc .= '</ul>';
+            $toc .= '</ul></li>';
         }
         $toc .= '<li><a href="https://chrisdempewolf.com/posts/' . $post_slug . '.html#comments">Comments</a></li>';
         $toc .= '</ul></aside>';
