@@ -48,7 +48,7 @@ jobs:
           fi
       - name: Download site using wget
         run: |
-          wget --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories --exclude-directories=/assets http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
+          wget --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
       - name: Ensure .html is not appended to highlight.min.js
         run: for f in $(./assets/js/*); do curl -I http://127.0.0.1:8000/assets/js/$f; done
       - name: Fix links on 404 page
@@ -64,8 +64,6 @@ jobs:
         run: rm -rf ./output/cdn-cgi/  # This is a Cloudflare directory that is not needed, a part of the Cloudflare Web Performance Optimization feature
       - name: Copy stats page
         run: cp ./public/stats.html ./output/stats.html  # Not sure why this isn't being copied by wget
-      - name: Copy assets directory
-        run: cp -R ./public/assets ./output/assets
       - name: Install AWS CLI
         run: |
           sudo apt-get update
