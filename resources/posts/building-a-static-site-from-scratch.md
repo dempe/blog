@@ -4,7 +4,7 @@ slug: building-a-static-site-from-scratch
 subhead: The technologies used, problems faced, and lessons learned building a static site
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2024-07-16 10:03:44"
+updated: "2024-08-28 00:01:08"
 ---
 
 ## Why?
@@ -204,6 +204,8 @@ It loads the `post` view, which is a Blade template:
 
 ## Building and Deployment
 
+### Building
+
 I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to save a static version from the local server. The command looks like this:
 
 ```bash 
@@ -234,7 +236,26 @@ Here's an explanation of the options used:
 
 Not the prettiest build method, but, in my opinion, it's worth it to have complete control over my site.
 
-After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.
+### Deployment
+
+After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.  I save the output of this command to a log file. This way, I can parse the log file to see which files changed, so I know which files to invalidate in Cloudfront.
+
+Here's the relevant portion from my Github Actions config:
+
+```yaml
+- name: Deploy to S3
+  run: |
+        aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete | tee s3-log.txt
+        shell: bash
+- name: Invalidate cache
+  run: |
+        paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+        echo $paths
+        if [ "$paths" != "[]" ]; then
+          aws cloudfront create-invalidation --distribution-id FOOBAR --paths "$paths"
+        fi
+  shell: bash
+```
 
 ## Conclusion
 
