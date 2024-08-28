@@ -240,23 +240,6 @@ Not the prettiest build method, but, in my opinion, it's worth it to have comple
 
 After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.  I save the output of this command to a log file. This way, I can parse the log file to see which files changed, so I know which files to invalidate in Cloudfront.
 
-Here's the relevant portion from my Github Actions config:
-
-```yaml
-- name: Deploy to S3
-  run: |
-    aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | tee s3-log.txt
-    shell: bash
-- name: Invalidate cache
-  run: |
-    readarray -t paths < <(cat s3-log.txt | sed 's|\r|\n|g' | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | sed 's|^|"|' | sed 's|$|"|')
-    echo $paths
-    if [ "$paths" != "" ]; then
-      aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
-    fi
-  shell: bash
-```
-
 ## Conclusion
 
 This certainly is not the most popular method for building static sites, but I like it, and it works for me.  For once, I feel like I am in complete control over all aspects of my site. I can easily add new features and change my site's layout or theme. Plus, I learned (and am learning) a lot.
