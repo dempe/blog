@@ -12,7 +12,7 @@ class FeedController extends Controller
     public function index()
     {
         // Convert Markdown to HTML
-        $posts = Post::all()->map(function ($post) {
+        $posts = Post::where('slug', '!=', 'hello-world')->get()->map(function ($post) {
             $pd = new ParsedownExtra();
             $pd->setSafeMode(true);
             $post->body = $pd->text($post->body);

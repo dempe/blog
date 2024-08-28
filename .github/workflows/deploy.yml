@@ -80,6 +80,7 @@ jobs:
         run: |
           cat s3-log.txt
           du -chs s3-log.txt
+          awk '$1 ~ /upload/ {print $4}' s3-log.txt
           awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))'
           paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo $paths
