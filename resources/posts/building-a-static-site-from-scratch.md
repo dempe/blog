@@ -251,7 +251,7 @@ Here's the relevant portion from my Github Actions config:
   run: |
     paths=$(cat s3-log.txt | sed 's|\r|\n|g' | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | sed 's|^|"|' | sed 's|$|"|' | tr '\n' ' ')
     echo $paths
-    if [ "$paths" != "[]" ]; then
+    if [ "$paths" != "" ]; then
       aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
     fi
   shell: bash
