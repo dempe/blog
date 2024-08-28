@@ -29,7 +29,7 @@
         <td>Tags:&nbsp;&nbsp;</td>
         <td>
             @foreach($tags as $tag)
-                <a class="no-underline" href="/tags/{{ $tag }}">{{ $tag }}</a>&nbsp;
+                <a class="no-underline" href="/tags/{{ $tag }}">#{{ $tag }}</a>&nbsp;
             @endforeach
         </td>
     </tr>
@@ -95,8 +95,3 @@
         @endif
     </div>
 @endsection
-
-{{--<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>--}}
-@if(true)
-
-@endif
