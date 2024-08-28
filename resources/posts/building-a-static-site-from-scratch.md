@@ -234,7 +234,7 @@ Here's an explanation of the options used:
 
 Not the prettiest build method, but, in my opinion, it's worth it to have complete control over my site.
 
-After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --delete` to sync my S3 bucket.
+After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.
 
 ## Conclusion
 
