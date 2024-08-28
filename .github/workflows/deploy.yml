@@ -37,8 +37,6 @@ jobs:
           php artisan db:seed
       - name: Start Laravel server
         run: php artisan serve --host=0.0.0.0 --port=8000 &
-      - name: Wait for Laravel server to start
-        run: sleep 5
       - name: Check server status
         run: curl -I http://127.0.0.1:8000
       - name: Check Laravel logs for errors
@@ -80,5 +78,6 @@ jobs:
         shell: bash
       - name: Invalidate cache
         run: |
-          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split(\"\n\") | map(select(length > 0))')"
+          paths=$(awk '$1 ~ /upload/ {print $4}' s3-log.txt | sed 's|s3://chrisdempewolf.com||' | jq -R -s -c 'split(\"\n\") | map(select(length > 0))')
+          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths "$paths"
         shell: bash
