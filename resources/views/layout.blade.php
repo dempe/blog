@@ -61,6 +61,7 @@
     @yield('nav')
     @yield('comments')
 </footer>
-<hr class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
+<hr id="bottom" class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
+<p class="text-center">Return to <a href="#">top</a></p>
 </body>
 </html>
