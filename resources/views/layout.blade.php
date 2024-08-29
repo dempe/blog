@@ -32,6 +32,7 @@
             <rt class="text-lg font-monospace">shoshin</rt>
         </ruby>
     </a>
+    <hr class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
     <nav class="flex flex-wrap mt-2 mb-8 font-monospace">
         <a class="mr-4 no-underline" href="/about">/about</a>
         <a class="mr-4 no-underline" href="/tags/">/tags</a>
@@ -60,5 +61,6 @@
     @yield('nav')
     @yield('comments')
 </footer>
+<hr class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
 </body>
 </html>

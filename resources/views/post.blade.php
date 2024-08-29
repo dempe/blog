@@ -45,6 +45,30 @@
     {!! $post->body !!}
 @endsection
 
+@section('nav')
+    <nav class="hidden text-xl md:flex md:flex-row justify-between border-t-4 pt-8">
+        <div>
+            @if(isset($post->prev))
+                <a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
+            @endif
+        </div>
+        <div>
+            @if(isset($post->next))
+                <a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
+            @endif
+        </div>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center md:hidden">
+        @if(isset($post->prev))
+            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></div>
+        @endif
+        @if(isset($post->next))
+            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></div>
+        @endif
+    </div>
+@endsection
+
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
 
@@ -69,29 +93,5 @@
                 crossorigin="anonymous"
                 async>
         </script>
-    </div>
-@endsection
-
-@section('nav')
-    <nav class="hidden text-xl md:flex md:flex-row justify-between border-t-4 pt-8">
-        <div>
-            @if(isset($post->prev))
-                <a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
-            @endif
-        </div>
-        <div>
-            @if(isset($post->next))
-                <a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
-            @endif
-        </div>
-    </nav>
-
-    <div class="flex flex-col items-center justify-center md:hidden">
-        @if(isset($post->prev))
-            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></div>
-        @endif
-        @if(isset($post->next))
-            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></div>
-        @endif
     </div>
 @endsection
