@@ -22,6 +22,8 @@
           content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
     <meta name="twitter:image" content="/assets/img/favicon.png"/>
 
+{{--    Use the ICO image as a default--}}
+    <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/assets/img/favicon.png" type="image/png">
     <link rel="stylesheet" href="/assets/css/output.css"/>
 </head>
