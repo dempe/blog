@@ -7,7 +7,7 @@
     <div class="flex flex-col md:flex-row md:items-start">
         <div class="mx-auto w-1/2 md:-mt-4 md:-mx-4 md:order-first">
             <figure class="mx-0">
-                <img src="../assets/img/me-selfie-cancun.jpg"
+                <img src="../assets/img/me-selfie-cancun.webp"
                      alt="The author, hair dyed blue, standing in front of a palm tree, squinting due to the tropical sun."
                      width="200"
                      title="The author in Playa del Carmen"/>

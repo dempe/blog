@@ -94,7 +94,7 @@ of his suits to a hearing. You could vaguely make it out from the sheen of his s
 see without color.
 
 <figure class="img">
-    <img src="../assets/img/better-call-saul-cover.jpg"
+    <img src="../assets/img/better-call-saul-cover.webp"
                 alt="In this promotional image, Gene (the Saul from the present) dons a red jacket in an otherwise black-and-white photo, symbolizing his former self as the conman, Saul Goodman."
                 width="200"
                 title="The interplay of black-and-white and color can be seen in the show's promotional image"/>
@@ -142,7 +142,7 @@ prison. Kim doesn't need a time machine — she is the time machine. She realize
 but to fix the present.
 
 <figure>
-    <img src="../assets/img/saul-gone.jpg"
+    <img src="../assets/img/saul-gone.webp"
                 alt="In the final scene of Better Call Saul, Kim and Jimmy share a cigarette.  The only color in the scene is the flame of the cigarette.  Saul Goodman is dead, and Jimmy McGill is back."
                 width="200"
                 title="Kim and Jimmy's final cigarette"/>
