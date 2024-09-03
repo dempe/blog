@@ -16,7 +16,7 @@
         </div>
         <div class="w-full order-first">
             <p>
-                Hello! I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently,
+                I'm Chris Dempewolf (dim-pee-wolf), software engineer, former ESL teacher, and, most recently,
                 husband and father.
             </p>
             <p>
@@ -51,7 +51,7 @@
         <div class="mx-auto w-1/2 md:-mt-4 md:-mx-4 md:order-first">
             <figure class="mx-0">
                 <img src="../assets/img/cat-transparent.png"
-                     alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth "
+                     alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                      width="200"
                      title="Sho the Cat"/>
                 <figcaption>Sho the Cat</figcaption>
@@ -59,7 +59,7 @@
         </div>
         <div class="w-full order-first">
             <p>
-                Sho the Cat is a lively little fur ball. He's spontaneous, creative, and adventurous. He loves jokes and thrives in chaos. He's full of passion and lets his impulses guide him more than reason.
+                Sho is a lively little fur ball. He's spontaneous, creative, and adventurous. He loves jokes and thrives in chaos. He's full of passion and lets his impulses guide him more than reason.
             </p>
             <p>
                 Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is System 1.

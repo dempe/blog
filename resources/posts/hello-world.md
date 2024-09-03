@@ -16,7 +16,17 @@ Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobi
 eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit accusamus qui. Eaque esse quae nesciunt neque
 eum blanditiis[^1] ipsa.
 
-> Lorem Ipsum
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Est harum!</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
 
 ## Heading
 
@@ -44,6 +54,8 @@ ex.
 Est harum enim omnis alias ab. Dicta natus sapiente accusamus quisquam odit nobis laboriosam earum. Nobis ullam id
 eligendi architecto eos sit. Consequuntur porro rerum aut ipsa neque odit[^5] accusamus qui. Eaque esse quae nesciunt
 neque eum blanditiis ipsa.
+
+> Lorem ipsum.
 
 <div style="font-size: 2rem;">
     <p style="font-weight: 100;">Lorem ipsum 100.</p>
