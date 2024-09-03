@@ -59,10 +59,47 @@
         </div>
         <div class="w-full order-first">
             <p>
-                Sho is a lively little fur ball. He's spontaneous, creative, and adventurous. He loves jokes and thrives in chaos. He's full of passion and lets his impulses guide him more than reason.
+                Sho is a lively little fur ball. She's spontaneous, creative, and adventurous. She loves jokes and thrives in chaos. She's full of passion and lets her impulses guide her more than reason.
             </p>
             <p>
-                Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is System 1.
+                Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is Yin. Sho is <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 1</a>.
+            </p>
+        </div>
+    </div>
+    <h3 id="shin"><a href="#shin">Shin</a></h3>
+    <div class="flex flex-col md:flex-row md:items-start">
+        <div class="mx-auto w-1/2 md:-mt-4 md:-mx-4 md:order-first">
+            <figure class="mx-0">
+                <img src="../assets/img/owl.svg"
+                     alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
+                     width="200"
+                     title="Shin the Owl"/>
+                <figcaption>Shin the Owl</figcaption>
+            </figure>
+        </div>
+        <div class="w-full order-first">
+            <p>
+                Shin is a quiet and thoughtful Eurasian eagle-owl (<i>Bubo bubo</i>). His favorite place to be is alone with his books and his thoughts. Shin makes little time for revelry. His life's mission is to dispel any and all entropy leaving only clear, logical order in his wake.
+            </p>
+            <p>
+                Shin's Greek god is Apollo. Shin is Dr. Jekyll. Shin is the Narrator in <i>Fight Club</i>. Shin is Yang. Shin is <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 2</a>.
+            </p>
+        </div>
+    </div>
+    <h3 id="mu"><a href="#mu">Mu</a></h3>
+    <div class="flex flex-col md:flex-row md:items-start">
+        <div class="mx-auto w-1/2 md:-mt-4 md:-mx-4 md:order-first">
+            <figure class="mx-0">
+                <img src="../assets/img/cow.svg"
+                     alt="simple, cartoon, black and white cow, sideways, cud in mouth, blasé expression"
+                     width="200"
+                     title="Mu the Cow"/>
+                <figcaption>Mu the Cow</figcaption>
+            </figure>
+        </div>
+        <div class="w-full order-first">
+            <p>
+                If chaos and order are orthogonal to each other, then Mu is the z-axis. In other words, Mu is the opposite of both chaos and order, whatever that means. Mu is the sound of one hand clapping. Mu is not Yin and not Yang. At the same time, Mu is both Yin and Yang, the whole <i><a href="https://en.wikipedia.org//wiki/Taijitu">taijitu</a></i>. Mu is System 0.
             </p>
         </div>
     </div>

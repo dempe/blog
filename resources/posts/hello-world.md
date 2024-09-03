@@ -28,6 +28,30 @@ eum blanditiis[^1] ipsa.
         </figure>
 </aside>
 
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">無</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cow.svg"
+                 alt="simple, cartoon, black and white cow, sideways, cud in mouth, blasé expression"
+                 title="Mu"/>
+            <figcaption>
+                <a href="/about#mu">Mu</a>
+            </figcaption>
+        </figure>
+</aside>
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Aliquam et aliquam.</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/owl.svg"
+                 alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
+                 title="Shin"/>
+            <figcaption>
+                <a href="/about#shin">Shin</a>
+            </figcaption>
+        </figure>
+</aside>
+
 ## Heading
 
 Aliquam et aliquam provident possimus molestias. Ea iste est nesciunt placeat rerum sunt aspernatur. Aperiam earum alias
