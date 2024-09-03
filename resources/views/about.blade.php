@@ -45,4 +45,26 @@
                 Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.
         It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.
     </p>
+    <h2 id="the-characters"><a href="#the-characters">The Characters</a></h2>
+    <h3 id="sho"><a href="#sho">Sho</a></h3>
+    <div class="flex flex-col md:flex-row md:items-start">
+        <div class="mx-auto w-1/2 md:-mt-4 md:-mx-4 md:order-first">
+            <figure class="mx-0">
+                <img src="../assets/img/cat-transparent.png"
+                     alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth "
+                     width="200"
+                     title="Sho the Cat"/>
+                <figcaption>Sho the Cat</figcaption>
+            </figure>
+        </div>
+        <div class="w-full order-first">
+            <p>
+                Sho the Cat is a lively little fur ball. He's spontaneous, creative, and adventurous. He loves jokes and thrives in chaos. He's full of passion and lets his impulses guide him more than reason.
+            </p>
+            <p>
+                Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is System 1.
+            </p>
+        </div>
+    </div>
+
 @endsection
