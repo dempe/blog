@@ -4,7 +4,7 @@ slug: carlota
 subhead: "Delicious and simple Mexican bread pudding"
 tags: recipes
 published: "2023-07-08 22:34"
-updated: "2024-07-05 08:25"
+updated: "2024-09-03 11:40"
 ---
 
 A *carlota* or *carlota de limón* is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))).  It's a common dessert in Mexico, containing, like so many Mexican dishes, limes.
@@ -59,5 +59,17 @@ Chill 2 - 3 hours in fridge.  Serve cold.
                 title="The finished product."/>
     <figcaption>The finished product</figcaption>
 </figure>
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">That. I want that in my mouth right now. 🤤</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
 
 

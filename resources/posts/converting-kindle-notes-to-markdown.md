@@ -4,7 +4,7 @@ slug: converting-kindle-notes-to-markdown
 subhead: "A hacky Python script to parse Amazon's janky HTML"
 tags: tech perl regex python
 published: "2023-07-20 09:46"
-updated: "2023-08-03 12:17"
+updated: "2023-09-03 11:49"
 ---
 
 
@@ -18,16 +18,20 @@ pandoc -w markdown_strict -s -r html my_notes.html -o my_notes.md
 
 ## Enter: Amazon's Dumpster Fire HTML
 
-This basically just output a bunch of plain text — no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design.[^2] Then I thought, "Well, I guess it's time to bust out some Perl."
+This basically just output a bunch of plain text—no title, headings, lists, etc. That's when I realized that the notes file that Amazon sent me uses absolutely zero semantic HTML, opting instead for the ole divs-for-everything approach to web design [^2]. Lamentably, I thought, "Well, I guess it's time to bust out some Perl."
 
-For book notes, I have one `h1` heading for the title, an `h2` heading for each chapter, and each note or idea that I have, I use a list item. Here's an example from a book I recently read, *Moonwalking with Einstein*:
+Here's an example of what I want my notes to look like. From a book I recently read, *Moonwalking with Einstein*:
 
 ```text
-## ONE: THE SMARTEST MAN IS HARD TO FIND
+# Moonwalking with Einstein
+
+## Notes
+
+### ONE: THE SMARTEST MAN IS HARD TO FIND
 
 + *Page 13*: The reason for the monitored decline in human memory performance is because we actually do anti-Olympic training.
 
-## TWO: THE MAN WHO REMEMBERED TOO MUCH
+### TWO: THE MAN WHO REMEMBERED TOO MUCH
 
 + *Page 27*: "Somewhere in your mind there's a trace from everything you've ever seen."
 + *Page 42*: if there were one precept that could be said to govern his life, it is that one's highest calling is to engage in enriching escapades at every turn.
@@ -35,7 +39,9 @@ For book notes, I have one `h1` heading for the title, an `h2` heading for each 
 + *Page 44*: "Baker/baker paradox."
 ```
 
-And here's the HTML corresponding to the above that Amazon sent me:
+Now it's just a matter of converting Amazon's HTML to the above.
+
+Easier said than done. Here's the HTML corresponding to the above that Amazon sent me:
 
 ```html
 <div class="sectionHeading">
@@ -70,11 +76,23 @@ And here's the HTML corresponding to the above that Amazon sent me:
 </div>
 ```
 
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Thanks, Jeff. Looks like you've got some real top-notch talent working for you.</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
 Genius.[^3]
 
 ## The Allure of Regular Expressions
 
-I'm well aware of the fact that [regular expressions are insufficient to parse HTML](https://stackoverflow.com/a/1732454). Regular expressions are for parsing [regular languages](https://en.wikipedia.org/wiki/Regular_grammar), and HTML is not a regular language.
+I'm well aware of the fact that [regular expressions are insufficient to parse HTML](https://stackoverflow.com/a/1732454). Regular expressions are for parsing [regular languages](https://en.wikipedia.org/wiki/Regular_grammar), without context, which HTML is not.
 
 But, alas, regexes are like sirens leading unwary sailors astray. "Just one line," they sing. I oblige. They call out again, "There you go. That wasn't so bad. Just one more." Rapt in their pithy syntax, I indulge myself further.
 

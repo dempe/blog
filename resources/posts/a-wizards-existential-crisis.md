@@ -4,6 +4,7 @@ slug: a-wizards-existential-crisis
 subhead: When role-playing gets real
 tags: existentialism
 published: "2024-03-06 14:31"
+updated: "2023-09-03 11:53"
 ---
 
 Bored on the sofa one day, I decided to test ChatGPT's text adventure generating abilities. I would play a wizard while ChatGPT made the story.
@@ -32,6 +33,18 @@ A chill runs down my spine as I realize that the author, long-lost to history, o
 
 I am the author.
 
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">What are you on? ... And where can I get some?</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
 ## ChatGPT's Response
 
 You awake from your existential daydream in a daze. Hours have past.  It's dark out, and you can see the full moon through the windows of the library. Glancing around the dimly lit library, the silver light from the full moon casts eerie shadows across the ancient tomes lining the shelves.
@@ -41,3 +54,15 @@ The Crystal of Akarhand lies ahead. What will you do?
 ## My Response
 
 Whatever the fuck I want.  "The world's mine oyster, Which I with sword will open."
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">That's the spirit!</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>

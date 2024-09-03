@@ -4,7 +4,7 @@ slug: building-a-static-site-from-scratch
 subhead: The technologies used, problems faced, and lessons learned building a static site
 tags: tech php
 published: "2023-07-05 23:53:06"
-updated: "2024-08-28 00:04:08"
+updated: "2024-09-03 11:38:18"
 ---
 
 ## Why?
@@ -43,7 +43,7 @@ For individual categories like recipes, notes, or projects, I plan to simply use
 
 ## Keeping Track of Posts and Tags with a Database
 
-When running my local Laravel server, I use [SQLite](https://www.sqlite.org/) to store two entities — `posts` and `tags`.
+When running my local Laravel server (or the build server on Github), I use [SQLite](https://www.sqlite.org/) to store two entities — `posts` and `tags`.
 
 There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
 
@@ -65,7 +65,8 @@ CREATE TABLE "posts" (
                 "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 CREATE TABLE tags (
-             "tag" VARCHAR(255) PRIMARY KEY);
+             "tag" VARCHAR(255) PRIMARY KEY),
+             "description" VARCHAR(255);
 
 CREATE TABLE "post_tags" (
 				"slug" VARCHAR(255) NOT NULL,
@@ -96,7 +97,7 @@ One line!
 
 To be fair, there was a bit of work I had to do on the models to make them aware of the relationships between `posts`, `tags`, and `post_tags`. Enter [Eloquent relationships](https://laravel.com/docs/10.x/eloquent-relationships).
 
-<aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database, but I added it anyway for two reasons. One, it allows me to track update times for posts easily. Two, it's nice to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
+<aside>My main reason for storing posts and tags in a database was to make it easy to track the relationships between them. You'll notice the body of the post has nothing to do with this. I considered not adding the body to the database. I went ahead with it anyway, because it's better to have a single source for all of my data, as opposed to loading the post bodies from files and everything else from the database.</aside>
 
 ## Eloquent Relationships
 
@@ -122,7 +123,7 @@ There's a lot of parameters here, but it's not too bad. The first parameter to `
 
 The remaining fields are IDs. You don't always have to explicitly pass IDs to Eloquent relation methods. I do, because I have custom ID fields for all my tables. The third parameter tells Eloquent that `tag` is the foreign key on the `post_tags` table. The fourth argument tells Eloquent that `slug` is the foreign key on the `posts_tags` table for `posts`. The fifth argument tells Eloquent that `tag` is the key for the `tags` table. Finally, the sixth argument tells Eloquent that `slug` is the key for the `posts` table.
 
-All this allows me to use that nice chain syntax from above. Again, because it's so beautiful: `$posts = $tag->posts()->get();`.
+All this allows me to use that nice chain syntax from above: `$posts = $tag->posts()->get();`.
 
 But that's not all. It also allows for something called "**eager loading**".
 
@@ -158,7 +159,21 @@ foreach ($posts as $post) {
 
 The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load the tags along with the posts. Instead of running N+1 queries, we're now only running 1 query[^5]!
 
-Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs — lazy and eager.
+Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs—lazy and eager.
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
+Good point... Eager loading is definitely not necessary for such a tiny site. It wasn't too much extra work, and I thought it was a good learning experience. 🤷🏻‍♂️
 
 ## Seeding and Migrations
 
@@ -182,6 +197,8 @@ DB::statement('CREATE TRIGGER update_post_updated_at UPDATE ON posts
 ```
 
 Doing this allows me to track when posts were last updated, which I display in the post's footer.
+
+<aside>EDIT:  I no longer do the above since the database is constantly rebuilt for each build on Github Actions.</aside>
 
 ## Creating a New Post
 
@@ -238,7 +255,7 @@ Not the prettiest build method, but, in my opinion, it's worth it to have comple
 
 ### Deployment
 
-After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.  I save the output of this command to a log file. This way, I can parse the log file to see which files changed, so I know which files to invalidate in Cloudfront.
+After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete` to sync my S3 bucket.  I save the output of this command to a log file. This way, I can parse the log file to see which files changed, so I know which paths to invalidate in Cloudfront, so I don't have to invalidate `/*`.
 
 Here's the relevant portion of my Github Actions config:
 
@@ -246,13 +263,56 @@ Here's the relevant portion of my Github Actions config:
 - name: Deploy to S3
   run: |
     aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | sed 's|\r|\n|g' | tee s3-log.txt
-    shell: bash
+  shell: bash
 - name: Invalidate cache
   run: |
-    cat s3-log.txt
     aws cloudfront create-invalidation --distribution-id FOOBAR --paths $(cat s3-log.txt | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | tr '\n' ' ')
   shell: bash
 ```
+
+## Next Steps
+
+### Characters
+
+Not a technical consideration, but I'm adding a few characters to my blog for dialogues, to help clarify things, and to liven things up a bit.  I've seen a few other blogs implement this idea and I usually think it's a welcome addition.
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Sup</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
+### MDX
+
+Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX. So you can use React components in your Markdown.
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">Yo dawg! I heard you liked components.</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
+I have a few things like these^ dialogues, blockquotes with sources, images with captions, etc. that Markdown can't handle well [^6]. Heretofore, I just manually copy-and-paste these when I need them.  A parametrized component would be cool, though.
+
+### Build Markdown to HTML in realtime
+
+I currently have to run `php artisan db:seed` when I update a post to see its changes reflected on the server. Aside from being a huge anti-pattern as I [said above](#seeding), using seeders to load new posts and post updates is really inconvenient.
+
+One fix would be to have the server just read directly from the Markdown files.  But I'd still have to read the DB to get info about the relationships between tags and posts. Unless I wanna do all that in memory.
+
+I think a better solution would be to setup a file watcher/event handler in Laravel that detects updates to my Markdown files and automatically updates the DB.
 
 ## Conclusion
 
@@ -271,5 +331,7 @@ And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my
 [^4]: It's convention in Laravel for model names to be singular, and table names to be plural (`Post` and `posts`). This makes sense, because a table holds many rows, while a model represents a single row from that table.
 
 [^5]: If you want to see this live on your site, install the [DebugBar](https://github.com/barryvdh/laravel-debugbar) and click on the DB tab. It will show you all the queries made while fetching the current view!
+
+[^6]: I know there are some [Markdown extensions](https://python-markdown.github.io/extensions/) that fix some of these problems (I've used them in a [previous project](https://github.com/dempe/simple-markdown-for-anki)). I might give them a shot, but I honestly don't have a lot of confidence in Parsedown.
 
 <script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>

@@ -4,6 +4,7 @@ slug: a-tale-of-two-add-ons
 subhead: Speculations on niche vs general solutions
 tags: tech anki
 published: "2024-08-21 16:59:48"
+updated: "2023-09-03 11:55"
 ---
 
 I made an Anki[^1] add-on to convert Markdown-formatted inline code and code blocks to HTML.
@@ -29,6 +30,20 @@ If my first add-on that did nothing but convert code to the proper HTML tags got
 If I had never written the first add-on and went straight to the second, the lack of reviews would have conformed to my expectations. But based on my experiences with the first add-on, I found the lack of reviews strange.
 
 What can be extrapolated from this? Could one apply any insights gained here to a more lucrative endeavor?
+
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">I think you're reading too much into this. They're just some silly add-ons for a tool that 99.999% of the world doesn't even know about.</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
+I admit I'm hardcore speculating, but I like speculating. It's how you come up with new ideas. So to continue...
 
 I wrote a decent add-on with a very specific purpose. I wrote a much better add-on with a much broader purpose. The former has (so far) received more traction than the latter. What drove the increased popularity of the former?
 

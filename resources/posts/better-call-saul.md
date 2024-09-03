@@ -4,14 +4,14 @@ title: "Better Call Saul"
 slug: "better-call-saul"
 subhead: "The series finale of <em>Better Call Saul</em> is about time and regrets"
 published: "2023-05-12 23:23"
-updated:
+updated: "2024-09-03 10:45"
 ---
 
 
-I've been watching _Better Call Saul_ over the past 6 months and finally finished it last night. I wanted to analyze the series finale.  It was really good.
+I've been watching _Better Call Saul_ over the past 6 months and finally finished it last night. I wanted to analyze the series finale.  I really liked it.
 
-It's about time - the past, present, and future - and, as Walter makes clear, regrets. We finally learn why the Saul of
-the present is in black-and-white, and the two timelines - the colored past and the black-and-white present - finally
+It's about time—past, present, and future—and, as Walter makes clear, regrets. We finally learn why the Saul of
+the present is in black-and-white, and the two timelines—the colored past and the black-and-white present—finally
 meet.
 
 The episode starts in the present with Saul running from the police in Nebraska. He jumps in a dumpster to hide, and,
@@ -104,7 +104,7 @@ see without color.
 He tries, in vain, to revive his former self. He tells a sob story of how he was forced into helping Walter White, only
 to tell the prosecutors that he only needs one juror to believe this story.
 
-Scared, they cut him a deal. Only seven years. He's done it again! Or has he? He has one last carrot — the truth about
+Scared, they cut him a deal. Only seven years. He's done it again! Or has he? He has one last carrot—the truth about
 Howard Hamlin's death. The prosecutors grin and tell him that Kim has already signed an affidavit stating exactly what
 happened. She opened herself up to a civil suit, possibly loosing everything she had and will ever have. All to do
 what's right. To fix her regrets.
@@ -134,11 +134,23 @@ Kim comes to visit him. This is where we learn that Jimmy's sentence increased f
 cigarette like old times. But the flame is colored unlike the rest of the scene. The two timelines, past and present,
 have finally met.
 
+<aside class="p-0 flex items-center justify-between">
+        <p class="flex-grow text-center">I still can't believe he basically gave up the rest of his life to do what's right...  What a weirdo!</p>
+        <figure class="w-36 m-0">
+            <img class="" src="../assets/img/cat-transparent.png"
+                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+                 title="Sho"/>
+            <figcaption>
+                <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
 ## What Kim Would Do with a Time Machine
 
 Jimmy never asks her. She doesn't need one. She has regrets like everyone else, but unlike everyone else, she fixed
 hers. Luckily, Jimmy learned from her example and did the same. That's why the timelines meet when she visits him in
-prison. Kim doesn't need a time machine — she is the time machine. She realized that the point is not to fix the past
+prison. Kim doesn't need a time machine—she is the time machine. She realized that the point is not to fix the past
 but to fix the present.
 
 <figure>
