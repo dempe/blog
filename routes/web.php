@@ -16,10 +16,12 @@ Route::get('/tags/{tag}', [TagController::class, 'show']);
 Route::get('/feed.rss', [FeedController::class, 'index']);
 Route::get('/assets/js/highlight.min.js', [AssetController::class, 'getJavaScript']);
 
-
-
 Route::get('/about', function () {
     return view('about');
+});
+
+Route::get('/foo', function () {
+    return view('foo');
 });
 
 // Adding the following so wget will pull down the 404 page

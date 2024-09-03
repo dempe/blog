@@ -161,9 +161,9 @@ The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load
 
 Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs—lazy and eager.
 
-<aside class="p-0 flex items-center justify-between">
+<aside class="p-2 flex items-center justify-between">
         <p class="flex-grow text-center">Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?</p>
-        <figure class="w-36 m-0">
+        <figure class="w-36 m-0 h-full flex-shrink-0">
             <img class="" src="../assets/img/cat-transparent.png"
                  alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                  title="Sho"/>
@@ -276,9 +276,9 @@ Here's the relevant portion of my Github Actions config:
 
 Not a technical consideration, but I'm adding a few characters to my blog for dialogues, to help clarify things, and to liven things up a bit.  I've seen a few other blogs implement this idea and I usually think it's a welcome addition.
 
-<aside class="p-0 flex items-center justify-between">
+<aside class="p-2 flex items-center justify-between">
         <p class="flex-grow text-center">Sup</p>
-        <figure class="w-36 m-0">
+        <figure class="w-36 m-0 h-full flex-shrink-0">
             <img class="" src="../assets/img/cat-transparent.png"
                  alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                  title="Sho"/>
@@ -292,9 +292,9 @@ Not a technical consideration, but I'm adding a few characters to my blog for di
 
 Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX. So you can use React components in your Markdown.
 
-<aside class="p-0 flex items-center justify-between">
+<aside class="p-2 flex items-center justify-between">
         <p class="flex-grow text-center">Yo dawg! I heard you liked components.</p>
-        <figure class="w-36 m-0">
+        <figure class="w-36 m-0 h-full flex-shrink-0">
             <img class="" src="../assets/img/cat-transparent.png"
                  alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                  title="Sho"/>

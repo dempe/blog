@@ -134,14 +134,37 @@ Kim comes to visit him. This is where we learn that Jimmy's sentence increased f
 cigarette like old times. But the flame is colored unlike the rest of the scene. The two timelines, past and present,
 have finally met.
 
-<aside class="p-0 flex items-center justify-between">
+<aside class="p-2 flex items-center justify-between">
         <p class="flex-grow text-center">I still can't believe he basically gave up the rest of his life to do what's right...  What a weirdo!</p>
-        <figure class="w-36 m-0">
+        <figure class="w-36 m-0 h-full flex-shrink-0">
             <img class="" src="../assets/img/cat-transparent.png"
                  alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                  title="Sho"/>
             <figcaption>
                 <a href="/about#sho">Sho</a>
+            </figcaption>
+        </figure>
+</aside>
+
+<aside class="p-2 flex items-center justify-between">
+        <p class="flex-grow text-center">If you'll remember, Saul got out of the mess with Walter scott-free and with a substantial amount of money.  All he had to do was lay low. But he couldn't do it. It was too boring, and he had to get involved in criminal activity again.</p>
+        <figure class="w-36 m-0 h-full flex-shrink-0">
+            <img class="" src="../assets/img/owl.svg"
+                 alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
+                 title="Shin"/>
+            <figcaption>
+                <a href="/about#shin">Shin</a>
+            </figcaption>
+        </figure>
+</aside>
+<aside class="p-2 flex items-center justify-between">
+        <p class="flex-grow text-center">I think Saul realized that he could never stay out of trouble with the law. Admitting his guilt and going to jail was his way of accepting that.</p>
+        <figure class="w-36 m-0 h-full flex-shrink-0">
+            <img class="" src="../assets/img/owl.svg"
+                 alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
+                 title="Shin"/>
+            <figcaption>
+                <a href="/about#shin">Shin</a>
             </figcaption>
         </figure>
 </aside>

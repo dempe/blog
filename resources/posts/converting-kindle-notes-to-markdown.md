@@ -76,9 +76,9 @@ Easier said than done. Here's the HTML corresponding to the above that Amazon se
 </div>
 ```
 
-<aside class="p-0 flex items-center justify-between">
+<aside class="p-2 flex items-center justify-between">
         <p class="flex-grow text-center">Thanks, Jeff. Looks like you've got some real top-notch talent working for you.</p>
-        <figure class="w-36 m-0">
+        <figure class="w-36 m-0 h-full flex-shrink-0">
             <img class="" src="../assets/img/cat-transparent.png"
                  alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
                  title="Sho"/>
