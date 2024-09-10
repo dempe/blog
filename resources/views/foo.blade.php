@@ -134,17 +134,6 @@
         <p style="font-weight: 900;font-style: italic">Lorem ipsum 900.</p>
     </div>
     <h2 id="footnotes"><a href="#footnotes">Footnotes</a></h2>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <div class="footnotes">
         <hr>
         <ol>
@@ -156,4 +145,15 @@
             </li>
         </ol>
     </div>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 @endsection
