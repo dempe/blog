@@ -14,8 +14,7 @@ use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 
-class PostController extends Controller
-{
+class PostController extends Controller {
     public function index() {
         return view('posts', ['posts' => Post::all()]);
     }
@@ -42,8 +41,7 @@ class PostController extends Controller
             $post->prev = Post::findPrev($slug);
 
 
-            return view('post', ['post' => $post,
-                                 'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
+            return view('post', ['post' => $post, 'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
         }
         catch (ModelNotFoundException $e) {
             return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
@@ -91,6 +89,7 @@ class PostController extends Controller
     /**
      * Add ids to all H2 headers.  Assume only H2 exist for now (they do).
      * Add isomorphic function for H3 if the case ever arises.
+     *
      * @param $body
      * @return string html
      */
@@ -140,34 +139,26 @@ class PostController extends Controller
 
         // Number footnote references correctly
         $counter = 1;
-        $body = preg_replace_callback(
-            $footnoteRefPattern,
-            function ($matches) use (&$counter) {
-                // Sequentially replace each footnote number and increment the counter
-                return '[^' . ($counter++) . ']';
-            },
-            $body
-        );
+        $body = preg_replace_callback($footnoteRefPattern, function ($matches) use (&$counter) {
+            // Sequentially replace each footnote number and increment the counter
+            return '[^' . ($counter++) . ']';
+        },                            $body);
 
         // Number footnotes correctly
         $counter = 1;
-        $body = preg_replace_callback(
-            $footnotePattern,
-            function ($matches) use (&$counter) {
-                // Sequentially replace each footnote number and increment the counter
-                return '[^' . ($counter++) . ']:';
-            },
-            $body
-        );
+        $body = preg_replace_callback($footnotePattern, function ($matches) use (&$counter) {
+            // Sequentially replace each footnote number and increment the counter
+            return '[^' . ($counter++) . ']:';
+        },                            $body);
 
         return $body;
     }
 
-    private static function build_toc($body, $post_slug): string {
+    private static function build_toc($body): string {
         $data = self::build_dom_and_query($body, "//h2");
         $h2s = $data->query_results;
+        $toc = '<aside id="toc" class="mb-8"><details><summary class="font-bold">Table of Contents</summary><ul>';
 
-        $toc = '<aside id="toc" class="mb-8"><p class="font-bold"><button id="toc-toggle" class="font-monospace" onclick="toggleTOC()">+</button> Table of Contents</p><ul id="toc-list" class="hidden">';
         foreach ($h2s as $h2) {
             $toc .= '<li><a href="#' . $h2->getAttribute('id') . '">' . $h2->nodeValue . '</a>';
 
@@ -184,22 +175,9 @@ class PostController extends Controller
             }
             $toc .= '</ul></li>';
         }
-        $toc .= '<li><a href="#comments">Comments</a></li>';
-        $toc .= '</ul></aside>';
 
-        $toc .= '<script>
-        function toggleTOC() {
-            var tocList = document.getElementById("toc-list");
-            var tocButton = document.getElementById("toc-toggle");
-            if (tocList.classList.contains("hidden")) {
-                tocList.classList.remove("hidden");
-                tocButton.innerText = "-";
-            } else {
-                tocList.classList.add("hidden");
-                tocButton.innerText = "+";
-            }
-        }
-    </script>';
+        $toc .= '<li><a href="#comments">Comments</a></li>';
+        $toc .= '</ul></details></aside>';
 
         return $toc;
     }
