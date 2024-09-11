@@ -72,7 +72,7 @@
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
 
-    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, allowing me to delegate to <a href="https://github.com/">Github</a> for comments. If you you'd rather, feel free to reverse my email and email me at <a href="mailto:sirch@flowepmedsirch.moc">sirch@flowepmedsirch.moc</a>.
+    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, allowing me to delegate to <a href="https://github.com/">Github</a> for comments. If you you'd rather, feel free to <a href="/about#contact">contact me directly</a>.
     </p>
 
     <p>The spirit of this blog is the beginner's mind. As such, I would love to hear your thoughts!</p>

@@ -30,6 +30,14 @@
             </p>
         </div>
     </div>
+    <h3 id="contact"><a href="#contact">Contact</a></h3>
+    <ul>
+        <li><a href="mailto:&#99;&#104;&#114;&#105;&#115;&#64;&#99;&#104;&#114;&#105;&#115;&#100;&#101;&#109;&#112;&#101;&#119;&#111;&#108;&#102;&#46;&#99;&#111;&#109;">&#99;&#104;&#114;&#105;&#115;&#64;&#99;&#104;&#114;&#105;&#115;&#100;&#101;&#109;&#112;&#101;&#119;&#111;&#108;&#102;&#46;&#99;&#111;&#109;</a>
+        </li>
+        <li><a href="https://github.com/dempe">Github</a></li>
+        <li><a href="https://www.reddit.com/user/chrisdempewolf/">Reddit</a></li>
+        <li><a href="https://news.ycombinator.com/user?id=dempedempe">HackerNews</a></li>
+    </ul>
     <h2 id="the-title"><a href="#the-title">The Title</a></h2>
     <figure class="blockquote">
         <blockquote>
