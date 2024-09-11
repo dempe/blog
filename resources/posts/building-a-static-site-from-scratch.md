@@ -225,7 +225,7 @@ It loads the `post` view, which is a Blade template:
 
 I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to save a static version from the local server. The command looks like this:
 
-```bash 
+```shell 
 wget \
 --directory-prefix=output/ \
 --html-extension \
@@ -333,5 +333,3 @@ And the IKEA effect is real.  I'm far prouder of this blog than I ever was of my
 [^5]: If you want to see this live on your site, install the [DebugBar](https://github.com/barryvdh/laravel-debugbar) and click on the DB tab. It will show you all the queries made while fetching the current view!
 
 [^6]: I know there are some [Markdown extensions](https://python-markdown.github.io/extensions/) that fix some of these problems (I've used them in a [previous project](https://github.com/dempe/simple-markdown-for-anki)). I might give them a shot, but I honestly don't have a lot of confidence in Parsedown.
-
-<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>

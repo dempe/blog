@@ -22,7 +22,7 @@ This basically just output a bunch of plain text—no title, headings, lists, et
 
 Here's an example of what I want my notes to look like. From a book I recently read, *Moonwalking with Einstein*:
 
-```text
+```markdown
 # Moonwalking with Einstein
 
 ## Notes
@@ -171,7 +171,4 @@ From there, we basically just find the first "section" node (`start_node = soup.
 [^4]: Perl does not use POSIX regexes like `sed`. As we'll see, this is actually imperative, since there's no way to use the lazy quantifier, `?`, in POSIX. See [Comparison of regular expression engines](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines#Language_features).
 
 [^5]: `|` is my favorite delimiter. It's easier to see, and you have to escape it less.
-
-<script async src="/assets/js/highlight.min.js" onload="hljs.highlightAll();"></script>
-
 

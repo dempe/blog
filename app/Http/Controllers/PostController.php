@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use ParsedownExtra;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Highlight\Highlighter;
+
 
 
 class PostController extends Controller {
@@ -34,8 +36,9 @@ class PostController extends Controller {
             $new_body = $pd->text($new_body);
             $new_body = self::add_header_ids($new_body);
             $new_body = self::open_links_in_external_tab($new_body);
+            $new_body = self::highlightHtmlCodeBlocks($new_body);
 
-            $post->toc = self::build_toc($new_body, $slug);
+            $post->toc = self::build_toc($new_body);
             $post->body = $new_body;
             $post->next = Post::findNext($slug);
             $post->prev = Post::findPrev($slug);
@@ -109,10 +112,6 @@ class PostController extends Controller {
             $header->nodeValue = '';
             $a->setAttribute('href', "#{$slug}");
             $header->appendChild($a);
-
-//            $span = $results->dom->createElement('span', '#');
-//            $span->setAttribute('class', 'headerHashtag');
-//            $header->appendChild($span);
         }
 
         return $results->dom->saveHTML();
@@ -152,6 +151,51 @@ class PostController extends Controller {
         },                            $body);
 
         return $body;
+    }
+
+    static function highlightHtmlCodeBlocks(string $body)
+    {
+        $highlighter = new Highlighter();
+        $result = self::build_dom_and_query($body, '//pre/code');
+        $dom = $result->dom;
+        $codeBlocks = $result->query_results;
+
+        foreach ($codeBlocks as $codeBlock) {
+            $classes = $codeBlock->getAttribute('class');
+            if (preg_match('/language-(\w+)/', $classes, $matches)) {
+                $language = $matches[1];
+            } else {
+                $language = 'plaintext';
+            }
+
+            $code = $codeBlock->textContent;
+
+            try {
+                $highlighted = $highlighter->highlight($language, $code);
+
+                // Create a new <code> element with the language class
+                $newCodeElement = $dom->createElement('code');
+                $newCodeElement->setAttribute('class', 'hljs language-' . $language);
+
+                // Append the highlighted HTML as a text node to the new <code> element
+                $highlightedFragment = $dom->createDocumentFragment();
+                $highlightedFragment->appendXML($highlighted->value);
+                $newCodeElement->appendChild($highlightedFragment);
+
+                // Replace the existing <code> block with the new one
+                $codeBlock->parentNode->replaceChild($newCodeElement, $codeBlock);
+
+//                // Replace the content of the <code> block with the highlighted HTML
+//                $highlightedNode = $dom->createDocumentFragment();
+//                $highlightedNode->appendXML($highlighted->value);
+//                $codeBlock->parentNode->replaceChild($highlightedNode, $codeBlock);
+            } catch (\Exception $e) {
+                // If there's an error, leave the original code block intact
+                continue;
+            }
+        }
+
+        return $dom->saveHTML();
     }
 
     private static function build_toc($body): string {
