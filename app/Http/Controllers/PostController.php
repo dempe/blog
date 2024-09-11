@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use ParsedownExtra;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Highlight\Highlighter;
 
 
@@ -153,7 +155,7 @@ class PostController extends Controller {
         return $body;
     }
 
-    static function highlightHtmlCodeBlocks(string $body)
+    static function highlightHtmlCodeBlocks(string $body) : string
     {
         $highlighter = new Highlighter();
         $result = self::build_dom_and_query($body, '//pre/code');
@@ -184,11 +186,6 @@ class PostController extends Controller {
 
                 // Replace the existing <code> block with the new one
                 $codeBlock->parentNode->replaceChild($newCodeElement, $codeBlock);
-
-//                // Replace the content of the <code> block with the highlighted HTML
-//                $highlightedNode = $dom->createDocumentFragment();
-//                $highlightedNode->appendXML($highlighted->value);
-//                $codeBlock->parentNode->replaceChild($highlightedNode, $codeBlock);
             } catch (\Exception $e) {
                 // If there's an error, leave the original code block intact
                 continue;
