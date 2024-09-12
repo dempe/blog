@@ -1,16 +1,15 @@
 ---
 title: "Reducing JavaScript on My Blog"
 slug: reducing-javascript-on-my-blog
-subhead: 
+subhead: Exploring the potential of server-side rendering
 tags: tech
 published: 2024-09-11 04:27:06
+updated: 2024-09-11 21:27:35
 ---
 
 Shower thought of the day: "Hey, is it possible to use MathJax server-side to pre-render my documents?"  I then realized this should be the case for syntax highlighting as well.  So I started researching.
 
-I have no particular reason for wanting to remove JavaScript from my site.  Lighthouse gives my home page a 0.8 s [speed index](https://developer.chrome.com/docs/lighthouse/performance/speed-index/) and a [total blocking time](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/) of 70 ms.  I doubt anyone has visited my site without Javascript or with JavaScript disabled.
-
-In any case, I prefer having as much processing as possible take place server-side.  I feel this leads to a (slightly) faster and more consistent experience.
+To be clear, this was primarily just a learning endeavor. I have no particular reason for wanting to remove JavaScript from my site.  Lighthouse gives my home page a 0.8 s [speed index](https://developer.chrome.com/docs/lighthouse/performance/speed-index/) and a [total blocking time](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/) of 70 ms.  And I doubt any person has visited my site without Javascript or with JavaScript disabled. In any case, I have a clear objective for my experiment to see how little Javascript I can get away with.
 
 I don't have a lot of JS on my site to begin with.  Just a custom toggle script for my table of contents, syntax highlighting, MathJax, and Giscus for comments.
 
@@ -91,29 +90,33 @@ This one was also very easy.  I was using [highlight.js](https://highlightjs.org
     }
 ```
 
-I already had the minified highlight.js CSS included in my site's CSS, so this pretty much just worked right out of the box.
+I already had the minified Highlight.js CSS included in my site's CSS, so this pretty much just worked right out of the box.
+
+This was actually an even bigger win. Highlight.js provides syntax highlighting only for the languages you select to decrease the size of your site (unless you use a CDN). Highlight.php, however, contains [all the languages](https://highlightjs.org/download) available by default. Obviously, with no increase in the size of my site!
 
 ## MathJax
 
 This one was not as simple.
 
-### `mathjax` Node Module
+### MathJax Node.js Server
 
-The simplest solution I could find was to run a node server using the `mathjax`[^1] module that parses out and converts the dollar sign-delimited Latex in an HTML string to HTML.  I didn't like the idea of running another, parallel Node.js server.
+The simplest solution I could find was to run a Node server using the `mathjax`[^1] module that parses out and converts the dollar sign-delimited Latex in an HTML string to HTML.  But I'm not about to run a Node server parallel to my Laravel server just to remove a bit of JS.
 
 ### KaTeX
 
 I also looked at [KaTeX](https://katex.org/), which is supposed to be a faster but less fully-featured alternative to MathJax.  Katex even has a CLI program (`npx katex`) that converts stdin (or a file) to Latex!  I was pretty excited about this until I got an error—`KaTeX parse error: Expected 'EOF', got '&'`.  "Katex can't handle HTML entities?  That's odd.  But wait.  Shouldn't it only be trying to parse text delimited by `\$`?"
 
-Katex does not accept HTML strings.  It expects pure Latex.  That means I'd have to parse the Latex portion of my documents myself.  I'd rather not.
+Katex does not accept HTML strings.  It expects pure Latex.  That means I'd have to parse the Latex portion of my documents myself, which I'd rather not.
 
 ### Pandoc
 
-[Pandoc](https://pandoc.org/) has a CLI, and it accepts whole HTML files/strings with embedded Latex as input! `pandoc my-post.md -o /tmp/output.html --mathml` actually works beautifully.  But not as beautifully as MathJax.  [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) is "an XML-based language for describing mathematical notation."  But it's not as widely supported, and moreover, it just doesn't *look* as good as MathJax (at least in Brave).
+[Pandoc](https://pandoc.org/) has a CLI, and it accepts whole HTML files/strings with embedded Latex as input! `pandoc my-post.md -o /tmp/output.html --mathml` actually works beautifully!
+
+But not as beautifully as MathJax.  [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) is "an XML-based language for describing mathematical notation."  But it's not as widely supported, and moreover, the characters are smaller and ... at least in Brave, just don't look as good as MathJax (I'm not a typographer if you couldn't already tell).
 
 Pandoc also has a `--mathjax` option, but this doesn't convert anything other than the dollar sign delimiters, instead relying on client-side rendering (exactly what I was trying to get away from).
 
-There's also a `--katex` option, but the plus signed looks weird.  I couldn't get it Pandoc with `--katex` to parse my Latex correctly anyway.
+Pandoc also has a `--katex` option, but I couldn't get it to parse correctly. I tried out KaTeX client-side just to see how it looked, but the plus signs are darker than the rest of the text for whatever reason.  For me, this was enough of an excuse to abandon this option as well.
 
 ### Giving Up
 
@@ -125,13 +128,13 @@ I went ahead and kept my client-side MathJax.
 
 ## Comments
 
-This one is the hardest.  There are a few options like [Staticman](https://staticman.net/), AWS Lambda, or email-based comments where you manually add each comment and rebuild your site (lol). All of these would require a full rebuild of the site for the comments to be displayed in addition to added complexity.
+This one is the hardest.  There are a few options like [Staticman](https://staticman.net/), AWS Lambda, or email-based comments where you manually add each comment and rebuild your site (lol). All of these would require a full rebuild of the site for the comments to be displayed in addition to an enormous amount of added complexity.
 
 I'll just stick with Giscus.
 
 ## Conclusion
 
-Meaningless foray? Eh, not entirely. I learned a few things.  That's what it's all about, right?
+Meaningless foray? Possibly. But! I learned a few things. That's what it's all about, right?
 
 ## Footnotes
 
