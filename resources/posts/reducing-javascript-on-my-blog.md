@@ -9,7 +9,7 @@ updated: 2024-09-11 21:27:35
 
 Shower thought of the day: "Hey, is it possible to use MathJax server-side to pre-render my documents?"  I then realized this should be the case for syntax highlighting as well.  So I started researching.
 
-To be clear, this was primarily just a learning endeavor. I have no particular reason for wanting to remove JavaScript from my site.  Lighthouse gives my home page a 0.8 s [speed index](https://developer.chrome.com/docs/lighthouse/performance/speed-index/) and a [total blocking time](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/) of 70 ms.  And I doubt any person has visited my site without Javascript or with JavaScript disabled. In any case, I have a clear objective for my experiment to see how little Javascript I can get away with.
+To be clear, this was primarily just a learning endeavor. I have no particular reason for wanting to remove JavaScript from my site.  Lighthouse gives my homepage a 0.8 s [speed index](https://developer.chrome.com/docs/lighthouse/performance/speed-index/) and a [total blocking time](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/) of 70 ms.  And I doubt any person has visited my site without Javascript or with JavaScript disabled. In any case, I have a clear objective for my experiment to see how little Javascript I can get away with.
 
 I don't have a lot of JS on my site to begin with.  Just a custom toggle script for my table of contents, syntax highlighting, MathJax, and Giscus for comments.
 
