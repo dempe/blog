@@ -288,6 +288,30 @@ Not a technical consideration, but I'm adding a few characters to my blog for di
         </figure>
 </aside>
 
+<aside class="p-2 flex items-center justify-between">
+        <p class="flex-grow text-center">Update: Characters complete.</p>
+        <figure class="w-36 m-0 h-full flex-shrink-0">
+            <img class="" src="../assets/img/owl.svg"
+                 alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
+                 title="Shin"/>
+            <figcaption>
+                <a href="/about#shin">Shin</a>
+            </figcaption>
+        </figure>
+</aside>
+
+<aside class="p-2 flex items-center justify-between">
+        <p class="flex-grow text-center">Moo</p>
+        <figure class="w-36 m-0 h-full flex-shrink-0">
+            <img class="" src="../assets/img/cow.svg"
+                 alt="moo cow"
+                 title="Mu"/>
+            <figcaption>
+                <a href="/about#mu">Mu</a>
+            </figcaption>
+        </figure>
+</aside>
+
 ### MDX
 
 Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX. So you can use React components in your Markdown.
