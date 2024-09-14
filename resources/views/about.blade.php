@@ -20,7 +20,7 @@
                 husband and father.
             </p>
             <p>
-                I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>,
+                I'm from <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas">Fort Smith</a>,
                 Arkansas. I lived in Seattle for 2 years and abroad in Mexico 🇲🇽, Japan 🇯🇵, and Germany 🇩🇪. I taught
                 English for a couple of years and have worked as a software engineer for 7 years.
             </p>
@@ -34,9 +34,9 @@
     <ul>
         <li><a href="mailto:&#99;&#104;&#114;&#105;&#115;&#64;&#99;&#104;&#114;&#105;&#115;&#100;&#101;&#109;&#112;&#101;&#119;&#111;&#108;&#102;&#46;&#99;&#111;&#109;">&#99;&#104;&#114;&#105;&#115;&#64;&#99;&#104;&#114;&#105;&#115;&#100;&#101;&#109;&#112;&#101;&#119;&#111;&#108;&#102;&#46;&#99;&#111;&#109;</a>
         </li>
-        <li><a href="https://github.com/dempe">Github</a></li>
-        <li><a href="https://www.reddit.com/user/chrisdempewolf/">Reddit</a></li>
-        <li><a href="https://news.ycombinator.com/user?id=dempedempe">HackerNews</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/dempe">Github</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.reddit.com/user/chrisdempewolf/">Reddit</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://news.ycombinator.com/user?id=dempedempe">HackerNews</a></li>
     </ul>
     <h2 id="the-title"><a href="#the-title">The Title</a></h2>
     <figure class="blockquote">
@@ -47,8 +47,10 @@
     </figure>
     <p>This blog's title, <em>Shoshin</em>, is a Zen concept roughly translated as "beginner's mind", a concept first
         popularized in the West by Zen teacher <a target="_blank"
+                                                  rel="noopener noreferrer"
                                                   href="https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki">Shunryu
             Suzuki</a> in his book, <em><a target="_blank"
+                                           rel="noopener noreferrer"
                                            href="https://en.wikipedia.org/wiki/Zen_Mind,_Beginner's_Mind">Zen Mind,
                 Beginner's Mind</a></em>. It implies curiosity, openness, and approaching things without preconceptions.
         It is the goal of this blog to explore many new and interesting topics—always through the eyes of a beginner.
@@ -70,7 +72,7 @@
                 Sho is a lively little fur ball. She's spontaneous, creative, and adventurous. She loves jokes and thrives in chaos. She's full of passion and lets her impulses guide her more than reason.
             </p>
             <p>
-                Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is Yin. Sho is <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 1</a>.
+                Sho's Greek god is Dionysus. Sho is Mr. Hyde to Dr. Jekyll. Sho is Tyler Durden in <i>Fight Club</i>. Sho is Yin. Sho is <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 1</a>.
             </p>
         </div>
     </div>
@@ -90,7 +92,7 @@
                 Shin is a quiet and thoughtful Eurasian eagle-owl (<i>Bubo bubo</i>). His favorite place to be is alone with his books and his thoughts. Shin makes little time for revelry. His life's mission is to dispel any and all entropy leaving only clear, logical order in his wake.
             </p>
             <p>
-                Shin's Greek god is Apollo. Shin is Dr. Jekyll. Shin is the Narrator in <i>Fight Club</i>. Shin is Yang. Shin is <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 2</a>.
+                Shin's Greek god is Apollo. Shin is Dr. Jekyll. Shin is the Narrator in <i>Fight Club</i>. Shin is Yang. Shin is <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow#Two_systems">System 2</a>.
             </p>
         </div>
     </div>
@@ -107,7 +109,7 @@
         </div>
         <div class="w-full order-first">
             <p>
-                If chaos and order are orthogonal to each other, then Mu is the z-axis. In other words, Mu is the opposite of both chaos and order, whatever that means. Mu is the sound of one hand clapping. Mu is not Yin and not Yang. At the same time, Mu is both Yin and Yang, the whole <i><a href="https://en.wikipedia.org//wiki/Taijitu">taijitu</a></i>. Mu is System 0.
+                If chaos and order are orthogonal to each other, then Mu is the z-axis. In other words, Mu is the opposite of both chaos and order, whatever that means. Mu is the sound of one hand clapping. Mu is not Yin and not Yang. At the same time, Mu is both Yin and Yang, the whole <i><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org//wiki/Taijitu">taijitu</a></i>.
             </p>
         </div>
     </div>
