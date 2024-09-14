@@ -13,7 +13,7 @@ updated: "2024-09-03 11:38:18"
 
 **Two**, I feel that off-the-shelf static site generators (SSGs) like Hugo and Jekyll don't provide me with the control I want, especially when it comes to templating languages and themes.
 
-**Three**, I did it for the learning experience. I'd rather spend my time learning technologies more reusable than a pre-built SSG framework. In building this site, I've learned and/or reinforced my knowledge in several topics: utility-first CSS ([Tailwind](https://tailwindcss.com/)), database normalization, MVC, the N+1 problem and eager loading, PHP, and many more specific technologies. More importantly, it was good practice designing a system from scratch.
+**Three**, I did it for the learning experience. I'd rather spend my time learning technologies more reusable than a pre-built SSG framework. In building this site, I learned about utility-first CSS ([Tailwind](https://tailwindcss.com/)), the N+1 problem and eager loading, variable fonts, the difference between various image formats, modern website layouts/design, and semantic HTML/a myriad of HTML tags that I didn't know existed. I refreshed my memory of PHP, Laravel, MVC, Sqlite, building CICD pipelines, and AWS (mostly S3, CloudFront, Athena). More importantly, it was good practice designing a system from scratch.
 
 ## Where To Start?
 
@@ -41,13 +41,41 @@ I want to [keep things as simple as possible](https://en.wikipedia.org/wiki/KISS
 
 For individual categories like recipes, notes, or projects, I plan to simply use tags. This way, I can add new categories without changing the site structure.
 
-## Keeping Track of Posts and Tags with a Database
+## The Database
 
-When running my local Laravel server (or the build server on Github), I use [SQLite](https://www.sqlite.org/) to store two entities — `posts` and `tags`.
+When running my local Laravel server (or the build server on Github), I use [SQLite](https://www.sqlite.org/) to store two entities — `posts` and `tags` along with a pivot table, `post_tags`.  This is an ephemeral database that is rebuilt everytime I build my site. That begs the question, why even use a database?
 
-There is a many-to-many relationship between these two entities. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the footer.
+I'm using a database for two reasons:
 
-This can be somewhat tricky to set up without a relational DB. With a relational DB, it's a piece of cake.
+1. A relational database, as the name implies, keeps track of relationships without any extra work on my part.
+2. Laravel expects to read from a database, so using Sqlite is as simple as setting `DB_CONNECTION=sqlite`.
+
+Let's explore the first point.
+
+### Keeping Track of Relationships with a DB
+
+There is a many-to-many relationship between `posts` and `tags`. Each tag has its own page that is dynamically generated with a list of all the posts associated with that tag, and for each post, there is a list of tags in the metadata.
+
+This can be somewhat tricky to set up in memory. It would require scanning the metadata of each of my posts and building a map of the relationships. I'd then need to have logic to rebuild the map upon changes to posts or tags. A relational database takes care of all this for me.
+
+On to the second point.
+
+### Laravel Expects to Read from a Database
+
+I could use a flat JSON/Yaml file or in-memory object to store entities and their relationships. In addition to the extra processing mentioned above, I'd also have to customize my models to read from a JSON file, I couldn't define a nice, clean schema like I can with migrations, and I'd have to write my own query logic.
+
+An Sqlite DB is a flat file. Mine is 192 KiB and builds in about 1.4 seconds. It readily solves all my problems with no extra processing, and Laravel is already well equipped to work with it. Doing anything else feels like going against the grain.
+
+```fish
+time begin; php artisan migrate:fresh; and php artisan db:seed; end
+...
+________________________________________________________
+Executed in    1.40 secs      fish           external
+   usr time  600.66 millis    0.56 millis  600.10 millis
+   sys time  378.58 millis    2.69 millis  375.90 millis
+```
+
+### Database Schema Overview
 
 In a relational DB, many-to-many relationships are modeled with 3 tables[^3] — two for the two entities and a third to store the relationships between them. For example, say `slug` is the primary key for `posts` and `tag` (the tag name) is the primary key for the table `tags`. The third table, `post_tags` has two columns — `slug` and `tag` to indicate which posts are associated with which tags and which tags are associated with which posts.
 
@@ -65,8 +93,8 @@ CREATE TABLE "posts" (
                 "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 CREATE TABLE tags (
-             "tag" VARCHAR(255) PRIMARY KEY),
-             "description" VARCHAR(255);
+             "tag" VARCHAR(255) PRIMARY KEY,
+             "description" VARCHAR(255));
 
 CREATE TABLE "post_tags" (
 				"slug" VARCHAR(255) NOT NULL,
@@ -187,18 +215,29 @@ However, I would like to migrate away from this, since this is not the intended 
 
 ### Migrations 
 
-I have pretty standard migrations for each table, `posts`, `tags`, and `post_tags`. The only hiccup was that I needed to use raw SQL (via the `DB::statement` method) on the `posts` table. Sqlite doesn't have `ON UPDATE CURRENT_TIMESTAMP` like in MySQL. Instead, I had to create a trigger:
+My blog is a single-person project with an ephemeral database that can be (and is) rebuilt in about a second, so migrations don't serve their usual purpose of version-controlled schema changes. But they're still the standard way to tell Laravel how to construct my database.  Hence, I have migrations to create the `posts`, `tags`, and `post_tags` tables.
+
+I've gone ahead and created new migrations when making schema changes (adding a `description` column to my `tags` table, for example), though I suppose I could've just kept a single definitive migration file that defines the whole schema. I decided to not deviate from tradition.
+
 
 ```php
-DB::statement('CREATE TRIGGER update_post_updated_at UPDATE ON posts
-                BEGIN
-                    UPDATE posts SET updated_at = CURRENT_TIMESTAMP WHERE OLD.slug = NEW.slug;
-                END;');
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('tags', function (Blueprint $table) {
+            $table->text('description')->nullable();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('tags', function (Blueprint $table) {
+            $table->dropColumn('description');
+        });
+    }
+};
 ```
-
-Doing this allows me to track when posts were last updated, which I display in the post's footer.
-
-<aside>EDIT:  I no longer do the above since the database is constantly rebuilt for each build on Github Actions.</aside>
 
 ## Creating a New Post
 
