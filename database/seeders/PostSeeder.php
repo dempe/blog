@@ -25,8 +25,6 @@ class PostSeeder extends Seeder
                 'title' => $document->title,
                 'subhead' => $document->subhead,
                 'created_at' => $document->published,
-
-                /* Can't use filesystem timestamp for updated as this includes style changes */
                 'updated_at' => $document->updated,
                 'body' => $document->body()];
     }

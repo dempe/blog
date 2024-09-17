@@ -12,8 +12,6 @@ use Illuminate\Support\Str;
 use ParsedownExtra;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Highlight\Highlighter;
 
 
