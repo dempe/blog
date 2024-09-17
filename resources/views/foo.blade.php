@@ -133,6 +133,8 @@
         <p style="font-weight: 800;font-style: italic">Lorem ipsum 800.</p>
         <p style="font-weight: 900;font-style: italic">Lorem ipsum 900.</p>
     </div>
+
+
     <h2 id="footnotes"><a href="#footnotes">Footnotes</a></h2>
     <div class="footnotes">
         <hr>
