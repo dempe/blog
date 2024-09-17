@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title')
     {{ $post->title }}
@@ -22,7 +22,7 @@
         </tr>
     @endif
     <tr>
-        <td>Words: </td>
+        <td>Words:</td>
         <td>{{ $post->wc }}</td>
     </tr>
     <tr>
@@ -61,10 +61,12 @@
 
     <div class="flex flex-col items-center justify-center md:hidden">
         @if(isset($post->prev))
-            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></div>
+            <div class="mb-4 mx-auto"><a class="no-underline"
+                                         href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></div>
         @endif
         @if(isset($post->next))
-            <div class="mb-4 mx-auto"><a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></div>
+            <div class="mb-4 mx-auto"><a class="no-underline"
+                                         href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></div>
         @endif
     </div>
 @endsection
@@ -72,7 +74,9 @@
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
 
-    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, allowing me to delegate to <a href="https://github.com/">Github</a> for comments. If you you'd rather, feel free to <a href="/about#contact">contact me directly</a>.
+    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, allowing me to delegate to <a
+                href="https://github.com/">Github</a> for comments. If you you'd rather, feel free to <a
+                href="/about#contact">contact me directly</a>.
     </p>
 
     <p>The spirit of this blog is the beginner's mind. As such, I would love to hear your thoughts!</p>

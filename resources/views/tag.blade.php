@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title')
     <span class="font-monospace">#{{ $tag->tag }}</span>
@@ -25,5 +25,5 @@
 @endsection
 @section('content')
 
-    @include('posts-list')
+    @include('partials.posts-list')
 @endsection

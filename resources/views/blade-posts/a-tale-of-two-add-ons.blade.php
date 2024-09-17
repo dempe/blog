@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title')
     ATOTA
@@ -17,7 +17,8 @@
     ## Problems
 
     - I later learned that my add-on was not Markdown compliant, even for the small subset of Markdown it claimed to cover (backticks within backticks).
-   - Additionally, Anki had since updated their editor, inserting `<br>` where there shouldn't be any (inside a `<pre>` block), which, obviously, broke my add-on.
+    - Additionally, Anki had since updated their editor, inserting `<br>` where there shouldn't be any (inside a `
+    <pre>` block), which, obviously, broke my add-on.
     - Users requested various features that seemed pretty reasonable to me (adding a button to the toolbar and a hotkey).
 
 ## Rewrite

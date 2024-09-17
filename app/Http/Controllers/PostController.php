@@ -44,7 +44,7 @@ class PostController extends Controller {
             $post->prev = Post::findPrev($slug);
 
 
-            return view('post', ['post' => $post, 'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
+            return view('layouts/post', ['post' => $post, 'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
         }
         catch (ModelNotFoundException $e) {
             return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
@@ -54,11 +54,12 @@ class PostController extends Controller {
     public function showBladePost($slug) {
         $viewPath = "blade-posts.{$slug}";
 
-        if (view()->exists($viewPath)) {
-            return view($viewPath);
+        if (!view()->exists($viewPath)) {
+            return view('404');
         }
 
-        return view('404');
+        $content = view("posts.{$slug}")->render();
+
     }
 
     public function redirect() {

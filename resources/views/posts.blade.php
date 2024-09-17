@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title')
     Posts
@@ -22,5 +22,5 @@
 @endsection
 
 @section('content')
-    @include('posts-list')
+    @include('partials.posts-list')
 @endsection

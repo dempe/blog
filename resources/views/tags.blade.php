@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title')
     Tags
@@ -20,7 +20,7 @@
     </tr>
 @endsection
 @section('content')
-{{--    Using a table here. Tag names are not all the same length (like dates), so it's impossible to align both columns based on the width of the rows using flexbox like we did in the posts-list.blade. --}}
+    {{--    Using a table here. Tag names are not all the same length (like dates), so it's impossible to align both columns based on the width of the rows using flexbox like we did in the posts-list.blade. --}}
     <table>
         @foreach ($tags->sortBy('tag') as $tag)
             <tr>
