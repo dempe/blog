@@ -16,17 +16,7 @@ Route::get('/tags/{tag}', [TagController::class, 'show']);
 Route::get('/feed.rss', [FeedController::class, 'index']);
 Route::get('/assets/js/highlight.min.js', [AssetController::class, 'getJavaScript']);
 
-Route::get('/blade-posts/{slug}', function ($slug) {
-    // Look for the corresponding Blade template in the posts directory
-    $viewPath = "blade-posts.{$slug}";
-
-    // Check if the view exists before rendering it
-    if (view()->exists($viewPath)) {
-        return view($viewPath);
-    }
-
-    return view('404');
-});
+Route::get('/blade-posts/{slug}', [PostController::class, 'showBladePost']);
 
 Route::get('/about', function () {
     return view('about');
