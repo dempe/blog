@@ -189,17 +189,7 @@ The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load
 
 Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs—lazy and eager.
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
+<x-sho text="Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?" />
 
 Good point... Eager loading is definitely not necessary for such a tiny site. It wasn't too much extra work, and I thought it was a good learning experience. 🤷🏻‍♂️
 
@@ -248,6 +238,7 @@ After the new post has been imported to the DB, I can go to the URL `<host>/post
 It loads the `post` view, which is a Blade template:
 
 ```php-template
+@verbatim
 @extends('layout')
 
 @section('title')
@@ -256,6 +247,7 @@ It loads the `post` view, which is a Blade template:
 @section('content')
     {!! $post->body !!}
 @endsection
+@endverbatim
 ```
 
 ## Building and Deployment
@@ -315,57 +307,15 @@ Here's the relevant portion of my Github Actions config:
 
 Not a technical consideration, but I'm adding a few characters to my blog for dialogues, to help clarify things, and to liven things up a bit.  I've seen a few other blogs implement this idea and I usually think it's a welcome addition.
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">Sup</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
-
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">Update: Characters complete.</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/owl.svg"
-                 alt="drawing, owl, yellow eyes, stern look, grey beak, european eagle owl"
-                 title="Shin"/>
-            <figcaption>
-                <a href="/about#shin">Shin</a>
-            </figcaption>
-        </figure>
-</aside>
-
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">Moo</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cow.svg"
-                 alt="moo cow"
-                 title="Mu"/>
-            <figcaption>
-                <a href="/about#mu">Mu</a>
-            </figcaption>
-        </figure>
-</aside>
+<x-sho text="Sup" />
+<x-shin shin="Update: Characters complete." />
+<x-mu text="Moo" /> 
 
 ### MDX
 
 Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX. So you can use React components in your Markdown.
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">Yo dawg! I heard you liked components.</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
+<x-sho text="Yo dawg! I heard you liked components." />
 
 I have a few things like these^ dialogues, blockquotes with sources, images with captions, etc. that Markdown can't handle well [^6]. Heretofore, I just manually copy-and-paste these when I need them.  A parametrized component would be cool, though.
 

@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use ParsedownExtra;
@@ -32,13 +33,14 @@ class PostController extends Controller {
             $pd->setSafeMode(false);
             $post = Post::findOrFail($slug);
             $postFileContent = file_get_contents(resource_path("posts/{$slug}.md"));
-            $document = YamlFrontMatter::parse($postFileContent);
-            $frontMatter = $document->matter(); // Returns an associative array of the frontmatter data
-            $body = $document->body();          // The markdown content without frontmatter
+            $body = YamlFrontMatter::parse($postFileContent)->body();  // The markdown content without frontmatter
 
 
             $post->wc = str_word_count($body);
-            //$body = Blade::render($body);
+//            $body = Blade::render($body);
+            Artisan::call('view:clear');
+            $body = Blade::render($body, [], true);
+
             $body = self::order_footnotes($body);
             $body = $pd->text($body);
             $body = self::add_header_ids($body);

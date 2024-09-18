@@ -31,17 +31,7 @@ If I had never written the first add-on and went straight to the second, the lac
 
 What can be extrapolated from this? Could one apply any insights gained here to a more lucrative endeavor?
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">I think you're reading too much into this. They're just some silly add-ons for a tool that 99.999% of the world doesn't even know about.</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
+@include('partials.sho', ['text' => 'I think you\'re reading too much into this. They\'re just some silly add-ons for a tool that 99.999% of the world doesn\'t even know about.'])
 
 I admit I'm hardcore speculating, but I like speculating. It's how you come up with new ideas. So to continue...
 

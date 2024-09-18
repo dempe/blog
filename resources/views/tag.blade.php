@@ -24,6 +24,5 @@
     </tr>
 @endsection
 @section('content')
-
     @include('partials.posts-list')
 @endsection
