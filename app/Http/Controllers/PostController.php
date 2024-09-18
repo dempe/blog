@@ -8,8 +8,10 @@ use DOMDocument;
 use DOMXPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use ParsedownExtra;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Highlight\Highlighter;
@@ -29,17 +31,22 @@ class PostController extends Controller {
             $pd = new ParsedownExtra();
             $pd->setSafeMode(false);
             $post = Post::findOrFail($slug);
+            $postFileContent = file_get_contents(resource_path("posts/{$slug}.md"));
+            $document = YamlFrontMatter::parse($postFileContent);
+            $frontMatter = $document->matter(); // Returns an associative array of the frontmatter data
+            $body = $document->body();          // The markdown content without frontmatter
 
-            $post->wc = str_word_count($post->body);
-            $new_body = $post->body;
-            $new_body = self::order_footnotes($new_body);
-            $new_body = $pd->text($new_body);
-            $new_body = self::add_header_ids($new_body);
-            $new_body = self::open_links_in_external_tab($new_body);
-            $new_body = self::highlightHtmlCodeBlocks($new_body);
 
-            $post->toc = self::build_toc($new_body);
-            $post->body = $new_body;
+            $post->wc = str_word_count($body);
+            //$body = Blade::render($body);
+            $body = self::order_footnotes($body);
+            $body = $pd->text($body);
+            $body = self::add_header_ids($body);
+            $body = self::open_links_in_external_tab($body);
+            $body = self::highlightHtmlCodeBlocks($body);
+
+            $post->toc = self::build_toc($body);
+            $post->body = $body;
             $post->next = Post::findNext($slug);
             $post->prev = Post::findPrev($slug);
 
