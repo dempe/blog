@@ -25,7 +25,6 @@ class PostSeeder extends Seeder
                 'title' => $document->title,
                 'subhead' => $document->subhead,
                 'created_at' => $document->published,
-                'updated_at' => $document->updated,
-                'body' => $document->body()];
+                'updated_at' => $document->updated];
     }
 }
