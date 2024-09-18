@@ -34,12 +34,7 @@ Saul also gives an exact date - a date in 1965 that no one would be too familiar
 that Warren Buffet started Berkshire Hathaway. Saul would invest his money in Buffet's newly formed investment company,
 and, by the time the 2000s rolled around, he'd be a billionaire. Wait, "is there such thing as a trillionaire?"
 
-<figure class="blockquote">
-    <blockquote>
-        <p>That's it? It's all just money to you?</p>
-    </blockquote>
-    <figcaption>Mike</figcaption>
-</figure>
+<x-blockquote text="That's it? It's all just money to you?" caption="Mike" />
 
 ## What Walter Would Do with a Time Machine
 
@@ -76,12 +71,7 @@ he had a time machine, he'd fix his relationship with his brother. He'd treat hi
 In fact, the whole flashback with Chuck was, essentially, a time machine visit. As if Chuck were coming back from the
 grave to say he's sorry and, in the process, warn Jimmy:
 
-<figure class="blockquote">
-    <blockquote>
-        <p>You know, Jimmy, if you don't like where you're headed, you can always change.</p>
-    </blockquote>
-    <figcaption>Chuck</figcaption>
-</figure>
+<x-blockquote text="You know, Jimmy, if you don't like where you're headed, you can always change." caption="Chuck" />
 
 ## The Meaning of Color in the Series
 

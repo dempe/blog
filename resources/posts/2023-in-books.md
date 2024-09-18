@@ -42,12 +42,7 @@ Zahn creates a compelling new nemesis with Grand Admiral Thrawn. Thrawn is nothi
 
 Thrawn is just as formidable as Darth Vader, but for entirely different reasons. He's a completely different individual with completely different qualities. In creating such a compelling new character, Zahn breathes new life into the Star Wars saga. There's a reason that when Disney invalidated the EU, Thrawn was the only character they kept.
 
-<figure class="blockquote">
-	<blockquote>
-		<p>Concentration, focus, long-term thinking — those are the qualities that separate a warrior from a mere flailing fighter.</p>
-	</blockquote>
-	<figcaption>Grand Admiral Thrawn</figcaption>
-</figure>
+<x-blockquote text="Concentration, focus, long-term thinking—those are the qualities that separate a warrior from a mere flailing fighter." caption="Grand Admiral Thrawn"/>
 
 ## *Star Wars: Dark Force Rising* by Timothy Zahn
 
@@ -115,7 +110,6 @@ ASIDE:
 If the Romans used these mnemonic techniques to learn speeches, couldn't we use the same techniques in reverse to learn, say, the main facts/line of argument of a book? Yes! Though this was not detailed in <em>Moonwalking</em>, I have successfully used mnemonic techniques to memorize various chapters of books.
 
 But, be warned, it is <em>NOT</em> easy. You first have to really understand what the author is saying. Then make an outline of the author's thoughts. Once you've made the outline, you can then make an image for each point in the outline (a creative endeavor). Then once you have the images, you place each image in a memory palace. But you don't want these memories to conflict with other memories, so you need a <em>new</em> memory palace. Thus, you have to find or construct a new memory palace (a revolutionary idea for me was that 2D images on the internet can be used as memory palaces (art works great!)). Finally, once you've done all that, you need to make sure that you review the memory palace. Thankfully because these memories are so "sticky" I find that reviewing them about once a year suffices.
-
 </aside>
 
 *Moonwalking With Einstein* was a fantastic work of journalism that details not just the lives of memory champions, the techniques they used, but also delves into history - the history of writing, paper, books, and, most importantly, the history of mnemonics.
