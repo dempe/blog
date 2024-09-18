@@ -33,17 +33,7 @@ A chill runs down my spine as I realize that the author, long-lost to history, o
 
 I am the author.
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">What are you on? ... And where can I get some?</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
+<x-sho text="What are you on? ... And where can I get some?" />
 
 ## ChatGPT's Response
 
@@ -55,14 +45,4 @@ The Crystal of Akarhand lies ahead. What will you do?
 
 Whatever the fuck I want.  "The world's mine oyster, Which I with sword will open."
 
-<aside class="p-2 flex items-center justify-between">
-        <p class="flex-grow text-center">That's the spirit!</p>
-        <figure class="w-36 m-0 h-full flex-shrink-0">
-            <img class="" src="../assets/img/cat-transparent.png"
-                 alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-                 title="Sho"/>
-            <figcaption>
-                <a href="/about#sho">Sho</a>
-            </figcaption>
-        </figure>
-</aside>
+<x-sho text="That's the spirit!" />

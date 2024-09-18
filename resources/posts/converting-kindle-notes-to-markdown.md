@@ -76,7 +76,7 @@ Easier said than done. Here's the HTML corresponding to the above that Amazon se
 </div>
 ```
 
-@include('partials.sho', ['text' => 'Thanks, Jeff. Looks like you\'ve got some real top-notch talent working for you.'])
+<x-sho text="Thanks, Jeff. Looks like you've got some real top-notch talent working for you." />
 
 Genius.[^3]
 

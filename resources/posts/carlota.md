@@ -60,6 +60,5 @@ Chill 2 - 3 hours in fridge.  Serve cold.
     <figcaption>The finished product</figcaption>
 </figure>
 
-@include('partials.sho', ['text' => 'That. I want that in my mouth right now. 🤤'])
-
+<x-sho text="That. I want that in my mouth right now. 🤤" />
 
