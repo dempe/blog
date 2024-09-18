@@ -1,16 +1,12 @@
-@extends('layouts.dialogue')
-
-@section('text')
-    {{ $text }}
-@endsection
-
-@section('img')
-    <img class=""
-         src="../assets/img/cat-transparent.png"
-         alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
-         title="Sho"/>
-@endsection
-
-@section('fig-caption')
-    <a href="/about#sho">Sho</a>
-@endsection
+<aside class="p-2 flex items-center justify-between">
+    <p class="flex-grow text-center">{{ $text }}</p>
+    <figure class="w-36 m-0 h-full flex-shrink-0">
+        <img class=""
+             src="../assets/img/cat-transparent.png"
+             alt="simple, cartoon, black cat, green eyes, smiling, black nose, pink mouth"
+             title="Sho"/>
+        <figcaption>
+            <a href="/about#sho">Sho</a>
+        </figcaption>
+    </figure>
+</aside>

@@ -308,8 +308,10 @@ Here's the relevant portion of my Github Actions config:
 Not a technical consideration, but I'm adding a few characters to my blog for dialogues, to help clarify things, and to liven things up a bit.  I've seen a few other blogs implement this idea and I usually think it's a welcome addition.
 
 <x-sho text="Sup" />
-<x-shin shin="Update: Characters complete." />
-<x-mu text="Moo" /> 
+
+<x-shin text="Update: Characters complete." />
+
+<x-mu text="Moo." /> 
 
 ### MDX
 

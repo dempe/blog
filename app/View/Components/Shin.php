@@ -8,11 +8,11 @@ use Illuminate\View\Component;
 
 class Shin extends Component
 {
-    public string $shin;
+    public string $text;
 
-    public function __construct(string $shin)
+    public function __construct(string $text)
     {
-        $this->shin = $shin;
+        $this->text = $text;
     }
 
     /**
