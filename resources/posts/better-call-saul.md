@@ -83,13 +83,11 @@ The present is black-and-white because Saul Goodman is over. His flashy suits do
 of his suits to a hearing. You could vaguely make it out from the sheen of his suit sleeves. But that was all you could
 see without color.
 
-<figure class="img">
-    <img src="../assets/img/better-call-saul-cover.webp"
-                alt="In this promotional image, Gene (the Saul from the present) dons a red jacket in an otherwise black-and-white photo, symbolizing his former self as the conman, Saul Goodman."
-                width="200"
-                title="The interplay of black-and-white and color can be seen in the show's promotional image"/>
-    <figcaption>The interplay of black-and-white and color can be seen in the show's promotional image</figcaption>
-</figure>
+<x-img src="../assets/img/better-call-saul-cover.webp"
+       alt="In this promotional image, Gene (the Saul from the present) dons a red jacket in an otherwise black-and-white photo, symbolizing his former self as the conman, Saul Goodman."
+       width="200"
+       caption="The interplay of black-and-white and color can be seen in the show's promotional image"
+        title="Saul Goodman Promotional Image" />
 
 He tries, in vain, to revive his former self. He tells a sob story of how he was forced into helping Walter White, only
 to tell the prosecutors that he only needs one juror to believe this story.
@@ -137,10 +135,11 @@ hers. Luckily, Jimmy learned from her example and did the same. That's why the t
 prison. Kim doesn't need a time machine—she is the time machine. She realized that the point is not to fix the past
 but to fix the present.
 
-<figure>
-    <img src="../assets/img/saul-gone.webp"
-                alt="In the final scene of Better Call Saul, Kim and Jimmy share a cigarette.  The only color in the scene is the flame of the cigarette.  Saul Goodman is dead, and Jimmy McGill is back."
-                width="200"
-                title="Kim and Jimmy's final cigarette"/>
-    <figcaption>Kim and Jimmy's final cigarette</figcaption>
-</figure>
+<x-img
+    src="../assets/img/saul-gone.webp"
+    alt="In the final scene of Better Call Saul, Kim and Jimmy share a cigarette.  The only color in the scene is the flame of the cigarette.  Saul Goodman is dead, and Jimmy McGill is back."
+    width="200"
+    title="Kim and Jimmy's final cigarette"
+    caption="Kim and Jimmy's final cigarette"
+/>
+
