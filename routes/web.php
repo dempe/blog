@@ -16,8 +16,6 @@ Route::get('/tags/{tag}', [TagController::class, 'show']);
 Route::get('/feed.rss', [FeedController::class, 'index']);
 Route::get('/assets/js/highlight.min.js', [AssetController::class, 'getJavaScript']);
 
-Route::get('/blade-posts/{slug}', [PostController::class, 'showBladePost']);
-
 Route::get('/about', function () {
     return view('about');
 });

@@ -51,17 +51,6 @@ class PostController extends Controller {
         }
     }
 
-    public function showBladePost($slug) {
-        $viewPath = "blade-posts.{$slug}";
-
-        if (!view()->exists($viewPath)) {
-            return view('404');
-        }
-
-        $content = view("posts.{$slug}")->render();
-
-    }
-
     public function redirect() {
         return redirect('/');
     }
