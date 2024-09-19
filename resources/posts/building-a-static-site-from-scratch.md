@@ -321,13 +321,9 @@ Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX
 
 I have a few things like these^ dialogues, blockquotes with sources, images with captions, etc. that Markdown can't handle well [^6]. Heretofore, I just manually copy-and-paste these when I need them.  A parametrized component would be cool, though.
 
-### Build Markdown to HTML in realtime
+UPDATE: I found out about [Laravel Components](https://laravel.com/docs/11.x/blade#components). Components allow me to enter parametrized blocks of HTML while writing Markdown. I have since made components for each character, images, and blockquotes with a caption.  I also made IntelliJ [live templates](https://www.jetbrains.com/help/idea/using-live-templates.html) for each of these, so I can just type `ximg` while writing a post and IntelliJ inserts the parameterized template.
 
-I currently have to run `php artisan db:seed` when I update a post to see its changes reflected on the server. Aside from being a huge anti-pattern as I [said above](#seeding), using seeders to load new posts and post updates is really inconvenient.
-
-One fix would be to have the server just read directly from the Markdown files.  But I'd still have to read the DB to get info about the relationships between tags and posts. Unless I wanna do all that in memory.
-
-I think a better solution would be to setup a file watcher/event handler in Laravel that detects updates to my Markdown files and automatically updates the DB.
+I needed to tell the `PostController` to render Blade.  To do that, I pass the entire post as a string to `Blade::render($body, [], true)`. _Et voilà_.
 
 ## Conclusion
 

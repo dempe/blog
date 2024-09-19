@@ -120,6 +120,7 @@ class PostController extends Controller {
             $a = $results->dom->createElement('a', $header->nodeValue);
             $header->nodeValue = '';
             $a->setAttribute('href', "#{$slug}");
+            $a->setAttribute('class', "w-full block");
             $header->appendChild($a);
         }
 

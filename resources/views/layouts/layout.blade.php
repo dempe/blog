@@ -23,9 +23,9 @@
     <meta name="twitter:image" content="/assets/img/favicon.png"/>
 
 {{--    Use the ICO image as a default--}}
-    <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/assets/img/favicon.png" type="image/png">
-    <link rel="stylesheet" href="/assets/css/output.css"/>
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../assets/css/output.css"/>
 </head>
 <body class="antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
