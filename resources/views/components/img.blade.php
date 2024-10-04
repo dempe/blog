@@ -3,5 +3,5 @@
          alt="{{ $alt }}"
          width="{{ $width }}"
          title="{{ $title }}"/>
-    <figcaption>{{ $caption }}</figcaption>
+    <figcaption>{!! $caption !!}</figcaption>
 </figure>

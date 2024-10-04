@@ -1,6 +1,6 @@
 <figure class="blockquote">
     <blockquote>
-        <p>{{ $text }}</p>
+        <p>{!! $text !!}</p>
     </blockquote>
-    <figcaption>{{ $caption }}</figcaption>
+    <figcaption>{!! $caption !!}</figcaption>
 </figure>

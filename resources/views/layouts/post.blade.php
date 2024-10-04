@@ -79,7 +79,7 @@
                 href="/about#contact">contact me directly</a>.
     </p>
 
-    <p>The spirit of this blog is the beginner's mind. As such, I would love to hear your thoughts!</p>
+    <p>The spirit of this blog is the "<a href="/about#the-title">beginner's mind</a>." As such, I would love to hear your thoughts!</p>
 
     <div class="my-8">
         <script src="https://giscus.app/client.js"

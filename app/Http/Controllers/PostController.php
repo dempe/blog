@@ -37,11 +37,9 @@ class PostController extends Controller {
 
 
             $post->wc = str_word_count($body);
-//            $body = Blade::render($body);
             Artisan::call('view:clear');
             $body = Blade::render($body, [], true);
 
-            $body = self::order_footnotes($body);
             $body = $pd->text($body);
             $body = self::add_header_ids($body);
             $body = self::open_links_in_external_tab($body);
@@ -125,42 +123,6 @@ class PostController extends Controller {
         }
 
         return $results->dom->saveHTML();
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public static function order_footnotes($body): string {
-        $footnotePattern = '/\[\^\d+]:/';
-        $footnoteRefPattern = '/\[\^\d+](?!:)/';
-
-        /* First, ensure that the number of footnote references == number of footnotes.
-
-           Ideally, this would be in a separate method, but putting it here makes it possible
-           to unit test.  Otherwise, we'd have to copy the regexes around, which is worse than
-           having a long method.
-        */
-        preg_match_all($footnoteRefPattern, $body, $footnotes_ref_matches);
-        preg_match_all($footnotePattern, $body, $footnote_matches);
-        if (count($footnote_matches[0]) !== count($footnotes_ref_matches[0])) {
-            throw new Exception("Number of footnote references does not match footnotes.");
-        }
-
-        // Number footnote references correctly
-        $counter = 1;
-        $body = preg_replace_callback($footnoteRefPattern, function ($matches) use (&$counter) {
-            // Sequentially replace each footnote number and increment the counter
-            return '[^' . ($counter++) . ']';
-        },                            $body);
-
-        // Number footnotes correctly
-        $counter = 1;
-        $body = preg_replace_callback($footnotePattern, function ($matches) use (&$counter) {
-            // Sequentially replace each footnote number and increment the counter
-            return '[^' . ($counter++) . ']:';
-        },                            $body);
-
-        return $body;
     }
 
     static function highlightHtmlCodeBlocks(string $body) : string
