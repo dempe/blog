@@ -2,7 +2,7 @@
 title: "Carlota"
 slug: carlota
 subhead: "Delicious and simple Mexican bread pudding"
-tags: recipes
+tags: recipes mexico
 published: "2023-07-08 22:34"
 updated: "2024-09-03 11:40"
 ---
