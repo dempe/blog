@@ -6,7 +6,6 @@ use App\Models\Post;
 use App\Models\PostTag;
 use DOMDocument;
 use DOMXPath;
-use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -26,7 +25,7 @@ use Highlight\Highlighter;
 
 
 class PostController extends Controller {
-    public function index() {
+    public function index(): Factory|\Illuminate\Foundation\Application|View|Application {
         return view('posts', ['posts' => Post::all()]);
     }
 
@@ -35,7 +34,7 @@ class PostController extends Controller {
      */
     public function show($slug): Factory|\Illuminate\Foundation\Application|View|Response|Application {
         try {
-            $post = Post::findOrFail($slug);
+            $post = (new Post)->findOrFail($slug);
             $postFileContent = file_get_contents(resource_path("posts/$slug.md"));
             $body = YamlFrontMatter::parse($postFileContent)->body();  // The markdown content without frontmatter
 

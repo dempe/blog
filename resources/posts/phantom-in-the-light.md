@@ -18,7 +18,7 @@ In 1672, Newton used a prism to divide white light. With this simple experiment,
 
 Newton published the results of his experiments in his book[^4] _Opticks_ in 1704. [^5] In _Opticks_, he coins the term, "spectrum" (from Latin for "image" or "apparition"), to describe the range of refracted light, which is where we get the modern term, "electromagnetic spectrum."
 
-Due to the crudeness of 1670s equipment, Newton did not notice that his spectrum was not actually continuous. There were tiny gaps in his refracted light. These gaps would go unnoticed for another 130 years. Exactly what these gaps are is the subject of this article.
+Due to the crudeness of 1670s equipment, Newton did not notice that his spectrum was not actually continuous. There were tiny gaps in his refracted light. These gaps would go unnoticed for another 130 years. But what exactly were these gaps?
 
 ## Fraunhofer Lines
 
@@ -30,16 +30,19 @@ Ten years later, the German physicist Joseph von Fraunhofer invented yet another
 - A diffraction grating allows the wavelengths of diffracted light to be *measured*.
 
 <x-shin
-    text="Notice the term &quot;diffracted&quot;, not &quot;refracted.&quot; Refracted light is light that is bent due to a change in speed when going from one medium to another such as a prism.<br>Diffracted light, on the other hande, is light that has been &quot;spread out&quot; by going through tiny slits (such as in a diffraction grating) or around obstacles. When adjacent light rays are diffracted and sufficiently close together, they form an interference pattern." />
+    text="Notice the term &quot;diffracted&quot;, not &quot;refracted.&quot; Refracted light is light that is bent due to a change in speed when going from one medium to another such as a prism.<br><br>Diffracted light, on the other hande, is light that has been &quot;spread out&quot; by going through tiny slits (such as in a diffraction grating) or around obstacles. When adjacent light rays are diffracted and sufficiently close together, they form an interference pattern." />
 
 <x-sho
     text="I thought the speed of light was constant?"/>
 
 <x-shin
-    text="The speed of light is constant. But it depends on the medium (glass, plastic, water, air, etc.) that it's traveling through. &quot;c&quot; in Einstein's equation refers to the speed of light in a vacuum. Light can and does change speed when going from one medium to another. Moreover, it's precisely this change in speed that produces rainbows."/>
+    text="The speed of light is constant in a *vacuum*. However, through all other media (air, water, glass, etc.) light gradually slows down based on the medium's *refractive index*. [^6] So light can and does change speed when going from one medium to another. Moreover, it's precisely this change in speed that produces rainbows."/>
 
 <x-sho
-    text="Hmm... So if rainbows are refracted light, when I wear my rainbow shirt and people ask if I'm gay, I can just say, &quot;No, it's supposed to be <em>diffracted</em>, not refracted light! ... And also, yes. I'm gay.&quot; 😄🏳️‍🌈"/>
+    text="How does a change in speed produce rainbows?"/>
+
+<x-shin
+    text="Via a phenomenon called *dispersion*. A medium's refractive index actually varies based on *wavelength*. Shorter wavelengths (e.g., blue light) are slowed more than longer wavelengths (e.g., red light). [^7] The degree to which light bends (i.e., refracts) [^8] is based on its speed which is based on its refractive index which is based on its wavelength."/>
 
 <x-img
     src="../assets/img/diffraction_grating.svg"
@@ -48,7 +51,7 @@ Ten years later, the German physicist Joseph von Fraunhofer invented yet another
     title="Diffraction Grating"
     :caption="'Comparison of the spectra obtained from a diffraction grating by diffraction (1), and a prism by refraction (2). <a href=\'https://en.wikipedia.org/wiki/Diffraction_grating#/media/File:Comparison_refraction_diffraction_spectra.svg\'>Source</a>.'"/>
 
-Fraunhofer never heard of Wollaston's discovery of the gaps in refracted solar light.  But in 1814, he incidentally made the same observations. However, unlike Wollaston, Fraunhofer, with his new spectrometer, had the means to actually _quantify_ these gaps. So he set out on a systematic analysis of the gaps in the solar spectrum. He identified 570 distinct lines giving each a unique label.[^6] These gaps are now called "Fraunhofer lines" in his honor, but commonly referred to as "spectral lines."
+Fraunhofer had never heard of Wollaston's discovery of the gaps in refracted solar light.  But in 1814, he incidentally made the same observations. However, unlike Wollaston, Fraunhofer, with his new spectrometer, had the means to actually _quantify_ these gaps. So he set out on a systematic analysis of the gaps in the solar spectrum. He identified 570 distinct lines giving each a unique label. [^9] These gaps are now called "Fraunhofer lines" in his honor, but commonly referred to as "spectral lines."
 
 <x-sho text="Fraunhofer's spectro<em>scope</em> was really the first spectro<em>meter</em>. Though &quot;spectroscope&quot; and &quot;spectrometer&quot; are often used interchangeably, <em>meter</em> in Latin implies measurement, which is exactly what Fraunhofer's spectrometer allowed for!" />
 
@@ -86,6 +89,12 @@ Helium was the first element whose extraterrestrial discovery preceded its terre
 
 [^4]: _Opticks_ was actually 3 books with a planned-but-never-written fourth book.
 
-[^5]: Observant readers will note that Newton published _Opticks_ over 30 years after his experiments. Why did he wait so long to publish? Because Robert Hooke had just died in 1703. Newton presented his findings to London's Royal Society scientists as he made them. Robert Hooke, another prominent member of the Royal Society, took issue with Newton's proposed corpuscular theory of light. Newton cared not for fame and even less for fighting. Instead of publishing and risking a public debate with Hooke, he waited until Hooke was out of the picture.
+[^5]: Observant readers will note that Newton published _Opticks_ over 30 years after his experiments. Why did he wait so long to publish? In short, because Robert Hooke had just died the year prior. Newton presented his findings to London's Royal Society scientists as he made them. Robert Hooke, another prominent member of the Royal Society, took issue with Newton's proposed corpuscular theory of light. Newton didn't care for fame and cared even less for fighting. Instead of publishing and risking a public debate with Hooke, he waited until Hooke was out of the picture.
 
-[^6]: Modern equipment can detect thousands of Fraunhofer lines in sunlight!
+[^6]: \(v = \frac{c}{n}), where \(v\) is the speed of light in the medium, \(c\) is the speed of light in a vacuum, and \(n\) is the refractive index of the material.
+
+[^7]: This is because light (or any electromagnetic radiation) with a short wavelength will interact more with intervening particles than radiation with a longer wavelength.
+
+[^8]: The degree of bending is governed by Snell's Law:  \( n_1 \sin(\theta_1) = n_2 \sin(\theta_2) \), where \( n_1 \) and \( n_2 \) are the refractive indices of the two media, and \( \theta_1 \) and \( \theta_2 \) are the angles of incidence and refraction, respectively.
+
+[^9]: Modern equipment can detect thousands of Fraunhofer lines in sunlight!

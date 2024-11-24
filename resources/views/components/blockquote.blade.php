@@ -1,6 +1,6 @@
 <figure class="blockquote">
     <blockquote>
-        <p>{!! $text !!}</p>
+        <p markdown="1" >{!! $text !!}</p>
     </blockquote>
-    <figcaption>{!! $caption !!}</figcaption>
+    <figcaption markdown="1" >{!! $caption !!}</figcaption>
 </figure>
