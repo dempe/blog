@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use ParsedownExtra;
+use Michelf\MarkdownExtra;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -29,8 +29,6 @@ class PostController extends Controller {
      */
     public function show($slug) {
         try {
-            $pd = new ParsedownExtra();
-            $pd->setSafeMode(false);
             $post = Post::findOrFail($slug);
             $postFileContent = file_get_contents(resource_path("posts/{$slug}.md"));
             $body = YamlFrontMatter::parse($postFileContent)->body();  // The markdown content without frontmatter
@@ -40,7 +38,7 @@ class PostController extends Controller {
             Artisan::call('view:clear');
             $body = Blade::render($body, [], true);
 
-            $body = $pd->text($body);
+            $body = MarkdownExtra::defaultTransform($body);
             $body = self::add_header_ids($body);
             $body = self::open_links_in_external_tab($body);
             $body = self::highlightHtmlCodeBlocks($body);
