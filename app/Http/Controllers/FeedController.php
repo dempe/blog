@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\View;
-use ParsedownExtra;
+use Michelf\MarkdownExtra;
 
 
 class FeedController extends Controller
@@ -13,9 +13,7 @@ class FeedController extends Controller
     {
         // Convert Markdown to HTML
         $posts = Post::where('slug', '!=', 'hello-world')->get()->map(function ($post) {
-            $pd = new ParsedownExtra();
-            $pd->setSafeMode(true);
-            $post->body = $pd->text($post->body);
+            $post->body = MarkdownExtra::defaultTransform($post->body);
 
             return $post;
         });
