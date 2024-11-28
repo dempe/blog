@@ -40,7 +40,7 @@
         <a class="mr-4 no-underline" href="/tags/">/tags</a>
         {{-- TODO: use controller to load mysite.com/resume --}}
         <a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a>
-        <a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a>
+{{--        <a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a>--}}
         <a class="mr-4 no-underline" href="https://chrisdempewolf.com/stats.html" target="_blank">/stats</a>
     </nav>
 </header>
