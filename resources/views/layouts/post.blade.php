@@ -11,13 +11,14 @@
 @section('metadata')
     <tr>
         <td>Published:&nbsp;&nbsp;</td>
-        <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
+{{--        <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>--}}
+        <td>{{ $post->created_at->format('Y-m-d') }}</td>
     </tr>
     @if(isset($post->updated_at))
         <tr>
             <td>Updated:&nbsp;&nbsp;</td>
             <td>
-                {{ $post->updated_at->format('Y-m-d H:i') }}
+                {{ $post->updated_at->format('Y-m-d') }}
             </td>
         </tr>
     @endif

@@ -7,12 +7,12 @@
 @section('metadata')
     <tr>
         <td>Published:&nbsp;&nbsp;</td>
-        <td>{{ $posts->sortBy('created_at')->first()->created_at->format('Y-m-d H:i') }}</td>
+        <td>{{ $posts->sortBy('created_at')->first()->created_at->format('Y-m-d') }}</td>
     </tr>
     <tr>
         <td>Updated:&nbsp;&nbsp;</td>
         <td>
-            {{ $posts->sortBy('created_at')->last()->created_at->format('Y-m-d H:i') }}
+            {{ $posts->sortBy('created_at')->last()->created_at->format('Y-m-d') }}
         </td>
     </tr>
     <tr>
