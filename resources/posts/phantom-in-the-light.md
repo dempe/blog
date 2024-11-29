@@ -3,7 +3,7 @@ title: "Phantom in the Light"
 slug: phantom-in-the-light
 subhead: A brief history of spectroscopy and its applications
 tags: physics chemistry astronomy
-published: 2024-09-19 16:37:37
+published: 2024-11-29 16:37:37
 ---
 
 <x-blockquote
@@ -11,6 +11,13 @@ published: 2024-09-19 16:37:37
     caption="Genesis 9:13"/>
 
 For much of human history, the rainbow was a supernatural phenomenon. In Judaic religions, it was a sign of God's covenant that he would never kill everyone on earth via a giant flood again.[^1] In Norse mythology, there was the Bifröst, the rainbow bridge that connected Midgard (the realm of man) to Asgard (the realm of the gods). Iris, in Greek mythology, was the goddess of the rainbow and divine messenger of the gods. For much of human history, the rainbow was as inscrutable as it was inconstructible.[^2][^3]
+
+<x-img
+    src="../assets/img/Joseph_Anton_Koch_006.jpg"
+    alt="Noah sacrificing a goat to thank God for not killing him and his family. God's rainbow, indicating that he would never kill everything on earth via a giant flood again, looms in the background."
+    width="200"
+    title="God's Rainbow and Noah's Sacrifice"
+    caption="Noah killing a goat to thank God for promising to not kill everything on earth via a giant flood again"/>
 
 ## Isaac Newton
 
