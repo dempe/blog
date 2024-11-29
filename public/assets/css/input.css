@@ -39,11 +39,11 @@
     }
 
     h2 {
-        @apply text-xl md:text-2xl;
+        @apply text-2xl md:text-xl;
     }
 
     h3 {
-        @apply text-lg font-bold md:text-xl;
+        @apply text-xl font-bold md:text-lg;
     }
 
     p {
@@ -161,13 +161,15 @@
     table:not(.metadata) {
         border-collapse: collapse;
         width: 100%;
-        margin: 20px 0; /* Adds some space above and below the table */
+    }
+
+    table:not(.metadata) {
+        @apply my-8;
     }
 
     th,
     td:not(.metadata td) {
-        padding: 8px; /* Adds some space inside each cell */
-        text-align: left;
+        @apply text-left p-2;
     }
 
     td:not(.metadata td) {
