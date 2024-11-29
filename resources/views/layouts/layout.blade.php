@@ -51,7 +51,7 @@
             <p class="text-lg text-[#999999] my-4">@yield('subhead')</p>
         @endif
         @hasSection('metadata')
-            <table class="mb-8 text-sm text-[#999999] font-normal no-underline font-monospace">
+            <table class="metadata mb-8 text-sm text-[#999999] font-normal no-underline font-monospace">
                 @yield('metadata')
             </table>
         @endif

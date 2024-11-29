@@ -15,15 +15,18 @@ width="200"
 title="Ingredients"
 caption="The produce ingredients for salsa verde"/>
 
-- 5 green tomatoes
-- 1 clove garlic
-- 4 chili serrano (depending on how spicy you want it)
-- 1 habanero (depending on how spicy you want it)
-- 1/2 white onion
-- 4 oz cream cheese
-- 4 oz media crema
-- 1 avocado
-- A few leaves of cilantro per preference
+| Ingredient     | Quantity                               |
+|----------------|----------------------------------------|
+| Green tomatoes | 5                                      |
+| Garlic         | 1 clove                                |
+| Chili serrano  | 4 (depending on how spicy you want it) |
+| Habanero       | 1 (depending on how spicy you want it) |
+| White onion    | 1/2                                    |
+| Cream cheese   | 4 oz                                   |
+| Media crema    | 4 oz                                   |
+| Avocado        | 1                                      |
+| Cilantro       | A few leaves per preference            |
+
 
 ## Directions
 

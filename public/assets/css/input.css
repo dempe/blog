@@ -157,6 +157,30 @@
             margin-left: -2em;
         }
     }
+
+    table:not(.metadata) {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0; /* Adds some space above and below the table */
+    }
+
+    th,
+    td:not(.metadata td) {
+        padding: 8px; /* Adds some space inside each cell */
+        text-align: left;
+    }
+
+    td:not(.metadata td) {
+        border: 1px solid #999;
+    }
+
+    th {
+        border: 1px solid #999;
+        background-color: #000033;
+        font-weight: bold;
+        color: #fff;
+    }
+
 }
 
 /*a:hover {*/
