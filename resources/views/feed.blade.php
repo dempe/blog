@@ -12,7 +12,7 @@
             <item>
                 <title>{{ $post->title }}</title>
                 <link>{{ url('/posts/' . $post->slug) }}</link>
-                <description>{{ Str::limit($post->body, 100) }}</description>
+                <description>{{ Str::limit($post->body, 256) }}</description>
                 <content:encoded><![CDATA[{!! $post->body !!}]]></content:encoded>
                 <pubDate>{{ $post->created_at->toRssString() }}</pubDate>
                 <guid>{{ url('/posts/' . $post->slug) }}</guid>

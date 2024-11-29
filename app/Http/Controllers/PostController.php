@@ -7,7 +7,11 @@ use App\Models\PostTag;
 use DOMDocument;
 use DOMXPath;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -27,10 +31,10 @@ class PostController extends Controller {
     /**
      * @throws \Exception
      */
-    public function show($slug) {
+    public function show($slug): Factory|\Illuminate\Foundation\Application|View|Response|Application {
         try {
             $post = Post::findOrFail($slug);
-            $postFileContent = file_get_contents(resource_path("posts/{$slug}.md"));
+            $postFileContent = file_get_contents(resource_path("posts/$slug.md"));
             $body = YamlFrontMatter::parse($postFileContent)->body();  // The markdown content without frontmatter
 
 
