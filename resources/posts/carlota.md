@@ -4,7 +4,7 @@ slug: carlota
 subhead: "Delicious and simple Mexican bread pudding"
 tags: recipes mexico
 published: "2023-07-08 22:34"
-updated: "2024-09-03 11:40"
+updated: "2024-11-29 00:16"
 ---
 
 A *carlota* or *carlota de limón* is a type of "bread pudding" (similar to a [Charlotte Cake](https://en.wikipedia.org/wiki/Charlotte_(cake))).  It's a common dessert in Mexico, containing, like so many Mexican dishes, limes.
@@ -13,18 +13,19 @@ It takes about 10 - 20 minutes to make, a couple of hours to chill.
 
 ## Ingredients
 
-- 2 cans condensed milk
-- Between 3 - 6 limes depending on size
-- Canned peaches
-- Vanilla wafers
+| Ingredient     | Quantity                               |
+|----------------|----------------------------------------|
+| Condensed milk | 2 cans                                 |
+| Limes          | 3 - 6 depending on size                |
+| Peaches        | 1 can                                  |
+| Vanilla wafers | 1 box                                  |
 
 <x-img
     src="../assets/img/carlota-ingredients.webp"
     alt="The ingredients for making Carlota spead out atop a table with a red and white checkered table cloth."
     width="200"
     title="Ingredients for Making Carlota"
-    caption="Ingredients for making carlota"
-/>
+    caption="Ingredients for making carlota"/>
 
 ## Directions
 
