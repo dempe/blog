@@ -21,7 +21,7 @@
 @endsection
 @section('content')
     {{--    Using a table here. Tag names are not all the same length (like dates), so it's impossible to align both columns based on the width of the rows using flexbox like we did in the posts-list.blade. --}}
-    <table>
+    <table class="metadata"> {{-- Add class metadata to avoid normal table styles --}}
         @foreach ($tags->sortBy('tag') as $tag)
             <tr>
                 <td class="font-monospace">#{{ $tag->tag }}:&nbsp;&nbsp;</td>
