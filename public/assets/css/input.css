@@ -122,7 +122,7 @@
     }
 
     figcaption {
-        @apply text-[#999999] text-center text-sm;
+        @apply text-[#999999] text-center text-md my-2;
     }
 
     sup {
