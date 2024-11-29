@@ -1,7 +1,7 @@
 ---
 title: "Phantom in the Light"
 slug: phantom-in-the-light
-subhead: A brief history of spectroscopy and its applications
+subhead: Developments in spectroscopy from Newton to 1900
 tags: physics chemistry astronomy
 published: 2024-11-29 16:37:37
 ---
@@ -12,12 +12,24 @@ published: 2024-11-29 16:37:37
 
 For much of human history, the rainbow was a supernatural phenomenon. In Judaic religions, it was a sign of God's covenant that he would never kill everyone on earth via a giant flood again.[^1] In Norse mythology, there was the Bifröst, the rainbow bridge that connected Midgard (the realm of man) to Asgard (the realm of the gods). Iris, in Greek mythology, was the goddess of the rainbow and divine messenger of the gods. For much of human history, the rainbow was as inscrutable as it was inconstructible.[^2][^3]
 
+[//]: # (<x-img)
+
+[//]: # (    src="../assets/img/Joseph_Anton_Koch_006.jpg")
+
+[//]: # (    alt="Noah sacrificing a goat to thank God for not killing him and his family. God's rainbow, indicating that he would never kill everything on earth via a giant flood again, looms in the background.")
+
+[//]: # (    width="200")
+
+[//]: # (    title="God's Rainbow and Noah's Sacrifice")
+
+[//]: # (    caption="Noah killing a goat to thank God for promising to not kill everything on earth via a giant flood again"/>)
+
 <x-img
-    src="../assets/img/Joseph_Anton_Koch_006.jpg"
-    alt="Noah sacrificing a goat to thank God for not killing him and his family. God's rainbow, indicating that he would never kill everything on earth via a giant flood again, looms in the background."
-    width="200"
-    title="God's Rainbow and Noah's Sacrifice"
-    caption="Noah killing a goat to thank God for promising to not kill everything on earth via a giant flood again"/>
+    src="../assets/img/heimdallr.jpeg"
+    alt="The Norse god, Heimdallr, lived at a place called Himinbjörg, where the Bifröst, the burning rainbow bridge, meets the realm of the gods. Heimdallr has keen senses of sight and hearing and keeps a perpetual watch for Ragnarök. This painting depicts Heimdallr sounding his horn at the end of times, Ragnarök."
+    width="100"
+    title="Heimdallr"
+    caption="Heimdallr, watchman of the gods, sounds the mighty Gjallarhorn, ending his perpetual watch from Himinbjörg, where the Bifröst meets Asgard, the realm of the gods, and forewarning the world that the end of times, Ragnarök, is finally upon us.  The Bifröst will soon shatter and the earth flood as Gjallarhorn echoes throughout the nine realms. Heimdallr's watch ends not because he fails but because the time for Ragnarök has arrived, and his duty has been fulfilled."/>
 
 ## Isaac Newton
 
@@ -117,7 +129,7 @@ Now, those Fraunhofer lines we talked about earlier are starting to make more se
 
 Have you ever thought about the first two lines to "Twinkle, Twinkle, Little Star"?  When TTLS was written in 1806, people really _didn't_ know what a star was.  They might have guessed that they were "distant suns", but that hadn't been demonstrated in a rigorous scientific manner.  The general public was even less clear as to what stars were.
 
-Nowadays, it's pretty common knowledge what a star is. [^epistemology] Nearly everyone could tell you that the sun is a star, that it's really hot, that it's made up of mostly hydrogen and helium.  People who know a bit more might be able to tell you that a star is a stable fusion reaction producing helium from hydrogen and describe a star's lifecycle based on the amount of remaining hydrogen.  Imagine what a modern astronomer could tell you about stars. And all of this happened in the past 200 years!
+The same techniques that scientists used to examine the solar spectrum can be used to examine the spectra of any star. [^telescope] The element, technetium (meaning "artificial" in Greek), for example, had only ever been artificially produced on earth.  But in 1952, astronomer Paul W. Merrill detected technetium's spectral signature in the light from a class of stars called S-type red giants.  Merrill's observation provided key evidence for the theory that heavier elements [^iron] are produced in stars via "stellar alchemy".  This is because the most stable isotope of technetium is technetium-97, which has a half-life of 4.21 million years.  This might sound like a long time, but from a star's perspective, it's the blink of an eye.  4.21 million years is far too short a time for technetium to have been present during the star's formation, meaning the star, itself, must be producing technetium (see [Technetium star](https://en.wikipedia.org/wiki/Technetium_star)).  In just 150 years, humanity went from not having a clear idea of what stars were to being able to determine their exact composition based on the principles of spectroscopy.
 
 
 
@@ -151,7 +163,9 @@ Nowadays, it's pretty common knowledge what a star is. [^epistemology] Nearly ev
 
 [^identify]: One of the means by which early flame spectroscopists identified elements was to break samples into smaller pieces and examine the bits which produced the brightest colors.  This process could be iterated until you got more distinct spectral lines.
 
-[^epistemology]: That is, without getting into an epistemological debate.
+[^telescope]: Given a telescope powerful enough to uniquely view the star's spectrum that is.
+
+[^iron]: By "heavier", I mean elements heavier than iron, which is the heaviest element produced via normal stellar fusion.
 
 <script>
         MathJax = {
