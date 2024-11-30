@@ -11,7 +11,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -43,11 +45,11 @@ class PostController extends Controller {
             $body = Blade::render($body, [], true);
 
             $body = MarkdownExtra::defaultTransform($body);
-            $body = self::add_header_ids($body);
-            $body = self::open_links_in_external_tab($body);
-            $body = self::highlightHtmlCodeBlocks($body);
+            $body = self::addHeaderIDs($body);
+            $body = self::openLinksInNewTab($body);
+            $body = self::highlightCodeBlocks($body);
 
-            $post->toc = self::build_toc($body);
+            $post->toc = self::buildTOC($body);
             $post->body = $body;
             $post->next = Post::findNext($slug);
             $post->prev = Post::findPrev($slug);
@@ -55,16 +57,16 @@ class PostController extends Controller {
 
             return view('layouts/post', ['post' => $post, 'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
         }
-        catch (ModelNotFoundException $e) {
+        catch (ModelNotFoundException) {
             return response()->view('404', [], ResponseAlias::HTTP_NOT_FOUND);
         }
     }
 
-    public function redirect() {
+    public function redirect(): \Illuminate\Foundation\Application|Redirector|Application|RedirectResponse {
         return redirect('/');
     }
 
-    private static function build_dom_and_query(string $body, string $query): stdClass {
+    private static function buildDOMAndQuery(string $body, string $query): stdClass {
         $dom = new DOMDocument('1.0', 'UTF-8');
         libxml_use_internal_errors(true); // Suppress loadHTML warnings/errors
         $dom->loadHTML('<?xml encoding="UTF-8">' . $body);
@@ -78,13 +80,13 @@ class PostController extends Controller {
         return $data;
     }
 
-    private static function open_links_in_external_tab(string $body) {
-        $result = self::build_dom_and_query($body, "//a");
+    private static function openLinksInNewTab(string $body) {
+        $result = self::buildDOMAndQuery($body, "//a");
         $anchors = $result->query_results;
 
         foreach ($anchors as $anchor) {
             $href = $anchor->getAttribute('href');
-            if ($href && self::is_external_link($href)) {
+            if ($href && self::isExternalLink($href)) {
                 $anchor->setAttribute('target', '_blank');
                 $anchor->setAttribute('rel', 'noopener noreferrer');  // Security best practice
             }
@@ -93,7 +95,7 @@ class PostController extends Controller {
         return $result->dom->saveHTML();
     }
 
-    private static function is_external_link($url): bool {
+    private static function isExternalLink($url): bool {
         $host = parse_url($url, PHP_URL_HOST);
         return $host && $host !== $_SERVER['HTTP_HOST'];
     }
@@ -105,12 +107,12 @@ class PostController extends Controller {
      * @param $body
      * @return string html
      */
-    public static function add_header_ids($body): string {
-        return self::add_header_ids_helper(self::add_header_ids_helper($body, "//h2"), "//h3");
+    public static function addHeaderIDs($body): string {
+        return self::addHeaderIDsHelper(self::addHeaderIDsHelper($body, "//h2"), "//h3");
     }
 
-    public static function add_header_ids_helper($body, $query): string {
-        $results = self::build_dom_and_query($body, $query);
+    public static function addHeaderIDsHelper($body, $query): string {
+        $results = self::buildDOMAndQuery($body, $query);
         $headers = $results->query_results;
 
         foreach ($headers as $header) {
@@ -127,10 +129,10 @@ class PostController extends Controller {
         return $results->dom->saveHTML();
     }
 
-    static function highlightHtmlCodeBlocks(string $body) : string
+    public static function highlightCodeBlocks(string $body) : string
     {
         $highlighter = new Highlighter();
-        $result = self::build_dom_and_query($body, '//pre/code');
+        $result = self::buildDOMAndQuery($body, '//pre/code');
         $dom = $result->dom;
         $codeBlocks = $result->query_results;
 
@@ -167,15 +169,15 @@ class PostController extends Controller {
         return $dom->saveHTML();
     }
 
-    private static function build_toc($body): string {
-        $data = self::build_dom_and_query($body, "//h2");
+    private static function buildTOC($body): string {
+        $data = self::buildDOMAndQuery($body, "//h2");
         $h2s = $data->query_results;
         $toc = '<aside id="toc" class="mb-8"><details><summary class="font-bold">Table of Contents</summary><ul>';
 
         foreach ($h2s as $h2) {
             $toc .= '<li><a href="#' . $h2->getAttribute('id') . '">' . $h2->nodeValue . '</a>';
 
-            $h3s = self::find_sibling_elements($h2, 'h3');
+            $h3s = self::findSiblingElements($h2, 'h3');
 
             if (count($h3s) === 0) {
                 $toc .= '</li>';
@@ -196,7 +198,7 @@ class PostController extends Controller {
     }
 
 
-    private static function find_sibling_elements($node, $tag): array {
+    private static function findSiblingElements($node, $tag): array {
         $siblings = [];
         $current = $node->nextSibling;
         while ($current) {

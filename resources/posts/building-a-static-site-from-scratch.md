@@ -66,7 +66,7 @@ I could use a flat JSON/Yaml file or in-memory object to store entities and thei
 
 An Sqlite DB is a flat file. Mine is 192 KiB and builds in about 1.4 seconds. It readily solves all my problems with no extra processing, and Laravel is already well equipped to work with it. Doing anything else feels like going against the grain.
 
-```fish
+```.language-fish
 time begin; php artisan migrate:fresh; and php artisan db:seed; end
 ...
 ________________________________________________________
@@ -83,7 +83,7 @@ Here's what that looks like.
 
 The `posts`, `tags`, and `post_tags` tables, respectively :
 
-```sql
+```.language-sql
 CREATE TABLE "posts" (
                 "slug" VARCHAR(255) PRIMARY KEY,
                 "title" VARCHAR(255),
@@ -106,7 +106,7 @@ Each of these tables maps to a model in Laravel. I can then use Laravel's ORM, [
 
 The root directory of my site is just a method on my `PostController`:
 
-```php
+```.language-php
 public function index() {
     return view('posts', ['posts' => Post::all()]);
 }
@@ -116,7 +116,7 @@ A simple `SELECT *`.
 
 How can I get all posts for a tag? Here's the relevant portion from the `PostController`:
 
-```php
+```.language-php
 return view('post', ['post' => $post,
                      'tags' => PostTag::where('slug', $slug)->pluck('tag')]);
 ```
@@ -133,7 +133,7 @@ Eloquent allows you to define relationships on your models via methods. It does 
 
 In my case, I implemented a method that returns `BelongsToMany` on both the `Post` model and the `Tag` model. Here's what that method looks like on the `Tag` model:
 
-```php
+```.language-php
 public function posts(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -161,7 +161,7 @@ Eager loading is Eloquent's way of averting the [N+1 query problem](https://stac
 
 Say I have the following code:
 
-```php
+```.language-php
 $posts = Post::all();
 
 foreach ($posts as $post) {
@@ -175,7 +175,7 @@ This results in N+1 queries — 1 to fetch all posts and N to fetch the tags for
 
 Now that we've defined our relationships on each model, we can *tell* Eloquent that we are going to fetch each post's tags (i.e, use eager loading).
 
-```php
+```.language-php
 $posts = Post::with('tags')->get();
 
 foreach ($posts as $post) {
@@ -189,7 +189,8 @@ The key thing to note here is `::with('tags')`. This makes Eloquent eagerly load
 
 Eloquent does this by attaching an array of `Tag` s to each `Post` when you call `Post::with('tags')->get()`. You can see this by running `php artisan tinker` and comparing the two outputs—lazy and eager.
 
-<x-sho text="Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?" />
+<x-sho
+    text="Dude, you have like 10 posts and about the same amount of tags. Why the hell do you care about eager loading?" />
 
 Good point... Eager loading is definitely not necessary for such a tiny site. It wasn't too much extra work, and I thought it was a good learning experience. 🤷🏻‍♂️
 
@@ -210,7 +211,7 @@ My blog is a single-person project with an ephemeral database that can be (and i
 I've gone ahead and created new migrations when making schema changes (adding a `description` column to my `tags` table, for example), though I suppose I could've just kept a single definitive migration file that defines the whole schema. I decided to not deviate from tradition.
 
 
-```php
+```.language-php
 return new class extends Migration
 {
     public function up(): void
@@ -237,7 +238,7 @@ After the new post has been imported to the DB, I can go to the URL `<host>/post
 
 It loads the `post` view, which is a Blade template:
 
-```php-template
+```.language-php-template
 @verbatim
 @extends('layout')
 
@@ -256,7 +257,7 @@ It loads the `post` view, which is a Blade template:
 
 I want a static site. Hosting them is cheap (free), and as fast and secure as you can possibly be. In order to use Laravel to make a static site, I use `wget` to save a static version from the local server. The command looks like this:
 
-```shell 
+```.language-shell 
 wget \
 --directory-prefix=output/ \
 --html-extension \
@@ -290,7 +291,7 @@ After the `output` directory is built, I run `aws s3 sync ./output s3://chrisdem
 
 Here's the relevant portion of my Github Actions config:
 
-```yaml
+```.language-yaml
 - name: Deploy to S3
   run: |
     aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | sed 's|\r|\n|g' | tee s3-log.txt
@@ -307,17 +308,21 @@ Here's the relevant portion of my Github Actions config:
 
 Not a technical consideration, but I'm adding a few characters to my blog for dialogues, to help clarify things, and to liven things up a bit.  I've seen a few other blogs implement this idea and I usually think it's a welcome addition.
 
-<x-sho text="Sup" />
+<x-sho
+    text="Sup" />
 
-<x-shin text="Update: Characters complete." />
+<x-shin
+    text="Update: Characters complete." />
 
-<x-mu text="Moo." /> 
+<x-mu
+    text="Moo." /> 
 
 ### MDX
 
 Aside from a car, [MDX](https://mdxjs.com/) is a combination of Markdown and JSX. So you can use React components in your Markdown.
 
-<x-sho text="Yo dawg! I heard you liked components." />
+<x-sho
+    text="Yo dawg! I heard you liked components." />
 
 I have a few things like these^ dialogues, blockquotes with sources, images with captions, etc. that Markdown can't handle well [^6]. Heretofore, I just manually copy-and-paste these when I need them.  A parametrized component would be cool, though.
 

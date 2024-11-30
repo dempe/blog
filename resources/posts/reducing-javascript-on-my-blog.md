@@ -17,7 +17,7 @@ I don't have a lot of JS on my site to begin with.  Just a custom toggle script 
 
 I had a simple button (`+`/`-`) that toggled the display of my table of contents:
 
-```javascript
+```.language-javascript
 function toggleTOC() {
     var tocList = document.getElementById("toc-list");
     var tocButton = document.getElementById("toc-toggle");
@@ -35,7 +35,7 @@ This was extremely easy to replace.  HTML has a [`<details>`](https://developer.
 
 My table of contents now looks like this:
 
-```html
+```.language-html
 <aside id="toc" class="mb-8">
     <details>
         <summary class="font-bold">Table of Contents</summary>
@@ -48,8 +48,8 @@ The `<summary>` element is always displayed.  Everything else in `<details>` is 
 
 This one was also very easy.  I was using [highlight.js](https://highlightjs.org/).  There is a project, [highlight.php](https://github.com/scrivo/highlight.php), that is a direct port of highlight.js for PHP.  It was just a matter of installing it and configuring my `PostController` to use it.
 
-```php
-    static function highlightHtmlCodeBlocks(string $body): string
+```.language-php
+    static function highlightCodeBlocks(string $body): string
     {
         $highlighter = new Highlighter();
         $result = self::build_dom_and_query($body, '//pre/code');
