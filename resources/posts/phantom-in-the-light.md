@@ -29,7 +29,7 @@ For much of human history, the rainbow was a supernatural phenomenon. In Judaic 
     alt="The Norse god, Heimdallr, lived at a place called Himinbjörg, where the Bifröst, the burning rainbow bridge, meets the realm of the gods. Heimdallr has keen senses of sight and hearing and keeps a perpetual watch for Ragnarök. This painting depicts Heimdallr sounding his horn at the end of times, Ragnarök."
     width="100"
     title="Heimdallr"
-    caption="Heimdallr, watchman of the gods, sounds the mighty Gjallarhorn, ending his perpetual watch from Himinbjörg, where the Bifröst meets Asgard, the realm of the gods, and forewarning the world that the end of times, Ragnarök, is finally upon us.  The Bifröst will soon shatter and the earth flood as Gjallarhorn echoes throughout the nine realms. Heimdallr's watch ends not because he fails but because the time for Ragnarök has arrived, and his duty has been fulfilled."/>
+    caption="Heimdallr, watchman of the gods, sounds the mighty Gjallarhorn, ending his perpetual vigil from Himinbjörg, where the Bifröst meets Asgard, the realm of the gods, and forewarning the world that the end of times, Ragnarök, is finally upon us.  The Bifröst will soon shatter and the earth flood as Gjallarhorn echoes throughout the nine realms. Heimdallr's vigil ends not because he fails but because the time for Ragnarök has arrived, and his duty has been fulfilled."/>
 
 ## Isaac Newton
 
@@ -37,7 +37,7 @@ In 1672, Newton used a prism to divide white light. With this simple experiment,
 
 Newton published the results of his experiments in his book[^4] _Opticks_ in 1704. [^5] In _Opticks_, he coins the term, "spectrum" (from Latin for "image" or "apparition"), to describe the range of refracted light, which is where we get the modern term, "electromagnetic spectrum."
 
-Due to the crudeness of 1670s equipment, Newton did not notice that his spectrum was not actually continuous. There were tiny gaps in his refracted light. These gaps would go unnoticed for another 130 years. But what exactly were these gaps?
+Likely due to the crudeness of 1670s equipment, Newton did not notice that his spectrum was not actually continuous. There were tiny gaps in his refracted light. These gaps would go unnoticed for another 130 years. But what exactly were these gaps?
 
 ## Fraunhofer Lines
 
@@ -108,7 +108,6 @@ Kirchhoff, in his three laws of spectroscopy, showed how black body radiation, a
 2. A hot, low-density gas generates an emission spectrum of bright lines corresponding to discrete wavelengths of light unique to the gas.
 3. A continuous spectrum viewed through a cooler, low-density gas produces an absorption spectrum, where specific wavelengths are absorbed, creating dark lines in the spectrum.
 
-
 <x-img
    src="../assets/img/three-laws-of-spectroscopy.phg"
    alt="Visual depiction of the three laws of spectroscopy.  There are three graphs.  The first shows a continuous spectrum.  The second shows a mostly empty spectrum with a few lines.  The third shows a mostly full spectrum with a few lines missing."
@@ -129,9 +128,17 @@ Now, those Fraunhofer lines we talked about earlier are starting to make more se
 
 Have you ever thought about the first two lines to "Twinkle, Twinkle, Little Star"?  When TTLS was written in 1806, people really _didn't_ know what a star was.  They might have guessed that they were "distant suns", but that hadn't been demonstrated in a rigorous scientific manner.  The general public was even less clear as to what stars were.
 
-The same techniques that scientists used to examine the solar spectrum can be used to examine the spectra of any star. [^telescope] The element, technetium (meaning "artificial" in Greek), for example, had only ever been artificially produced on earth.  But in 1952, astronomer Paul W. Merrill detected technetium's spectral signature in the light from a class of stars called S-type red giants.  Merrill's observation provided key evidence for the theory that heavier elements [^iron] are produced in stars via "stellar alchemy".  This is because the most stable isotope of technetium is technetium-97, which has a half-life of 4.21 million years.  This might sound like a long time, but from a star's perspective, it's the blink of an eye.  4.21 million years is far too short a time for technetium to have been present during the star's formation, meaning the star, itself, must be producing technetium (see [Technetium star](https://en.wikipedia.org/wiki/Technetium_star)).  In just 150 years, humanity went from not having a clear idea of what stars were to being able to determine their exact composition based on the principles of spectroscopy.
+The same techniques that scientists used to examine the solar spectrum can be used to examine the spectra of any star. [^telescope] The element, technetium (meaning "artificial" in Greek), for example, had only ever been artificially produced on earth.  But in 1952, astronomer Paul W. Merrill detected technetium's spectral signature in the light from a class of stars called S-type red giants.  Merrill's observation provided key evidence for the theory that heavier elements [^iron] are produced in stars via "stellar alchemy".  This is because the most stable isotope of technetium is technetium-97, which has a half-life of 4.21 million years.  This might sound like a long time, but from a star's perspective, it's the blink of an eye.  4.21 million years is far too short a time for technetium to have been present during the star's formation, meaning the star, itself, must be producing technetium (see [Technetium star](https://en.wikipedia.org/wiki/Technetium_star)).
 
+But technetium is not the only element forged in stars.  Nearly every known element except for hydrogen (which was produced during the big bang) and the transuranic elements (too unstable) was at some time made in a star. [^helium-lithium] In other words, 90% of your body mass came from a star at some point.  The other 10% of you (hydrogen) is about 13.8 billion years old, formed during the big bang. Carl Sagan worded it best, "We are star-stuff, the ash of stellar alchemy."
 
+In just 150 years, humanity went from not having a clear idea of what stars were to being able to determine, through spectroscopy, their exact composition.  And from their composition we can determine their lifecycle and the processes taking place inside them.
+
+## 
+
+## Conclusion
+
+The inspiration for this story came from Isaac Asimov's book, _Isaac Asimov's Guide to Earth and Space_ (1991). This is a greatly embellished account of the same story he told there.
 
 ## Footnotes
 
@@ -166,6 +173,8 @@ The same techniques that scientists used to examine the solar spectrum can be us
 [^telescope]: Given a telescope powerful enough to uniquely view the star's spectrum that is.
 
 [^iron]: By "heavier", I mean elements heavier than iron, which is the heaviest element produced via normal stellar fusion.
+
+[^helium-lithium]: Helium, trace amounts of lithium, and even scarcer amounts of beryllium were also produced during the big bang. They are the only elements that were produced both during the big bang and are still being produced by other means today.
 
 <script>
         MathJax = {
