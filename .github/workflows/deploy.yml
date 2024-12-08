@@ -76,7 +76,3 @@ jobs:
         run: |
           aws s3 sync ./output s3://chrisdempewolf.com --size-only --delete 2>&1 | sed 's|\r|\n|g' | tee s3-log.txt
         shell: bash
-      - name: Invalidate cache
-        run: |
-          aws cloudfront create-invalidation --distribution-id E22OYIS6W2FQMI --paths $(cat s3-log.txt | awk '$1 ~ /upload/ {print $4}' | sed 's|s3://chrisdempewolf.com||' | tr '\n' ' ')
-        shell: bash
