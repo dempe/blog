@@ -27,14 +27,14 @@
     <link rel="icon" href="../assets/img/favicon.png" type="image/png">
     <link rel="stylesheet" href="../assets/css/output.css"/>
 </head>
-<body class="antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
+<body class="grad-bg  min-h-screen antialiased box-border text-lg md:text-base bg-[#000000] text-[#cccccc] font-sans mx-auto max-w-[95%] xl:w-[1024px] mt-4 mb-8">
 <header class="flex flex-col mb-6">
     <a class="text-7xl font-bold no-underline text-[#ffffff]" href="/">
         <ruby style="font-family: 'HanSerif',serif;">初心
             <rt class="text-lg font-monospace">shoshin</rt>
         </ruby>
     </a>
-    <hr class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
+    <hr class="border-[#ffffff] w-full border-1 transform scale-y-50"/>
     <nav class="flex flex-wrap mt-2 mb-8 font-monospace">
         <a class="mr-4 no-underline" href="/about">/about</a>
         <a class="mr-4 no-underline" href="/tags/">/tags</a>

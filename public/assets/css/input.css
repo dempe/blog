@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.grad-bg {
+  background: linear-gradient(to bottom, #000033 0rem, black 24rem, black 100%) no-repeat,
+              linear-gradient(to top, #000033 0rem, black 24rem, black 100%) no-repeat,
+              black; /* Fallblack */
+  background-size: 100% 24rem, 100% 24rem, 100%;
+  background-position: top, bottom, center;
+}
+
 @layer base {
     a:not(header > a):not(h2 > a):not(h3 > a):not(h4 > a) {
         @apply text-[#4477FF] underline;
@@ -122,7 +130,7 @@
     }
 
     figcaption {
-        @apply text-[#999999] text-center text-md my-2;
+        @apply text-[#999999] text-center text-base my-2;
     }
 
     sup {
