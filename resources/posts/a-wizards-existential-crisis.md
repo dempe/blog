@@ -33,16 +33,4 @@ A chill runs down my spine as I realize that the author, long-lost to history, o
 
 I am the author.
 
-<x-sho text="What are you on? ... And where can I get some?" />
-
-## ChatGPT's Response
-
-You awake from your existential daydream in a daze. Hours have past.  It's dark out, and you can see the full moon through the windows of the library. Glancing around the dimly lit library, the silver light from the full moon casts eerie shadows across the ancient tomes lining the shelves.
-
-The Crystal of Akarhand lies ahead. What will you do?
-
-## My Response
-
-Whatever the fuck I want.  "The world's mine oyster, Which I with sword will open."
-
-<x-sho text="That's the spirit!" />
+<x-sho text="What are you on?" />

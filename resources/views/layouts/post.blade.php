@@ -47,29 +47,30 @@
 @endsection
 
 @section('prev-next')
-    <nav class="hidden text-xl md:flex md:flex-row justify-between border-t-4 pt-8">
-        <div>
+    <nav>
+        <ul class="hidden list-none p-0 text-xl md:flex md:flex-row justify-between border-t-4 pt-8">
+            <li>
+                @if(isset($post->prev))
+                    <a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
+                @endif
+            </li>
+            <li>
+                @if(isset($post->next))
+                    <a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
+                @endif
+            </li>
+        </ul>
+        <ul class="list-none p-0 flex flex-col items-center justify-center md:hidden">
             @if(isset($post->prev))
-                <a class="no-underline" href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a>
+                <li class="mb-4 mx-auto"><a class="no-underline"
+                                             href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></li>
             @endif
-        </div>
-        <div>
             @if(isset($post->next))
-                <a class="no-underline" href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a>
+                <li class="mb-4 mx-auto"><a class="no-underline"
+                                             href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></li>
             @endif
-        </div>
+        </ul>
     </nav>
-
-    <div class="flex flex-col items-center justify-center md:hidden">
-        @if(isset($post->prev))
-            <div class="mb-4 mx-auto"><a class="no-underline"
-                                         href="/posts/{{$post->prev->slug}}">&larr; {{$post->prev->title}}</a></div>
-        @endif
-        @if(isset($post->next))
-            <div class="mb-4 mx-auto"><a class="no-underline"
-                                         href="/posts/{{$post->next->slug}}">{{$post->next->title}} &rarr;</a></div>
-        @endif
-    </div>
 @endsection
 
 @section('comments')
