@@ -9,6 +9,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description"
           content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, computation, recipes, etc.'))) }}"/>
+    <meta name="license" content="https://creativecommons.org/licenses/by-sa/4.0/" />
+
 
     <meta property="og:site_name" content="shoshin"/>
     <meta property="og:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shoshin'))) }}"/>
@@ -71,6 +73,10 @@
             <li><a class="m-0 no-underline"  href="#">/top</a></li>
         </ul>
     </nav>
+    <p class="text-center">&copy; 2023 - {{ date("Y") }} Christopher Dempewolf</p>
+    <p class="text-center">All content (excluding my resume, for which I retain full rights) is hereby licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">
+            Creative Commons Attribution-ShareAlike 4.0 International License
+        </a></p>
 </footer>
 </body>
 </html>
