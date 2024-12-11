@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.grad-bg {
-    background: linear-gradient(to bottom, #000033 0rem, black 24rem, black 100%) no-repeat,
-                linear-gradient(to top, #000033 0rem, black 24rem, black 100%) no-repeat,
-                black; /* Fallblack */
-    background-size: 100% 24rem, 100% 24rem, 100%;
-    background-position: top, bottom, center;
-    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
-}
 
 @layer base {
+    html, body {
+        /*height: 100%;*/
+        margin: 0;
+        padding: 0;
+    }
+
+    .grad-bg {
+        background: linear-gradient(to bottom, #000033 0rem, black 24rem, black 100%) no-repeat,
+        linear-gradient(to top, #000033 0rem, black 24rem, black 100%) no-repeat,
+        black; /* Fallblack */
+        background-size: 100% 24rem, 100% 24rem, 100%;
+        background-position: top, bottom, center;
+        min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+        background-attachment: scroll; /* Ensures the gradient scrolls properly */
+        padding-bottom: env(safe-area-inset-bottom); /* Ensure compatibility with iPhone safe area */
+    }
+
     a:not(header > a):not(h2 > a):not(h3 > a):not(h4 > a) {
         @apply text-[#4477FF] underline;
         text-decoration-thickness: 1px;
