@@ -122,11 +122,9 @@ Kim comes to visit him. This is where we learn that Jimmy's sentence increased f
 cigarette like old times. But the flame is colored unlike the rest of the scene. The two timelines, past and present,
 have finally met.
 
-<x-sho text="I still can't believe he basically gave up the rest of his life to do what's right.  What an idiot." />
+<x-sho text="I still can't believe he basically gave up the rest of his life to do what's right.  What an idiot!" />
 
-<x-shin text="If you'll remember, Saul got out of the mess with Walter scott-free and with a substantial amount of money.  All he had to do was lay low. But he couldn't do it. It was too boring, and he had to get involved in criminal activity again." />
-
-<x-shin text="I think Saul realized that he could never stay out of trouble with the law. Admitting his guilt and going to jail was his way of accepting that." />
+<x-shin text="If you'll remember, Saul got out of the mess with Walter scott-free and with a substantial amount of money.  All he had to do was lay low. But he couldn't do it. It was too boring, and he had to get involved in criminal activity again.<br><br>I think Saul realized that he could never stay out of trouble with the law. Admitting his guilt and going to jail was his way of accepting that." />
 
 ## What Kim Would Do with a Time Machine
 

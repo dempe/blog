@@ -35,13 +35,15 @@
         </ruby>
     </a>
     <hr class="border-[#ffffff] w-full border-1 transform scale-y-50"/>
-    <nav class="flex flex-wrap mt-2 mb-8 font-monospace">
-        <a class="mr-4 no-underline" href="/about">/about</a>
-        <a class="mr-4 no-underline" href="/tags/">/tags</a>
-        {{-- TODO: use controller to load mysite.com/resume --}}
-{{--        <a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a>--}}
-        <a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a>
-        <a class="mr-4 no-underline" href="https://chrisdempewolf.com/stats.html" target="_blank">/stats</a>
+    <nav class="mt-2 mb-8 font-monospace" aria-label="Main navigation">
+        <ul class="p-0 list-none text-xl flex flex-row flex-wrap">
+            <li><a class="mr-4 no-underline" href="/about">/about</a></li>
+            <li><a class="mr-4 no-underline" href="/tags/">/tags</a></li>
+            {{-- TODO: use controller to load mysite.com/resume --}}
+    {{--        <li><a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a></li>--}}
+            <li><a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a></li>
+            <li><a class="mr-4 no-underline" href="https://chrisdempewolf.com/stats.html" target="_blank">/stats</a></li>
+        </ul>
     </nav>
 </header>
 <main>
@@ -60,10 +62,15 @@
     </article>
 </main>
 <footer>
-    @yield('nav')
+    @yield('prev-next')
     @yield('comments')
+    <hr id="bottom" class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
+    <nav>
+        <ul class="m-0 p-0 list-none text-xl flex flex-row justify-between">
+            <li><a class="m-0 no-underline" href="/">/home</a></li>
+            <li><a class="m-0 no-underline"  href="#">/top</a></li>
+        </ul>
+    </nav>
 </footer>
-<hr id="bottom" class="border-[#ffffff] my-2 w-full border-1 transform scale-y-50"/>
-<p class="text-center">Return to <a href="#">top</a></p>
 </body>
 </html>

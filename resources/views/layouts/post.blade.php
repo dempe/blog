@@ -46,7 +46,7 @@
     {!! $post->body !!}
 @endsection
 
-@section('nav')
+@section('prev-next')
     <nav class="hidden text-xl md:flex md:flex-row justify-between border-t-4 pt-8">
         <div>
             @if(isset($post->prev))
@@ -75,10 +75,7 @@
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
 
-    <p>Comments are implemented using <a href="https://giscus.app/">Giscus</a>, allowing me to delegate to <a
-                href="https://github.com/">Github</a> for comments. If you you'd rather, feel free to <a
-                href="/about#contact">contact me directly</a>.
-    </p>
+    <p>I use <a href="https://giscus.app/">Giscus</a> to delegate to <a href="https://github.com/">Github</a> for comments (you'll need a Github account, sorry). If you you'd rather, feel free to <a href="/about#contact">contact me directly</a>.</p>
 
     <p>The spirit of this blog is the "<a href="/about#the-title">beginner's mind</a>." As such, I would love to hear your thoughts!</p>
 
