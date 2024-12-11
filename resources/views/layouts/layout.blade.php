@@ -2,24 +2,24 @@
 
 <html lang="en">
 <head>
-    <title>{{ trim(strip_tags($__env->yieldContent('title', 'shosin'))) }}</title>
+    <title>{{ trim(strip_tags($__env->yieldContent('title', 'Shoshin'))) }}</title>
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description"
-          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, computation, recipes, etc.'))) }}"/>
 
     <meta property="og:site_name" content="shoshin"/>
-    <meta property="og:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shosin'))) }}"/>
+    <meta property="og:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shoshin'))) }}"/>
     <meta property="og:description"
-          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, computation, recipes, etc.'))) }}"/>
 
     <meta name="twitter:card" content="summary"/>
     {{--    <meta name="twitter:site" content="@username" />--}}
-    <meta name="twitter:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shosin'))) }}"/>
+    <meta name="twitter:title" content="{{ trim(strip_tags($__env->yieldContent('title', 'Shoshin'))) }}"/>
     <meta name="twitter:description"
-          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, and computation.'))) }}"/>
+          content="{{ trim(strip_tags($__env->yieldContent('subhead', 'A personal blog by Chris Dempewolf about science, technology, computation, recipes, etc.'))) }}"/>
     <meta name="twitter:image" content="/assets/img/favicon.png"/>
 
 {{--    Use the ICO image as a default--}}
@@ -40,7 +40,7 @@
             <li><a class="mr-4 no-underline" href="/about">/about</a></li>
             <li><a class="mr-4 no-underline" href="/tags/">/tags</a></li>
             {{-- TODO: use controller to load mysite.com/resume --}}
-    {{--        <li><a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a></li>--}}
+            <li><a class="mr-4 no-underline" href="/resume.pdf" target="_blank">/resume</a></li>
             <li><a class="mr-4 no-underline" href="/feed.rss" target="_blank">/rss</a></li>
             <li><a class="mr-4 no-underline" href="https://chrisdempewolf.com/stats.html" target="_blank">/stats</a></li>
         </ul>
