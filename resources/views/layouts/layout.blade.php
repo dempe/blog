@@ -76,7 +76,7 @@
     <p class="text-center">&copy; 2023 - {{ date("Y") }} Christopher Dempewolf</p>
     <p class="text-center">All content (excluding my resume, for which I retain full rights) is hereby licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license">
             Creative Commons Attribution-ShareAlike 4.0 International License
-        </a>.</p>
+        </a></p>
 </footer>
 </body>
 </html>
