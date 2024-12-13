@@ -81,17 +81,21 @@
     <form class="my-8 flex flex-col" id="comment-form">
         {{--        Wrapping in div to prevent filling entire width of screen and to add line breaks. --}}
         <div>
-            <label for="commenter-name">Name (optional):</label>
+            <label for="commenter-name"><span class="font-bold">Name</span> - <span class="italic">optional</span></label>
+            <br>
+            <span class="text-xs">Will be randomly generated if not provided</span>
             <br>
             <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="text" id="commenter-name" name="name">
         </div>
         <div>
-            <label for="commenter-website">Website/Facebook/Twitter/etc (optional):</label>
+            <label for="commenter-website"><span class="font-bold">Website</span> - <span class="italic">optional</span></label>
+            <br>
+            <span class="text-xs">Can be a personal website, Twitter, Facebook, etc.</span>
             <br>
             <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="url" id="commenter-website" name="website">
         </div>
         <div>
-            <label for="comment-input">Comment:</label>
+            <label class="font-bold" for="comment-input">Comment</label>
             <br>
             <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border border-solid border-[#3366FF] p-4 " id="comment-input" placeholder="Leave a comment" rows="5" name="comment" required></textarea>
         </div>
