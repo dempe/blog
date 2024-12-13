@@ -83,23 +83,22 @@
         <div>
             <label for="commenter-name">Name (optional):</label>
             <br>
-            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border-2 border-solid border-[#3366FF] " type="text" id="commenter-name" name="name">
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="text" id="commenter-name" name="name">
         </div>
         <div>
             <label for="commenter-website">Website/Facebook/Twitter/etc (optional):</label>
             <br>
-            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border-2 border-solid border-[#3366FF] " type="url" id="commenter-website" name="website">
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="url" id="commenter-website" name="website">
         </div>
         <div>
             <label for="comment-input">Comment:</label>
             <br>
-            <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border-2 border-solid border-[#3366FF] p-4 " id="comment-input" placeholder="Leave a comment" rows="5" name="comment" required></textarea>
+            <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border border-solid border-[#3366FF] p-4 " id="comment-input" placeholder="Leave a comment" rows="5" name="comment" required></textarea>
         </div>
 
        {{--        Wrapping in div to prevent filling entire width of screen. --}}
         <div>
-            <button class="block float-right text-[#ffffff] bg-[#3366FF] rounded border-2 border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
+            <button class="block float-right text-[#ffffff] bg-[#3366FF] rounded border border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
         </div>
      </form>
-
 @endsection
