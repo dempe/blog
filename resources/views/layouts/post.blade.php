@@ -83,26 +83,41 @@
         <div>
             <label for="commenter-name"><span class="font-bold">Name</span> - <span class="italic">optional</span></label>
             <br>
-            <span class="text-xs">Will be randomly generated if not provided</span>
+            <small id="commenter-name-description" class="text-xs">Will be randomly generated if not provided</small>
             <br>
-            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="text" id="commenter-name" name="name">
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF]"
+                   type="text"
+                   id="commenter-name"
+                   name="name"
+                   aria-describedby="commenter-name-description">
         </div>
         <div>
             <label for="commenter-website"><span class="font-bold">Website</span> - <span class="italic">optional</span></label>
             <br>
-            <span class="text-xs">Can be a personal website, Twitter, Facebook, etc.</span>
+            <small id="commenter-website-description" class="text-xs">Can be a personal website, Twitter, Facebook, etc.</small>
             <br>
-            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF] " type="url" id="commenter-website" name="website">
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF]"
+                   type="url"
+                   id="commenter-website"
+                   name="website"
+                   aria-describedby="commenter-website-description">
         </div>
         <div>
             <label class="font-bold" for="comment-input">Comment</label>
             <br>
-            <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border border-solid border-[#3366FF] p-4 " id="comment-input" placeholder="Leave a comment" rows="5" name="comment" required></textarea>
+            <small id="comment-input-error" class="text-red-500 text-xs hidden">Comment is required.</small>
+            <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border border-solid border-[#3366FF] p-4"
+                      id="comment-input"
+                      placeholder="Leave a comment"
+                      rows="5"
+                      name="comment"
+                      aria-describedby="comment-input-error"
+                      required></textarea>
         </div>
 
-       {{--        Wrapping in div to prevent filling entire width of screen. --}}
-        <div>
-            <button class="block float-right text-[#ffffff] bg-[#3366FF] rounded border border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
+       {{-- Wrapping in div to prevent filling entire width of screen. --}}
+        <div class="flex justify-end">
+            <button class="block text-[#ffffff] bg-[#3366FF] hover:bg-[#0033FF] rounded border border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
         </div>
      </form>
 @endsection
