@@ -11,7 +11,6 @@
 @section('metadata')
     <tr>
         <td>Published:&nbsp;&nbsp;</td>
-{{--        <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>--}}
         <td>{{ $post->created_at->format('Y-m-d') }}</td>
     </tr>
     @if(isset($post->updated_at))
@@ -106,7 +105,7 @@
         <div>
             <label class="font-bold" for="comment-input">Comment</label>
             <br>
-            <small id="comment-input-error" class="text-red-500 text-xs hidden">Comment is required.</small>
+            <small id="comment-description" class="text-xs">Markdown supported—use ">" to reply</small>
             <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border border-solid border-[#3366FF] p-4"
                       id="comment-input"
                       placeholder="Leave a comment"
@@ -121,4 +120,89 @@
             <button class="block text-[#ffffff] bg-[#3366FF] hover:bg-[#0033FF] rounded border border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
         </div>
      </form>
+
+    <h3 id="replies"></h3>
+    <div class="flex flex-col" id="comments-container"></div>
+
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1242.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <script>
+        const docClient = new AWS.DynamoDB.DocumentClient();
+
+        const params = {
+            TableName: 'blog-comments',
+            KeyConditionExpression: 'post = :post',
+            ExpressionAttributeValues: {
+                ':post': '{{ $post->slug }}',
+            },
+        };
+
+        async function fetchComments(params) {
+            try {
+                const data = await new Promise((resolve, reject) => {
+                    docClient.query(params, (err, data) => {
+                        if (err) reject(err);
+                        else resolve(data);
+                    });
+                });
+                console.log('Fetched comments:', data.Items);
+                return Array.isArray(data.Items) ? data.Items : [];
+            } catch (err) {
+                console.error('Error retrieving comments:', err);
+                return [];
+            }
+        }
+
+        (async () => {
+            const comments = await fetchComments(params);
+            const commentsCount = document.getElementById('replies');
+            commentsCount.innerHTML = `<a href="#replies">${comments.length} replies to "{{ $post->title }}"</a>`
+
+            displayComments(comments);
+        })();
+
+        function displayComments(comments) {
+            const container = document.getElementById('comments-container');
+
+            // Clear existing comments (if any)
+            container.innerHTML = '';
+
+            for (let i = 0; i < comments.length; i++) {
+                const comment = comments[i];
+                const commenter = comment.commenter ? comment.commenter : 'Anonymous';
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.id = comment.id;
+
+                const nameElement = document.createElement('p');
+                nameElement.innerHTML = comment.website ? `<strong><a class="no-underline" href="${comment.website}" target="_blank">${commenter}</a></strong>` : `<strong>${commenter}</strong>`;
+                commentDiv.appendChild(nameElement);
+
+                const dateTimeElement = document.createElement('small');
+                dateTimeElement.innerHTML = `<a class="no-underline font-monospace" href="#${comment.id}">${formatDateTime(comment.datetime)}</a>`;
+                commentDiv.appendChild(dateTimeElement);
+
+                const commentText = document.createElement('p');
+                commentText.className = 'comment-text'
+                const converter = new showdown.Converter();
+                commentText.innerHTML = converter.makeHtml(comment.comment);
+                commentDiv.appendChild(commentText);
+
+                container.appendChild(commentDiv);
+            }
+
+            function formatDateTime(isoString) {
+                const date = new Date(isoString);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const seconds = String(date.getSeconds()).padStart(2, '0');
+
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+        }
+    </script>
 @endsection

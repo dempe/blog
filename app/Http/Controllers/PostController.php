@@ -191,7 +191,7 @@ class PostController extends Controller {
             $toc .= '</ul></li>';
         }
 
-        $toc .= '<li><a href="#comments">Comments</a></li>';
+        $toc .= '<li><a href="#comments">Comments</a><ul><li><a href="#replies">Replies</a></li></ul></li>';
         $toc .= '</ul></details></aside>';
 
         return $toc;

@@ -89,6 +89,10 @@
         @apply bg-[#000033];
     }
 
+    .comment-text {
+        @apply border-l-4 border-solid border-[#3366FF] p-4 text-[#ffffff] my-3 rounded bg-[#000033];
+    }
+
     code:not(pre > code) {
         @apply bg-[#444444] overflow-x-auto whitespace-pre-wrap break-words;
     }
