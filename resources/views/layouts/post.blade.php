@@ -76,25 +76,30 @@
 @section('comments')
     <h2 id="comments"><a href="#comments">Comments</a></h2>
 
-    <p>I use <a href="https://giscus.app/">Giscus</a> to delegate to <a href="https://github.com/">Github</a> for comments (you'll need a Github account, sorry). If you you'd rather, feel free to <a href="/about#contact">contact me directly</a>.</p>
-
     <p>The spirit of this blog is the "<a href="/about#the-title">beginner's mind</a>." As such, I would love to hear your thoughts!</p>
 
-    <div class="my-8">
-        <script src="https://giscus.app/client.js"
-                data-repo="dempe/blog-comments"
-                data-repo-id="R_kgDOLfkyrQ"
-                data-category-id="DIC_kwDOLfkyrc4Cd7x2"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="0"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="dark"
-                data-lang="en"
-                data-loading="lazy"
-                crossorigin="anonymous"
-                async>
-        </script>
-    </div>
+    <form class="my-8 flex flex-col" id="comment-form">
+        {{--        Wrapping in div to prevent filling entire width of screen and to add line breaks. --}}
+        <div>
+            <label for="commenter-name">Name (optional):</label>
+            <br>
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border-2 border-solid border-[#3366FF] " type="text" id="commenter-name" name="name">
+        </div>
+        <div>
+            <label for="commenter-website">Website/Facebook/Twitter/etc (optional):</label>
+            <br>
+            <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border-2 border-solid border-[#3366FF] " type="url" id="commenter-website" name="website">
+        </div>
+        <div>
+            <label for="comment-input">Comment:</label>
+            <br>
+            <textarea class="block mb-3 text-[#ffffff] bg-[#000000] rounded w-full border-2 border-solid border-[#3366FF] p-4 " id="comment-input" placeholder="Leave a comment" rows="5" name="comment" required></textarea>
+        </div>
+
+       {{--        Wrapping in div to prevent filling entire width of screen. --}}
+        <div>
+            <button class="block float-right text-[#ffffff] bg-[#3366FF] rounded border-2 border-solid border-[#ffffff] p-2 " type="submit">Submit</button>
+        </div>
+     </form>
+
 @endsection
