@@ -83,12 +83,13 @@
         <div>
             <label for="commenter-name"><span class="font-bold">Name</span> - <span class="italic">optional</span></label>
             <br>
-            <small id="commenter-name-description" class="text-xs">Will be randomly generated if not provided</small>
+            <small id="commenter-name-description" class="text-xs">Will be set to "Anonymous" if not provided</small>
             <br>
             <input class="mb-2 text-[#ffffff] bg-[#000000] rounded border border-solid border-[#3366FF]"
                    type="text"
                    id="commenter-name"
                    name="name"
+                   placeholder="Anonymous"
                    aria-describedby="commenter-name-description">
         </div>
         <div>
