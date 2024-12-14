@@ -128,26 +128,20 @@
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1242.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <script>
-        const docClient = new AWS.DynamoDB.DocumentClient();
+        const API_ENDPOINT = 'https://upjo1dal62.execute-api.us-east-1.amazonaws.com/comments/better-call-saul';
 
-        const params = {
-            TableName: 'blog-comments',
-            KeyConditionExpression: 'post = :post',
-            ExpressionAttributeValues: {
-                ':post': '{{ $post->slug }}',
-            },
-        };
-
-        async function fetchComments(params) {
+        async function fetchComments() {
             try {
-                const data = await new Promise((resolve, reject) => {
-                    docClient.query(params, (err, data) => {
-                        if (err) reject(err);
-                        else resolve(data);
-                    });
-                });
-                console.log('Fetched comments:', data.Items);
-                return Array.isArray(data.Items) ? data.Items : [];
+                const response = await fetch(API_ENDPOINT);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('Fetched comments:', data);
+
+                // Assuming `data` is an array of comment items
+                return Array.isArray(data) ? data : [];
             } catch (err) {
                 console.error('Error retrieving comments:', err);
                 return [];
@@ -155,9 +149,10 @@
         }
 
         (async () => {
-            const comments = await fetchComments(params);
+            const comments = await fetchComments();
             const commentsCount = document.getElementById('replies');
             commentsCount.innerHTML = `<a href="#replies">${comments.length} replies to "{{ $post->title }}"</a>`
+            console.log(comments);
 
             displayComments(comments);
         })();
@@ -170,23 +165,23 @@
 
             for (let i = 0; i < comments.length; i++) {
                 const comment = comments[i];
-                const commenter = comment.commenter ? comment.commenter : 'Anonymous';
+                const commenter = comment.commenter.S ? comment.commenter.S : 'Anonymous';
                 const commentDiv = document.createElement('div');
                 commentDiv.className = 'comment';
-                commentDiv.id = comment.id;
+                commentDiv.id = comment.id.S;
 
                 const nameElement = document.createElement('p');
-                nameElement.innerHTML = comment.website ? `<strong><a class="no-underline" href="${comment.website}" target="_blank">${commenter}</a></strong>` : `<strong>${commenter}</strong>`;
+                nameElement.innerHTML = comment.website ? `<strong><a class="no-underline" href="${comment.website.S}" target="_blank">${commenter}</a></strong>` : `<strong>${commenter}</strong>`;
                 commentDiv.appendChild(nameElement);
 
                 const dateTimeElement = document.createElement('small');
-                dateTimeElement.innerHTML = `<a class="no-underline font-monospace" href="#${comment.id}">${formatDateTime(comment.datetime)}</a>`;
+                dateTimeElement.innerHTML = `<a class="no-underline font-monospace" href="#${comment.id.S}">${formatDateTime(comment.datetime.S)}</a>`;
                 commentDiv.appendChild(dateTimeElement);
 
                 const commentText = document.createElement('p');
                 commentText.className = 'comment-text'
                 const converter = new showdown.Converter();
-                commentText.innerHTML = converter.makeHtml(comment.comment);
+                commentText.innerHTML = converter.makeHtml(comment.comment.S);
                 commentDiv.appendChild(commentText);
 
                 container.appendChild(commentDiv);
