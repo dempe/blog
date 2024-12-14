@@ -43,7 +43,7 @@ jobs:
         run: |
           wget --server-response \           # Print the server’s HTTP responses
                --directory-prefix=output/ \  
-               --regex-reject "$%7Bcomment.website.S%7D" \              
+               --reject-regex "\${comment\.website\.S}" \             
                --html-extension \            # Ensure files without a recognizable extension (like those served as HTML but without .html in the URL) are saved with a .html extension
                --convert-links \             # After download, go through all downloaded HTML files and convert links to point to the locally downloaded files instead of the original remote URLs
                --recursive \                 # Follow links found on downloaded pages
