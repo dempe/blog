@@ -39,11 +39,6 @@ jobs:
         run: php artisan serve --host=0.0.0.0 --port=8000 &
       - name: Check server status
         run: curl -I http://127.0.0.1:8000
-      - name: Check Laravel logs for errors
-        run: |
-          if [ -f storage/logs/laravel.log ]; then
-            cat storage/logs/laravel.log
-          fi
       - name: Download site using wget
         run: |
           wget --server-response --directory-prefix=output/ --html-extension --convert-links --recursive --level=10 --page-requisites --timestamping --adjust-extension --no-host-directories http://127.0.0.1:8000 http://127.0.0.1:8000/404 || (cat storage/logs/laravel.log && exit 1)
