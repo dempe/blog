@@ -42,13 +42,13 @@ jobs:
       - name: Download site using wget
         run: |
           wget --server-response \           # Print the server’s HTTP responses
-               --directory-prefix=output/ \  
-               --reject-regex "\${comment\.website\.S}" \             
+               --directory-prefix=output/ \
+               --reject-regex 'comment\.website\.S' \             
                --html-extension \            # Ensure files without a recognizable extension (like those served as HTML but without .html in the URL) are saved with a .html extension
                --convert-links \             # After download, go through all downloaded HTML files and convert links to point to the locally downloaded files instead of the original remote URLs
                --recursive \                 # Follow links found on downloaded pages
                --level=10 \                  # Max recursion depth
-               --page-requisites \     
+               --page-requisites \
                --timestamping \              # If a file hasn’t changed on the server since the last download, don’t redownload it
                --adjust-extension \          # Similar to --html-extension but slightly broader. If wget determines a file actually contains HTML, it will ensure that file is saved with a .html extension, even if it originally had none or a different extension
                --no-host-directories \       #  Keep downloaded site’s files directly under the specified directory prefix
