@@ -128,11 +128,11 @@
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1242.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <script>
-        const API_ENDPOINT = 'https://upjo1dal62.execute-api.us-east-1.amazonaws.com/comments/better-call-saul';
+        const API_ENDPOINT = 'https://upjo1dal62.execute-api.us-east-1.amazonaws.com/comments';
 
         async function fetchComments() {
             try {
-                const response = await fetch(API_ENDPOINT);
+                const response = await fetch(`${API_ENDPOINT}/{{ $post->slug }}`);
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
