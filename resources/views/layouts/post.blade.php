@@ -171,7 +171,9 @@
                 commentDiv.id = comment.id.S;
 
                 const nameElement = document.createElement('p');
-                nameElement.innerHTML = comment.website ? `<strong><a class="no-underline" href="${comment.website.S}" target="_blank" rel="noopener noreferrer">${commenter}</a></strong>` : `<strong>${commenter}</strong>`;
+                nameElement.innerHTML = comment.website
+                    ? `<strong><a class="no-underline" href="${comment.website.S}" target="_blank" rel="noopener noreferrer">${commenter}</a></strong>`
+                    : `<strong>${commenter}</strong>`;
                 commentDiv.appendChild(nameElement);
 
                 const dateTimeElement = document.createElement('small');
